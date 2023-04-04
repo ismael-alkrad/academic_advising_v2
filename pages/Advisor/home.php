@@ -19,29 +19,56 @@
 
 <body>
     <nav class="navbar navbar-expand-lg shadow-lg p-1 mb-5 bg-body rounded position-sticky top-0">
-        <div class="container">
-            <button id="log-out" class="navbar fs-6 d-flex justify-content-center text-center" style="color: #ffffff;" href="#">تسجيل
+        <div class="container position-relative">
+            <button class="navbar fs-6 d-flex justify-content-center text-center d-none d-lg-block d-xl-block d-xxl-block" style="color: #ffffff;" href="#">تسجيل
                 خروج <i class="fa-solid fa-arrow-right-from-bracket px-1" style="color: #ffffff;"></i></button>
-            <div>
-                <div class="navbar navbar-collapse me-auto ">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><span>المزيد</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><span>التقارير</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><span>الطلاب</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#"><span>الرئيسية</span></a>
-                        </li>
-                    </ul>
-                    <span>الإرشاد الأكاديمي</span>
-                    <img height="70px" src="../../assets/images/logo.png">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar collapse navbar-collapse me-auto">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><span>المزيد</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><span>التقارير</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"><span>الطلاب</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><span>الرئيسية</span></a>
+                    </li>
+                </ul>
+                <span class="d-none d-lg-block d-xl-block d-xxl-block">الإرشاد الأكاديمي</span>
+                <img class="d-none d-lg-block d-xl-block d-xxl-block" height="70px" src="../../assets/images/logo.png">
+            </div>
+
+            <!-- ------------------------------------Navbar Responsive-------------------------------------------- -->
+
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                <div class="position-relative">
+                    <div class="offcanvas-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        <h1 class="offcanvas-title" id="offcanvasRightLabel">القائمة</h1>
+                        <ul class="navbar-nav position-absolute top-0 start-0 pt-3 mt-5 mx-4 d-sm-block d-md-block d-lg-none">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><span>الرئيسية</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><span>الطلاب</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#"><span>التقارير</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><span>المزيد</span></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+            <img class="position-absolute top-0 end-0 d-sm-block d-md-block d-lg-none mx-4" height="45px" src="../../assets/images/logo.png">
         </div>
     </nav>
     <div class="landing">
@@ -116,9 +143,6 @@
                         timer: 1500,
                     });
                 }
-
-
-
             }
         });
     });
