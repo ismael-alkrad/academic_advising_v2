@@ -1,0 +1,45 @@
+:root{
+    --blue-color:#478AC9;
+    --grey-color:#e5e5e5;
+}
+
+body{
+    font-family: 'Cairo', sans-serif;
+    background-color:var(--grey-color) ;
+}
+/*Start Navbar*/
+.navbar{
+    color: var(--blue-color);
+    font-size: larger;
+}
+/*End Navbar*/
+
+/*Start Landing*/
+.landing .pg-color{
+    background-color:white ;
+    width: 500px;
+    height: 600px;
+    padding-top: 7rem;
+}
+.landing .divider{
+    border-right: 1px solid var(--grey-color);
+}
+
+.landing form label{
+    display: flex;
+    justify-content: right;
+    text-align: right;
+}
+
+.landing form input,
+.landing form input:active,
+.landing form input:focus{
+    box-shadow:none ;
+    direction: rtl;
+}
+
+.landing form button{
+    margin: 5px;
+    width: 100%;
+}
+/*End Landing*/
