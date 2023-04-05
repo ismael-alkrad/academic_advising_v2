@@ -60,7 +60,7 @@
             تسجيل الدخول كمرشد أكاديمي
           </button>
           <button type="submit" class="btn btn-primary">
-            تسديل الدخول كطالب
+            تسجيل الدخول كطالب
           </button>
           <button type="submit" class="btn btn-primary">
             تسجيل الدخول كمدير
@@ -103,7 +103,7 @@
           }, 1500);
         } else {
           $("#error_login").append(
-            "<div class='alert alert-danger' role='alert'>هنالك خطأ في اسم المستخدم أو كلمة المرور</div>"
+            "<div class='alert alert-danger d-flex justify-content-end' role='alert'>هنالك خطأ في اسم المستخدم أو كلمة المرور</div>"
           );
           Swal.fire({
             position: "center",

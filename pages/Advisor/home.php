@@ -46,20 +46,20 @@
 
             <!-- ------------------------------------Navbar Responsive-------------------------------------------- -->
 
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas offcanvas-start d-sm-block d-md-block d-lg-none" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                 <div class="position-relative">
                     <div class="offcanvas-header">
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         <h1 class="offcanvas-title" id="offcanvasRightLabel">القائمة</h1>
                         <ul class="navbar-nav position-absolute top-0 start-0 pt-3 mt-5 mx-4 d-sm-block d-md-block d-lg-none">
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><span>الرئيسية</span></a>
+                                <a class="nav-link active" href="#"><span>الرئيسية</span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#"><span>الطلاب</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="#"><span>التقارير</span></a>
+                                <a class="nav-link" href="#"><span>التقارير</span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#"><span>المزيد</span></a>

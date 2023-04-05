@@ -56,12 +56,6 @@ button:hover{
     color: var(--blue-color);
 }
 
-.navbar>.container, .navbar>.container-lg, .navbar>.container-md, .navbar>.container-sm, .navbar>.container-xl, .navbar>.container-xxl{
-    display: flex;
-    flex-wrap: inherit;
-    align-items: center;
-    justify-content: flex-end;
-}
 .navbar .navbar-toggler:active,
 .navbar .navbar-toggler:focus,
 .navbar .navbar-toggler:hover{
