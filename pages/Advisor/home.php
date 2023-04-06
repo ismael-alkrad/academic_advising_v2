@@ -1,3 +1,8 @@
+<?php
+include_once '../../php/check.php';
+
+check();
+check_activity(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
