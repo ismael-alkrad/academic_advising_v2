@@ -102,6 +102,7 @@
             window.location.href = "pages/Advisor/home.php";
           }, 1500);
         } else {
+          $("#error_login").empty();
           $("#error_login").append(
             "<div class='alert alert-danger' role='alert'>هنالك خطأ في اسم المستخدم أو كلمة المرور</div>"
           );

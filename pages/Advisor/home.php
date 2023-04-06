@@ -1,3 +1,8 @@
+<?php
+include_once '../../php/check.php';
+
+check();
+check_activity(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +25,7 @@
 <body>
     <nav class="navbar navbar-expand-lg shadow-lg p-1 mb-5 bg-body rounded position-sticky top-0">
         <div class="container position-relative">
-            <button class="navbar fs-6 d-flex justify-content-center text-center d-none d-lg-block d-xl-block d-xxl-block" style="color: #ffffff;" href="#">تسجيل
+            <button id="log-out" class="navbar fs-6 d-flex justify-content-center text-center d-none d-lg-block d-xl-block d-xxl-block" style="color: #ffffff;" href="#">تسجيل
                 خروج <i class="fa-solid fa-arrow-right-from-bracket px-1" style="color: #ffffff;"></i></button>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
