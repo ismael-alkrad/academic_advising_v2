@@ -8,7 +8,7 @@
     <title>Home</title>
     <link rel="stylesheet" href="../../css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="../../css/all.min.css">
-    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="../../css/home.css?v=<?php echo time(); ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
 <body>
     <nav class="navbar navbar-expand-lg shadow-lg p-1 mb-5 bg-body rounded position-sticky top-0">
         <div class="container position-relative">
-            <button class="navbar fs-6 d-flex justify-content-center text-center d-none d-lg-block d-xl-block d-xxl-block" style="color: #ffffff;" href="#">تسجيل
+            <button id="log-out" class="navbar fs-6 d-flex justify-content-center text-center d-none d-lg-block d-xl-block d-xxl-block" style="color: #ffffff;">تسجيل
                 خروج <i class="fa-solid fa-arrow-right-from-bracket px-1" style="color: #ffffff;"></i></button>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -34,7 +34,7 @@
                         <a class="nav-link" href="#"><span>التقارير</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><span>الطلاب</span></a>
+                        <a class="nav-link" href="student.php"><span>الطلاب</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="#"><span>الرئيسية</span></a>
@@ -83,7 +83,7 @@
                         الزمني للمواد المسجلة للفصل الدراسي الحالي.</p>
                     <button>عرض النماذج</button>
                 </div>
-                <div class="col-4 pg-grid-4 text-start position-absolute top-50 translate-middle-x">
+                <div class="col-4 pg-grid-4 text-start position-absolute top-50 translate-middle-x d-none d-lg-block">
                     <h1 class="p-3">مقدمة في الإرشاد الأكاديمي</h1>
                     <p class="mb-5">تعتبر عملية الإرشاد الأكاديمي جزءًا أساسيًا من الرحلة الأكاديمية للطالب. يتمثل دور
                         المرشد
@@ -94,7 +94,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-4 pg-grid-2 shadow-lg p-2 mb-5 bg-body rounded"><span class="icon-reduis"><img class="icon-1" src="../../assets/images/report.png"></span>
+                <div class="col-4  pg-grid-2 shadow-lg p-2 mb-5 bg-body rounded"><span class="icon-reduis"><img class="icon-1" src="../../assets/images/report.png"></span>
                     <h2 class="p-3">التقارير</h2>
                     <p class="mb-5">عرض التقرير التفصيلي عن عملية الإرشاد الأكاديمي خلال الفصل الدراسي.</p>
                     <button>عرض التقارير</button>
@@ -118,15 +118,11 @@
             url: "../../php/forms/logout.php",
             type: "POST",
             success: function(data) {
-
-
                 if (data === 'success') {
-
                     Swal.fire({
                         position: "center",
                         icon: "success",
                         title: "تم تسجيل الخروج بنجاح",
-
                         showConfirmButton: false,
                         timer: 1500,
                     });
@@ -138,7 +134,6 @@
                         position: "center",
                         icon: "error",
                         title: "حدث خطأ ما",
-
                         showConfirmButton: false,
                         timer: 1500,
                     });
