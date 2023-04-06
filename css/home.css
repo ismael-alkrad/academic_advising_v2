@@ -67,24 +67,18 @@ button:hover{
 
 /*Start Landing*/
 .landing .pg-color{
-    background-color:white ;
     width: 600px;
     height: 400px;
-    padding-top: 7rem;
 }
 
 .landing .pg-grid-2{
-    background-color:white ;
     width: 290px;
     height: 400px;
-    padding-top: 7rem;
 }
 
 .landing .pg-grid-3{
-    background-color:white ;
     width: 290px;
     height: 400px;
-    padding-top: 7rem;
     margin-left: 20px;
 }
 

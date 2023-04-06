@@ -34,10 +34,10 @@
                         <a class="nav-link" href="#"><span>التقارير</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#"><span>الطلاب</span></a>
+                        <a class="nav-link" href="#"><span>الطلاب</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><span>الرئيسية</span></a>
+                        <a class="nav-link active" href="#"><span>الرئيسية</span></a>
                     </li>
                 </ul>
                 <span class="d-none d-lg-block d-xl-block d-xxl-block">الإرشاد الأكاديمي</span>
