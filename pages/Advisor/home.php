@@ -61,7 +61,7 @@ check_activity(); ?>
                                 <a class="nav-link active" href="#"><span>الرئيسية</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><span>الطلاب</span></a>
+                                <a class="nav-link" href="student.php"><span>الطلاب</span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#"><span>التقارير</span></a>

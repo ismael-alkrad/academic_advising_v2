@@ -19,6 +19,8 @@ check_activity();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -161,6 +163,54 @@ check_activity();
     <script src="../../js/bootstrap.bundle.min.js"></script>
     <script src="../../js/all.min.js"></script>
 </body>
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.btn-primary', function() {
+            var email = $(this).data('email');
+            var formData = $(this).closest('.modal-content').find('.mail-form').serialize();
+            formData += '&recipient=' + email;
+            var $modalContent = $(this).closest('.modal-content'); // Store the reference to this
+            console.log($modalContent.find('.mail-form'));
+
+            $.ajax({
+                type: "POST",
+                url: "../../php/forms/sendmail.php",
+                data: formData,
+                success: function(response) {
+                    console.log(response);
+                    if (response == "success") {
+                        // Reset the form after sending the email
+                        $modalContent.find('.mail-form')[0].reset(); // Use the variable here
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "تم ارسال الرسالة بنجاح",
+
+                            showConfirmButton: false,
+                            timer: 1500,
+
+
+                        });
+                    } else {
+                        $modalContent.find('.mail-form')[0].reset(); // 
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: "حدث خطأ ما",
+
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert("Error sending email");
+                }
+            });
+        });
+    });
+</script>
 
 <script>
     $("#log-out").click(() => {
