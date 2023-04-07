@@ -81,7 +81,7 @@ check_activity();
         <div class="container text-center">
             <div class="row row-size shadow-lg p-3 mb-4 bg-body rounded">
                 <div class="col border-start ms-5">
-                    <img style="width: 100px;" class="rounded-circle my-5" src="../../assets/images/person.jpeg">
+
                 </div>
                 <div class="col">
                     <h1>قائمة الطلاب</h1>
@@ -92,9 +92,9 @@ check_activity();
                             if ($student != null) {
                                 foreach ($student as $s) {
                                     $to = $s['email'];
-                                    echo '<h2 class="accordion-header" id="heading' . $s['u_id'] . '">
+                                    echo '<h2 class="accordion-header" id="heading' . $s['u_id'] . '" data-u-id="' . $s['u_id'] . '">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapse' . $s['u_id'] . '"  aria-expanded="false" aria-controls="collapse' . $s['u_id'] . '">
+                                    data-bs-target="#collapse' . $s['u_id'] . '"  aria-expanded="false" aria-controls="collapse' . $s['u_id'] . '" data-u-id="' . $s['u_id'] . '">
                                     ' . $s['name'] . '
                                 </button>
                             </h2>
@@ -163,6 +163,69 @@ check_activity();
     <script src="../../js/bootstrap.bundle.min.js"></script>
     <script src="../../js/all.min.js"></script>
 </body>
+
+
+<script>
+    $(document).ready(function() {
+        $('.accordion-header').on('click', function() {
+            var u_id = $(this).data('u-id');
+            // console.log('u_id:', u_id);
+            // var $content = $('.col.border-start.ms-5');
+            // $content.html('New content for u_id ' + u_id + ' goes here');
+
+            $.ajax({
+                type: "Post",
+                url: "../../php/forms/getdata.php",
+                data: {
+                    id: u_id
+                },
+
+                beforeSend: function() {
+                    $('.col.border-start.ms-5').html('<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>');
+                },
+                complete: function() {
+
+                },
+
+                success: function(result) {
+                    var data = JSON.parse(result);
+                    $('.col.border-start.ms-5').empty();
+
+                    // Create the table
+                    var table = $('<table>').addClass('table table-striped table-hover table-bordered text-right').attr('dir', 'rtl');
+                    var tbody = $('<tbody>').appendTo(table);
+
+                    // Add rows for each field
+                    $.each(data, function(key, value) {
+                        if (key === 'id') {
+                            $('<tr>').append($('<td>').text('رقم الطالب')).append($('<td>').text(value)).appendTo(tbody);
+                        } else if (key === 'u_id') {
+                            $('<tr>').append($('<td>').text('الرقم الجامعي')).append($('<td>').text(value)).appendTo(tbody);
+                        } else if (key === 'name') {
+                            $('<tr>').append($('<td>').text('الاسم')).append($('<td>').text(value)).appendTo(tbody);
+                        } else if (key === 'email') {
+                            $('<tr>').append($('<td>').text('البريد الإلكتروني')).append($('<td>').text(value)).appendTo(tbody);
+                        } else if (key === 'phone') {
+                            $('<tr>').append($('<td>').text('رقم الهاتف')).append($('<td>').text(value)).appendTo(tbody);
+                        } else if (key === 'department') {
+                            $('<tr>').append($('<td>').text('القسم')).append($('<td>').text(value)).appendTo(tbody);
+                        } else if (key === 'major') {
+                            $('<tr>').append($('<td>').text('التخصص')).append($('<td>').text(value)).appendTo(tbody);
+                        } else if (key === 'advisor') {
+                            $('<tr>').append($('<td>').text('المشرف الأكاديمي')).append($('<td>').text(value)).appendTo(tbody);
+                        }
+                    });
+
+                    // Add the table to the DOM
+                    $('.col.border-start.ms-5').append(table);
+                },
+
+            });
+        });
+
+
+    });
+</script>
 <script>
     $(document).ready(function() {
         $(document).on('click', '.btn-primary', function() {

@@ -80,3 +80,11 @@ function sendMail(
         echo 'An error occurred while sending the email.';
     }
 }
+
+function getStudentById(PDO $conn, $u_id)
+{
+    $stmt = $conn->prepare("SELECT * FROM student_info WHERE u_id = :u_id");
+    $stmt->bindValue(':u_id', $u_id);
+    $stmt->execute();
+    return  $stmt->fetch(PDO::FETCH_ASSOC);
+}
