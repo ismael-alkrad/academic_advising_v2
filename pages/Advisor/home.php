@@ -13,7 +13,7 @@ check_activity(); ?>
     <title>Home</title>
     <link rel="stylesheet" href="../../css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="../../css/all.min.css">
-    <link rel="stylesheet" href="../../css/home.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../../css/Advisor/home.css?v=<?php echo time(); ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&display=swap" rel="stylesheet">

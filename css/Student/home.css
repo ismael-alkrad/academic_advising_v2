@@ -71,63 +71,60 @@ body{
 /*End Navbar*/
 
 /*Start Landing*/
-.landing .row-size{
-    
+.landing{
+    direction: rtl;
 }
 
-.landing .container h1{
-    text-align: end;
-    color: var(--blue-color);
+.landing .container{
+    width: 1000px;
 }
-.accordion-button{
+
+.landing .container .form-select:focus,
+.landing .container .form-select:active,
+.landing .container .form-control:focus,
+.landing .container .form-control:active{
+    box-shadow: none;
+}
+
+.landing .container .form-select:hover{
+    transform: translateX(0px) translateY(-3px) scale(1);
+    transition-duration: 0.5s;
+    background-color: var(--icon-color);
+    cursor: pointer;
+}
+
+.landing .container .form-label{
+    font-weight: bold;
+    font-style: italic;
+    padding: 0px 5px;
+}
+
+.landing .container .icon-left{
     display: flex;
     flex-direction: row-reverse;
-    border-bottom: 1px solid var(--grey-color);
+    direction: rtl;
+    text-align: right;
+    cursor: pointer;
 }
 
-.accordion-button:focus{
-    box-shadow: none;
-    border-bottom: 1px solid var(--grey-color);
-    border-radius: 0%;
-}
-
-.accordion .accordion-body{
-    border-bottom: 1px solid var(--grey-color);
-}
-
-.landing .icon-reduis{
-    display: inline-flex;
-    justify-content: center;
-    height: 60px;
-    width: 60px;
+.landing .button-style{
+    color: white;
     background-color: var(--blue-color);
+    width: 151px;
+    height: 45px;
     border-radius: 50px;
-}
-
-.landing .icon-1{
-    margin-top: 15px;
-    height: 35px;
-}
-
-.landing .animation{
+    border: none;
     transform: translateX(0px) translateY(0px) scale(1);
     transition-duration: 0.5s;
+    margin: 0px 0px 20px 0px;
 }
-.landing .animation:hover{
+
+.landing .button-style:hover{
     transform: translateX(0px) translateY(-5px) scale(1);
     transition-duration: 0.5s;
+    box-shadow: 0px 0px 8px 0px rgba(128,128,128,1);
+    text-shadow: 0px 0px 0px rgb(0,0,0,0);
+    background-color: black;
+    color: white;
 }
-
-.landing .animation button{
-    box-shadow: none;
-    border: 0px;
-    background-color: white;
-}
-.landing .animation button:hover{
-    color: var(--blue-color);
-}
-.landing .color-icon{
-    color:var(--blue-color) ;
-}
-
 /*End Landing*/

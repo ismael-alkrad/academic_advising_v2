@@ -15,7 +15,7 @@ check_activity();
     <title>Student</title>
     <link rel="stylesheet" href="../../css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="../../css/all.min.css">
-    <link rel="stylesheet" href="../../css/student.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../../css/Advisor/student.css?v=<?php echo time(); ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -70,18 +70,20 @@ check_activity();
                             <li class="nav-item">
                                 <a class="nav-link" href="#"><span>المزيد</span></a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><span> تسجيل خروج </span></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <img class="position-absolute top-0 end-0 d-sm-block d-md-block d-lg-none mx-4" height="45px" src="../../assets/images/logo.png">
+            <img class="position-absolute top-0 end-0 d-sm-block d-md-block d-lg-none mx-4" height="40px" src="../../assets/images/logo.png">
         </div>
     </nav>
     <div class="landing">
         <div class="container text-center">
             <div class="row row-size shadow-lg p-3 mb-4 bg-body rounded">
                 <div class="col border-start ms-5">
-
                 </div>
                 <div class="col">
                     <h1>قائمة الطلاب</h1>
@@ -192,7 +194,7 @@ check_activity();
                     $('.col.border-start.ms-5').empty();
 
                     // Create the table
-                    var table = $('<table>').addClass('table table-striped table-hover table-bordered text-right').attr('dir', 'rtl');
+                    var table = $('<table>').addClass('table table-striped table-hover table-bordered text-right my-5').attr('dir', 'rtl');
                     var tbody = $('<tbody>').appendTo(table);
 
                     // Add rows for each field
