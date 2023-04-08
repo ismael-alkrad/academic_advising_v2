@@ -11,4 +11,3 @@ if (mail($to, $subject, $message, $headers)) {
 } else {
     echo "error";
 }
-print_r($_POST);

@@ -181,7 +181,7 @@ check_activity();
                 },
 
                 beforeSend: function() {
-                    $('.col.border-start.ms-5').html('<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>');
+                    $('.col.border-start.ms-5').html('<div class="d-flex justify-content-center"><div class = "spinner-border"role = "status" ><span class = "sr-only" > Loading... < /span> < /div > </div>');
                 },
                 complete: function() {
 
@@ -192,7 +192,7 @@ check_activity();
                     $('.col.border-start.ms-5').empty();
 
                     // Create the table
-                    var table = $('<table>').addClass('table table-striped table-hover table-bordered text-right').attr('dir', 'rtl');
+                    var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'RTL');
                     var tbody = $('<tbody>').appendTo(table);
 
                     // Add rows for each field
