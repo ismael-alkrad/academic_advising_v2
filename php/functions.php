@@ -179,11 +179,39 @@ function insertPracticalExperience($conn, $formData)
 
     // Bind the parameters to the statement
     $stmt->bindParam(':u_id', $formData['u_id']);
-    $stmt->bindParam(':expereance', $formData['expereance']);
+
+    // Loop through each practical experience input field and concatenate the values into a string
+    $expereance = "";
+    for ($i = 1; $i <= count($formData) / 2; $i++) {
+        if (isset($formData['experience_job' . $i])) {
+            $expereance .= $formData['experience_job' . $i] . ", ";
+        }
+    }
+    $expereance = rtrim($expereance, ", ");
+    $stmt->bindParam(':expereance', $expereance);
+
     $stmt->bindParam(':company_name', $formData['company_name']);
-    $stmt->bindParam(':jop_name', $formData['jop_name']);
-    $stmt->bindParam(':certificate', $formData['certificate']);
-    $stmt->bindParam(':activities', $formData['activities']);
+    $stmt->bindParam(':jop_name', $formData['job_name']);
+
+    // Loop through each certificate input field and concatenate the values into a string
+    $certificate = "";
+    for ($i = 1; $i <= count($formData) / 2; $i++) {
+        if (isset($formData['certificate' . $i])) {
+            $certificate .= $formData['certificate' . $i] . ", ";
+        }
+    }
+    $certificate = rtrim($certificate, ", ");
+    $stmt->bindParam(':certificate', $certificate);
+
+    // Loop through each activities input field and concatenate the values into a string
+    $activities = "";
+    for ($i = 1; $i <= count($formData) / 2; $i++) {
+        if (isset($formData['activities' . $i])) {
+            $activities .= $formData['activities' . $i] . ", ";
+        }
+    }
+    $activities = rtrim($activities, ", ");
+    $stmt->bindParam(':activities', $activities);
 
     // Execute the statement
     if ($stmt->execute()) {

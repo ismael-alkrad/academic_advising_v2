@@ -1,5 +1,8 @@
 <?php
-include_once '../../php/functions.php';
+include_once '../../php/check.php';
+
+check();
+check_activity();
 $id = $_SESSION['username'];
 $data = getStudentById($conn, $id);
 
@@ -308,11 +311,11 @@ $data = getStudentById($conn, $id);
                 </label>
                 <div class="input-group mb-3">
                   <span class="input-group-text" id="basic-addon1">1</span>
-                  <input id="inputexpereance_jop" type="text" class="form-control" placeholder="Practical experiences" aria-label="Practical experiences" aria-describedby="basic-addon1" name="experience_job[]" />
+                  <input id="inputexpereance_jop" type="text" class="form-control" placeholder="Practical experiences" aria-label="Practical experiences" aria-describedby="basic-addon1" name="experience_job1" />
                 </div>
               </div>
               <div>
-                <button id="addInputBtn_expereance" class="button-style">
+                <button type="button" id="addInputBtn_expereance" class="button-style">
                   إضافة حقل إدخال
                 </button>
               </div>
@@ -325,11 +328,11 @@ $data = getStudentById($conn, $id);
                 </label>
                 <div class="input-group mb-3">
                   <span class="input-group-text" id="basic-addon1">1</span>
-                  <input id="inputcertificate" type="text" class="form-control" placeholder="certificate" aria-label="certificate" aria-describedby="basic-addon1" name="certificate[]" />
+                  <input id="inputcertificate" type="text" class="form-control" placeholder="certificate" aria-label="certificate" aria-describedby="basic-addon1" name="certificate1" />
                 </div>
               </div>
               <div>
-                <button id="addInputBtn_certificate" class="button-style">
+                <button type="button" id="addInputBtn_certificate" class="button-style">
                   إضافة حقل إدخال
                 </button>
               </div>
@@ -341,11 +344,11 @@ $data = getStudentById($conn, $id);
                 </label>
                 <div class="input-group mb-3">
                   <span class="input-group-text" id="basic-addon1">1</span>
-                  <input id="inputactivities" name="inputactivities" type="text" class="form-control" placeholder="activities" aria-label="activities" aria-describedby="basic-addon1" />
+                  <input id="inputactivities" name="activities1" type="text" class="form-control" placeholder="activities" aria-label="activities" aria-describedby="basic-addon1" />
                 </div>
               </div>
               <div>
-                <button id="addInputBtn_activities" class="button-style">
+                <button type="button" id="addInputBtn_activities" class="button-style">
                   إضافة حقل إدخال
                 </button>
               </div>
@@ -434,6 +437,7 @@ $data = getStudentById($conn, $id);
       newInput.className = "form-control"; // تعيين الكلاس المطلوب
       newInput.placeholder = "Practical experiences";
       newInput.ariaLabel = "Practical experiences";
+      newInput.name = "experience_jobs" + counter_expereance;
       newInput.ariaDescribedBy = "basic-addon" + counter_expereance;
 
       // إضافة العناصر الجديدة إلى العنصر الأب
@@ -470,6 +474,7 @@ $data = getStudentById($conn, $id);
       newInput.className = "form-control"; // تعيين الكلاس المطلوب
       newInput.placeholder = "certificate";
       newInput.ariaLabel = "certificate";
+      newInput.name = "certificate" + counter_certificate;
       newInput.ariaDescribedBy = "basic-addon" + counter_certificate;
 
       // إضافة العناصر الجديدة إلى العنصر الأب
@@ -499,6 +504,7 @@ $data = getStudentById($conn, $id);
       var newSpan = document.createElement("span");
       newSpan.className = "input-group-text";
       newSpan.id = "basic-addon" + counter_activities;
+
       newSpan.innerText = counter_activities; // تعيين الرقم الجديد للعنصر span
 
       var newInput = document.createElement("input");
@@ -506,6 +512,7 @@ $data = getStudentById($conn, $id);
       newInput.className = "form-control"; // تعيين الكلاس المطلوب
       newInput.placeholder = "activities";
       newInput.ariaLabel = "activities";
+      newInput.name = "activities" + counter_activities;
       newInput.ariaDescribedBy = "basic-addon" + counter_activities;
 
       // إضافة العناصر الجديدة إلى العنصر الأب
@@ -588,27 +595,60 @@ $data = getStudentById($conn, $id);
     var formData = $("#practical-experience").serialize();
     console.log(decodeURIComponent(formData.split("&")));
 
-    // $.ajax({
-    //   type: "Post",
-    //   url: "../../php/forms/inserts/insertpra.php",
-    //   data: formData,
-    //   beforeSend: function() {},
-    //   complete: function() {
-    //     // stopPreloader();
-    //   },
-    //   success: function(result) {
-    //     console.log(result);
-    //     Swal.fire({
-    //       position: "center",
-    //       icon: "success",
-    //       title: "Your work has been saved",
-    //       showConfirmButton: false,
-    //       timer: 1500,
-    //     });
-    //   },
-    // });
+    $.ajax({
+      type: "Post",
+      url: "../../php/forms/inserts/insertpra.php",
+      data: formData,
+      beforeSend: function() {},
+      complete: function() {
+        // stopPreloader();
+      },
+      success: function(result) {
+        console.log(result);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      },
+    });
   });
 </script>
 <!----------------------------------------- End Format Input Phone ------------------------------------>
+
+<!----------------------------------------- start  Log out ------------------------------------>
+<script>
+  $("#log-out").click(() => {
+    $.ajax({
+      url: "../../php/forms/logout.php",
+      type: "POST",
+      success: function(data) {
+        if (data === 'success') {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "تم تسجيل الخروج بنجاح",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          setTimeout(function() {
+            window.location.href = "../../index.php";
+          }, 1500);
+        } else {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "حدث خطأ ما",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      }
+    });
+  });
+</script>
+<!----------------------------------------- End  Log out ------------------------------------>
 
 </html>
