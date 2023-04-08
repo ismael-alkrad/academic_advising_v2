@@ -58,7 +58,7 @@
           <button id="button" type="button" class="btn btn-primary">
             تسجيل الدخول كمرشد أكاديمي
           </button>
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" id="student-login" class="btn btn-primary">
             تسجيل الدخول كطالب
           </button>
           <button type="submit" class="btn btn-primary">
@@ -99,6 +99,52 @@
           });
           setTimeout(function() {
             window.location.href = "pages/Advisor/home.php";
+          }, 1500);
+        } else {
+          $("#error_login").empty();
+          $("#error_login").append(
+            "<div class='alert alert-danger d-flex justify-content-end' role='alert'>هنالك خطأ في اسم المستخدم أو كلمة المرور</div>"
+          );
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "اسم المستخدم او كلمة المرور غير صحيحة",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      },
+    });
+  });
+</script>
+<script>
+  $("#student-login").on("click", function(e) {
+    e.preventDefault();
+
+    var formData = $("#login-form-user").serialize();
+
+    $.ajax({
+      type: "Post",
+      url: "php/forms/studentlogin.php",
+      data: formData,
+      beforeSend: function() {},
+      complete: function() {
+        // stopPreloader();
+        console.log(formData.split("&"));
+      },
+
+      success: function(result) {
+        console.log(result);
+        if (result === "success") {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "تم تسجيل الدخول بنجاح",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          setTimeout(function() {
+            window.location.href = "pages/student/home.php";
           }, 1500);
         } else {
           $("#error_login").empty();
