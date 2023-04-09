@@ -6,9 +6,7 @@ check_activity();
 $id = $_SESSION['username'];
 $data = getStudentById($conn, $id);
 $colleges = getColleges($conn);
-print_r(
-  $colleges
-);
+
 
 ?>
 
