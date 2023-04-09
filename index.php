@@ -14,6 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&display=swap" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
@@ -167,20 +168,33 @@
 </script>
 
 <script>
-  const showPasswordIcon = document.getElementById('showPasswordIcon');
-  const passwordInput = document.getElementById('exampleInputPassword1');
-
-  showPasswordIcon.addEventListener('click', function() {
-    if (passwordInput.type === 'password') {
-      passwordInput.type = 'text';
-      showPasswordIcon.classList.remove('fa-eye');
-      showPasswordIcon.classList.add('fa-eye-slash');
-    } else {
-      passwordInput.type = 'password';
-      showPasswordIcon.classList.remove('fa-eye-slash');
-      showPasswordIcon.classList.add('fa-eye');
-    }
+  $(document).ready(function() {
+    const passwordInput = $('#exampleInputPassword1');
+    $(document).on('click', function(e) {
+      if ($(e.target).is('#showPasswordIcon')) {
+        const type = passwordInput.attr('type') === 'password' ? 'text' : 'password';
+        passwordInput.attr('type', type);
+        $('#showPasswordIcon').toggleClass('fa-eye fa-eye-slash');
+      }
+    });
   });
+
+
+
+  //=========================== js ===========================
+  // document.addEventListener('DOMContentLoaded', function() {
+  //   const passwordInput = document.getElementById('exampleInputPassword1');
+
+  //   document.addEventListener('click', function(e) {
+  //     if (e.target.id === 'showPasswordIcon') {
+  //       const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+  //       passwordInput.setAttribute('type', type);
+  //       const showPasswordIcon = document.getElementById('showPasswordIcon');
+  //       showPasswordIcon.classList.toggle('fa-eye');
+  //       showPasswordIcon.classList.toggle('fa-eye-slash');
+  //     }
+  //   });
+  // });
 </script>
 
 </html>
