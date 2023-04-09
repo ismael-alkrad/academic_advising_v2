@@ -222,11 +222,23 @@ function insertPracticalExperience($conn, $formData)
 }
 
 
-function getMajors($conn)
+function getColleges($conn)
 {
-    $sql = "SELECT name FROM majors";
+    $sql = "SELECT * FROM colleges";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
-    $majors = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
-    return $majors;
+    $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $row;
+}
+function getMajorsByCollege($con, $collegeId)
+{
+    // prepare SQL statement
+    $stmt = $con->prepare("SELECT * FROM majors WHERE college_id = :college_id");
+    $stmt->bindParam(":college_id", $collegeId);
+    // execute statement
+    $stmt->execute();
+    // fetch all rows as associative array
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // return result
+    return $result;
 }

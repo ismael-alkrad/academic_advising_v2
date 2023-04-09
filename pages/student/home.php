@@ -5,7 +5,10 @@ check();
 check_activity();
 $id = $_SESSION['username'];
 $data = getStudentById($conn, $id);
-$majors = getMajors($conn);
+$colleges = getColleges($conn);
+print_r(
+  $colleges
+);
 
 ?>
 
@@ -99,12 +102,9 @@ $majors = getMajors($conn);
                 <label for="inputcollege" class="form-label text-start">الكلية</label>
                 <select id="inputcollege" name="college" class="form-select">
                   <option value="">-- اختر الكلية --</option>
-                  <?php
-                  foreach ($majors as $college) {
-                    echo "<option value='$college'>$college</option>";
-                  }
-                  ?>
-
+                  <?php foreach ($colleges as $college) { ?>
+                    <option value="<?php echo $college['name'] ?>" id="college_<?php echo $college['id'] ?>"><?php echo $college['name'] ?></option>
+                  <?php } ?>
                 </select>
                 <div id="college-error" class="text-danger"></div>
               </div>
@@ -112,7 +112,6 @@ $majors = getMajors($conn);
                 <label for="inputdepartment" class="form-label text-start">القسم</label>
                 <select id="inputdepartment" name="department" class="form-select">
                   <option value="">-- اختر القسم --</option>
-                  <option value="<?php echo $data['major'] ?>"><?php echo $data['major'] ?></option>
                 </select>
                 <div id="department-error" class="text-danger"></div>
               </div>
@@ -122,7 +121,14 @@ $majors = getMajors($conn);
                 <label for="inputyear" class="form-label text-start">العام الجامعي</label>
                 <select id="inputyear" name="year" class="form-select">
                   <option value="">-- اختر العام الجامعي --</option>
-                  <option value="2019/2021">2019/2021</option>
+                  <?php
+                  $startYear = 2019;
+                  $endYear = 2030;
+                  for ($i = $startYear; $i <= $endYear; $i++) {
+                    $nextYear = $i + 1;
+                    echo "<option value=\"$i/$nextYear\">$i/$nextYear</option>";
+                  }
+                  ?>
                 </select>
                 <div id="year-error" class="text-danger"></div>
               </div>
@@ -147,9 +153,12 @@ $majors = getMajors($conn);
                 <label for="inputblock" class="form-label text-start">سنة الالتحاق بالجامعة</label>
                 <select id="inputblock" name="u_year" class="form-select">
                   <option value="">-- اختر سنة الالتحاق --</option>
-                  <option value="2019">2019</option>
-                  <option value="2018">2018</option>
-                  <option value="2017">2017</option>
+                  <?php
+                  $currentYear = date("Y");
+                  for ($i = $currentYear; $i >= 2019; $i--) {
+                    echo "<option value=\"$i\">$i</option>";
+                  }
+                  ?>
                 </select>
                 <div id="u-year-error" class="text-danger"></div>
               </div>
@@ -843,5 +852,41 @@ $majors = getMajors($conn);
   });
 </script>
 <!----------------------------------------- End  Log out ------------------------------------>
+
+<!----------------------------------------- start  Log out ------------------------------------>
+<script>
+  $(document).ready(function() {
+    // bind change event to college dropdown
+    $('#inputcollege').change(function() {
+      // get selected college id
+      var collegeId = $(this).find(':selected').attr('id').replace('college_', '');
+
+      // send AJAX request to get departments for selected college
+      $.ajax({
+        url: '../../php/get_department.php',
+        method: 'POST',
+        data: {
+          college_id: collegeId
+        },
+        dataType: 'json',
+
+
+        success: function(data) {
+          console.log(collegeId);
+          console.log(data);
+          $('#inputdepartment').empty();
+          // add new options based on result from server
+          $.each(data, function(key, value) {
+            $('#inputdepartment').append('<option value="' + value.id + '">' + value.name + '</option>');
+          });
+        },
+        error: function(xhr, status, error) {
+          // display error message if request fails
+          $('#department-error').text('Error loading departments: ' + error);
+        }
+      });
+    });
+  });
+</script>
 
 </html>
