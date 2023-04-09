@@ -220,3 +220,13 @@ function insertPracticalExperience($conn, $formData)
         return false;
     }
 }
+
+
+function getMajors($conn)
+{
+    $sql = "SELECT name FROM majors";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $majors = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+    return $majors;
+}

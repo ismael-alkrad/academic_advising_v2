@@ -5,6 +5,7 @@ check();
 check_activity();
 $id = $_SESSION['username'];
 $data = getStudentById($conn, $id);
+$majors = getMajors($conn);
 
 ?>
 
@@ -97,64 +98,77 @@ $data = getStudentById($conn, $id);
               <div class="col">
                 <label for="inputcollege" class="form-label text-start">الكلية</label>
                 <select id="inputcollege" name="college" class="form-select">
-                  <option selected>تكنولوجيا المعلومات</option>
+                  <option value="">-- اختر الكلية --</option>
+                  <?php
+                  foreach ($majors as $college) {
+                    echo "<option value='$college'>$college</option>";
+                  }
+                  ?>
+
                 </select>
+                <div id="college-error" class="text-danger"></div>
               </div>
               <div class="col">
                 <label for="inputdepartment" class="form-label text-start">القسم</label>
                 <select id="inputdepartment" name="department" class="form-select">
-                  <option selected><?php echo $data['major'] ?></option>
+                  <option value="">-- اختر القسم --</option>
+                  <option value="<?php echo $data['major'] ?>"><?php echo $data['major'] ?></option>
                 </select>
+                <div id="department-error" class="text-danger"></div>
               </div>
             </div>
             <div class="row mt-3">
               <div class="col">
                 <label for="inputyear" class="form-label text-start">العام الجامعي</label>
                 <select id="inputyear" name="year" class="form-select">
-                  <option selected>2019/2021</option>
+                  <option value="">-- اختر العام الجامعي --</option>
+                  <option value="2019/2021">2019/2021</option>
                 </select>
+                <div id="year-error" class="text-danger"></div>
               </div>
               <div class="col">
                 <label for="inputblock" class="form-label text-start">الفصل الدراسي</label>
                 <select id="inputblock" name="semyster" class="form-select">
-                  <option selected>الأول</option>
-                  <option>الثاني</option>
-                  <option>صيفي</option>
+                  <option value="">-- اختر الفصل الدراسي --</option>
+                  <option value="الأول">الأول</option>
+                  <option value="الثاني">الثاني</option>
+                  <option value="صيفي">صيفي</option>
                 </select>
+                <div id="semyster-error" class="text-danger"></div>
               </div>
             </div>
             <div class="row mt-3">
               <div class="col">
-                <label for="inputid" class="form-label text-start">
-                  الرقم الجامعي</label>
+                <label for="inputid" class="form-label text-start">الرقم الجامعي</label>
                 <input id="inputid" name="u_id" class="form-control" type="text" maxlength="10" value="<?php echo $data['u_id'] ?? ''; ?>" />
+                <div id="id-error" class="text-danger"></div>
               </div>
               <div class="col">
-                <label for="inputblock" class="form-label text-start">
-                  سنة الالتحاق بالجامعة
-                </label>
+                <label for="inputblock" class="form-label text-start">سنة الالتحاق بالجامعة</label>
                 <select id="inputblock" name="u_year" class="form-select">
-                  <option selected>2019</option>
-                  <option>2018</option>
-                  <option>2017</option>
+                  <option value="">-- اختر سنة الالتحاق --</option>
+                  <option value="2019">2019</option>
+                  <option value="2018">2018</option>
+                  <option value="2017">2017</option>
                 </select>
+                <div id="u-year-error" class="text-danger"></div>
               </div>
             </div>
             <div class="row mt-3">
               <div class="col">
-                <label for="inputname_ar" class="form-label text-start">اسم الطالب باللغة العربية
-                </label>
+                <label for="inputname_ar" class="form-label text-start">اسم الطالب باللغة العربية</label>
                 <input id="inputname_ar" name="ar-name" class="form-control" type="text" value="<?php echo $data['name'] ?? ''; ?>" />
+                <div id="ar-name-error" class="text-danger"></div>
               </div>
             </div>
             <div class="row mt-3">
               <div class="col">
-                <label for="inputname_en" class="form-label text-start">
-                  اسم الطالب باللغة الإنجليزية
-                </label>
+                <label for="inputname_en" class="form-label text-start">اسم الطالب باللغة الإنجليزية</label>
                 <input id="inputname_en" name="en-name" class="form-control" type="text" />
+                <div id="en-name-error" class="text-danger"></div>
               </div>
             </div>
+
           </div>
         </div>
       </form>
@@ -175,47 +189,44 @@ $data = getStudentById($conn, $id);
               <div class="col">
                 <label for="inputaddress" class="form-label text-start">عنوان الطالب</label>
                 <input id="inputaddress" class="form-control" type="text" name="address" />
+                <small id="address-error" class="text-danger"></small>
               </div>
             </div>
             <div class="row mt-3">
               <div class="col">
-                <label for="inputregion" class="form-label text-start">
-                  المدينة
-                </label>
+                <label for="inputregion" class="form-label text-start">المدينة</label>
                 <input type="text" class="form-control" name="region">
+                <small id="region-error" class="text-danger"></small>
+              </div>
+              <div class="col">
+                <label for="inputphone_house" class="form-label text-start">رقم هاتف (المنزل)</label>
+                <input class="form-control" type="phone" id="inputphone_house" name="phone_house" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" maxlength="12" required />
+                <small id="phone-house-error" class="text-danger"></small>
 
               </div>
-              <div class=" col">
-                <label for="inputphone_house" class="form-label text-start">
-                  رقم هاتف (المنزل)
-                </label>
-                <input class="form-control" type="phone" id="inputphone_house" name="phone_house" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" maxlength="12" required />
-                <small>Format: xxx-xxx-xxxx</small>
-              </div>
             </div>
             <div class="row mt-3">
               <div class="col">
-                <label for="inputcity" class="form-label text-start">
-                  الدولة
-                </label>
+                <label for="inputcity" class="form-label text-start">الدولة</label>
                 <select id="inputcity" class="form-select" name="city">
                   <option selected>الاردن</option>
                   <option>سوريا</option>
                   <option>فلسطين</option>
                 </select>
+                <small id="city-error" class="text-danger"></small>
               </div>
               <div class="col">
-                <label for="inputphone_person" class="form-label text-start">
-                  رقم هاتف (خلوي)
-                </label>
+                <label for="inputphone_person" class="form-label text-start">رقم هاتف (خلوي)</label>
                 <input class="form-control" type="phone" id="inputphone_person" name="phone_person" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" maxlength="12" required />
-                <small>Format: xxx-xxx-xxxx</small>
+                <small id="phone-person-error" class="text-danger"></small>
+
               </div>
             </div>
             <div class="row mt-3">
               <div class="col">
                 <label for="inputemail" class="form-label text-start">البريد الإلكتروني</label>
                 <input id="inputemail" class="form-control" type="email" style="direction: rtl; text-align: right" name="email" />
+                <small id="email-error" class="text-danger"></small>
               </div>
             </div>
             <div class="row mt-3">
@@ -228,12 +239,15 @@ $data = getStudentById($conn, $id);
                   <option>سوريا</option>
                   <option>فلسطين</option>
                 </select>
+                <small id="birth-error" class="text-danger"></small>
               </div>
               <div class="col">
                 <label for="inputbirth" class="form-label text-start">
                   تاريخ الولادة
                 </label>
                 <input id="inputbirth" name="birth" class="form-control icon-left" type="date" />
+                <small id="age-error" class="text-danger"></small>
+
               </div>
             </div>
             <div class="row mt-3">
@@ -531,28 +545,119 @@ $data = getStudentById($conn, $id);
 <script>
   $("#save").on("click", function(e) {
     e.preventDefault();
-    var formData = $("#student-information").serialize();
-    // console.log(decodeURIComponent(formData.split("&")));
+    // validate form inputs
+    var college = $('#inputcollege').val();
+    var department = $('#inputdepartment').val();
+    var year = $('#inputyear').val();
+    var semyster = $('#inputblock').val();
+    var u_id = $('#inputid').val();
+    var u_year = $('#inputblock').val();
+    var ar_name = $('#inputname_ar').val();
+    var en_name = $('#inputname_en').val();
 
-    $.ajax({
-      type: "Post",
-      url: "../../php/forms/inserts/insertInfo.php",
-      data: formData,
-      beforeSend: function() {},
-      complete: function() {
-        // stopPreloader();
-      },
-      success: function(result) {
-        console.log(result);
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Your work has been saved",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      },
-    });
+    // check if inputs are valid
+    var isValid = true;
+    if (college === '') {
+      $('#inputcollege').css('border-color', 'red');
+      $('#college-error').text('الرجاء إختيار كلية');
+      isValid = false;
+    } else {
+      $('#inputcollege').css('border-color', '');
+      $('#college-error').text('');
+    }
+
+    if (department === '') {
+      $('#inputdepartment').css('border-color', 'red');
+      $('#department-error').text('الرجاء إختيار القسم');
+      isValid = false;
+    } else {
+      $('#inputdepartment').css('border-color', '');
+      $('#department-error').text('');
+    }
+
+    if (year === '') {
+      $('#inputyear').css('border-color', 'red');
+      $('#year-error').text('الرجاء إختيار العام');
+      isValid = false;
+    } else {
+      $('#inputyear').css('border-color', '');
+      $('#year-error').text('');
+    }
+
+    if (semyster === '') {
+      $('#inputblock').css('border-color', 'red');
+      $('#semyster-error').text('الرجاء إختيار الفصل الدراسي');
+      isValid = false;
+    } else {
+      $('#inputblock').css('border-color', '');
+      $('#semyster-error').text('');
+    }
+
+    if (u_id === '') {
+      $('#inputid').css('border-color', 'red');
+      $('#id-error').text('الارجاء ادخال الرقم الجامعي القصير');
+      isValid = false;
+    } else {
+      $('#inputid').css('border-color', '');
+      $('#id-error').text('');
+    }
+
+    if (u_year === '') {
+      $('#inputblock').css('border-color', 'red');
+      $('#u-year-error').text('الرجاء أدخال سنة الإلتحاق بالجامعة');
+      isValid = false;
+    } else {
+      $('#inputblock').css('border-color', '');
+      $('#u-year-error').text('');
+    }
+
+    if (ar_name === '') {
+      $('#inputname_ar').css('border-color', 'red');
+      $('#ar-name-error').text('يرجى إدخال الإسم بالعربية');
+      isValid = false;
+    } else {
+      $('#inputname_ar').css('border-color', '');
+      $('#ar-name-error').text('');
+    }
+
+    if (en_name === '') {
+      $('#inputname_en').css('border-color', 'red');
+      $('#en-name-error').text('يرجى إدخال الإسم بالإنجليزية');
+      isValid = false;
+    } else {
+      $('#inputname_en').css('border-color', '');
+      $('#en-name-error').text('');
+    }
+
+    // additional validation can be added for specific inputs
+    // for example, checking that u_id is a valid student ID number
+
+    // if all inputs are valid, submit the form
+    if (isValid) {
+      var formData = $("#student-information").serialize();
+      // console.log(decodeURIComponent(formData.split("&")));
+
+      $.ajax({
+        type: "Post",
+        url: "../../php/forms/inserts/insertInfo.php",
+        data: formData,
+        beforeSend: function() {},
+        complete: function() {
+          // stopPreloader();
+        },
+        success: function(result) {
+          console.log(result);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        },
+      });
+    }
+
   });
 </script>
 <!----------------------------------------- End Add data to database ------------------------------------>
@@ -562,28 +667,116 @@ $data = getStudentById($conn, $id);
 <script>
   $("#save-per").on("click", function(e) {
     e.preventDefault();
-    var formData = $("#personal-information").serialize();
-    console.log(decodeURIComponent(formData.split("&")));
+    var address = $('#inputaddress').val();
+    var region = $('#inputregion').val();
+    var phone_house = $('#inputphone_house').val();
+    var phone_person = $('#inputphone_person').val();
+    var email = $('#inputemail').val();
+    var birth = $('#inputbirth').val();
+    var isValid = true;
 
-    $.ajax({
-      type: "Post",
-      url: "../../php/forms/inserts/insertPer.php",
-      data: formData,
-      beforeSend: function() {},
-      complete: function() {
-        // stopPreloader();
-      },
-      success: function(result) {
-        console.log(result);
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Your work has been saved",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      },
-    });
+    if (address === '') {
+      $('#inputaddress').css('border-color', 'red');
+      $('#address-error').text('يرجى إدخال العنوان');
+      isValid = false;
+    } else {
+      $('#inputaddress').css('border-color', '');
+      $('#address-error').text('');
+    }
+
+    if (region === '') {
+      $('#inputregion').css('border-color', 'red');
+      $('#region-error').text('يرجى إدخال المدينة');
+      isValid = false;
+    } else {
+      $('#inputregion').css('border-color', '');
+      $('#region-error').text('');
+    }
+
+    if (phone_house === '') {
+      $('#inputphone_house').css('border-color', 'red');
+      $('#phone-house-error').text('يرجى إدخال رقم هاتف المنزل');
+      isValid = false;
+    } else if (!phone_house.match(/[0-9]{3}-[0-9]{3}-[0-9]{4}/)) {
+      $('#inputphone_house').css('border-color', 'red');
+      $('#phone-house-error').text('يرجى إدخال رقم هاتف المنزل بالتنسيق الصحيح (xxx-xxx-xxxx)');
+      isValid = false;
+    } else {
+      $('#inputphone_house').css('border-color', '');
+      $('#phone-house-error').text('');
+    }
+
+    if (phone_person === '') {
+      $('#inputphone_person').css('border-color', 'red');
+      $('#phone-person-error').text('يرجى إدخال رقم الهاتف الخلوي');
+      isValid = false;
+    } else if (!phone_person.match(/[0-9]{3}-[0-9]{3}-[0-9]{4}/)) {
+      $('#inputphone_person').css('border-color', 'red');
+      $('#phone-person-error').text('يرجى إدخال رقم الهاتف الخلوي بالتنسيق الصحيح (xxx-xxx-xxxx)');
+      isValid = false;
+    } else {
+      $('#inputphone_person').css('border-color', '');
+      $('#phone-person-error').text('');
+    }
+
+    if (email === '') {
+      $('#inputemail').css('border-color', 'red');
+      $('#email-error').text('يرجى إدخال البريد الإلكتروني');
+      isValid = false;
+    } else {
+      $('#inputemail').css('border-color', '');
+      $('#email-error').text('');
+    }
+
+    if (birth === '') {
+      $('#inputbirth').css('border-color', 'red');
+      $('#birth-error').text('يرجى إدخال تاريخ الولادة');
+      isValid = false;
+    } else {
+      $('#inputbirth').css('border-color', '');
+      $('#birth-error').text('');
+    }
+    var dob = new Date($('#inputbirth').val());
+    var today = new Date();
+    var age = today.getFullYear() - dob.getFullYear();
+    var month = today.getMonth() - dob.getMonth();
+    if (month < 0 || (month === 0 && today.getDate() < dob.getDate())) {
+      age--;
+    }
+
+    if (age < 18) {
+      $('#inputbirth').css('border-color', 'red');
+      $('#age-error').text('You must be 18 years or older to submit this form');
+      isValid = false;
+    } else {
+      $('#inputbirth').css('border-color', '');
+      $('#age-error').text('');
+    }
+    // if all inputs are valid, submit the form
+    if (isValid) {
+      var formData = $("#personal-information").serialize();
+      console.log(decodeURIComponent(formData.split("&")));
+
+      $.ajax({
+        type: "Post",
+        url: "../../php/forms/inserts/insertPer.php",
+        data: formData,
+        beforeSend: function() {},
+        complete: function() {
+          // stopPreloader();
+        },
+        success: function(result) {
+          console.log(result);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        },
+      });
+    }
   });
 </script>
 <!----------------------------------------- End Format Input Phone Person ------------------------------------>
