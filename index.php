@@ -44,9 +44,10 @@
             <label id="emailHelp" class="form-text">لن نشارك بريدك الإلكتروني أبدًا مع أي شخص آخر
             </label>
           </div>
-          <div class="mb-3">
+          <div class="mb-3 position-relative">
             <label for="exampleInputPassword1" class="form-label">كلمة السر</label>
             <input type="password" name="password" class="form-control" id="exampleInputPassword1" />
+            <i class="fa fa-eye align-self-center mx-2" aria-hidden="true" id="showPasswordIcon" style="position: absolute; top: 50%; transform: translateY(50%); right: 440px; cursor: pointer;"></i>
           </div>
           <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1" />
@@ -71,6 +72,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/all.min.js"></script>
 </body>
+
 <script>
   $("#button").on("click", function(e) {
     e.preventDefault();
@@ -164,5 +166,21 @@
   });
 </script>
 
+<script>
+  const showPasswordIcon = document.getElementById('showPasswordIcon');
+  const passwordInput = document.getElementById('exampleInputPassword1');
+
+  showPasswordIcon.addEventListener('click', function() {
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      showPasswordIcon.classList.remove('fa-eye');
+      showPasswordIcon.classList.add('fa-eye-slash');
+    } else {
+      passwordInput.type = 'password';
+      showPasswordIcon.classList.remove('fa-eye-slash');
+      showPasswordIcon.classList.add('fa-eye');
+    }
+  });
+</script>
+
 </html>
-<!-- //hhhhhhhhhhhhhhhhh -->
