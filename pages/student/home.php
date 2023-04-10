@@ -6,7 +6,10 @@ check_activity();
 $id = $_SESSION['username'];
 $data = getStudentById($conn, $id);
 $colleges = getColleges($conn);
+$collegeName = getData($conn, 'colleges', 'id=' . $_SESSION['college_id'])['name'];
 
+$majorName
+  = getData($conn, 'majors', 'id=' . $_SESSION['major_id'])['name'];
 
 ?>
 
@@ -99,7 +102,7 @@ $colleges = getColleges($conn);
               <div class="col">
                 <label for="inputcollege" class="form-label text-start">الكلية</label>
                 <select id="inputcollege" name="college" class="form-select">
-                  <option value="">-- اختر الكلية --</option>
+                  <option value="<?php echo $collegeName ?? ""; ?>"><?php echo $collegeName ?? "-- اختر الكلية --"; ?></option>
                   <?php foreach ($colleges as $college) { ?>
                     <option value="<?php echo $college['name'] ?>" id="college_<?php echo $college['id'] ?>"><?php echo $college['name'] ?></option>
                   <?php } ?>
@@ -109,7 +112,8 @@ $colleges = getColleges($conn);
               <div class="col">
                 <label for="inputdepartment" class="form-label text-start">القسم</label>
                 <select id="inputdepartment" name="department" class="form-select">
-                  <option value="">-- اختر القسم --</option>
+                  <option value="<?php echo $majorName ?? ""; ?>"><?php echo $majorName ?? "-- اختر القسم --"; ?></option>
+
                 </select>
                 <div id="department-error" class="text-danger"></div>
               </div>
@@ -867,8 +871,6 @@ $colleges = getColleges($conn);
           college_id: collegeId
         },
         dataType: 'json',
-
-
         success: function(data) {
           console.log(collegeId);
           console.log(data);

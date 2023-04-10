@@ -38,10 +38,20 @@ function studentLogin(
         $stmt->execute(array(':username' => $username, ':password' => $password));
         $count = $stmt->rowCount();
         if ($count == 1) {
+
+
+            $stmt = $pdo->prepare("SELECT * FROM `student_info` WHERE u_id= :username ");
+            $stmt->execute(array(':username' => $username));
+            $count = $stmt->rowCount();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            $_SESSION['username'] = $row['username'];
-            $_SESSION['role'] = $row['role'];
-            $_SESSIOn['email'] = $row['email'];
+            $_SESSION['username'] = $row['u_id'];
+            $_SESSION['name'] = $row['name'];
+            $_SESSION['phone'] = $row['phone'];
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['advisor_id'] = $row['advisor'];
+            $_SESSION['major_id'] = $row['major'];
+            $_SESSION['college_id'] = $row['college'];
+
 
 
 
@@ -241,4 +251,14 @@ function getMajorsByCollege($con, $collegeId)
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     // return result
     return $result;
+}
+
+
+function getData($conn, $table, $where)
+{
+    $sql = "SELECT * FROM $table WHERE $where";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $row;
 }
