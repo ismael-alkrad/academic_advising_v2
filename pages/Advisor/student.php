@@ -84,7 +84,7 @@ check_activity();
     <div class="landing">
         <div class="container text-center">
             <div class="row row-size shadow-lg p-3 mb-4 bg-body rounded">
-                <div class="col border-start ms-5">
+                <div class="col border-start mt-5 pt-2">
                 </div>
                 <div class="col">
                     <h1>قائمة الطلاب</h1>
@@ -184,7 +184,7 @@ check_activity();
                 },
 
                 beforeSend: function() {
-                    $('.col.border-start.ms-5').html('<div class="d-flex justify-content-center"><div class = "spinner-border"role = "status" ><span class = "sr-only" > Loading... < /span> < /div > </div>');
+                    $('.col.border-start').html('<div class="d-flex justify-content-center"><div class = "spinner-border"role = "status" ><span class = "sr-only" > Loading... < /span> < /div > </div>');
                 },
                 complete: function() {
 
@@ -192,7 +192,7 @@ check_activity();
 
                 success: function(result) {
                     var data = JSON.parse(result);
-                    $('.col.border-start.ms-5').empty();
+                    $('.col.border-start').empty();
 
                     // Create the table
                     var table = $('<table>').addClass('table table-striped table-hover table-bordered text-right').attr('dir', 'rtl');
@@ -220,7 +220,7 @@ check_activity();
                     });
 
                     // Add the table to the DOM
-                    $('.col.border-start.ms-5').append(table);
+                    $('.col.border-start').append(table);
                 },
 
             });
