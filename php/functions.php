@@ -51,7 +51,13 @@ function studentLogin(
             $_SESSION['advisor_id'] = $row['advisor'];
             $_SESSION['major_id'] = $row['major'];
             $_SESSION['college_id'] = $row['college'];
+            $_SESSION['img'] = $row['img'];
+            $collegeName = getData($pdo, 'colleges', 'id=' . $_SESSION['college_id'])['name'];
 
+            $majorName
+                = getData($pdo, 'majors', 'id=' . $_SESSION['major_id'])['name'];
+            $_SESSION['college'] = $collegeName;
+            $_SESSION['major'] = $majorName;
 
 
 
@@ -128,7 +134,7 @@ function insertFormDataPDO($formDataArray, $pdo)
 {
     try {
         // Prepare the SQL statement
-        $stmt = $pdo->prepare("INSERT INTO student_information (college, department, year, semester, u_id, u_year, ar_name, en_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO student_information (college, department, year, semester, u_id, u_year, ar_name, en_name,its_done) VALUES (?, ?, ?, ?, ?, ?, ?, ?,true)");
 
         // Bind the parameters
         $stmt->bindParam(1, $formDataArray['college']);
@@ -157,8 +163,8 @@ function insertFormDataPDO($formDataArray, $pdo)
 
 function insertPersonalData($formData, $conn)
 {
-    $sql = "INSERT INTO personal_data (address,u_id, region, phone_house, city, phone_person, email, place_birth, birth_date, status, gender) 
-          VALUES (:address,:u_id, :region, :phone_house, :city, :phone_person, :email, :place_birth, :birth, :status, :gender)";
+    $sql = "INSERT INTO personal_data (address,u_id, region, phone_house, city, phone_person, email, place_birth, birth_date, status, gender,its_done) 
+          VALUES (:address,:u_id, :region, :phone_house, :city, :phone_person, :email, :place_birth, :birth, :status, :gender,true)";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':address', $formData['address']);
     $stmt->bindParam(':u_id', $formData['u_id']);
@@ -181,8 +187,10 @@ function insertPersonalData($formData, $conn)
 function insertPracticalExperience($conn, $formData)
 {
     // Prepare the SQL query
-    $sql = "INSERT INTO practical_experience (u_id,expereance, company_name, jop_name, certificate, activities)
-          VALUES (:u_id, :expereance, :company_name, :jop_name, :certificate, :activities)";
+    $sql = "INSERT INTO practical_experience (u_id,expereance, company_name, jop_name, certificate, activities,
+    its_done)
+          VALUES (:u_id, :expereance, :company_name, :jop_name, :certificate, :activities,
+          true)";
 
     // Prepare the PDO statement
     $stmt = $conn->prepare($sql);
@@ -261,4 +269,25 @@ function getData($conn, $table, $where)
     $stmt->execute();
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     return $row;
+}
+
+
+
+function checkifFillInfo($conn)
+{
+    $sql = "SELECT si.its_done AS si_its_done, pd.its_done AS pd_its_done, pe.its_done AS pe_its_done 
+            FROM student_information si 
+            JOIN personal_data pd ON si.u_id = pd.u_id 
+            JOIN practical_experience pe ON pd.u_id = pe.u_id 
+            WHERE si.u_id = :u_id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':u_id',  $_SESSION['username']);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($result['si_its_done'] && $result['pd_its_done'] && $result['pe_its_done']) {
+        return true;
+    } else {
+        return false;
+    }
 }

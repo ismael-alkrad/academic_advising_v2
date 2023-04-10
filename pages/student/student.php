@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php session_start()   ?>
 
 <head>
     <meta charset="UTF-8">
@@ -78,9 +79,9 @@
             <div class="row gx-5 shadow-lg p-3 mb-5 bg-body rounded">
                 <div class="col border-start">
                     <div class="p-3 border-bottom bg-white">
-                        <img class="rounded-circle icon-radius" src="../../assets/images/person.jpeg">
-                        <div class="mt-1"><label>Ismael ALkrad</label></div>
-                        <div><small>AC0109</small></div>
+                        <img class="rounded-circle icon-radius" src="<?php echo $_SESSION['img'] ?>">
+                        <div class="mt-1"><label><?php echo $_SESSION['name'] ?></label></div>
+                        <div><small><?php echo $_SESSION['username'] ?></small></div>
                     </div>
                     <div class="row">
                         <div class="col">
@@ -89,19 +90,19 @@
                                     <tbody>
                                         <tr>
                                             <th scope="row">البريد الالكتروني</th>
-                                            <td>Ac0109@iu.edu.jo</td>
+                                            <td><?php echo $_SESSION['email'] ?></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">رقم الهاتف</th>
-                                            <td>0791234576</td>
+                                            <td><?php echo $_SESSION['phone'] ?></td>
                                         </tr>
                                         <tr>
                                             <th scope="row"> الكلية </th>
-                                            <td>تكنولوجيا المعلومات</td>
+                                            <td><?php echo $_SESSION['college'] ?></td>
                                         </tr>
                                         <tr>
                                             <th scope="row"> القسم </th>
-                                            <td> هندسة برمجيات</td>
+                                            <td><?php echo $_SESSION['major'] ?></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -150,7 +151,39 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div><!----------------------------------------- start  Log out ------------------------------------>
+    <script>
+        $("#log-out").click(() => {
+            $.ajax({
+                url: "../../php/forms/logout.php",
+                type: "POST",
+                success: function(data) {
+                    if (data === 'success') {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "تم تسجيل الخروج بنجاح",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                        setTimeout(function() {
+                            window.location.href = "../../index.php";
+                        }, 1500);
+                    } else {
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: "حدث خطأ ما",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+    <!----------------------------------------- End  Log out ------------------------------------>
+
     <script src="../../js/bootstrap.bundle.min.js"></script>
     <script src="../../js/all.min.js"></script>
 </body>
