@@ -45,7 +45,9 @@ check_activity(); ?>
                         <a class="nav-link active" href="#"><span>الرئيسية</span></a>
                     </li>
                 </ul>
-                <span class="d-none d-lg-block d-xl-block d-xxl-block">الإرشاد الأكاديمي</span>
+                <span class="d-flex flex-column align-items-end ms-2"> الإرشاد الأكاديمي<span>
+                        <small class="text-secondary">(مرشد)</small>
+                    </span></span>
                 <img class="d-none d-lg-block d-xl-block d-xxl-block" height="70px" src="../../assets/images/logo.png">
             </div>
 
@@ -111,8 +113,6 @@ check_activity(); ?>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
     <script src="../../js/bootstrap.bundle.min.js"></script>
     <script src="../../js/all.min.js"></script>
