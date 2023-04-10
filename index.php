@@ -23,7 +23,9 @@
       <span class="navbar fs-1" href="#">تسجيل الدخول</span>
       <div>
         <span class="navbar me-auto">
-          <span>الإرشاد الأكاديمي</span>
+          <span class="d-flex flex-column align-items-end ms-2"> الإرشاد الأكاديمي<span>
+              <small class="text-secondary">(مرشد)</small>
+            </span></span>
           <img height="70px" src="assets/images/logo.png" />
         </span>
       </div>
@@ -48,7 +50,7 @@
           <div class="mb-3 position-relative">
             <label for="exampleInputPassword1" class="form-label">كلمة السر</label>
             <input type="password" name="password" class="form-control" id="exampleInputPassword1" />
-            <i class="fa fa-eye align-self-center mx-2" aria-hidden="true" id="showPasswordIcon" style="position: absolute; top: 50%; transform: translateY(50%); right: 440px; cursor: pointer;"></i>
+            <i class="fa-regular fa-eye align-self-center mx-2" aria-hidden="true" id="showPasswordIcon" style="position: absolute; top: 50%; transform: translateY(50%); right: 440px; cursor: pointer;"></i>
           </div>
           <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1" />
@@ -174,7 +176,7 @@
       if ($(e.target).is('#showPasswordIcon')) {
         const type = passwordInput.attr('type') === 'password' ? 'text' : 'password';
         passwordInput.attr('type', type);
-        $('#showPasswordIcon').toggleClass('fa-eye fa-eye-slash');
+        $('#showPasswordIcon').toggleClass('fa-regular fa-eye fa-eye-slash');
       }
     });
   });
