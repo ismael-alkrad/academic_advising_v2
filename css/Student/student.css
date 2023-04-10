@@ -90,7 +90,7 @@ nav button:hover {
     text-decoration: none;
 }
 
-.landing button {
+.landing .button-style {
     width: 100%;
     border: none;
     background-color: white;
@@ -98,9 +98,33 @@ nav button:hover {
     transition-duration: 0.5s;
 }
 
-.landing button:hover {
+.landing .button-style:hover {
     transform: translateX(0) translateY(-5px) scale(1);
     transition-duration: 0.5s;
+}
+
+.upload-container {
+    width: 300px;
+    padding: 20px;
+    border: 2px dashed #ccc;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.upload-container:hover {
+    background-color: #f8f8f8;
+}
+
+.upload-container input[type="file"] {
+    display: none;
+}
+
+.upload-container label {
+    cursor: pointer;
+}
+
+.upload-message {
+    margin-top: 10px;
 }
 
 /*End Landing*/

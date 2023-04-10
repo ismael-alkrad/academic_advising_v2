@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="../../assets/images/logo.png">
     <link rel="stylesheet" href="../../css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="../../css/all.min.css">
-    <link rel="stylesheet" href="../../css/Student/student.css">
+    <link rel="stylesheet" href="../../css/Student/student.css?v=<?php echo time(); ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -79,13 +79,37 @@
             <div class="row gx-5 shadow-lg p-3 mb-5 bg-body rounded">
                 <div class="col border-start">
                     <div class="p-3 border-bottom bg-white">
+                        <div class="bg-white rounded-circle" style="position: relative; left: 265px; top: 110px; width: 25px; cursor: pointer; z-index: 1;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square"></i></div>
                         <img class="rounded-circle icon-radius" src="<?php echo $_SESSION['img'] ?>">
                         <div class="mt-1"><label><?php echo $_SESSION['name'] ?></label></div>
                         <div><small><?php echo $_SESSION['username'] ?></small></div>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header" style="display: flex; flex-direction: row-reverse;">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">اعدادات الصورة</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="upload-container my-3">
+                                            <label for="file-upload">اسحب الصورة هنا أو انقر للتصفح</label>
+                                            <input type="file" id="file-upload" accept="Image/*">
+                                        </div>
+                                        <div>
+                                            <button class="button-style rounded bg-secondary text-white" style="width: 75%; height: 40px;">Delete</button>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">الغاء</button>
+                                        <button type="button" class="btn btn-primary"> حفظ </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <div class="p-3 bg-white">
+                            <div class="p-2 bg-white">
                                 <table class="table table-bordered border-primary" dir="rtl">
                                     <tbody>
                                         <tr>
@@ -114,7 +138,7 @@
                     <div class="p-3 bg-white">
                         <div class="row row-cols-2 row-cols-lg-1 g-3 g-lg-4 justify-content-center">
                             <div class="col">
-                                <button>
+                                <button class="button-style">
                                     <a>
                                         <div class="p-3 rounded bg-secondary"><i class="fa-solid fa-file" style="color: #ffffff;"></i>
                                             <div class="text-white">
@@ -125,7 +149,7 @@
                                 </button>
                             </div>
                             <div class="col">
-                                <button>
+                                <button class="button-style">
                                     <a href="home.php">
                                         <div class="p-3 rounded bg-secondary"><i class="fa-solid fa-user-pen" style="color: #ffffff;"></i>
                                             <div class="text-white">
@@ -136,7 +160,7 @@
                                 </button>
                             </div>
                             <div class="col">
-                                <button>
+                                <button class="button-style">
                                     <a href="#">
                                         <div class="p-3 rounded bg-secondary"><i class="fa-solid fa-file-signature" style="color: #ffffff;"></i>
                                             <div class="text-white">
