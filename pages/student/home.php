@@ -7,7 +7,7 @@ check_activity();
 $id = $_SESSION['username'];
 $data = getStudentById($conn, $id);
 $colleges = getColleges($conn);
-if (checkifFillInfo($conn)) {
+if (checkifFillInfo($conn) ?? false) {
   header("Location: student.php");
 }
 

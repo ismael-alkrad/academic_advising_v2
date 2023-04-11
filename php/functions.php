@@ -285,7 +285,7 @@ function checkifFillInfo($conn)
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($result['si_its_done'] && $result['pd_its_done'] && $result['pe_its_done']) {
+    if (is_array($result) && $result['si_its_done'] && $result['pd_its_done'] && $result['pe_its_done']) {
         return true;
     } else {
         return false;

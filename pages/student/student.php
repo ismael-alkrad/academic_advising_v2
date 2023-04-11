@@ -20,6 +20,8 @@ include_once '../../php/functions.php';
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.min.css" />
 </head>
 
 <body>
@@ -101,15 +103,18 @@ include_once '../../php/functions.php';
                                                 <input type="file" name="photo" id="file-upload">
                                             </div>
 
+
+                                            <div id="photo-cropper"></div>
+                                            <hr>
                                             <div id="photo-rev"></div>
                                             <div class="progress my-3">
                                                 <div id="upload-progress" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
 
+
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
-                                            <button type="button" id="" class="btn btn-danger">حذف الصورة</button>
                                             <button type="button" id="save-photo" class="btn btn-primary">حفظ</button>
                                         </div>
                                     </form>
@@ -117,7 +122,28 @@ include_once '../../php/functions.php';
                                 </div>
                             </div>
                         </div>
+                        <!-- HTML code -->
+                        <button type="button" id="delete-image" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirm-delete-modal">حذف الصورة</button>
 
+                        <!-- Confirmation modal -->
+                        <div class="modal fade" id="confirm-delete-modal" tabindex="-1" aria-labelledby="confirm-delete-modal-label" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="confirm-delete-modal-label">تأكيد</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        هل أنت متاكد من حذف الصورة؟
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إالغاء</button>
+                                        <button type="button" id="confirm-delete" class="btn btn-danger">حذف</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                     <div class="row">
@@ -224,76 +250,89 @@ include_once '../../php/functions.php';
     <script>
         $(document).ready(function() {
             $('#file-upload').change(function() {
-                // Get file data
                 var file_data = $('#file-upload').prop('files')[0];
-
-                // Create a new FileReader object
                 var reader = new FileReader();
-
-                // Set the image source when the file is loaded
                 reader.onload = function(e) {
-                    // Create a new img element with the selected photo
                     var img = $('<img>', {
                         src: e.target.result,
                         alt: 'Preview',
                         style: 'max-width: 100%;'
                     });
-
-                    // Append the img element to the #photo-rev element
                     $('#photo-rev').html(img);
+
+                    // Initialize Cropper.js
+                    var cropper = new Cropper(img[0], {
+                        aspectRatio: 1, // set aspect ratio to 1:1 (square)
+                        viewMode: 1, // restrict the crop box to within the container
+                        dragMode: 'move', // enable drag mode
+                        cropBoxResizable: false, // disable crop box resizing
+                        crop: function(e) {
+                            // update the image source with the cropped image data
+                            var canvas = cropper.getCroppedCanvas({
+                                width: 100, // set the output image width to 300px
+                                height: 100 // set the output image height to 300px
+                            });
+                            var cropped_data = canvas.toDataURL(); // get the cropped image data
+                            $('#photo-cropper').html(canvas);
+
+                            // Send the AJAX request
+                            $('#save-photo').on('click', function() {
+                                var form_data = new FormData();
+                                form_data.append('photo', cropped_data);
+                                var xhr = new XMLHttpRequest();
+                                xhr.upload.onprogress = function(e) {
+                                    if (e.lengthComputable) {
+                                        var percentage = (e.loaded / e.total) * 100;
+                                        $('#upload-progress').css('width', percentage + '%').attr('aria-valuenow', percentage);
+                                    }
+                                };
+                                xhr.open('POST', '../../php/forms/save-photo.php');
+                                xhr.onload = function() {
+                                    if (xhr.status === 200) {
+                                        $('#photo-status').html('<div class="alert alert-success" role="alert">تم حفظ الصورة بنجاح!</div>');
+                                        setTimeout(function() {
+                                            location.reload();
+                                        }, 1000);
+                                    } else {
+                                        $('#photo-status').html('<div class="alert alert-danger" role="alert">هنالك خطأ الرجاء إعادة المحاولة</div>');
+                                    }
+                                };
+                                xhr.send(form_data);
+                            });
+                        }
+                    });
                 }
-
-                // Read the file data as a URL
                 reader.readAsDataURL(file_data);
-
-                // Set the upload progress bar
-                var xhr = new XMLHttpRequest();
-                xhr.upload.onprogress = function(e) {
-                    if (e.lengthComputable) {
-                        var percentage = (e.loaded / e.total) * 100;
-                        $('#upload-progress').css('width', percentage + '%').attr('aria-valuenow', percentage);
-                    }
-                };
-
-                // Handle the AJAX response
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4 && xhr.status == 200) {
-                        // Display a success message
-                        $('#upload-message').html('<div class="alert alert-success">Photo uploaded successfully!</div>');
-                    }
-                };
-
-                // Send the AJAX request to upload the file
+            });
+        });
+    </script>
 
 
+    <script>
+        $(document).ready(function() {
+            $('#delete-image').on('click', function() {
+                $('#confirm-delete-modal').modal('show');
             });
 
-            $('#save-photo').on('click', function() {
-                var file_data = $('#file-upload').prop('files')[0];
-                var form_data = new FormData();
-                form_data.append('photo', file_data);
+            $('#confirm-delete').on('click', function() {
                 $.ajax({
-                    url: '../../php/forms/save-photo.php',
+                    url: '../../php/forms/delete-photo.php',
                     type: 'POST',
-                    data: form_data,
-                    contentType: false,
-                    processData: false,
+                    data: {
+                        conn: <?php echo json_encode($conn); ?>
+                    },
+                    dataType: 'json',
                     success: function(response) {
                         console.log(response);
-                        $('#photo-status').html('<div class="alert alert-success" role="alert">Photo saved successfully!</div>');
-                        setTimeout(function() {
-                            location.reload();
-                        }, 1500);
-                        // handle success response
+                        location.reload();
                     },
                     error: function(xhr, status, error) {
-                        $('#photo-status').html('<div class="alert alert-danger" role="alert">Error saving photo. Please try again.</div>');
+                        console.error(xhr.responseText);
                     }
                 });
             });
         });
     </script>
-
     <script src="../../js/bootstrap.bundle.min.js"></script>
     <script src="../../js/all.min.js"></script>
 </body>

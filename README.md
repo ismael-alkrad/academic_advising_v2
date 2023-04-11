@@ -36,9 +36,10 @@ We welcome contributions from the community to help us improve the Academic Advi
 
 ---
 
-*Academic Advising is a service of XYZ University. Contact us at advising@xyz.edu for more information.*
+_Academic Advising is a service of XYZ University. Contact us at advising@xyz.edu for more information._
 
 ```css
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
+```
