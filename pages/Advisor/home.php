@@ -82,7 +82,7 @@ check_activity(); ?>
     <div class="landing">
         <div class="container text-center">
             <div class="row">
-                <div class="col-6 pg-color shadow-lg p-3 mb-4 bg-body rounded">
+                <div class="col-6 pg-color shadow-lg mb-4 bg-body rounded">
                     <span class="icon-reduis"><img class="icon-1" src="../../assets/images/form.png"></span>
                     <h2 class="p-3">نماذج</h2>
                     <p>
@@ -102,12 +102,12 @@ check_activity(); ?>
                 </div>
             </div>
             <div class="row">
-                <div class="col-4  pg-grid-2 shadow-lg p-2 mb-5 bg-body rounded"><span class="icon-reduis"><img class="icon-1" src="../../assets/images/report.png"></span>
+                <div class="col-4  pg-grid-2 shadow-lg mb-5 bg-body rounded"><span class="icon-reduis"><img class="icon-1" src="../../assets/images/report.png"></span>
                     <h2 class="p-3">التقارير</h2>
                     <p class="mb-5">عرض التقرير التفصيلي عن عملية الإرشاد الأكاديمي خلال الفصل الدراسي.</p>
                     <button>عرض التقارير</button>
                 </div>
-                <div class="col-4 pg-grid-3 shadow-lg p-2 mb-5 bg-body rounded"><span class="icon-reduis"><img class="icon-1" src="../../assets/images/Schedule.png"></span>
+                <div class="col-4 pg-grid-3 shadow-lg mb-5 bg-body rounded"><span class="icon-reduis"><img class="icon-1" src="../../assets/images/Schedule.png"></span>
                     <h2 class="p-3">جدول</h2>
                     <p class="mb-5">الوصول إلى الخطة الدراسية للطالب والجدول الزمني للمواد المقدمة.</p>
                     <button>عرض الجدول الزمني</button>

@@ -48,7 +48,7 @@ body {
 
 /*End Landing*/
 
-
+/*Start Responsive*/
 @media (max-width: 599px) {
     .landing .divider {
         display: none;
@@ -82,3 +82,5 @@ body {
         justify-content: center;
     }
 }
+
+/*Start Responsive*/

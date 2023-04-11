@@ -24,9 +24,7 @@
       <span class="navbar fs-1" href="#">تسجيل الدخول</span>
       <div>
         <span class="navbar me-auto">
-          <span class="d-flex flex-column align-items-end ms-2 d-none d-lg-block"> الإرشاد الأكاديمي<span>
-              <small class="text-secondary">(مرشد)</small>
-            </span></span>
+          <span class="d-flex flex-column align-items-end ms-2 d-none d-lg-block"> الإرشاد الأكاديمي</span>
           <img height="70px" src="assets/images/logo.png" />
         </span>
       </div>
