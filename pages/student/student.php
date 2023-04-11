@@ -98,7 +98,7 @@ include_once '../../php/functions.php';
                                         <div class="modal-body">
                                             <div class="upload-container my-3">
                                                 <label for="file-upload">إختر صورة</label>
-                                                <input type="file" name="photo" id="file-upload">
+                                                <input type="file" name="photo" id="file-upload" accept="image/*">
                                             </div>
 
                                             <div id="photo-rev"></div>
