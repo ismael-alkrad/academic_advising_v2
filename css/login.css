@@ -1,31 +1,34 @@
-:root{
-    --blue-color:#478AC9;
-    --grey-color:#e5e5e5;
+:root {
+    --blue-color: #478AC9;
+    --grey-color: #e5e5e5;
 }
 
-body{
+body {
     font-family: 'Cairo', sans-serif;
-    background-color:var(--grey-color) ;
+    background-color: var(--grey-color);
 }
+
 /*Start Navbar*/
-.navbar{
+.navbar {
     color: var(--blue-color);
     font-size: larger;
 }
+
 /*End Navbar*/
 
 /*Start Landing*/
-.landing .pg-color{
-    background-color:white ;
+.landing .pg-color {
+    background-color: white;
     width: 500px;
     height: 600px;
     padding-top: 7rem;
 }
-.landing .divider{
+
+.landing .divider {
     border-right: 1px solid var(--grey-color);
 }
 
-.landing form label{
+.landing form label {
     display: flex;
     justify-content: right;
     text-align: right;
@@ -33,13 +36,49 @@ body{
 
 .landing form input,
 .landing form input:active,
-.landing form input:focus{
-    box-shadow:none ;
+.landing form input:focus {
+    box-shadow: none;
     direction: rtl;
 }
 
-.landing form button{
+.landing form button {
     margin: 5px;
     width: 100%;
 }
+
 /*End Landing*/
+
+
+@media (max-width: 599px) {
+    .landing .divider {
+        display: none;
+    }
+
+    .landing .row {
+        width: 300px;
+    }
+
+    .landing .pg-color {
+        padding-top: 2rem;
+    }
+
+    .landing .res_logo {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 991px) {
+    .landing .divider {
+        display: none;
+    }
+
+    .landing .pg-color {
+        padding-top: 2rem;
+    }
+
+    .landing .res_logo {
+        display: flex;
+        justify-content: center;
+    }
+}
