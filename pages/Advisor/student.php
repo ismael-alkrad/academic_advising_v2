@@ -72,7 +72,7 @@ check_activity();
                                 <a class="nav-link" href="#"><span>المزيد</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><span> تسجيل خروج </span></a>
+                                <a class="nav-link" href="#"><span> خروج </span></a>
                             </li>
                         </ul>
                     </div>
@@ -84,7 +84,7 @@ check_activity();
     <div class="landing">
         <div class="container text-center">
             <div class="row row-size shadow-lg p-3 mb-4 bg-body rounded">
-                <div class="col border-start mt-5 pt-2">
+                <div class="col responsive-sm border-start mt-5 pt-2">
                 </div>
                 <div class="col">
                     <h1>قائمة الطلاب</h1>
@@ -126,7 +126,7 @@ check_activity();
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                    <h5 class="modal-title" style="margin-left:300px;" id="exampleModalLabel">إرسال بريد إلكتروني</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">إرسال بريد إلكتروني</h5>
                                     <button type="button"  class="btn-close position-absolute top-0 strar-0 my-3" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">

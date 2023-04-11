@@ -78,17 +78,20 @@ button:hover {
 .landing .pg-color {
     width: 600px;
     height: 400px;
+    padding: 3px;
 }
 
 .landing .pg-grid-2 {
     width: 290px;
     height: 400px;
+    padding: 2px;
 }
 
 .landing .pg-grid-3 {
     width: 290px;
     height: 400px;
     margin-left: 20px;
+    padding: 2px;
 }
 
 .landing .icon-reduis {
@@ -132,3 +135,36 @@ h2 {
 }
 
 /*End Landing*/
+
+/*Start Responsive*/
+@media (max-width: 599px) {
+
+    .landing .pg-color,
+    .landing .pg-grid-2,
+    .landing .pg-grid-3 {
+        width: 350px;
+        height: 400px;
+        margin-left: 7px;
+        padding: 3px;
+    }
+
+    .container {
+        width: 94%;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 991px) {
+
+    .landing .pg-color {
+        width: 560px;
+    }
+
+    .landing .pg-grid-2,
+    .landing .pg-grid-3 {
+        width: 268px;
+        height: 400px;
+        padding: 2px;
+    }
+}
+
+/*Start Responsive*/

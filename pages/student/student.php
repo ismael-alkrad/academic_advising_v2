@@ -73,6 +73,9 @@ include_once '../../php/functions.php';
                             <li class="nav-item">
                                 <a class="nav-link" href="#"><span>المزيد</span></a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><span> خروج </span></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -100,7 +103,7 @@ include_once '../../php/functions.php';
                                         <div class="modal-body">
                                             <div class="upload-container my-3">
                                                 <label for="file-upload">إختر صورة</label>
-                                                <input type="file" name="photo" id="file-upload">
+                                                <input type="file" name="photo" id="file-upload" accept="image/*">
                                             </div>
 
 
