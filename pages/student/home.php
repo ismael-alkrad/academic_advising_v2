@@ -85,7 +85,7 @@ if (checkifFillInfo($conn)) {
                 <a class="nav-link" href="#"><span>المزيد</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#"><span> تسجيل خروج </span></a>
+                <a class="nav-link" href="#"><span> خروج </span></a>
               </li>
             </ul>
           </div>

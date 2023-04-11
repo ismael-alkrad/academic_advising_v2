@@ -1,31 +1,33 @@
-:root{
-    --blue-color:#478ac9;
-    --grey-color:#e5e5e5;
-    --icon-color:#e9f2fa;
+:root {
+    --blue-color: #478ac9;
+    --grey-color: #e5e5e5;
+    --icon-color: #e9f2fa;
 }
 
-div, ::after, ::before {
+div,
+::after,
+::before {
     box-sizing: content-box;
 }
 
-body{
+body {
     font-family: 'Cairo', sans-serif;
-    background-color:var(--grey-color) ;
+    background-color: var(--grey-color);
 }
 
 /*Start Navbar*/
-.navbar{
+.navbar {
     color: var(--blue-color);
     font-size: larger;
     z-index: 1;
 }
 
-.navbar .container{
+.navbar .container {
     display: flex;
     justify-content: flex-end;
 }
 
-.navbar .button-style{
+.navbar .button-style {
     color: white;
     background-color: var(--blue-color);
     width: 151px;
@@ -36,20 +38,21 @@ body{
     transition-duration: 0.5s;
 }
 
-.navbar .button-style:hover{
+.navbar .button-style:hover {
     transform: translateX(0px) translateY(-5px) scale(1);
     transition-duration: 0.5s;
-    box-shadow: 0px 0px 8px 0px rgba(128,128,128,1);
-    text-shadow: 0px 0px 0px rgb(0,0,0,0);
+    box-shadow: 0px 0px 8px 0px rgba(128, 128, 128, 1);
+    text-shadow: 0px 0px 0px rgb(0, 0, 0, 0);
     background-color: black;
     color: white;
 }
 
-.navbar ul{
+.navbar ul {
     margin-right: 190px;
     font-size: large;
 }
-.navbar ul li span{
+
+.navbar ul li span {
     border-right: 1px solid var(--blue-color);
     width: 65px;
     display: block;
@@ -57,41 +60,43 @@ body{
 
 .navbar .navbar-nav .nav-link.active,
 .navbar .navbar-nav .nav-link:focus,
-.navbar .navbar-nav .nav-link:hover{
+.navbar .navbar-nav .nav-link:hover {
     color: var(--blue-color);
 }
 
 .navbar .navbar-toggler:active,
 .navbar .navbar-toggler:focus,
-.navbar .navbar-toggler:hover{
+.navbar .navbar-toggler:hover {
     transform: translateX(0px) translateY(0px) scale(1);
     border: 1px solid var(--blue-color);
     background-color: white;
 }
+
 /*End Navbar*/
 
 /*Start Landing*/
-.landing .container h1{
+.landing .container h1 {
     text-align: end;
     color: var(--blue-color);
 }
-.accordion-button{
+
+.accordion-button {
     display: flex;
     flex-direction: row-reverse;
     border-bottom: 1px solid var(--grey-color);
 }
 
-.accordion-button:focus{
+.accordion-button:focus {
     box-shadow: none;
     border-bottom: 1px solid var(--grey-color);
     border-radius: 0%;
 }
 
-.accordion .accordion-body{
+.accordion .accordion-body {
     border-bottom: 1px solid var(--grey-color);
 }
 
-.landing .icon-reduis{
+.landing .icon-reduis {
     display: inline-flex;
     justify-content: center;
     height: 60px;
@@ -100,30 +105,61 @@ body{
     border-radius: 50px;
 }
 
-.landing .icon-1{
+.landing .icon-1 {
     margin-top: 15px;
     height: 35px;
 }
 
-.landing .animation{
+.landing .animation {
     transform: translateX(0px) translateY(0px) scale(1);
     transition-duration: 0.5s;
 }
-.landing .animation:hover{
+
+.landing .animation:hover {
     transform: translateX(0px) translateY(-5px) scale(1);
     transition-duration: 0.5s;
 }
 
-.landing .animation button{
+.landing .animation button {
     box-shadow: none;
     border: 0px;
     background-color: white;
 }
-.landing .animation button:hover{
+
+.landing .animation button:hover {
     color: var(--blue-color);
 }
-.landing .color-icon{
-    color:var(--blue-color) ;
+
+.landing .color-icon {
+    color: var(--blue-color);
+}
+
+.landing .modal-title {
+    margin-left: 300px;
 }
 
 /*End Landing*/
+
+/*Start Responsive*/
+@media (max-width: 599px) {
+    .landing .responsive-sm {
+        display: none;
+    }
+
+    .landing .container {
+        width: 93%;
+    }
+
+    .landing .modal-title {
+        margin-left: auto;
+    }
+
+}
+
+@media (min-width: 600px) and (max-width: 991px) {
+    .landing .modal-title {
+        margin-left: auto;
+    }
+}
+
+/*Start Responsive*/
