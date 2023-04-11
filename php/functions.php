@@ -291,3 +291,22 @@ function checkifFillInfo($conn)
         return false;
     }
 }
+
+
+
+
+function getPhotoPathByUser($conn)
+{
+    // Make sure the $username value is safe to use in a SQL query
+    $username = $_SESSION['username'];
+
+    // Prepare and execute the SQL query
+    $stmt = $conn->prepare('SELECT filepath FROM photos WHERE u_id = :username');
+    $stmt->execute(array(':username' => $username));
+
+    // Get the result from the SQL query
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Return the filepath value, or null if no result was found
+    return $result ? $result['filepath'] : $_SESSION['img'];
+}
