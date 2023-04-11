@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php session_start()   ?>
+<?php
+include_once '../../php/functions.php';
+
+
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -80,32 +84,41 @@
                 <div class="col border-start">
                     <div class="p-3 border-bottom bg-white">
                         <div class="bg-white rounded-circle" style="position: relative; left: 265px; top: 110px; width: 25px; cursor: pointer; z-index: 1;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square"></i></div>
-                        <img class="rounded-circle icon-radius" src="<?php echo $_SESSION['img'] ?>">
+                        <img class="rounded-circle icon-radius" src="<?php echo getPhotoPathByUser($conn); ?>">
                         <div class="mt-1"><label><?php echo $_SESSION['name'] ?></label></div>
                         <div><small><?php echo $_SESSION['username'] ?></small></div>
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header" style="display: flex; flex-direction: row-reverse;">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">اعدادات الصورة</h1>
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">إعدادات الصورة</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <div class="modal-body">
-                                        <div class="upload-container my-3">
-                                            <label for="file-upload">اسحب الصورة هنا أو انقر للتصفح</label>
-                                            <input type="file" id="file-upload" accept="Image/*">
+                                    <form id="photo-form" action="">
+                                        <div class="modal-body">
+                                            <div class="upload-container my-3">
+                                                <label for="file-upload">إختر صورة</label>
+                                                <input type="file" name="photo" id="file-upload">
+                                            </div>
+
+                                            <div id="photo-rev"></div>
+                                            <div class="progress my-3">
+                                                <div id="upload-progress" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+
                                         </div>
-                                        <div>
-                                            <button class="button-style rounded bg-secondary text-white" style="width: 75%; height: 40px;">Delete</button>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                                            <button type="button" id="" class="btn btn-danger">حذف الصورة</button>
+                                            <button type="button" id="save-photo" class="btn btn-primary">حفظ</button>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">الغاء</button>
-                                        <button type="button" class="btn btn-primary"> حفظ </button>
-                                    </div>
+                                    </form>
+                                    <div id="photo-status"></div> <!-- This is where the error message will be displayed -->
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                     <div class="row">
                         <div class="col">
@@ -207,6 +220,79 @@
         });
     </script>
     <!----------------------------------------- End  Log out ------------------------------------>
+
+    <script>
+        $(document).ready(function() {
+            $('#file-upload').change(function() {
+                // Get file data
+                var file_data = $('#file-upload').prop('files')[0];
+
+                // Create a new FileReader object
+                var reader = new FileReader();
+
+                // Set the image source when the file is loaded
+                reader.onload = function(e) {
+                    // Create a new img element with the selected photo
+                    var img = $('<img>', {
+                        src: e.target.result,
+                        alt: 'Preview',
+                        style: 'max-width: 100%;'
+                    });
+
+                    // Append the img element to the #photo-rev element
+                    $('#photo-rev').html(img);
+                }
+
+                // Read the file data as a URL
+                reader.readAsDataURL(file_data);
+
+                // Set the upload progress bar
+                var xhr = new XMLHttpRequest();
+                xhr.upload.onprogress = function(e) {
+                    if (e.lengthComputable) {
+                        var percentage = (e.loaded / e.total) * 100;
+                        $('#upload-progress').css('width', percentage + '%').attr('aria-valuenow', percentage);
+                    }
+                };
+
+                // Handle the AJAX response
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        // Display a success message
+                        $('#upload-message').html('<div class="alert alert-success">Photo uploaded successfully!</div>');
+                    }
+                };
+
+                // Send the AJAX request to upload the file
+
+
+            });
+
+            $('#save-photo').on('click', function() {
+                var file_data = $('#file-upload').prop('files')[0];
+                var form_data = new FormData();
+                form_data.append('photo', file_data);
+                $.ajax({
+                    url: '../../php/forms/save-photo.php',
+                    type: 'POST',
+                    data: form_data,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        console.log(response);
+                        $('#photo-status').html('<div class="alert alert-success" role="alert">Photo saved successfully!</div>');
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1500);
+                        // handle success response
+                    },
+                    error: function(xhr, status, error) {
+                        $('#photo-status').html('<div class="alert alert-danger" role="alert">Error saving photo. Please try again.</div>');
+                    }
+                });
+            });
+        });
+    </script>
 
     <script src="../../js/bootstrap.bundle.min.js"></script>
     <script src="../../js/all.min.js"></script>
