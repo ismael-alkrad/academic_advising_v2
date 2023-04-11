@@ -9,7 +9,7 @@
   <link rel="shortcut icon" href="assets/images/logo.png">
   <link rel="stylesheet" href="css/bootstrap.rtl.min.css" />
   <link rel="stylesheet" href="css/all.min.css" />
-  <link rel="stylesheet" href="css/login.css" />
+  <link rel="stylesheet" href="css/login.css?v=<?php echo time(); ?>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&display=swap" rel="stylesheet" />
@@ -24,7 +24,7 @@
       <span class="navbar fs-1" href="#">تسجيل الدخول</span>
       <div>
         <span class="navbar me-auto">
-          <span class="d-flex flex-column align-items-end ms-2"> الإرشاد الأكاديمي<span>
+          <span class="d-flex flex-column align-items-end ms-2 d-none d-lg-block"> الإرشاد الأكاديمي<span>
               <small class="text-secondary">(مرشد)</small>
             </span></span>
           <img height="70px" src="assets/images/logo.png" />
@@ -42,6 +42,7 @@
       </div>
       <div class="col-6 pg-color">
         <form id="login-form-user">
+          <div class="res_logo d-lg-none"><img height="150px" src="assets/images/logo.png" alt=""></div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">اسم المستخدم</label>
             <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
