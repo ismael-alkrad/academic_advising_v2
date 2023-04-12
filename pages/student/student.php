@@ -88,7 +88,7 @@ include_once '../../php/functions.php';
             <div class="row gx-5 shadow-lg p-3 mb-5 bg-body rounded">
                 <div class="col border-start">
                     <div class="p-3 border-bottom bg-white">
-                        <div class="bg-white rounded-circle" style="position: relative; left: 53%; top: 107px; width: 25px; cursor: pointer; z-index: 1;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square"></i></div>
+                        <div class="bg-white rounded-circle" style="position: relative; left: 53%; top: 107px; width: 25px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square"></i></div>
                         <img class="rounded-circle icon-radius" src="<?php echo getPhotoPathByUser($conn); ?>">
                         <div class="mt-1"><label><?php echo $_SESSION['name'] ?></label></div>
                         <div><small><?php echo $_SESSION['username'] ?></small></div>
