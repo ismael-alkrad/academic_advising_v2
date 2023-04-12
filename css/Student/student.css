@@ -54,8 +54,9 @@ nav button:hover {
 
 .navbar ul li span {
     border-right: 1px solid var(--blue-color);
-    width: 65px;
-    display: block;
+    padding-right: 10px;
+    width: auto;
+    display: inline-block;
 }
 
 .navbar .navbar-nav .nav-link.active,

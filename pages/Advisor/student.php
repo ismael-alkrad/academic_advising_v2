@@ -58,7 +58,7 @@ check_activity();
                     <div class="offcanvas-header">
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         <h1 class="offcanvas-title" id="offcanvasRightLabel">القائمة</h1>
-                        <ul class="navbar-nav position-absolute top-0 start-0 pt-3 mt-5 mx-4 d-sm-block d-md-block d-lg-none">
+                        <ul dir="rtl" class="navbar-nav position-absolute top-0 start-0 pt-3 mt-5 mx-4 d-sm-block d-md-block d-lg-none">
                             <li class="nav-item">
                                 <a class="nav-link" href=""><span>الرئيسية</span></a>
                             </li>
@@ -72,7 +72,7 @@ check_activity();
                                 <a class="nav-link" href="#"><span>المزيد</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><span> خروج </span></a>
+                                <a class="nav-link" href="#"><span> تسجيل الخروج </span></a>
                             </li>
                         </ul>
                     </div>

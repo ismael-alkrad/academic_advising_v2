@@ -60,7 +60,7 @@ include_once '../../php/functions.php';
                     <div class="offcanvas-header">
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         <h1 class="offcanvas-title" id="offcanvasRightLabel">القائمة</h1>
-                        <ul class="navbar-nav position-absolute top-0 start-0 pt-3 mt-5 mx-4 d-sm-block d-md-block d-lg-none">
+                        <ul dir="rtl" class="navbar-nav position-absolute top-0 start-0 pt-3 mt-5 mx-4 d-sm-block d-md-block d-lg-none">
                             <li class="nav-item">
                                 <a class="nav-link active" href="#"><span>الرئيسية</span></a>
                             </li>
@@ -74,7 +74,7 @@ include_once '../../php/functions.php';
                                 <a class="nav-link" href="#"><span>المزيد</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><span> خروج </span></a>
+                                <a class="nav-link" href="#"><span> تسجيل الخروج </span></a>
                             </li>
                         </ul>
                     </div>
@@ -88,7 +88,7 @@ include_once '../../php/functions.php';
             <div class="row gx-5 shadow-lg p-3 mb-5 bg-body rounded">
                 <div class="col border-start">
                     <div class="p-3 border-bottom bg-white">
-                        <div class="bg-white rounded-circle" style="position: relative; left: 265px; top: 110px; width: 25px; cursor: pointer; z-index: 1;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square"></i></div>
+                        <div class="bg-white rounded-circle" style="position: relative; left: 53%; top: 107px; width: 25px; cursor: pointer; z-index: 1;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square"></i></div>
                         <img class="rounded-circle icon-radius" src="<?php echo getPhotoPathByUser($conn); ?>">
                         <div class="mt-1"><label><?php echo $_SESSION['name'] ?></label></div>
                         <div><small><?php echo $_SESSION['username'] ?></small></div>

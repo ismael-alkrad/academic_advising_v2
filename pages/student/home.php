@@ -27,7 +27,7 @@ if (checkifFillInfo($conn) ?? false) {
   <link rel="shortcut icon" href="../../assets/images/logo.png">
   <link rel="stylesheet" href="../../css/bootstrap.rtl.min.css" />
   <link rel="stylesheet" href="../../css/all.min.css" />
-  <link rel="stylesheet" href="../../css/Student/home.css" />
+  <link rel="stylesheet" href="../../css/Student/home.css?v=<?php echo time(); ?>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&display=swap" rel="stylesheet" />
@@ -71,7 +71,7 @@ if (checkifFillInfo($conn) ?? false) {
           <div class="offcanvas-header">
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             <h1 class="offcanvas-title" id="offcanvasRightLabel">القائمة</h1>
-            <ul class="navbar-nav position-absolute top-0 start-0 pt-3 mt-5 mx-4 d-sm-block d-md-block d-lg-none">
+            <ul dir="rtl" class="navbar-nav position-absolute top-0 start-0 pt-3 mt-5 mx-4 d-sm-block d-md-block d-lg-none">
               <li class="nav-item">
                 <a class="nav-link" href=""><span>الرئيسية</span></a>
               </li>
@@ -85,7 +85,7 @@ if (checkifFillInfo($conn) ?? false) {
                 <a class="nav-link" href="#"><span>المزيد</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#"><span> خروج </span></a>
+                <a class="nav-link" href="#"><span> تسجيل الخروج </span></a>
               </li>
             </ul>
           </div>
@@ -186,7 +186,7 @@ if (checkifFillInfo($conn) ?? false) {
         </div>
       </form>
       <div class="d-flex justify-content-center">
-        <button id="save" class="button-style fs-6 d-flex justify-content-center text-center d-none d-lg-block d-xl-block d-xxl-block" style="color: #ffffff">
+        <button id="save" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff">
           حفظ
           <i class="fa-solid fa-floppy-disk ps-1" style="color: #ffffff"></i>
         </button>
@@ -200,9 +200,7 @@ if (checkifFillInfo($conn) ?? false) {
             <input id="inputid" name="u_id" class="form-control" type="hidden" maxlength="10" value="<?php echo $data['u_id'] ?? ''; ?>" />
             <div class="row">
               <div class="col">
-                <label for="inputaddress" class="form-label text-start">عنوان الطالب</label>
-                <input id="inputaddress" class="form-control" type="text" name="address" />
-                <small id="address-error" class="text-danger"></small>
+                <label for="inputaddress" class="form-label d-flex justify-content-center">عنوان الطالب</label>
               </div>
             </div>
             <div class="row mt-3">
@@ -297,7 +295,7 @@ if (checkifFillInfo($conn) ?? false) {
         </div>
       </form>
       <div class="d-flex justify-content-center">
-        <button id="save-per" class="button-style fs-6 d-flex justify-content-center text-center d-none d-lg-block d-xl-block d-xxl-block" style="color: #ffffff">
+        <button id="save-per" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff">
           حفظ
           <i class="fa-solid fa-floppy-disk ps-1" style="color: #ffffff"></i>
         </button>
@@ -311,10 +309,9 @@ if (checkifFillInfo($conn) ?? false) {
           <div class="col align-self-center shadow-lg p-3 mb-4 bg-body rounded">
             <div class="row">
               <div class="col">
-                <label for="inputexpereance" class="form-label text-start">
+                <label for="inputexpereance" class="form-label d-flex justify-content-center">
                   الخبرات العملية
                 </label>
-                <input id="inputexpereance" class="form-control" type="text" name="experience" />
               </div>
             </div>
             <div class="row mt-3">
@@ -384,7 +381,7 @@ if (checkifFillInfo($conn) ?? false) {
         </div>
       </form>
       <div class="d-flex justify-content-center">
-        <button id="save-pra" class="button-style fs-6 d-flex justify-content-center text-center d-none d-lg-block d-xl-block d-xxl-block" style="color: #ffffff">
+        <button id="save-pra" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff">
           حفظ
           <i class="fa-solid fa-floppy-disk ps-1" style="color: #ffffff"></i>
         </button>
@@ -687,15 +684,6 @@ if (checkifFillInfo($conn) ?? false) {
     var email = $('#inputemail').val();
     var birth = $('#inputbirth').val();
     var isValid = true;
-
-    if (address === '') {
-      $('#inputaddress').css('border-color', 'red');
-      $('#address-error').text('يرجى إدخال العنوان');
-      isValid = false;
-    } else {
-      $('#inputaddress').css('border-color', '');
-      $('#address-error').text('');
-    }
 
     if (region === '') {
       $('#inputregion').css('border-color', 'red');
