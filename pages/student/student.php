@@ -130,9 +130,9 @@ include_once '../../php/functions.php';
 
                         <!-- Confirmation modal -->
                         <div class="modal fade" id="confirm-delete-modal" tabindex="-1" aria-labelledby="confirm-delete-modal-label" aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
-                                    <div class="modal-header">
+                                    <div class="modal-header" style="display: flex; flex-direction: row-reverse;">
                                         <h5 class="modal-title" id="confirm-delete-modal-label">تأكيد</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
