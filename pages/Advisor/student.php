@@ -172,61 +172,195 @@ check_activity();
     $(document).ready(function() {
         $('.accordion-header').on('click', function() {
             var u_id = $(this).data('u-id');
-            // console.log('u_id:', u_id);
-            // var $content = $('.col.border-start.ms-5');
-            // $content.html('New content for u_id ' + u_id + ' goes here');
 
             $.ajax({
-                type: "Post",
-                url: "../../php/forms/getdata.php",
+                type: "POST",
+                url: "../../php/forms/getData/getstudentinfo.php",
                 data: {
                     id: u_id
                 },
-
                 beforeSend: function() {
-                    $('.col.border-start').html('<div class="d-flex justify-content-center"><div class = "spinner-border"role = "status" ><span class = "sr-only" > Loading... < /span> < /div > </div>');
+                    $('.col.border-start').html('<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>');
                 },
-                complete: function() {
-
-                },
-
                 success: function(result) {
-                    var data = JSON.parse(result);
-                    $('.col.border-start').empty();
+                    console.log(result);
 
-                    // Create the table
-                    var table = $('<table>').addClass('table table-striped table-hover table-bordered text-right').attr('dir', 'rtl');
-                    var tbody = $('<tbody>').appendTo(table);
+                    try {
+                        var data = JSON.parse(result);
+                        if (data !== null && Object.keys(data).length > 0) {
+                            // The data is not empty, so do something with it
+                            $('.col.border-start').empty();
+                            var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
+                            var tbody = $('<tbody>').appendTo(table);
 
-                    // Add rows for each field
-                    $.each(data, function(key, value) {
-                        if (key === 'id') {
-                            $('<tr>').append($('<td>').text('رقم الطالب')).append($('<td>').text(value)).appendTo(tbody);
-                        } else if (key === 'u_id') {
-                            $('<tr>').append($('<td>').text('الرقم الجامعي')).append($('<td>').text(value)).appendTo(tbody);
-                        } else if (key === 'name') {
-                            $('<tr>').append($('<td>').text('الاسم')).append($('<td>').text(value)).appendTo(tbody);
-                        } else if (key === 'email') {
-                            $('<tr>').append($('<td>').text('البريد الإلكتروني')).append($('<td>').text(value)).appendTo(tbody);
-                        } else if (key === 'phone') {
-                            $('<tr>').append($('<td>').text('رقم الهاتف')).append($('<td>').text(value)).appendTo(tbody);
-                        } else if (key === 'department') {
-                            $('<tr>').append($('<td>').text('القسم')).append($('<td>').text(value)).appendTo(tbody);
-                        } else if (key === 'major') {
-                            $('<tr>').append($('<td>').text('التخصص')).append($('<td>').text(value)).appendTo(tbody);
-                        } else if (key === 'advisor') {
-                            $('<tr>').append($('<td>').text('المشرف الأكاديمي')).append($('<td>').text(value)).appendTo(tbody);
+                            $('<tr>').append($('<th>').text('الحقل')).append($('<th>').text('القيمة')).appendTo(tbody);
+
+                            $.each(data, function(key, value) {
+                                if (key === 'u_id') {
+                                    $('<tr>').append($('<td>').text('الرقم الجامعي')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'ar_name') {
+                                    $('<tr>').append($('<td>').text('الاسم بالعربي')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'en_name') {
+                                    $('<tr>').append($('<td>').text('الاسم بالإنجليزي')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'college') {
+                                    $('<tr>').append($('<td>').text('الكلية')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'department') {
+                                    $('<tr>').append($('<td>').text('القسم')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'year') {
+                                    $('<tr>').append($('<td>').text('العام الدراسي')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'semester') {
+                                    $('<tr>').append($('<td>').text('الفصل الدراسي')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'u_year') {
+                                    $('<tr>').append($('<td>').text('سنة الالتحاق بالجامعة')).append($('<td>').text(value)).appendTo(tbody);
+                                }
+                            });
+
+                            $('.col.border-start').append($('<h2>').text('بيانات الطالب')).append(table);
+                            var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
+                            var tbody = $('<tbody>').appendTo(table);
+
+                            $('<tr>').append($('<th>').text('الحقل')).append($('<th>').text('القيمة')).appendTo(tbody);
+
+                            $.each(data, function(key, value) {
+                                if (key === 'city') {
+                                    $('<tr>').append($('<td>').text('المدينة')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'region') {
+                                    $('<tr>').append($('<td>').text('المنطقة')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'phone_house') {
+                                    $('<tr>').append($('<td>').text('رقم الهاتف الأرضي')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'phone_person') {
+                                    $('<tr>').append($('<td>').text('رقم الهاتف الشخصي')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'email') {
+                                    $('<tr>').append($('<td>').text('البريد الإلكتروني')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'place_birth') {
+                                    $('<tr>').append($('<td>').text('مكان الولادة')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'birth_date') {
+                                    $('<tr>').append($('<td>').text('تاريخ الولادة')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'status') {
+                                    $('<tr>').append($('<td>').text('الحالة الاجتماعية')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'gender') {
+                                    $('<tr>').append($('<td>').text('الجنس')).append($('<td>').text(value)).appendTo(tbody);
+                                }
+                            });
+
+                            $('.col.border-start').append($('<h2>').text('البيانات الشخصية')).append(table);
+                            var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
+                            var tbody = $('<tbody>').appendTo(table);
+
+                            $('<tr>').append($('<th>').text('الحقل')).append($('<th>').text('القيمة')).appendTo(tbody);
+
+                            $.each(data, function(key, value) {
+                                if (key === 'company_name') {
+                                    $('<tr>').append($('<td>').text('اسم الشركة')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'jop_name') {
+                                    $('<tr>').append($('<td>').text('اسم الوظيفة')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'experience_job') {
+                                    $('<tr>').append($('<td>').text('خبرة الوظيفية')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'certificate') {
+                                    $('<tr>').append($('<td>').text('الشهادات')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'activities') {
+                                    $('<tr>').append($('<td>').text('الأنشطة الخارجية')).append($('<td>').text(value)).appendTo(tbody);
+                                }
+                            });
+
+                            $('.col.border-start').append($('<h2>').text('خبرات العمل السابقة')).append(table);
+                            // ... the rest of the code to display the table goes here
+                        } else {
+                            // The data is empty, so show a message to the user or do nothing
+                            $('.col.border-start').text('No data found');
                         }
-                    });
+                        // Code to display the table goes here
+                    } catch (error) {
+                        $('.col.border-start').html('<div class="justify-content-center"><h3> لم يقم الطالب بتعبئة بياناته بعد </h3><br><h3>أخطر الطالب برسالة</h3></div>');
+                    }
+                    // if (data == null) {
+                    //     $('.col.border-start').html('<div class="d-flex justify-content-center"><h3>لا يوجد بيانات</h3></div>');
+                    // } else {
+                    //     $('.col.border-start').empty();
+                    //     var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
+                    //     var tbody = $('<tbody>').appendTo(table);
 
-                    // Add the table to the DOM
-                    $('.col.border-start').append(table);
+                    //     $('<tr>').append($('<th>').text('الحقل')).append($('<th>').text('القيمة')).appendTo(tbody);
+
+                    //     $.each(data, function(key, value) {
+                    //         if (key === 'u_id') {
+                    //             $('<tr>').append($('<td>').text('الرقم الجامعي')).append($('<td>').text(value)).appendTo(tbody);
+                    //         } else if (key === 'ar_name') {
+                    //             $('<tr>').append($('<td>').text('الاسم بالعربي')).append($('<td>').text(value)).appendTo(tbody);
+                    //         } else if (key === 'en_name') {
+                    //             $('<tr>').append($('<td>').text('الاسم بالإنجليزي')).append($('<td>').text(value)).appendTo(tbody);
+                    //         } else if (key === 'college') {
+                    //             $('<tr>').append($('<td>').text('الكلية')).append($('<td>').text(value)).appendTo(tbody);
+                    //         } else if (key === 'department') {
+                    //             $('<tr>').append($('<td>').text('القسم')).append($('<td>').text(value)).appendTo(tbody);
+                    //         } else if (key === 'year') {
+                    //             $('<tr>').append($('<td>').text('العام الدراسي')).append($('<td>').text(value)).appendTo(tbody);
+                    //         } else if (key === 'semester') {
+                    //             $('<tr>').append($('<td>').text('الفصل الدراسي')).append($('<td>').text(value)).appendTo(tbody);
+                    //         } else if (key === 'u_year') {
+                    //             $('<tr>').append($('<td>').text('سنة الالتحاق بالجامعة')).append($('<td>').text(value)).appendTo(tbody);
+                    //         }
+                    //     });
+
+                    //     $('.col.border-start').append($('<h2>').text('بيانات الطالب')).append(table);
+                    //     var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
+                    //     var tbody = $('<tbody>').appendTo(table);
+
+                    //     $('<tr>').append($('<th>').text('الحقل')).append($('<th>').text('القيمة')).appendTo(tbody);
+
+                    //     $.each(data, function(key, value) {
+                    //         if (key === 'city') {
+                    //             $('<tr>').append($('<td>').text('المدينة')).append($('<td>').text(value)).appendTo(tbody);
+                    //         } else if (key === 'region') {
+                    //             $('<tr>').append($('<td>').text('المنطقة')).append($('<td>').text(value)).appendTo(tbody);
+                    //         } else if (key === 'phone_house') {
+                    //             $('<tr>').append($('<td>').text('رقم الهاتف الأرضي')).append($('<td>').text(value)).appendTo(tbody);
+                    //         } else if (key === 'phone_person') {
+                    //             $('<tr>').append($('<td>').text('رقم الهاتف الشخصي')).append($('<td>').text(value)).appendTo(tbody);
+                    //         } else if (key === 'email') {
+                    //             $('<tr>').append($('<td>').text('البريد الإلكتروني')).append($('<td>').text(value)).appendTo(tbody);
+                    //         } else if (key === 'place_birth') {
+                    //             $('<tr>').append($('<td>').text('مكان الولادة')).append($('<td>').text(value)).appendTo(tbody);
+                    //         } else if (key === 'birth_date') {
+                    //             $('<tr>').append($('<td>').text('تاريخ الولادة')).append($('<td>').text(value)).appendTo(tbody);
+                    //         } else if (key === 'status') {
+                    //             $('<tr>').append($('<td>').text('الحالة الاجتماعية')).append($('<td>').text(value)).appendTo(tbody);
+                    //         } else if (key === 'gender') {
+                    //             $('<tr>').append($('<td>').text('الجنس')).append($('<td>').text(value)).appendTo(tbody);
+                    //         }
+                    //     });
+
+                    //     $('.col.border-start').append($('<h2>').text('البيانات الشخصية')).append(table);
+                    //     var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
+                    //     var tbody = $('<tbody>').appendTo(table);
+
+                    //     $('<tr>').append($('<th>').text('الحقل')).append($('<th>').text('القيمة')).appendTo(tbody);
+
+                    //     $.each(data, function(key, value) {
+                    //         if (key === 'company_name') {
+                    //             $('<tr>').append($('<td>').text('اسم الشركة')).append($('<td>').text(value)).appendTo(tbody);
+                    //         } else if (key === 'jop_name') {
+                    //             $('<tr>').append($('<td>').text('اسم الوظيفة')).append($('<td>').text(value)).appendTo(tbody);
+                    //         } else if (key === 'experience_job') {
+                    //             $('<tr>').append($('<td>').text('خبرة الوظيفية')).append($('<td>').text(value)).appendTo(tbody);
+                    //         } else if (key === 'certificate') {
+                    //             $('<tr>').append($('<td>').text('الشهادات')).append($('<td>').text(value)).appendTo(tbody);
+                    //         } else if (key === 'activities') {
+                    //             $('<tr>').append($('<td>').text('الأنشطة الخارجية')).append($('<td>').text(value)).appendTo(tbody);
+                    //         }
+                    //     });
+
+                    //     $('.col.border-start').append($('<h2>').text('خبرات العمل السابقة')).append(table);
+                    //     ss
+                    // }
+
+
                 },
-
+                error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                }
             });
         });
-
-
     });
 </script>
 <script>

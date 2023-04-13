@@ -289,7 +289,38 @@ function getData($conn, $table, $where)
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     return $row;
 }
+function getStudenData($conn, $u_id)
+{
+    // Prepare the SQL queries for each table
+    $sql2 = "SELECT `id`, `college`, `department`, `year`, `semester`, `u_id`, `u_year`, `ar_name`, `en_name`, `its_done` FROM `student_information` WHERE `u_id` = ?";
+    $sql3 = "SELECT `id`, `u_id`, `city`, `region`, `phone_house`, `phone_person`, `email`, `place_birth`, `birth_date`, `status`, `gender`, `its_done` FROM `personal_data` WHERE `u_id` = ?";
+    $sql4 = "SELECT `id`, `u_id`, `company_name`, `jop_name`, `experience_job`, `certificate`, `activities`, `its_done` FROM `practical_experience` WHERE `u_id` = ?";
 
+
+
+    $stmt2 = $conn->prepare($sql2);
+    $stmt2->execute([$u_id]);
+    $data2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+    $stmt3 = $conn->prepare($sql3);
+    $stmt3->execute([$u_id]);
+    $data3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+
+    $stmt4 = $conn->prepare($sql4);
+    $stmt4->execute([$u_id]);
+    $data4 = $stmt4->fetch(PDO::FETCH_ASSOC);
+
+    // Check if any data is found
+    if (!$data2 && !$data3 && !$data4) {
+        return false;
+    }
+
+    // Combine the results from all queries into a single array
+    $result = array_merge($data2, $data3, $data4);
+
+    // Return the data as a JSON-encoded string
+    return json_encode($result);
+}
 
 
 function checkifFillInfo($conn)
@@ -374,6 +405,29 @@ function getCoursesByCollegeId($conn, $collegeId)
 
         // Fetch all the rows as an associative array
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Return the result
+        return $result;
+    } catch (PDOException $e) {
+        // Output error message
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+}
+function getStudentInfoByUId($conn, $uId)
+{
+    try {
+        // Prepare the SQL statement
+        $stmt = $conn->prepare("SELECT * FROM student_information WHERE u_id = :u_id");
+
+        // Bind the parameters
+        $stmt->bindParam(':u_id', $uId);
+
+        // Execute the statement
+        $stmt->execute();
+
+        // Fetch the row as an associative array
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // Return the result
         return $result;
