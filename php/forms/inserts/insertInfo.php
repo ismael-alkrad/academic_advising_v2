@@ -3,7 +3,7 @@ include_once '../../functions.php';
 
 if (isset($_POST)) {
 
-    if (insertFormDataPDO($_POST, $conn)) {
+    if (insertOrUpdateFormDataPDO($_POST, $conn)) {
         echo 'success';
     } else {
         echo 'error';

@@ -3,7 +3,7 @@ include_once '../../functions.php';
 
 if (isset($_POST)) {
 
-    if (insertPersonalData($_POST, $conn)) {
+    if (insertOrUpdatePersonalData($_POST, $conn)) {
         echo 'success';
     } else {
         echo 'error';

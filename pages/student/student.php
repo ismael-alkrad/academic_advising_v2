@@ -192,7 +192,7 @@ include_once '../../php/functions.php';
                             </div>
                             <div class="col">
                                 <button class="button-style">
-                                    <a href="home.php">
+                                    <a href="edit-info.php">
                                         <div class="p-3 rounded bg-secondary"><i class="fa-solid fa-user-pen" style="color: #ffffff;"></i>
                                             <div class="text-white">
                                                 تعديل المعلومات

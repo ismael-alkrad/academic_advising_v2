@@ -130,24 +130,26 @@ function getStudentById(PDO $conn, $u_id)
     $stmt->execute();
     return  $stmt->fetch(PDO::FETCH_ASSOC);
 }
-function insertFormDataPDO($formDataArray, $pdo)
+function insertOrUpdateFormDataPDO($formDataArray, $pdo)
 {
+    $u_id = $formDataArray['u_id'];
+
     try {
-        // Prepare the SQL statement
-        $stmt = $pdo->prepare("INSERT INTO student_information (college, department, year, semester, u_id, u_year, ar_name, en_name,its_done) VALUES (?, ?, ?, ?, ?, ?, ?, ?,true)");
+        // Check if a row with the given u_id exists in the table
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM student_information WHERE u_id = ?");
+        $stmt->execute([$u_id]);
+        $row_count = $stmt->fetchColumn();
+
+        if ($row_count > 0) {
+            // If a row exists, update the data
+            $stmt = $pdo->prepare("UPDATE student_information SET college=?, department=?, year=?, semester=?, u_year=?, ar_name=?, en_name=?, its_done=true WHERE u_id=?");
+        } else {
+            // If no row exists, insert new data
+            $stmt = $pdo->prepare("INSERT INTO student_information (college, department, year, semester, u_id, u_year, ar_name, en_name, its_done) VALUES (?, ?, ?, ?, ?, ?, ?, ?, true)");
+        }
 
         // Bind the parameters
-        $stmt->bindParam(1, $formDataArray['college']);
-        $stmt->bindParam(2, $formDataArray['department']);
-        $stmt->bindParam(3, $formDataArray['year']);
-        $stmt->bindParam(4, $formDataArray['semyster']);
-        $stmt->bindParam(5, $formDataArray['u_id']);
-        $stmt->bindParam(6, $formDataArray['u_year']);
-        $stmt->bindParam(7, $formDataArray['ar-name']);
-        $stmt->bindParam(8, $formDataArray['en-name']);
-
-        // Execute the statement
-        $stmt->execute();
+        $stmt->execute([$formDataArray['college'], $formDataArray['department'], $formDataArray['year'], $formDataArray['semyster'], $formDataArray['u_year'], $formDataArray['ar-name'], $formDataArray['en-name'], $u_id]);
 
         // Output success message
         return true;
@@ -159,85 +161,102 @@ function insertFormDataPDO($formDataArray, $pdo)
     // Close the statement
     $stmt = null;
 }
-
-
-function insertPersonalData($formData, $conn)
+function insertOrUpdatePersonalData($formData, $conn)
 {
-    $sql = "INSERT INTO personal_data (address,u_id, region, phone_house, city, phone_person, email, place_birth, birth_date, status, gender,its_done) 
-          VALUES (:address,:u_id, :region, :phone_house, :city, :phone_person, :email, :place_birth, :birth, :status, :gender,true)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':address', $formData['address']);
-    $stmt->bindParam(':u_id', $formData['u_id']);
-    $stmt->bindParam(':region', $formData['region']);
-    $stmt->bindParam(':phone_house', $formData['phone_house']);
-    $stmt->bindParam(':city', $formData['city']);
-    $stmt->bindParam(':phone_person', $formData['phone_person']);
-    $stmt->bindParam(':email', $formData['email']);
-    $stmt->bindParam(':place_birth', $formData['place_birth']);
-    $stmt->bindParam(':birth', $formData['birth']);
-    $stmt->bindParam(':status', $formData['status']);
-    $stmt->bindParam(':gender', $formData['gender']);
+    $u_id = $formData['u_id'];
 
-    if ($stmt->execute()) {
-        return true;
-    } else {
+    try {
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM personal_data WHERE u_id = ?");
+        $stmt->execute([$u_id]);
+        $row_count = $stmt->fetchColumn();
+
+        $sql = ($row_count > 0) ? "UPDATE personal_data SET  region=:region, phone_house=:phone_house, city=:city, phone_person=:phone_person, email=:email, place_birth=:place_birth, birth_date=:birth, status=:status, gender=:gender, its_done=true WHERE u_id=:u_id" : "INSERT INTO personal_data (u_id, region, phone_house, city, phone_person, email, place_birth, birth_date, status, gender, its_done) VALUES (:u_id, :region, :phone_house, :city, :phone_person, :email, :place_birth, :birth, :status, :gender,true)";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':u_id', $u_id);
+        $stmt->bindParam(':region', $formData['region']);
+        $stmt->bindParam(':phone_house', $formData['phone_house']);
+        $stmt->bindParam(':city', $formData['city']);
+        $stmt->bindParam(':phone_person', $formData['phone_person']);
+        $stmt->bindParam(':email', $formData['email']);
+        $stmt->bindParam(':place_birth', $formData['place_birth']);
+        $stmt->bindParam(':birth', $formData['birth']);
+        $stmt->bindParam(':status', $formData['status']);
+        $stmt->bindParam(':gender', $formData['gender']);
+
+        return $stmt->execute();
+    } catch (PDOException $e) {
+        // Output error message
+        echo "Error: " . $e->getMessage();
         return false;
     }
 }
-function insertPracticalExperience($conn, $formData)
+function insertOrUpdatePracticalExperience($conn, $formData)
 {
-    // Prepare the SQL query
-    $sql = "INSERT INTO practical_experience (u_id,expereance, company_name, jop_name, certificate, activities,
-    its_done)
-          VALUES (:u_id, :expereance, :company_name, :jop_name, :certificate, :activities,
-          true)";
+    $u_id = $formData['u_id'];
 
-    // Prepare the PDO statement
-    $stmt = $conn->prepare($sql);
+    try {
+        // Check if a row with the given u_id exists in the table
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM practical_experience WHERE u_id = ?");
+        $stmt->execute([$u_id]);
+        $row_count = $stmt->fetchColumn();
 
-    // Bind the parameters to the statement
-    $stmt->bindParam(':u_id', $formData['u_id']);
-
-    // Loop through each practical experience input field and concatenate the values into a string
-    $expereance = "";
-    for ($i = 1; $i <= count($formData) / 2; $i++) {
-        if (isset($formData['experience_job' . $i])) {
-            $expereance .= $formData['experience_job' . $i] . ", ";
+        if ($row_count > 0) {
+            // If a row exists, update the data
+            $sql = "UPDATE practical_experience SET company_name=:company_name, jop_name=:jop_name, certificate=:certificate, activities=:activities, experience_job=:experience_job, its_done=true WHERE u_id=:u_id";
+        } else {
+            // If no row exists, insert new data
+            $sql = "INSERT INTO practical_experience (u_id, company_name, jop_name, certificate, activities, experience_job, its_done) VALUES (:u_id, :company_name, :jop_name, :certificate, :activities, :experience_job, true)";
         }
-    }
-    $expereance = rtrim($expereance, ", ");
-    $stmt->bindParam(':expereance', $expereance);
 
-    $stmt->bindParam(':company_name', $formData['company_name']);
-    $stmt->bindParam(':jop_name', $formData['job_name']);
+        // Prepare the PDO statement
+        $stmt = $conn->prepare($sql);
 
-    // Loop through each certificate input field and concatenate the values into a string
-    $certificate = "";
-    for ($i = 1; $i <= count($formData) / 2; $i++) {
-        if (isset($formData['certificate' . $i])) {
-            $certificate .= $formData['certificate' . $i] . ", ";
+        // Bind the parameters to the statement
+        $stmt->bindParam(':u_id', $u_id);
+
+        $stmt->bindParam(':company_name', $formData['company_name']);
+        $stmt->bindParam(':jop_name', $formData['job_name']);
+
+        // Loop through each certificate input field and concatenate the values into a string
+        $certificate = "";
+        for ($i = 1; $i <= count($formData) / 2; $i++) {
+            if (isset($formData['certificate' . $i])) {
+                $certificate .= $formData['certificate' . $i] . ", ";
+            }
         }
-    }
-    $certificate = rtrim($certificate, ", ");
-    $stmt->bindParam(':certificate', $certificate);
+        $certificate = rtrim($certificate, ", ");
+        $stmt->bindParam(':certificate', $certificate);
 
-    // Loop through each activities input field and concatenate the values into a string
-    $activities = "";
-    for ($i = 1; $i <= count($formData) / 2; $i++) {
-        if (isset($formData['activities' . $i])) {
-            $activities .= $formData['activities' . $i] . ", ";
+        // Loop through each activities input field and concatenate the values into a string
+        $activities = "";
+        for ($i = 1; $i <= count($formData) / 2; $i++) {
+            if (isset($formData['activities' . $i])) {
+                $activities .= $formData['activities' . $i] . ", ";
+            }
         }
-    }
-    $activities = rtrim($activities, ", ");
-    $stmt->bindParam(':activities', $activities);
+        $activities = rtrim($activities, ", ");
+        $stmt->bindParam(':activities', $activities);
 
-    // Execute the statement
-    if ($stmt->execute()) {
-        return true;
-    } else {
+        // Loop through each experience_job input field and concatenate the values into a string
+        $experience_job = "";
+        for ($i = 1; $i <= count($formData) / 2; $i++) {
+            if (isset($formData['experience_job' . $i])) {
+                $experience_job .= $formData['experience_job' . $i] . ", ";
+            }
+        }
+        $experience_job = rtrim($experience_job, ", ");
+        $stmt->bindParam(':experience_job', $experience_job);
+
+        // Execute the statement
+        return $stmt->execute();
+    } catch (PDOException $e) {
+        // Output error message
+        echo "Error: " . $e->getMessage();
         return false;
     }
 }
+
 
 
 function getColleges($conn)
@@ -309,4 +328,58 @@ function getPhotoPathByUser($conn)
 
     // Return the filepath value, or null if no result was found
     return $result ? $result['filepath'] : $_SESSION['img'];
+}
+
+
+
+
+function getStudentData($conn, $u_id)
+{
+    try {
+        // Prepare the SQL query for student_information table
+        $stmt = $conn->prepare("SELECT * FROM student_information WHERE u_id = ?");
+        $stmt->execute([$u_id]);
+        $student_data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Prepare the SQL query for personal_data table
+        $stmt = $conn->prepare("SELECT * FROM personal_data WHERE u_id = ?");
+        $stmt->execute([$u_id]);
+        $personal_data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Prepare the SQL query for practical_experience table
+        $stmt = $conn->prepare("SELECT * FROM practical_experience WHERE u_id = ?");
+        $stmt->execute([$u_id]);
+        $practical_experience = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Combine the data into a single array and return it
+        $data = array_merge($student_data, $personal_data, $practical_experience);
+        return $data;
+    } catch (PDOException $e) {
+        // Output error message
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+}
+function getCoursesByCollegeId($conn, $collegeId)
+{
+    try {
+        // Prepare the SQL statement
+        $stmt = $conn->prepare("SELECT id, name, number, college_id, majors_id FROM courses WHERE college_id = :college_id");
+
+        // Bind the parameters
+        $stmt->bindParam(':college_id', $collegeId);
+
+        // Execute the statement
+        $stmt->execute();
+
+        // Fetch all the rows as an associative array
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Return the result
+        return $result;
+    } catch (PDOException $e) {
+        // Output error message
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
 }
