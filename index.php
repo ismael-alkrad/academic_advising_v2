@@ -77,6 +77,44 @@
 </body>
 
 <script>
+  var rememberMeCheckbox = document.getElementById('exampleCheck1');
+  rememberMeCheckbox.addEventListener('change', function() {
+    if (this.checked) {
+      // Checkbox is checked, save the username and password in a cookie
+      var username = document.getElementById('exampleInputEmail1').value;
+      var password = document.getElementById('exampleInputPassword1').value;
+      document.cookie = "username=" + username + ";password=" + password + ";expires=" + new Date(Date.now() + 86400000).toUTCString() + ";path=/";
+      console.log(document.cookie);
+
+    } else {
+      // Checkbox is not checked, remove the cookie
+      document.cookie = "username=;password=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
+      console.log(document.cookie);
+    }
+  });
+  window.addEventListener('load', function() {
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i].trim();
+      if (cookie.startsWith('username=')) {
+        // Username cookie exists, fill in the username field
+        var username = cookie.substring('username='.length, cookie.length);
+        document.getElementById('exampleInputEmail1').value = username;
+        console.log(username);
+
+      }
+      if (cookie.startsWith('password=')) {
+        // Password cookie exists, fill in the password field
+        var password = cookie.substring('password='.length, cookie.length);
+        document.getElementById('exampleInputPassword1').value = password;
+        console.log(password);
+
+
+      }
+    }
+  });
+</script>
+<script>
   $("#button").on("click", function(e) {
     e.preventDefault();
 
