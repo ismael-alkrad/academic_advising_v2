@@ -295,8 +295,7 @@ function getStudenData($conn, $u_id)
     $sql2 = "SELECT `id`, `college`, `department`, `year`, `semester`, `u_id`, `u_year`, `ar_name`, `en_name`, `its_done` FROM `student_information` WHERE `u_id` = ?";
     $sql3 = "SELECT `id`, `u_id`, `city`, `region`, `phone_house`, `phone_person`, `email`, `place_birth`, `birth_date`, `status`, `gender`, `its_done` FROM `personal_data` WHERE `u_id` = ?";
     $sql4 = "SELECT `id`, `u_id`, `company_name`, `jop_name`, `experience_job`, `certificate`, `activities`, `its_done` FROM `practical_experience` WHERE `u_id` = ?";
-
-
+    $sql5 = "SELECT `filepath` FROM `photos` WHERE `u_id` = ?";
 
     $stmt2 = $conn->prepare($sql2);
     $stmt2->execute([$u_id]);
@@ -310,13 +309,17 @@ function getStudenData($conn, $u_id)
     $stmt4->execute([$u_id]);
     $data4 = $stmt4->fetch(PDO::FETCH_ASSOC);
 
+    $stmt5 = $conn->prepare($sql5);
+    $stmt5->execute([$u_id]);
+    $data5 = $stmt5->fetch(PDO::FETCH_ASSOC);
+
     // Check if any data is found
-    if (!$data2 && !$data3 && !$data4) {
+    if (!$data2 && !$data3 && !$data4 && !$data5) {
         return false;
     }
 
     // Combine the results from all queries into a single array
-    $result = array_merge($data2, $data3, $data4);
+    $result = array_merge($data2, $data3, $data4, $data5);
 
     // Return the data as a JSON-encoded string
     return json_encode($result);
