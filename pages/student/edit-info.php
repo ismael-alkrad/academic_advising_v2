@@ -11,7 +11,7 @@ echo "<pre>";
 // print_r(getCoursesByCollegeId($conn, $_SESSION['college_id']));
 echo "</pre>";
 
-$student_info = getStudentData($conn, $id);
+$student_info = getStudentData($conn, $id) ?? [];
 ?>
 
 <!DOCTYPE html>

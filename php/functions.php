@@ -366,7 +366,6 @@ function getPhotoPathByUser($conn)
 
 
 
-
 function getStudentData($conn, $u_id)
 {
     try {
@@ -385,15 +384,21 @@ function getStudentData($conn, $u_id)
         $stmt->execute([$u_id]);
         $practical_experience = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        // Check if any of the queries returned false
+        if ($student_data === false || $personal_data === false || $practical_experience === false) {
+            return array(); // Return an empty array
+        }
+
         // Combine the data into a single array and return it
         $data = array_merge($student_data, $personal_data, $practical_experience);
         return $data;
     } catch (PDOException $e) {
         // Output error message
         echo "Error: " . $e->getMessage();
-        return false;
+        return array(); // Return an empty array
     }
 }
+
 function getCoursesByCollegeId($conn, $collegeId)
 {
     try {
