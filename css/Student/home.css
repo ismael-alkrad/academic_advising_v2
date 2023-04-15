@@ -111,4 +111,46 @@ body {
     cursor: pointer;
 }
 
+.landing .floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #D1FAE5;
+    color: #065F46;
+    width: 100px;
+    border-radius: 5%;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+    animation-name: example;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+
+.landing .floating-button:hover {
+    background-color: green;
+    color: white;
+}
+
+@keyframes example {
+    0% {
+        transform: translateX(20px);
+    }
+
+    25% {
+        transform: translateX(-20px);
+    }
+
+    50% {
+        transform: translateX(20px);
+    }
+
+    75% {
+        transform: translateX(-20px);
+    }
+
+    100% {
+        transform: translateX(20px);
+    }
+}
+
 /*End Landing*/

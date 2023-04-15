@@ -33,22 +33,6 @@ if (checkifFillInfo($conn) ?? false) {
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&display=swap" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <style>
-    .floating-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #D1FAE5;
-      /* light green color */
-      color: #065F46;
-      /* dark green text color */
-      width: 100px;
-      border-radius: 5%;
-      text-align: center;
-      box-shadow: 2px 2px 3px #999;
-
-    }
-  </style>
 </head>
 
 <body>
@@ -404,7 +388,7 @@ if (checkifFillInfo($conn) ?? false) {
       </div>
       <!----------------------------------------- End Student Practical experience ------------------------------------>
     </div>
-    <button id="finish" class="btn btn-primary floating-button">إنهاء</button>
+    <button id="finish" class=" button-style floating-button">إنهاء</button>
 
   </div>
   <script src="../../js/bootstrap.bundle.min.js"></script>
