@@ -186,7 +186,7 @@ if (checkifFillInfo($conn) ?? false) {
         </div>
       </form>
       <div class="d-flex justify-content-center">
-        <button id="save" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff">
+        <button id="save" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff; margin-bottom: 20px;">
           حفظ
           <i class="fa-solid fa-floppy-disk ps-1" style="color: #ffffff"></i>
         </button>
@@ -295,7 +295,7 @@ if (checkifFillInfo($conn) ?? false) {
         </div>
       </form>
       <div class="d-flex justify-content-center">
-        <button id="save-per" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff">
+        <button id="save-per" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff; margin-bottom: 20px;">
           حفظ
           <i class="fa-solid fa-floppy-disk ps-1" style="color: #ffffff"></i>
         </button>
@@ -381,9 +381,9 @@ if (checkifFillInfo($conn) ?? false) {
         </div>
       </form>
       <div class="d-flex justify-content-center">
-        <button id="save-pra" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff">
+        <button id="save-pra" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff;  margin-bottom: 20px;">
           حفظ
-          <i class="fa-solid fa-floppy-disk ps-1" style="color: #ffffff"></i>
+          <i class="fa-solid fa-floppy-disk ps-1" style="color: #ffffff;"></i>
         </button>
       </div>
       <!----------------------------------------- End Student Practical experience ------------------------------------>
