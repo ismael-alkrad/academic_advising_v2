@@ -23,6 +23,15 @@ check_activity();
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+<style>
+    @media print {
+        .print-header {
+            display: block;
+            text-align: center;
+            margin-bottom: 1em;
+        }
+    }
+</style>
 
 <body>
     <nav class="navbar navbar-expand-lg shadow-lg p-1 mb-5 bg-body rounded position-sticky top-0">
@@ -71,7 +80,7 @@ check_activity();
                             <li class="nav-item">
                                 <a class="nav-link" href="#"><span>المزيد</span></a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" id="log-out-custom">
                                 <a class="nav-link" href="#"><span> تسجيل الخروج </span></a>
                             </li>
                         </ul>
@@ -91,28 +100,31 @@ check_activity();
                     <div class="accordion" id="accordionExample">
                         <div class="accordion-item">
                             <?php
-                            $student = getStudent($conn);
+                            $student = getAdvisors($conn);
+                            // echo "<pre>";
+                            // print_r($student);
+                            // echo "</pre>";
                             if ($student != null) {
                                 foreach ($student as $s) {
                                     $to = $s['email'];
-                                    echo '<h2 class="accordion-header" id="heading' . $s['u_id'] . '" data-u-id="' . $s['u_id'] . '">
+                                    echo '<h2 class="accordion-header" id="heading' . $s['username'] . '" data-username="' . $s['username'] . '">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapse' . $s['u_id'] . '"  aria-expanded="false" aria-controls="collapse' . $s['u_id'] . '" data-u-id="' . $s['u_id'] . '">
-                                    ' . $s['name'] . '
+                                    data-bs-target="#collapse' . $s['username'] . '"  aria-expanded="false" aria-controls="collapse' . $s['username'] . '" data-username="' . $s['username'] . '">
+                                    ' . $s['fname'] . '
                                 </button>
                             </h2>
-                            <div id="collapse' . $s['u_id'] . '" class="accordion-collapse collapse" aria-labelledby="heading' . $s['u_id'] . '"
+                            <div id="collapse' . $s['username'] . '" class="accordion-collapse collapse" aria-labelledby="heading' . $s['username'] . '"
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body px-3">
                                 <div class="container text-center">
                                 <div class="row">
                                 <div class="col">
-                                    <span class="icon-reduis-message"><button data-bs-toggle="modal" data-bs-target="#exampleModal' . $s['u_id'] . '"><img class="icon-1" src="../../assets/images/chat.png"></button></span>
-                                    <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button data-bs-toggle="modal" data-bs-target="#exampleModal' . $s['u_id'] . '"> ارسال رسالة </button></div>
+                                    <span class="icon-reduis-message"><button data-bs-toggle="modal" data-bs-target="#exampleModal' . $s['username'] . '"><img class="icon-1" src="../../assets/images/chat.png"></button></span>
+                                    <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button data-bs-toggle="modal" data-bs-target="#exampleModal' . $s['username'] . '"> ارسال رسالة </button></div>
                                 </div>
                                 <div class="col">
-                                <span class="icon-reduis-printer"><button><img class="icon-1" src="../../assets/images/printer.png"></button></span>
-                                <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> طباعة </button></div>
+                                <span class="icon-reduis-printer"><button onclick="printTable()"><img class="icon-1" src="../../assets/images/printer.png"></button></span>
+                                <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button onclick="printTable()"> طباعة </button></div>
                                 </div>
                                 <div class="col">
                                 <span class="icon-reduis-add"><button><img class="icon-1" src="../../assets/images/add-user.png"></button></span>
@@ -122,7 +134,7 @@ check_activity();
                             </div>
                                 </div>
                             </div>
-                            <div class="modal fade" id="exampleModal' . $s['u_id'] . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal' . $s['username'] . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -167,115 +179,144 @@ check_activity();
     <script src="../../js/all.min.js"></script>
 </body>
 
-
+<script>
+    function printTable() {
+        var printContents = $('.col.border-start').html();
+        var originalContents = $('body').html();
+        $('body').html(printContents);
+        window.print();
+        $('body').html(originalContents);
+    }
+</script>
 <script>
     $(document).ready(function() {
         $('.accordion-header').on('click', function() {
-            var u_id = $(this).data('u-id');
+            var username = $(this).data('username');
 
             $.ajax({
                 type: "POST",
-                url: "../../php/forms/getData/getstudentinfo.php",
+                url: "../../php/forms/getData/get_student_by_advisor.php",
                 data: {
-                    id: u_id
+                    id: username
                 },
                 beforeSend: function() {
                     $('.col.border-start').html('<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>');
                 },
                 success: function(result) {
                     console.log(result);
+                    // // 
+                    //                     try {
+                    //                         var data = JSON.parse(result);
+                    //                         if (data !== null && Object.keys(data).length > 0) {
+                    //                             // The data is not empty, so do something with it
+                    //                             $('.col.border-start').empty();
+                    //                             var img = $('<img>').attr('src', data.filepath).addClass('mx-auto d-block mt-4 mb-4').addClass('photo rounded-circle');
+                    //                             $('.col.border-start').append(img);
+                    //                             var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
+                    //                             var tbody = $('<tbody>').appendTo(table);
 
+                    //                             $('<tr>').append($('<th>').text('الحقل')).append($('<th>').text('القيمة')).appendTo(tbody);
+
+                    //                             $.each(data, function(key, value) {
+                    //                                 if (key === 'username') {
+                    //                                     $('<tr>').append($('<td>').text('الرقم الجامعي')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 } else if (key === 'ar_name') {
+                    //                                     $('<tr>').append($('<td>').text('الاسم بالعربي')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 } else if (key === 'en_name') {
+                    //                                     $('<tr>').append($('<td>').text('الاسم بالإنجليزي')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 } else if (key === 'college') {
+                    //                                     $('<tr>').append($('<td>').text('الكلية')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 } else if (key === 'department') {
+                    //                                     $('<tr>').append($('<td>').text('القسم')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 } else if (key === 'year') {
+                    //                                     $('<tr>').append($('<td>').text('العام الدراسي')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 } else if (key === 'semester') {
+                    //                                     $('<tr>').append($('<td>').text('الفصل الدراسي')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 } else if (key === 'u_year') {
+                    //                                     $('<tr>').append($('<td>').text('سنة الالتحاق بالجامعة')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 }
+                    //                             });
+
+                    //                             $('.col.border-start').append($('<h2>').text('بيانات الطالب')).append(table);
+                    //                             var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
+                    //                             var tbody = $('<tbody>').appendTo(table);
+
+                    //                             $('<tr>').append($('<th>').text('الحقل')).append($('<th>').text('القيمة')).appendTo(tbody);
+
+                    //                             $.each(data, function(key, value) {
+                    //                                 if (key === 'city') {
+                    //                                     $('<tr>').append($('<td>').text('المدينة')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 } else if (key === 'region') {
+                    //                                     $('<tr>').append($('<td>').text('المنطقة')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 } else if (key === 'phone_house') {
+                    //                                     $('<tr>').append($('<td>').text('رقم الهاتف الأرضي')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 } else if (key === 'phone_person') {
+                    //                                     $('<tr>').append($('<td>').text('رقم الهاتف الشخصي')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 } else if (key === 'email') {
+                    //                                     $('<tr>').append($('<td>').text('البريد الإلكتروني')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 } else if (key === 'place_birth') {
+                    //                                     $('<tr>').append($('<td>').text('مكان الولادة')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 } else if (key === 'birth_date') {
+                    //                                     $('<tr>').append($('<td>').text('تاريخ الولادة')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 } else if (key === 'status') {
+                    //                                     $('<tr>').append($('<td>').text('الحالة الاجتماعية')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 } else if (key === 'gender') {
+                    //                                     $('<tr>').append($('<td>').text('الجنس')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 }
+                    //                             });
+
+                    //                             $('.col.border-start').append($('<h2>').text('البيانات الشخصية')).append(table);
+                    //                             var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
+                    //                             var tbody = $('<tbody>').appendTo(table);
+
+                    //                             $('<tr>').append($('<th>').text('الحقل')).append($('<th>').text('القيمة')).appendTo(tbody);
+
+                    //                             $.each(data, function(key, value) {
+                    //                                 if (key === 'company_name') {
+                    //                                     $('<tr>').append($('<td>').text('اسم الشركة')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 } else if (key === 'jop_name') {
+                    //                                     $('<tr>').append($('<td>').text('اسم الوظيفة')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 } else if (key === 'experience_job') {
+                    //                                     $('<tr>').append($('<td>').text('خبرة الوظيفية')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 } else if (key === 'certificate') {
+                    //                                     $('<tr>').append($('<td>').text('الشهادات')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 } else if (key === 'activities') {
+                    //                                     $('<tr>').append($('<td>').text('الأنشطة الخارجية')).append($('<td>').text(value)).appendTo(tbody);
+                    //                                 }
+                    //                             });
+
+                    //                             $('.col.border-start').append($('<h2>').text('خبرات العمل السابقة')).append(table);
+                    //                             // ... the rest of the code to display the table goes here
+                    //                         } else {
+                    //                             // The data is empty, so show a message to the user or do nothing
+                    //                             $('.col.border-start').text('No data found');
+                    //                         }
+                    //                         // Code to display the table goes here
+                    //                     } catch (error) {
+                    //                         $('.col.border-start').html('<div class="justify-content-center"><h3> لم يقم الطالب بتعبئة بياناته بعد </h3><br><h3>أخطر الطالب برسالة</h3></div>');
+                    //                     }
                     try {
                         var data = JSON.parse(result);
-                        if (data !== null && Object.keys(data).length > 0) {
+                        if (data !== null && data.length > 0) {
                             // The data is not empty, so do something with it
                             $('.col.border-start').empty();
-                            var img = $('<img>').attr('src', data.filepath).addClass('mx-auto d-block mt-4 mb-4').addClass('photo rounded-circle');
-                            $('.col.border-start').append(img);
                             var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
                             var tbody = $('<tbody>').appendTo(table);
 
-                            $('<tr>').append($('<th>').text('الحقل')).append($('<th>').text('القيمة')).appendTo(tbody);
+                            $('<tr>').append($('<th>').text('الرقم الجامعي')).append($('<th>').text('الاسم')).append($('<th>').text('البريد الإلكتروني')).appendTo(tbody);
 
-                            $.each(data, function(key, value) {
-                                if (key === 'u_id') {
-                                    $('<tr>').append($('<td>').text('الرقم الجامعي')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'ar_name') {
-                                    $('<tr>').append($('<td>').text('الاسم بالعربي')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'en_name') {
-                                    $('<tr>').append($('<td>').text('الاسم بالإنجليزي')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'college') {
-                                    $('<tr>').append($('<td>').text('الكلية')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'department') {
-                                    $('<tr>').append($('<td>').text('القسم')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'year') {
-                                    $('<tr>').append($('<td>').text('العام الدراسي')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'semester') {
-                                    $('<tr>').append($('<td>').text('الفصل الدراسي')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'u_year') {
-                                    $('<tr>').append($('<td>').text('سنة الالتحاق بالجامعة')).append($('<td>').text(value)).appendTo(tbody);
-                                }
+                            $.each(data, function(index, value) {
+                                $('<tr>').append($('<td>').text(value.u_id)).append($('<td>').text(value.name)).append($('<td>').text(value.email)).appendTo(tbody);
                             });
 
-                            $('.col.border-start').append($('<h2>').text('بيانات الطالب')).append(table);
-                            var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
-                            var tbody = $('<tbody>').appendTo(table);
-
-                            $('<tr>').append($('<th>').text('الحقل')).append($('<th>').text('القيمة')).appendTo(tbody);
-
-                            $.each(data, function(key, value) {
-                                if (key === 'city') {
-                                    $('<tr>').append($('<td>').text('المدينة')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'region') {
-                                    $('<tr>').append($('<td>').text('المنطقة')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'phone_house') {
-                                    $('<tr>').append($('<td>').text('رقم الهاتف الأرضي')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'phone_person') {
-                                    $('<tr>').append($('<td>').text('رقم الهاتف الشخصي')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'email') {
-                                    $('<tr>').append($('<td>').text('البريد الإلكتروني')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'place_birth') {
-                                    $('<tr>').append($('<td>').text('مكان الولادة')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'birth_date') {
-                                    $('<tr>').append($('<td>').text('تاريخ الولادة')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'status') {
-                                    $('<tr>').append($('<td>').text('الحالة الاجتماعية')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'gender') {
-                                    $('<tr>').append($('<td>').text('الجنس')).append($('<td>').text(value)).appendTo(tbody);
-                                }
-                            });
-
-                            $('.col.border-start').append($('<h2>').text('البيانات الشخصية')).append(table);
-                            var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
-                            var tbody = $('<tbody>').appendTo(table);
-
-                            $('<tr>').append($('<th>').text('الحقل')).append($('<th>').text('القيمة')).appendTo(tbody);
-
-                            $.each(data, function(key, value) {
-                                if (key === 'company_name') {
-                                    $('<tr>').append($('<td>').text('اسم الشركة')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'jop_name') {
-                                    $('<tr>').append($('<td>').text('اسم الوظيفة')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'experience_job') {
-                                    $('<tr>').append($('<td>').text('خبرة الوظيفية')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'certificate') {
-                                    $('<tr>').append($('<td>').text('الشهادات')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'activities') {
-                                    $('<tr>').append($('<td>').text('الأنشطة الخارجية')).append($('<td>').text(value)).appendTo(tbody);
-                                }
-                            });
-
-                            $('.col.border-start').append($('<h2>').text('خبرات العمل السابقة')).append(table);
-                            // ... the rest of the code to display the table goes here
+                            $('.col.border-start').append($('<h2>').text('بيانات الطلاب')).append(table);
                         } else {
                             // The data is empty, so show a message to the user or do nothing
                             $('.col.border-start').text('No data found');
                         }
-                        // Code to display the table goes here
                     } catch (error) {
                         $('.col.border-start').html('<div class="justify-content-center"><h3> لم يقم الطالب بتعبئة بياناته بعد </h3><br><h3>أخطر الطالب برسالة</h3></div>');
                     }
-
 
                 },
                 error: function(xhr, status, error) {
@@ -336,6 +377,37 @@ check_activity();
 
 <script>
     $("#log-out").click(() => {
+        $.ajax({
+            url: "../../php/forms/logout.php",
+            type: "POST",
+            success: function(data) {
+                if (data === 'success') {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "تم تسجيل الخروج بنجاح",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    setTimeout(function() {
+                        window.location.href = "../../index.php";
+                    }, 1500);
+                } else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "حدث خطأ ما",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                }
+            }
+        });
+    });
+</script>
+
+<script>
+    $("#log-out-custom").click(() => {
         $.ajax({
             url: "../../php/forms/logout.php",
             type: "POST",

@@ -71,6 +71,27 @@ function studentLogin(
     }
 }
 
+function adminLogin(
+    $pdo,
+    $username,
+    $password
+) {
+    try {
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username AND password = :password AND role='admin' ");
+        $stmt->execute(array(':username' => $username, ':password' => $password));
+        $count = $stmt->rowCount();
+        if ($count == 1) {
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['role'] = $row['role'];
+            $_SESSIOn['email'] = $row['email'];
+            return true;
+        }
+    } catch (PDOException $e) {
+        error_log("Error checking admin login: " . $e->getMessage());
+        return false;
+    }
+}
 
 function getStudent(
     $pdo,
@@ -93,6 +114,47 @@ function getStudent(
     }
 }
 
+function getAdvisors(
+    $pdo,
+
+) {
+    try {
+        $username = $_SESSION['username'];
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE role='supervisor' ");
+        $stmt->execute();
+        $count = $stmt->rowCount();
+        if ($count > 0) {
+            $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $row;
+        } else {
+            return false;
+        }
+    } catch (PDOException $e) {
+        error_log("Error checking admin login: " . $e->getMessage());
+        return false;
+    }
+}
+function getStudentByAdvisor(
+    $pdo,
+    $advisor
+
+) {
+    try {
+
+        $stmt = $pdo->prepare("SELECT * FROM student_info WHERE advisor='$advisor' ");
+        $stmt->execute();
+        $count = $stmt->rowCount();
+        if ($count > 0) {
+            $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return json_encode($row);
+        } else {
+            return false;
+        }
+    } catch (PDOException $e) {
+        error_log("Error checking admin login: " . $e->getMessage());
+        return false;
+    }
+}
 
 function sendMail(
     $pdo,
