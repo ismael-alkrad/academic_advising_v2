@@ -84,9 +84,9 @@ include_once '../../php/functions.php';
         </div>
     </nav>
     <div class="landing">
-        <div class="container px-4 text-center">
-            <div class="row gx-5 shadow-lg p-3 mb-5 bg-body rounded">
-                <div class="col border-start">
+        <div class="container text-center">
+            <div class="row-responsive row gx-5 shadow-lg p-3 mb-5 bg-body rounded">
+                <div class="col border-responsive">
                     <div class="p-3 border-bottom bg-white">
                         <div class="bg-white rounded-circle" style="position: relative; left: 53%; top: 107px; width: 25px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square"></i></div>
                         <img class="rounded-circle icon-radius" src="<?php echo getPhotoPathByUser($conn); ?>">
@@ -105,16 +105,12 @@ include_once '../../php/functions.php';
                                                 <label for="file-upload">إختر صورة</label>
                                                 <input type="file" name="photo" id="file-upload" accept="image/*">
                                             </div>
-
-
                                             <div id="photo-cropper"></div>
                                             <hr>
                                             <div id="photo-rev"></div>
                                             <div class="progress my-3">
                                                 <div id="upload-progress" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
-
-
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>

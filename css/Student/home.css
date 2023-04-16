@@ -154,3 +154,40 @@ body {
 }
 
 /*End Landing*/
+
+/*Start Responsive*/
+@media (max-width: 400px) {
+    form {
+        width: 340px;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .save-responsive {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .floating-button {
+        left: 20px;
+    }
+}
+
+@media (min-width: 400px) and (max-width:600px) {
+    form {
+        width: 38%;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .save-responsive {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .floating-button {
+        left: 20px;
+    }
+}
+
+/*End Responsive*/

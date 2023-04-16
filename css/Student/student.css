@@ -123,4 +123,71 @@ nav button:hover {
     cursor: pointer;
 }
 
+.border-responsive {
+    border-right: 1px solid var(--grey-color);
+}
+
 /*End Landing*/
+
+/*End Landing*/
+
+/*Start Responsive*/
+@media (max-width: 400px) {
+    .row-responsive {
+        width: 330px;
+        margin-left: 5px;
+        padding: 3px;
+        position: relative;
+        right: 3%;
+
+    }
+
+    .border-responsive {
+        border-right: none;
+    }
+
+    .container {
+        width: 94%;
+    }
+
+    .landing .button-style {
+        position: relative;
+        right: 40%;
+        width: 250px;
+        border: none;
+        background-color: white;
+        transform: translateX(0) translateY(0px) scale(1);
+        transition-duration: 0.5s;
+    }
+}
+
+@media (min-width: 400px) and (max-width:991px) {
+    .row-responsive {
+        width: 360px;
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 3px;
+        position: relative;
+        right: 2%;
+    }
+
+    .border-responsive {
+        border-right: none;
+    }
+
+    .container {
+        width: 94%;
+    }
+
+    .landing .button-style {
+        position: relative;
+        right: 40%;
+        width: 250px;
+        border: none;
+        background-color: white;
+        transform: translateX(0) translateY(0px) scale(1);
+        transition-duration: 0.5s;
+    }
+}
+
+/*End Responsive*/

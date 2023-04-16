@@ -56,36 +56,24 @@ a:hover {
 }
 
 /*End Landing*/
-
-@keyframes example {
-    0% {
-        opacity: 0.4;
-        transform: translateX(20px);
-    }
-
-    25% {
-        opacity: 0.4;
-        transform: translateX(-20px);
-    }
-
-    50% {
-        opacity: 0.4;
-        transform: translateX(20px);
-    }
-
-    75% {
-        opacity: 0.4;
-        transform: translateX(-20px);
-    }
-
-    100% {
-        opacity: 0.4;
-        transform: translateX(20px);
-    }
+.icon-link {
+    position: relative;
+    display: inline-block;
 }
 
-.landing .scroll-animation {
-    animation-name: example;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
+.icon-img {
+    height: 64px;
+    width: 64px;
+    padding-bottom: 5px;
+    position: relative;
+    right: 40px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.icon-link:hover .icon-img {
+    transform: scale(1.2);
+}
+
+.icon-link:active .icon-img {
+    transform: scale(0.9);
 }
