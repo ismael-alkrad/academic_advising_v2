@@ -23,15 +23,6 @@ check_activity();
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<style>
-    @media print {
-        .print-header {
-            display: block;
-            text-align: center;
-            margin-bottom: 1em;
-        }
-    }
-</style>
 
 <body>
     <nav class="navbar navbar-expand-lg shadow-lg p-1 mb-5 bg-body rounded position-sticky top-0">
@@ -116,25 +107,28 @@ check_activity();
                             <div id="collapse' . $s['username'] . '" class="accordion-collapse collapse" aria-labelledby="heading' . $s['username'] . '"
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body px-3">
-                                <div class="container text-center">
-                                <div class="row">
-                                <div class="col">
-                                    <span class="icon-reduis-message"><button data-bs-toggle="modal" data-bs-target="#exampleModal' . $s['username'] . '"><img class="icon-1" src="../../assets/images/chat.png"></button></span>
-                                    <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button data-bs-toggle="modal" data-bs-target="#exampleModal' . $s['username'] . '"> ارسال رسالة </button></div>
-                                </div>
-                                <div class="col">
-                                <span class="icon-reduis-printer"><button onclick="printTable()"><img class="icon-1" src="../../assets/images/printer.png"></button></span>
-                                <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button onclick="printTable()"> طباعة </button></div>
-                                </div>
-                                <div class="col">
-                                <span class="icon-reduis-add"><button><img class="icon-1" src="../../assets/images/add-user.png"></button></span>
-                                <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> اضافة </button></div>
-                                </div>
+                                    <div class="container text-center">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="icon-reduis-message"><button data-bs-toggle="modal" data-bs-target="#exampleModal' . $s['username'] . '"><img class="icon-1" src="../../assets/images/chat.png"></button></span>
+                                                <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button data-bs-toggle="modal" data-bs-target="#exampleModal' . $s['username'] . '"> ارسال رسالة </button></div>
+                                            </div>
+                                            <div class="col">
+                                                <span class="icon-reduis-printer"><button onclick="printTable()"><img class="icon-1" src="../../assets/images/printer.png"></button></span>
+                                                <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button onclick="printTable()"> طباعة </button></div>
+                                            </div>
+                                            <div class="col">
+                                                <span class="icon-reduis-add"><button><img class="icon-1" src="../../assets/images/add-user.png"></button></span>
+                                                <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button data-bs-toggle="modal" data-bs-target="#add-user"> اضافة </button></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                                </div>
-                            </div>
-                            <div class="modal fade" id="exampleModal' . $s['username'] . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            
+                            <!-- --------------------------------------------------Modal Send Message---------------------------------------------------------------------- -->
+                            
+                        <div class="modal fade" id="exampleModal' . $s['username'] . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -142,20 +136,20 @@ check_activity();
                                     <button type="button"  class="btn-close position-absolute top-0 strar-0 my-3" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                <form  class="mail-form ">
-                                    <div class="mb-3">
-                                        <label for="recipient-name" class="col-form-label position-absolute top-0 start-0" style="margin-right: 20px;">المستلم</label>
-                                        <input type="text" name="email" dir="rtl" disabled class="form-control mt-3" id="recipient-name" value="' . $s['email'] . '" placeholder="البريد الإلكتروني للمستلم">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="recipient-name" class="col-form-label" style="margin-left: 400px;">الموضوع</label>
-                                        <input type="text" name="subject" dir="rtl" class="form-control" id="recipient-subject" placeholder="موضوع الرسالة">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="message-text" class="col-form-label" style="margin-left: 415px;">الرسالة</label>
-                                        <textarea class="form-control" name="massage" dir="rtl" id="message-text" placeholder="نص الرسالة"></textarea>
-                                    </div>
-                                </form>
+                                        <form  class="mail-form ">
+                                            <div class="mb-3">
+                                                <label for="recipient-name" class="col-form-label position-absolute top-0 start-0" style="margin-right: 20px;">المستلم</label>
+                                                <input type="text" name="email" dir="rtl" disabled class="form-control mt-3" id="recipient-name" value="' . $s['email'] . '" placeholder="البريد الإلكتروني للمستلم">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="recipient-name" class="col-form-label" style="margin-left: 400px;">الموضوع</label>
+                                                <input type="text" name="subject" dir="rtl" class="form-control" id="recipient-subject" placeholder="موضوع الرسالة">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="message-text" class="col-form-label" style="margin-left: 415px;">الرسالة</label>
+                                                <textarea class="form-control" name="massage" dir="rtl" id="message-text" placeholder="نص الرسالة"></textarea>
+                                            </div>
+                                        </form>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
@@ -200,7 +194,9 @@ check_activity();
                     id: username
                 },
                 beforeSend: function() {
-                    $('.col.border-start').html('<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>');
+                    $('.col.border-start').html(
+                        '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>'
+                    );
                 },
                 success: function(result) {
                     console.log(result);
@@ -300,22 +296,31 @@ check_activity();
                         if (data !== null && data.length > 0) {
                             // The data is not empty, so do something with it
                             $('.col.border-start').empty();
-                            var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
+                            var table = $('<table>').addClass(
+                                'table table-striped table-hover table-bordered').attr(
+                                'dir', 'rtl');
                             var tbody = $('<tbody>').appendTo(table);
 
-                            $('<tr>').append($('<th>').text('الرقم الجامعي')).append($('<th>').text('الاسم')).append($('<th>').text('البريد الإلكتروني')).appendTo(tbody);
+                            $('<tr>').append($('<th>').text('الرقم الجامعي')).append($('<th>')
+                                    .text('الاسم')).append($('<th>').text('البريد الإلكتروني'))
+                                .appendTo(tbody);
 
                             $.each(data, function(index, value) {
-                                $('<tr>').append($('<td>').text(value.u_id)).append($('<td>').text(value.name)).append($('<td>').text(value.email)).appendTo(tbody);
+                                $('<tr>').append($('<td>').text(value.u_id)).append($(
+                                    '<td>').text(value.name)).append($('<td>').text(
+                                    value.email)).appendTo(tbody);
                             });
 
-                            $('.col.border-start').append($('<h2>').text('بيانات الطلاب')).append(table);
+                            $('.col.border-start').append($('<h2>').text('بيانات الطلاب'))
+                                .append(table);
                         } else {
                             // The data is empty, so show a message to the user or do nothing
                             $('.col.border-start').text('No data found');
                         }
                     } catch (error) {
-                        $('.col.border-start').html('<div class="justify-content-center"><h3> لم يقم الطالب بتعبئة بياناته بعد </h3><br><h3>أخطر الطالب برسالة</h3></div>');
+                        $('.col.border-start').html(
+                            '<div class="justify-content-center"><h3> لم يقم الطالب بتعبئة بياناته بعد </h3><br><h3>أخطر الطالب برسالة</h3></div>'
+                        );
                     }
 
                 },

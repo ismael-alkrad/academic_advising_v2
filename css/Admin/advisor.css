@@ -204,4 +204,16 @@ body {
     }
 }
 
-/*Start Responsive*/
+/*End Responsive*/
+
+/*Start Print*/
+
+@media print {
+    .print-header {
+        display: block;
+        text-align: center;
+        margin-bottom: 1em;
+    }
+}
+
+/*End Print*/
