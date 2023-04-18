@@ -507,3 +507,18 @@ function getStudentInfoByUId($conn, $uId)
         return false;
     }
 }
+function getAllStudent($conn, $college, $major = '')
+{
+    $sql = "SELECT * FROM student_info WHERE college = :college";
+    if (!empty($major)) {
+        $sql .= " AND major = :major";
+    }
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindValue(':college', $college);
+    if (!empty($major)) {
+        $stmt->bindValue(':major', $major);
+    }
+    $stmt->execute();
+    return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+}

@@ -118,9 +118,9 @@ check_activity();
                                                 <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button onclick="printTable()"> طباعة </button></div>
                                             </div>
                                             <div class="col">
-                                                <span class="icon-reduis-add"><button><img class="icon-1" src="../../assets/images/add-user.png"></button></span>
-                                                <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button data-bs-toggle="modal" data-bs-target="#add-user"> اضافة </button></div>
-                                            </div>
+                                                 <span class="icon-reduis-add"><button><img class="icon-1" src="../../assets/images/add-user.png"></button></span>
+                                                 <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><a href="users.php?user=' . $s['username'] . '"> اضافة </a></div>
+                                            </div> 
                                         </div>
                                     </div>
                                 </div>
