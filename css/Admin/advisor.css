@@ -75,6 +75,11 @@ body {
 /*End Navbar*/
 
 /*Start Landing*/
+a {
+    text-decoration: none;
+    color: black;
+}
+
 .landing .container h1 {
     text-align: end;
     color: var(--blue-color);

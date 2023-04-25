@@ -108,7 +108,7 @@ $colleges = getColleges($conn);
             <div class="row shadow-lg p-3 mb-4 bg-body rounded">
                 <div class="row" dir="rtl">
 
-                    <div class="col divider">
+                    <div class="col divider ms-2">
                         <label for="inputcollege" class="form-label text-start">الكلية</label>
                         <select id="inputcollege" name="college" class="form-select">
                             <option value="<?php echo $_SESSION['college'] ?? ""; ?>"><?php echo  $_SESSION['college'] ?? "-- اختر الكلية --"; ?></option>
@@ -126,11 +126,8 @@ $colleges = getColleges($conn);
                         </select>
                         <div id="department-error" class="text-danger"></div>
                     </div>
-                    <div class="col divider">
-                        <label class="ps-2 mb-2 fw-bold">بحث</label>
-
-                        <button id="search-btn" class="btn btn-outline-primary" type="button">بحث</button>
-
+                    <div class="col divider me-3">
+                        <button id="search-btn" style="margin: top 31px; ;" class="btn btn-outline-primary" type="button">بحث</button>
                     </div>
                 </div>
                 <div class="col text-center">

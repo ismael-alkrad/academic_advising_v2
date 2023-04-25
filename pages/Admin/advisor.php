@@ -118,8 +118,8 @@ check_activity();
                                                 <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button onclick="printTable()"> طباعة </button></div>
                                             </div>
                                             <div class="col">
-                                                 <span class="icon-reduis-add"><button><img class="icon-1" src="../../assets/images/add-user.png"></button></span>
-                                                 <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><a href="users.php?user=' . $s['username'] . '"> اضافة </a></div>
+                                                <span class="icon-reduis-add"><button><img class="icon-1" src="../../assets/images/add-user.png"></button></span>
+                                                <div class="my-3 animation"><a href="users.php?user=' . $s['username'] . '"><i class="fa-solid fa-angles-left color-icon"></i></a><a href="users.php?user=' . $s['username'] . '"> اضافة </a></div>
                                             </div> 
                                         </div>
                                     </div>

@@ -115,7 +115,6 @@ if (checkifFillInfo($conn) ?? false) {
                 <label for="inputdepartment" class="form-label text-start">القسم</label>
                 <select id="inputdepartment" name="department" class="form-select">
                   <option value="<?php echo $_SESSION['major'] ?? ""; ?>"><?php echo $_SESSION['major'] ?? "-- اختر القسم --"; ?></option>
-
                 </select>
                 <div id="department-error" class="text-danger"></div>
               </div>

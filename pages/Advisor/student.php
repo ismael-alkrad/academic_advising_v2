@@ -109,7 +109,7 @@ check_activity();
                                 <div class="container text-center">
                                 <div class="row">
                                 <div class="col">
-                                    <span class="icon-reduis"><img class="icon-1" src="../../assets/images/messages.png"></span>
+                                    <span class="icon-reduis"><img class="icon-1" src="../../assets/images/chat.png"></span>
                                     <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button data-bs-toggle="modal" data-bs-target="#exampleModal' . $s['u_id'] . '"> ارسال رسالة </button></div>
                                 </div>
                                 <div class="col">

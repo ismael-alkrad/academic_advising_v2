@@ -1,0 +1,299 @@
+<?php
+include_once '../../php/check.php';
+
+check();
+check_activity();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    <link rel="shortcut icon" href="../../assets/images/logo.png">
+    <link rel="stylesheet" href="../../css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="../../css/all.min.css">
+    <link rel="stylesheet" href="../../css/Advisor/report.css?v=<?php echo time(); ?>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg shadow-lg p-1 mb-5 bg-body rounded position-sticky top-0">
+        <div class="container position-relative">
+            <button id="log-out" class="navbar fs-6 d-flex justify-content-center text-center button-style d-none d-lg-block d-xl-block d-xxl-block" style="color: #ffffff;">تسجيل
+                خروج <i class="fa-solid fa-arrow-right-from-bracket px-1" style="color: #ffffff;"></i></button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar collapse navbar-collapse me-auto">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><span>المزيد</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><span>التقارير</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="student.php"><span>الطلاب</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"><span>الرئيسية</span></a>
+                    </li>
+                </ul>
+                <span class="d-flex flex-column align-items-end ms-2"> الإرشاد الأكاديمي<span>
+                        <small class="text-secondary">(مرشد)</small>
+                    </span></span>
+                <img class="d-none d-lg-block d-xl-block d-xxl-block" height="70px" src="../../assets/images/logo.png">
+            </div>
+
+            <!-- ------------------------------------Navbar Responsive-------------------------------------------- -->
+
+            <div class="offcanvas offcanvas-start d-sm-block d-md-block d-lg-none" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                <div class="position-relative">
+                    <div class="offcanvas-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        <h1 class="offcanvas-title" id="offcanvasRightLabel">القائمة</h1>
+                        <ul dir="rtl" class="navbar-nav position-absolute top-0 start-0 pt-3 mt-5 mx-4 d-sm-block d-md-block d-lg-none">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#"><span>الرئيسية</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="student.php"><span>الطلاب</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><span>التقارير</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><span>المزيد</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><span> تسجيل الخروج </span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <img class="position-absolute top-0 end-0 d-sm-block d-md-block d-lg-none mx-4" height="45px" src="../../assets/images/logo.png">
+        </div>
+    </nav>
+    <div class="landing">
+        <div class="container">
+            <div class="row shadow-lg p-3 mb-4 bg-body rounded">
+                <div class="col">
+                    <ul class="nav nav-tabs" dir="rtl" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <input type="radio" class="btn-check" id="report" name="report" autocomplete="off" data-bs-toggle="tab" data-bs-target="#report-pane" role="tab" aria-controls="report-pane" aria-selected="true">
+                            <label class="nav-link btn btn-outline-primary border-primary nav-button-primary me-1 rounded-0 rounded-top" for="report">التقارير</label>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <input type="radio" class="btn-check" id="complete-report" name="report" autocomplete="off" data-bs-toggle="tab" data-bs-target="#complete-report-pane" role="tab" aria-controls="complete-report-pane" aria-selected="false">
+                            <label class="nav-link btn btn-outline-success border-success nav-button-success me-1 rounded-0 rounded-top" for="complete-report">مكتمل</label>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <input type="radio" class="btn-check" id="incomplete-report" name="report" autocomplete="off" data-bs-toggle="tab" data-bs-target="#incomplete-report-pane" role="tab" aria-controls="incomplete-report-pane" aria-selected="false">
+                            <label class="nav-link btn btn-outline-warning border-warning nav-button-warning rounded-0 rounded-top" for="incomplete-report">غير مكتمل</label>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade" id="report-pane" role="tabpanel" aria-labelledby="report" tabindex="0">
+                            <div class="accordion mt-2" id="accordionExample">
+                                <div class="accordion-item">
+                                    <?php
+                                    $student = getStudent($conn);
+                                    if ($student != null) {
+                                        foreach ($student as $s) {
+                                            $to = $s['email'];
+                                            echo '<h2 class="accordion-header" id="heading' . $s['u_id'] . '" data-u-id="' . $s['u_id'] . '">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapse' . $s['u_id'] . '"  aria-expanded="false" aria-controls="collapse' . $s['u_id'] . '" data-u-id="' . $s['u_id'] . '">
+                                            ' . $s['name'] . '
+                                        </button>
+                                    </h2>
+                                    <div id="collapse' . $s['u_id'] . '" class="accordion-collapse collapse" aria-labelledby="heading' . $s['u_id'] . '"
+                                        data-bs-parent="#accordionExample">
+                                        <div class="accordion-body px-3">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <form>
+                                                            <table class="table table-striped" dir="rtl">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col">الكلية</th>
+                                                                        <td>تكنولوجيا المعلومات</td>
+                                                                        <th scope="col">القسم</th>
+                                                                        <td>هندسة البرمجيات</td>
+                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
+                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <th scope="row">العام الحامعي</th>
+                                                                        <td> 2022/2023 </td>
+                                                                        <th> الفصل الدراسي </th>
+                                                                        <td> الثاني </td>
+                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
+                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">الرقم الحامعي</th>
+                                                                        <td> AC0109 </td>
+                                                                        <th>  سنة الالتحاق بالجامعة </th>
+                                                                        <td> 2019 </td>
+                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
+                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">اسم الطالب باللغة العربية</th>
+                                                                        <td colspan="3">اسماعيل عماد الكراد</td>
+                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
+                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">اسم الطالب باللغة الانجليزية</th>
+                                                                        <td colspan="3"> Ismael Emad Alkrad </td>
+                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
+                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th class="text-center" scope="row" colspan= "6"> عنوان الطالب </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row"> المدينة </th>
+                                                                        <td> عمان </td>
+                                                                        <th> رقم هاتف (المنزل) </th>
+                                                                        <td> 079-758-8413 </td>
+                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
+                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row"> الدولة </th>
+                                                                        <td> الأردن </td>
+                                                                        <th> رقم هاتف (خلوي) </th>
+                                                                        <td> 079-758-8413 </td>
+                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
+                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row"> البريد الإلكتروني </th>
+                                                                        <td colspan="3"> Esmaelalkrad0@gmail.com </td>
+                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
+                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row"> مكان الولادة </th>
+                                                                        <td> سوريا </td>
+                                                                        <th> تاريخ الولادة </th>
+                                                                        <td> 11/1/2001 </td>
+                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
+                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row"> الحالة الاجتماعية  </th>
+                                                                        <td colspan="3"> اعزب </td>
+                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
+                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">  الجنس  </th>
+                                                                        <td colspan="3"> ذكر </td>
+                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
+                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th class="text-center" scope="row" colspan= "6">  الخبرات العملية </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row"> اسم المؤسسة التي يعمل بها حالي  </th>
+                                                                        <td> Sync-Fast </td>
+                                                                        <th>  الوظيفة التي تعمل بها حاليا </th>
+                                                                        <td> Front-End & Systems Analyst </td>
+                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
+                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row" colspan= "6">  خبرات عملية </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row"> 1 </th>
+                                                                        <td colspan= "3"> System Academic Advisor </td>
+                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
+                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row"> 2 </th>
+                                                                        <td colspan= "3"> System Course File </td>
+                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
+                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row"> 3 </th>
+                                                                        <td colspan= "3"> Data Analyst </td>
+                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
+                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row" colspan= "6">الشهادات التي حصل عليها الطالب (شهادات تدريبية، أكاديمية، جوائز، مشاركات علمية </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row"> 1 </th>
+                                                                        <td colspan= "3"> لايوجد </td>
+                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
+                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row" colspan= "6"> أي فعاليات أو نشاطات أخرى شارك فيها الطالب </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row"> 1 </th>
+                                                                        <td colspan= "3"> لايوجد </td>
+                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
+                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <div class="row" dir="rtl">
+                                                                <div class="col-9">
+                                                                    <div class="form-floating" dir="rtl">
+                                                                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                                                        <label for="floatingTextarea">تعليق</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col text-center mt-2">
+                                                                    <button type="button" class="btn btn-outline-info">ارسال</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>     
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    ';
+                                        }
+                                    } else {
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="complete-report-pane" role="tabpanel" aria-labelledby="complete-report" tabindex="0">ddddd</div>
+                        <div class="tab-pane fade" id="incomplete-report-pane" role="tabpanel" aria-labelledby="incomplete-report" tabindex="0">...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/all.min.js"></script>
+</body>
+
+</html>
