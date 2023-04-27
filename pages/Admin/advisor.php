@@ -1,6 +1,6 @@
 <?php
 include_once '../../php/check.php';
-
+include '../../php/navbar.php';
 check();
 check_activity();
 ?>
@@ -25,62 +25,10 @@ check_activity();
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg shadow-lg p-1 mb-5 bg-body rounded position-sticky top-0">
-        <div class="container position-relative">
-            <button id="log-out" class="navbar button-style fs-6 d-flex justify-content-center text-center d-none d-lg-block d-xl-block d-xxl-block" style="color: #ffffff;">تسجيل
-                خروج <i class="fa-solid fa-arrow-right-from-bracket px-1" style="color: #ffffff;"></i></button>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar collapse navbar-collapse me-auto">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><span>المزيد</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><span>التقارير</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#"><span>الطلاب</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="home.php"><span>الرئيسية</span></a>
-                    </li>
-                </ul>
-                <span class="d-none d-lg-block d-xl-block d-xxl-block">الإرشاد الأكاديمي</span>
-                <img class="d-none d-lg-block d-xl-block d-xxl-block" height="70px" src="../../assets/images/logo.png">
-            </div>
+    <?php echo generateNavbar($links = array(
 
-            <!-- ------------------------------------Navbar Responsive-------------------------------------------- -->
-
-            <div class="offcanvas offcanvas-start d-sm-block d-md-block d-lg-none" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-                <div class="position-relative">
-                    <div class="offcanvas-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                        <h1 class="offcanvas-title" id="offcanvasRightLabel">القائمة</h1>
-                        <ul dir="rtl" class="navbar-nav position-absolute top-0 start-0 pt-3 mt-5 mx-4 d-sm-block d-md-block d-lg-none">
-                            <li class="nav-item">
-                                <a class="nav-link" href=""><span>الرئيسية</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#"><span>الطلاب</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><span>التقارير</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><span>المزيد</span></a>
-                            </li>
-                            <li class="nav-item" id="log-out-custom">
-                                <a class="nav-link" href="#"><span> تسجيل الخروج </span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <img class="position-absolute top-0 end-0 d-sm-block d-md-block d-lg-none mx-4" height="40px" src="../../assets/images/logo.png">
-        </div>
-    </nav>
+        array("label" => "الرئيسية", "url" => "#")
+    )); ?>
     <div class="landing">
         <div class="container text-center">
             <div class="row row-size shadow-lg p-3 mb-4 bg-body rounded">
