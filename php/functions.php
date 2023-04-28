@@ -205,14 +205,54 @@ function insertOrUpdateFormDataPDO($formDataArray, $pdo)
         if ($row_count > 0) {
             // If a row exists, update the data
             $stmt = $pdo->prepare("UPDATE student_information SET college=?, department=?, year=?, semester=?, u_year=?, ar_name=?, en_name=?, its_done=true WHERE u_id=?");
+
+            // Bind the parameters for update statement
+            $stmt->bindParam(1, $formDataArray['college']);
+            $stmt->bindParam(
+                2,
+                $formDataArray['department']
+            );
+            $stmt->bindParam(3, $formDataArray['year']);
+            $stmt->bindParam(4, $formDataArray['semyster']);
+            $stmt->bindParam(5, $formDataArray['u_year']);
+            $stmt->bindParam(
+                6,
+                $formDataArray['ar-name']
+            );
+            $stmt->bindParam(
+                7,
+                $formDataArray['en-name']
+            );
+            $stmt->bindParam(
+                8,
+                $u_id
+            );
         } else {
             // If no row exists, insert new data
-            $stmt = $pdo->prepare("INSERT INTO student_information (college, department, year, semester, u_id, u_year, ar_name, en_name, its_done) VALUES (?, ?, ?, ?, ?, ?, ?, ?, true)");
+            $stmt = $pdo->prepare("INSERT INTO student_information (college, department, year, semester, u_id, u_year, ar_name, en_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+
+            // Bind the parameters for insert statement
+            $stmt->bindParam(1, $formDataArray['college']);
+            $stmt->bindParam(
+                2,
+                $formDataArray['department']
+            );
+            $stmt->bindParam(3, $formDataArray['year']);
+            $stmt->bindParam(4, $formDataArray['semyster']);
+            $stmt->bindParam(5, $u_id);
+            $stmt->bindParam(6, $formDataArray['u_year']);
+            $stmt->bindParam(
+                7,
+                $formDataArray['ar-name']
+            );
+            $stmt->bindParam(
+                8,
+                $formDataArray['en-name']
+            );
         }
 
-        // Bind the parameters
-        $stmt->execute([$formDataArray['college'], $formDataArray['department'], $formDataArray['year'], $formDataArray['semyster'], $formDataArray['u_year'], $formDataArray['ar-name'], $formDataArray['en-name'], $u_id]);
-
+        // Execute the statement
+        $stmt->execute();
         // Output success message
         return true;
     } catch (PDOException $e) {
@@ -221,7 +261,6 @@ function insertOrUpdateFormDataPDO($formDataArray, $pdo)
     }
 
     // Close the statement
-    $stmt = null;
 }
 function insertOrUpdatePersonalData($formData, $conn)
 {
@@ -232,7 +271,7 @@ function insertOrUpdatePersonalData($formData, $conn)
         $stmt->execute([$u_id]);
         $row_count = $stmt->fetchColumn();
 
-        $sql = ($row_count > 0) ? "UPDATE personal_data SET  region=:region, phone_house=:phone_house, city=:city, phone_person=:phone_person, email=:email, place_birth=:place_birth, birth_date=:birth, status=:status, gender=:gender, its_done=true WHERE u_id=:u_id" : "INSERT INTO personal_data (u_id, region, phone_house, city, phone_person, email, place_birth, birth_date, status, gender, its_done) VALUES (:u_id, :region, :phone_house, :city, :phone_person, :email, :place_birth, :birth, :status, :gender,true)";
+        $sql = ($row_count > 0) ? "UPDATE personal_data SET  region=:region, phone_house=:phone_house, city=:city, phone_person=:phone_person, email=:email, place_birth=:place_birth, birth_date=:birth, status=:status, gender=:gender WHERE u_id=:u_id" : "INSERT INTO personal_data (u_id, region, phone_house, city, phone_person, email, place_birth, birth_date, status, gender) VALUES (:u_id, :region, :phone_house, :city, :phone_person, :email, :place_birth, :birth, :status, :gender,true)";
 
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':u_id', $u_id);
@@ -265,10 +304,10 @@ function insertOrUpdatePracticalExperience($conn, $formData)
 
         if ($row_count > 0) {
             // If a row exists, update the data
-            $sql = "UPDATE practical_experience SET company_name=:company_name, jop_name=:jop_name, certificate=:certificate, activities=:activities, experience_job=:experience_job, its_done=true WHERE u_id=:u_id";
+            $sql = "UPDATE practical_experience SET company_name=:company_name, jop_name=:jop_name, certificate=:certificate, activities=:activities, experience_job=:experience_job WHERE u_id=:u_id";
         } else {
             // If no row exists, insert new data
-            $sql = "INSERT INTO practical_experience (u_id, company_name, jop_name, certificate, activities, experience_job, its_done) VALUES (:u_id, :company_name, :jop_name, :certificate, :activities, :experience_job, true)";
+            $sql = "INSERT INTO practical_experience (u_id, company_name, jop_name, certificate, activities, experience_job) VALUES (:u_id, :company_name, :jop_name, :certificate, :activities, :experience_job)";
         }
 
         // Prepare the PDO statement
@@ -390,21 +429,23 @@ function getStudenData($conn, $u_id)
 
 function checkifFillInfo($conn)
 {
-    $sql = "SELECT si.its_done AS si_its_done, pd.its_done AS pd_its_done, pe.its_done AS pe_its_done 
-            FROM student_information si 
-            JOIN personal_data pd ON si.u_id = pd.u_id 
-            JOIN practical_experience pe ON pd.u_id = pe.u_id 
-            WHERE si.u_id = :u_id";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':u_id',  $_SESSION['username']);
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    // prepare SQL statement
+    $sql = "SELECT its_done FROM student_info WHERE u_id = :u_id";
 
-    if (is_array($result) && $result['si_its_done'] && $result['pd_its_done'] && $result['pe_its_done']) {
-        return true;
-    } else {
-        return false;
-    }
+    // prepare PDO statement
+    $stmt = $conn->prepare($sql);
+
+    // bind parameter
+    $stmt->bindParam(':u_id',  $_SESSION['username']);
+    // execute statement
+    $stmt->execute();
+
+    // fetch result
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $itsDone = $row['its_done'];
+
+    // return true if task is done, false otherwise
+    return ($itsDone == 1);
 }
 
 

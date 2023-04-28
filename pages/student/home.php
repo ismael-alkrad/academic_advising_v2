@@ -397,6 +397,7 @@ if (checkifFillInfo($conn) ?? false) {
   $(document).ready(function() {
     $('#finish').click(function() {
       // Show confirmation dialog
+
       Swal.fire({
         title: 'هل أنت متأكد أنك تريد المغادرة؟',
         text: 'قد لا يتم حفظ تغييراتك.',
@@ -408,8 +409,29 @@ if (checkifFillInfo($conn) ?? false) {
         cancelButtonText: 'لا، ابقى'
       }).then((result) => {
         if (result.isConfirmed) {
-          // User clicked the "Yes" button, redirect to another page
-          window.location.href = 'student.php';
+          $.ajax({
+            type: "Post",
+            url: "../../php/forms/finish.php",
+            data: {
+              'finish': 'finish'
+            },
+            beforeSend: function() {},
+            complete: function() {
+              // stopPreloader();
+            },
+            success: function(result) {
+              console.log(result);
+              Swal.fire({
+                icon: 'success',
+                title: 'تم تسجيل المعلومات بنجاح',
+                showConfirmButton: false,
+                timer: 1500
+              });
+              setTimeout(function() {
+                window.location.href = 'student.php';
+              }, 1500);
+            },
+          });
         }
       });
     });
@@ -827,9 +849,7 @@ if (checkifFillInfo($conn) ?? false) {
           showConfirmButton: false,
           timer: 1500,
         });
-        setTimeout(function() {
-          window.location.href = "student.php";
-        }, 1500);
+
 
       },
     });

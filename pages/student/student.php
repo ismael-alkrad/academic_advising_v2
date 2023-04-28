@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 include_once '../../php/check.php';
 include '../../php/navbar.php';
 
 check();
 check_activity(); ?>
+<!DOCTYPE html>
+<html lang="en">
+
 
 <head>
     <meta charset="UTF-8">
