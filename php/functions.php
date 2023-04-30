@@ -393,9 +393,9 @@ function getData($conn, $table, $where)
 function getStudenData($conn, $u_id)
 {
     // Prepare the SQL queries for each table
-    $sql2 = "SELECT `id`, `college`, `department`, `year`, `semester`, `u_id`, `u_year`, `ar_name`, `en_name`, `its_done` FROM `student_information` WHERE `u_id` = ?";
-    $sql3 = "SELECT `id`, `u_id`, `city`, `region`, `phone_house`, `phone_person`, `email`, `place_birth`, `birth_date`, `status`, `gender`, `its_done` FROM `personal_data` WHERE `u_id` = ?";
-    $sql4 = "SELECT `id`, `u_id`, `company_name`, `jop_name`, `experience_job`, `certificate`, `activities`, `its_done` FROM `practical_experience` WHERE `u_id` = ?";
+    $sql2 = "SELECT `id`, `college`, `department`, `year`, `semester`, `u_id`, `u_year`, `ar_name`, `en_name` FROM `student_information` WHERE `u_id` = ?";
+    $sql3 = "SELECT `id`, `u_id`, `city`, `region`, `phone_house`, `phone_person`, `email`, `place_birth`, `birth_date`, `status`, `gender`  FROM `personal_data` WHERE `u_id` = ?";
+    $sql4 = "SELECT `id`, `u_id`, `company_name`, `jop_name`, `experience_job`, `certificate`, `activities` FROM `practical_experience` WHERE `u_id` = ?";
     $sql5 = "SELECT `filepath` FROM `photos` WHERE `u_id` = ?";
 
     $stmt2 = $conn->prepare($sql2);

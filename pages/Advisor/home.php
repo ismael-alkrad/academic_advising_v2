@@ -28,7 +28,7 @@ check_activity(); ?>
         array("label" => "التقارير", "url" => "report.php"),
         array("label" => "الطلاب", "url" => "student.php"),
         array("label" => "الرئيسية", "url" => "#")
-    )); ?>
+    ), "مرشد"); ?>
     <div class="landing">
         <div class="container text-center">
             <div class="row">
@@ -70,6 +70,34 @@ check_activity(); ?>
 </body>
 <script>
     $("#log-out").click(() => {
+        $.ajax({
+            url: "../../php/forms/logout.php",
+            type: "POST",
+            success: function(data) {
+                if (data === 'success') {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "تم تسجيل الخروج بنجاح",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    setTimeout(function() {
+                        window.location.href = "../../index.php";
+                    }, 1500);
+                } else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "حدث خطأ ما",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                }
+            }
+        });
+    });
+    $("#log-out-res").click(() => {
         $.ajax({
             url: "../../php/forms/logout.php",
             type: "POST",

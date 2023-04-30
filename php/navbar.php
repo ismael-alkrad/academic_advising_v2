@@ -1,9 +1,7 @@
 <?php
-function generateNavbar($link)
+function generateNavbar($link, $text)
 {
   $links = $link;
-
-
 
   $navbar = '<nav class="navbar navbar-expand-lg shadow-lg p-1 mb-5 bg-body rounded position-sticky top-0">
   <div class="container position-relative">';
@@ -25,7 +23,7 @@ function generateNavbar($link)
 
   $navbar .= '</ul>
     <span class="d-flex flex-column align-items-end ms-2"> الإرشاد الأكاديمي<span>
-          <small class="text-secondary">(مرشد)</small>
+          <small class="text-secondary">(' . $text . ')</small>
       </span></span>
     <img class="d-none d-lg-block d-xl-block d-xxl-block" height="70px" src="../../assets/images/logo.png">
   </div>
@@ -45,7 +43,7 @@ function generateNavbar($link)
   }
 
   if (isset($_SESSION['username'])) {
-    $navbar .= '<li class="nav-item" id="log-out">
+    $navbar .= '<li class="nav-item" id="log-out-res">
 <a class="nav-link" ><span> تسجيل الخروج </span></a>
 </li>';
   }

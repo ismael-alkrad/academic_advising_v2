@@ -30,7 +30,7 @@ check_activity(); ?>
     <?php echo generateNavbar($links = array(
 
         array("label" => "الرئيسية", "url" => "#")
-    )); ?>
+    ), "طالب"); ?>
     <div class="landing">
         <div class="container text-center">
             <div class="row-responsive row gx-5 shadow-lg p-3 mb-5 bg-body rounded">

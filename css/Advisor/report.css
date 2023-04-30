@@ -1,75 +1,75 @@
 :root {
-    --blue-color: #478ac9;
-    --grey-color: #e5e5e5;
-    --icon-color: #e9f2fa;
+  --blue-color: #478ac9;
+  --grey-color: #e5e5e5;
+  --icon-color: #e9f2fa;
 }
 
 div,
 ::after,
 ::before {
-    box-sizing: content-box;
+  box-sizing: content-box;
 }
 
 body {
-    font-family: 'Cairo', sans-serif;
-    background-color: var(--grey-color);
+  font-family: "Cairo", sans-serif;
+  background-color: var(--grey-color);
 }
 
 /*Start Navbar*/
 .navbar {
-    color: var(--blue-color);
-    font-size: larger;
-    z-index: 4;
+  color: var(--blue-color);
+  font-size: larger;
+  z-index: 1;
 }
 
 .navbar .container {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.navbar .button-style {
-    color: white;
-    background-color: var(--blue-color);
-    width: 151px;
-    height: 45px;
-    border-radius: 50px;
-    border: none;
-    transform: translateX(0px) translateY(0px) scale(1);
-    transition-duration: 0.5s;
+button {
+  color: white;
+  background-color: var(--blue-color);
+  width: 151px;
+  height: 45px;
+  border-radius: 50px;
+  border: none;
+  transform: translateX(0px) translateY(0px) scale(1);
+  transition-duration: 0.5s;
 }
 
-.navbar .button-style:hover {
-    transform: translateX(0px) translateY(-5px) scale(1);
-    box-shadow: 0px 0px 8px 0px rgba(128, 128, 128, 1);
-    text-shadow: 0px 0px 0px rgb(0, 0, 0, 0);
-    background-color: black;
-    color: white;
+button:hover {
+  transform: translateX(0px) translateY(-5px) scale(1);
+  box-shadow: 0px 0px 8px 0px rgba(128, 128, 128, 1);
+  text-shadow: 0px 0px 0px rgb(0, 0, 0, 0);
+  background-color: black;
+  color: white;
 }
 
 .navbar ul {
-    margin-right: 190px;
-    font-size: large;
+  margin-right: 190px;
+  font-size: large;
 }
 
 .navbar ul li span {
-    border-right: 1px solid var(--blue-color);
-    padding-right: 10px;
-    width: auto;
-    display: inline-block;
+  border-right: 1px solid var(--blue-color);
+  padding-right: 10px;
+  width: auto;
+  display: inline-block;
 }
 
 .navbar .navbar-nav .nav-link.active,
 .navbar .navbar-nav .nav-link:focus,
 .navbar .navbar-nav .nav-link:hover {
-    color: var(--blue-color);
+  color: var(--blue-color);
 }
 
 .navbar .navbar-toggler:active,
 .navbar .navbar-toggler:focus,
 .navbar .navbar-toggler:hover {
-    transform: translateX(0px) translateY(0px) scale(1);
-    border: 1px solid var(--blue-color);
-    background-color: white;
+  transform: translateX(0px) translateY(0px) scale(1);
+  border: 1px solid var(--blue-color);
+  background-color: white;
 }
 
 /*End Navbar*/
@@ -77,70 +77,69 @@ body {
 /*Start Landing*/
 
 .landing .nav-button-success {
-    color: black;
+  color: black;
 }
 
 .landing .nav-button-success:hover,
 .landing .nav-button-success:active {
-    background-color: green;
-    color: white;
-
+  background-color: green;
+  color: white;
 }
 
 .landing .nav-button-warning {
-    color: black;
+  color: black;
 }
 
 .landing .nav-button-warning:hover,
 .landing .nav-button-warning:active,
 .landing .nav-button-warning:focus {
-    background-color: orange;
-    color: white;
+  background-color: orange;
+  color: white;
 }
 
 .landing .nav-button-primary {
-    color: black;
+  color: black;
 }
 
 .landing .nav-button-primary:hover,
 .landing .nav-button-primary:active {
-    background-color: var(--blue-color);
-    color: white;
+  background-color: var(--blue-color);
+  color: white;
 }
 
 .landing .accordion-button {
-    display: flex;
-    flex-direction: row-reverse;
-    border-bottom: 1px solid var(--grey-color);
+  display: flex;
+  flex-direction: row-reverse;
+  border-bottom: 1px solid var(--grey-color);
 }
 
 .landing .accordion-button:focus {
-    box-shadow: none;
-    border-bottom: 1px solid var(--grey-color);
-    border-radius: 0%;
+  box-shadow: none;
+  border-bottom: 1px solid var(--grey-color);
+  border-radius: 0%;
 }
 
 .landing .accordion .accordion-body {
-    border-bottom: 1px solid var(--grey-color);
+  border-bottom: 1px solid var(--grey-color);
 }
 
 .landing table button {
-    background: none;
-    border: none;
+  background: none;
+  border: none;
 }
 
 .landing table button:hover {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .landing table button:active {
-    transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 .landing textarea:hover,
 .landing textarea:active,
 .landing textarea:focus {
-    box-shadow: none;
+  box-shadow: none;
 }
 
 /*End Landing*/

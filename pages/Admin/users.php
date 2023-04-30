@@ -30,7 +30,7 @@ $colleges = getColleges($conn);
     <?php echo generateNavbar($links = array(
 
         array("label" => "الرئيسية", "url" => "advisor.php")
-    )); ?>
+    ), "آدمن"); ?>
     <div class="landing">
         <div class="container">
             <div class="row shadow-lg p-3 mb-4 bg-body rounded" id="student-info">
@@ -131,7 +131,6 @@ $colleges = getColleges($conn);
             });
         });
     });
-
     $(document).ready(function() {
         // bind click event to search button
         $('#search-btn').click(function() {
@@ -179,6 +178,8 @@ $colleges = getColleges($conn);
                                 studentRow.append($("<td>").text(student.email));
                                 // Add the new row to the table
                                 $("#students-add-table tbody").append(studentRow);
+                                // Remove the row from the original table
+                                row.remove();
                             });
                             row.append($("<td>").html(button));
                             $("#students-table tbody").append(row);
@@ -191,6 +192,8 @@ $colleges = getColleges($conn);
                 }
             });
         });
+
+
     });
     $("#get-table-data-btn").on("click", function() {
         var tableData = [];
@@ -236,5 +239,63 @@ $colleges = getColleges($conn);
 </script>
 
 
+<script>
+    $("#log-out").click(() => {
+        $.ajax({
+            url: "../../php/forms/logout.php",
+            type: "POST",
+            success: function(data) {
+                if (data === 'success') {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "تم تسجيل الخروج بنجاح",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    setTimeout(function() {
+                        window.location.href = "../../index.php";
+                    }, 1500);
+                } else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "حدث خطأ ما",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                }
+            }
+        });
+    });
+    $("#log-out-res").click(() => {
+        $.ajax({
+            url: "../../php/forms/logout.php",
+            type: "POST",
+            success: function(data) {
+                if (data === 'success') {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "تم تسجيل الخروج بنجاح",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    setTimeout(function() {
+                        window.location.href = "../../index.php";
+                    }, 1500);
+                } else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "حدث خطأ ما",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                }
+            }
+        });
+    });
+</script>
 
 </html>

@@ -41,7 +41,7 @@ $student_info = getStudentData($conn, $id) ?? [];
     <?php echo generateNavbar($links = array(
 
         array("label" => "الرئيسية", "url" => "#")
-    )); ?>
+    ), "طالب"); ?>
     <div class="landing">
         <div class="container">
             <!----------------------------------------- start Undergraduate student information ------------------------------------>

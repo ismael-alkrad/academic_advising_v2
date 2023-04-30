@@ -1,212 +1,211 @@
 :root {
-    --blue-color: #478ac9;
-    --grey-color: #e5e5e5;
-    --icon-color: #e9f2fa;
+  --blue-color: #478ac9;
+  --grey-color: #e5e5e5;
+  --icon-color: #e9f2fa;
 }
 
 div,
 ::after,
 ::before {
-    box-sizing: content-box;
+  box-sizing: content-box;
 }
 
 body {
-    font-family: 'Cairo', sans-serif;
-    background-color: var(--grey-color);
+  font-family: "Cairo", sans-serif;
+  background-color: var(--grey-color);
 }
 
 /*Start Navbar*/
 .navbar {
-    color: var(--blue-color);
-    font-size: larger;
-    z-index: 1;
+  color: var(--blue-color);
+  font-size: larger;
+  z-index: 1;
 }
 
 .navbar .container {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.navbar .button-style {
-    color: white;
-    background-color: var(--blue-color);
-    width: 151px;
-    height: 45px;
-    border-radius: 50px;
-    border: none;
-    transform: translateX(0px) translateY(0px) scale(1);
-    transition-duration: 0.5s;
+button {
+  color: white;
+  background-color: var(--blue-color);
+  width: 151px;
+  height: 45px;
+  border-radius: 50px;
+  border: none;
+  transform: translateX(0px) translateY(0px) scale(1);
+  transition-duration: 0.5s;
 }
 
-.navbar .button-style:hover {
-    transform: translateX(0px) translateY(-5px) scale(1);
-    box-shadow: 0px 0px 8px 0px rgba(128, 128, 128, 1);
-    text-shadow: 0px 0px 0px rgb(0, 0, 0, 0);
-    background-color: black;
-    color: white;
+button:hover {
+  transform: translateX(0px) translateY(-5px) scale(1);
+  box-shadow: 0px 0px 8px 0px rgba(128, 128, 128, 1);
+  text-shadow: 0px 0px 0px rgb(0, 0, 0, 0);
+  background-color: black;
+  color: white;
 }
 
 .navbar ul {
-    margin-right: 190px;
-    font-size: large;
+  margin-right: 190px;
+  font-size: large;
 }
 
 .navbar ul li span {
-    border-right: 1px solid var(--blue-color);
-    padding-right: 10px;
-    width: auto;
-    display: inline-block;
+  border-right: 1px solid var(--blue-color);
+  padding-right: 10px;
+  width: auto;
+  display: inline-block;
 }
 
 .navbar .navbar-nav .nav-link.active,
 .navbar .navbar-nav .nav-link:focus,
 .navbar .navbar-nav .nav-link:hover {
-    color: var(--blue-color);
+  color: var(--blue-color);
 }
 
 .navbar .navbar-toggler:active,
 .navbar .navbar-toggler:focus,
 .navbar .navbar-toggler:hover {
-    transform: translateX(0px) translateY(0px) scale(1);
-    border: 1px solid var(--blue-color);
-    background-color: white;
+  transform: translateX(0px) translateY(0px) scale(1);
+  border: 1px solid var(--blue-color);
+  background-color: white;
 }
 
 /*End Navbar*/
 
 /*Start Landing*/
 a {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
 .landing .container h1 {
-    text-align: end;
-    color: var(--blue-color);
+  text-align: end;
+  color: var(--blue-color);
 }
 
 .accordion-button {
-    display: flex;
-    flex-direction: row-reverse;
-    border-bottom: 1px solid var(--grey-color);
+  display: flex;
+  flex-direction: row-reverse;
+  border-bottom: 1px solid var(--grey-color);
 }
 
 .accordion-button:focus {
-    box-shadow: none;
-    border-bottom: 1px solid var(--grey-color);
-    border-radius: 0%;
+  box-shadow: none;
+  border-bottom: 1px solid var(--grey-color);
+  border-radius: 0%;
 }
 
 .accordion .accordion-body {
-    border-bottom: 1px solid var(--grey-color);
+  border-bottom: 1px solid var(--grey-color);
 }
 
 .landing .icon-reduis-message,
 .landing .icon-reduis-printer,
 .landing .icon-reduis-add {
-    display: inline-flex;
-    justify-content: center;
-    height: 60px;
-    width: 60px;
-    background-color: var(--icon-color);
-    border-radius: 50px;
+  display: inline-flex;
+  justify-content: center;
+  height: 60px;
+  width: 60px;
+  background-color: var(--icon-color);
+  border-radius: 50px;
 }
 
 .landing .icon-reduis-message button,
 .landing .icon-reduis-printer button,
 .landing .icon-reduis-add button {
-    background: none;
-    border: none;
-    padding-bottom: 10px;
+  background: none;
+  border: none;
+  padding-bottom: 10px;
 }
 
 .landing .icon-reduis-message:hover {
-    transform: scale(1.2);
-    background-color: cyan;
-    cursor: pointer;
+  transform: scale(1.2);
+  background-color: cyan;
+  cursor: pointer;
 }
 
 .landing .icon-reduis-message:active {
-    transform: scale(0.9);
-    background-color: var(--blue-color);
+  transform: scale(0.9);
+  background-color: var(--blue-color);
 }
 
 .landing .icon-reduis-printer:hover {
-    transform: scale(1.2);
-    background-color: var(--grey-color);
-    cursor: pointer;
+  transform: scale(1.2);
+  background-color: var(--grey-color);
+  cursor: pointer;
 }
 
 .landing .icon-reduis-printer:active {
-    transform: scale(0.9);
-    background-color: slategray;
+  transform: scale(0.9);
+  background-color: slategray;
 }
 
 .landing .icon-reduis-add:hover {
-    transform: scale(1.2);
-    background-color: greenyellow;
-    cursor: pointer;
+  transform: scale(1.2);
+  background-color: greenyellow;
+  cursor: pointer;
 }
 
 .landing .icon-reduis-add:active {
-    transform: scale(0.9);
-    background-color: green;
+  transform: scale(0.9);
+  background-color: green;
 }
 
 .landing .icon-1 {
-    margin-top: 15px;
-    height: 35px;
+  margin-top: 15px;
+  height: 35px;
 }
 
 .landing .animation {
-    transform: translateX(0px) translateY(0px) scale(1);
-    transition-duration: 0.5s;
+  transform: translateX(0px) translateY(0px) scale(1);
+  transition-duration: 0.5s;
 }
 
 .landing .animation:hover {
-    transform: translateX(0px) translateY(-5px) scale(1);
+  transform: translateX(0px) translateY(-5px) scale(1);
 }
 
 .landing .animation button {
-    box-shadow: none;
-    border: 0px;
-    background-color: white;
+  box-shadow: none;
+  border: 0px;
+  background-color: white;
 }
 
 .landing .animation button:hover {
-    color: var(--blue-color);
+  color: var(--blue-color);
 }
 
 .landing .color-icon {
-    color: var(--blue-color);
+  color: var(--blue-color);
 }
 
 .landing .modal-title {
-    margin-left: 300px;
+  margin-left: 300px;
 }
 
 /*End Landing*/
 
 /*Start Responsive*/
 @media (max-width: 599px) {
-    .landing .responsive-sm {
-        display: none;
-    }
+  .landing .responsive-sm {
+    display: none;
+  }
 
-    .landing .container {
-        width: 93%;
-    }
+  .landing .container {
+    width: 93%;
+  }
 
-    .landing .modal-title {
-        margin-left: auto;
-    }
-
+  .landing .modal-title {
+    margin-left: auto;
+  }
 }
 
 @media (min-width: 600px) and (max-width: 991px) {
-    .landing .modal-title {
-        margin-left: auto;
-    }
+  .landing .modal-title {
+    margin-left: auto;
+  }
 }
 
 /*End Responsive*/
@@ -214,11 +213,11 @@ a {
 /*Start Print*/
 
 @media print {
-    .print-header {
-        display: block;
-        text-align: center;
-        margin-bottom: 1em;
-    }
+  .print-header {
+    display: block;
+    text-align: center;
+    margin-bottom: 1em;
+  }
 }
 
 /*End Print*/
