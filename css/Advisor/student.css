@@ -27,7 +27,7 @@ body {
   justify-content: flex-end;
 }
 
-button {
+.navbar button {
   color: white;
   background-color: var(--blue-color);
   width: 151px;
@@ -38,7 +38,7 @@ button {
   transition-duration: 0.5s;
 }
 
-button:hover {
+.navbar button:hover {
   transform: translateX(0px) translateY(-5px) scale(1);
   box-shadow: 0px 0px 8px 0px rgba(128, 128, 128, 1);
   text-shadow: 0px 0px 0px rgb(0, 0, 0, 0);
@@ -71,6 +71,7 @@ button:hover {
   border: 1px solid var(--blue-color);
   background-color: white;
 }
+
 /*End Navbar*/
 
 /*Start Landing*/
