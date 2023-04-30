@@ -29,7 +29,7 @@ $student_info = getStudentData($conn, $id) ?? [];
     <link rel="shortcut icon" href="../../assets/images/logo.png">
     <link rel="stylesheet" href="../../css/bootstrap.rtl.min.css" />
     <link rel="stylesheet" href="../../css/all.min.css" />
-    <link rel="stylesheet" href="../../css/Student/home.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="../../css/Student/edit-info.css?v=<?php echo time(); ?>" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&display=swap" rel="stylesheet" />
@@ -37,7 +37,7 @@ $student_info = getStudentData($conn, $id) ?? [];
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
-<body>
+<body style="margin-top: -15px;">
     <?php echo generateNavbar($links = array(
 
         array("label" => "الرئيسية", "url" => "#")
