@@ -1,7 +1,8 @@
 <?php
 include_once '../../php/check.php';
 include '../../php/navbar.php';
-
+check();
+check_activity();
 ?>
 <!DOCTYPE html>
 
@@ -9,97 +10,53 @@ include '../../php/navbar.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>About</title>
     <link rel="shortcut icon" href="../../assets/images/logo.png">
     <link rel="stylesheet" href="../../css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="../../css/all.min.css">
-    <link rel="stylesheet" href="../../css/Advisor/home.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../../css/Advisor/about.css?v=<?php echo time(); ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-</head>
-<style>
-    body {
-        background-color: #f8f9fa;
-    }
-
-    .my-text {
-        background-color: #fff;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-        padding: 20px;
-        margin: 0 auto;
-        max-width: 800px;
-        text-align: center;
-    }
-
-    .sidebar {
-        background-color: #e9ecef;
-        padding: 20px;
-        height: 100vh;
-    }
-
-    .sidebar ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-
-    .sidebar ul li {
-        margin-bottom: 10px;
-    }
-
-    .sidebar ul li a {
-        color: #212529;
-        text-decoration: none;
-    }
-
-    .active-link {
-        font-weight: bold;
-    }
-
-    @media (min-width: 992px) {
-        .row {
-            display: flex;
-            flex-wrap: wrap-reverse;
-            justify-content: center;
-            align-items: stretch;
-        }
-
-        .col-md-8 {
-            order: 2;
-        }
-
-        .col-md-4 {
-            order: 1;
-            flex-basis: 25%;
-        }
-    }
-</style>
 </head>
 
 <body>
-
-
-
-
-
-    <body>
-        <?php echo generateNavbar($links = array(
-            array("label" => "التقارير", "url" => "report.php"),
-            array("label" => "الطلاب", "url" => "student.php"),
-            array("label" => "الرئيسية", "url" => "home.php")
-        ), "مرشد"); ?>
-
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="my-text">
-                        <div id="intro-content" class="hide">
-                            <h1>المقدمة</h1>
+    <?php echo generateNavbar($links = array(
+        array("label" => "التقارير", "url" => "report.php"),
+        array("label" => "الطلاب", "url" => "student.php"),
+        array("label" => "الرئيسية", "url" => "home.php")
+    ), "مرشد"); ?>
+    <div class="landing">
+        <div class="container">
+            <div class="row shadow-lg p-3 mb-4 bg-body rounded">
+                <div class="col">
+                    <ul class="nav nav-tabs" dir="rtl" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <input type="radio" class="btn-check" id="introduction" name="report" autocomplete="off" data-bs-toggle="tab" data-bs-target="#introduction-pane" role="tab" aria-controls="introduction-pane" aria-selected="true">
+                            <label class="nav-link btn btn-outline-primary border-primary nav-button-primary me-1 rounded-0 rounded-top" for="introduction">المقدمة</label>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <input type="radio" class="btn-check" id="principles-academic" name="report" autocomplete="off" data-bs-toggle="tab" data-bs-target="#principles-academic-pane" role="tab" aria-controls="principles-academic-pane" aria-selected="false">
+                            <label class="nav-link btn btn-outline-primary border-primary nav-button-primary me-1 rounded-0 rounded-top" for="principles-academic">مبادئ الإرشاد الأكاديمي</label>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <input type="radio" class="btn-check" id="student-rights" name="report" autocomplete="off" data-bs-toggle="tab" data-bs-target="#student-rights-pane" role="tab" aria-controls="student-rights-pane" aria-selected="false">
+                            <label class="nav-link btn btn-outline-primary border-primary nav-button-primary me-1 rounded-0 rounded-top" for="student-rights">حقوق الطالب في عملية الإرشاد الأكاديمي</label>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <input type="radio" class="btn-check" id="student-responsibility" name="report" autocomplete="off" data-bs-toggle="tab" data-bs-target="#student-responsibility-pane" role="tab" aria-controls="student-responsibility-pane" aria-selected="false">
+                            <label class="nav-link btn btn-outline-primary border-primary nav-button-primary me-1 rounded-0 rounded-top" for="student-responsibility"> مسؤولية الطالب في عملية الإرشاد الأكاديمي</label>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <input type="radio" class="btn-check" id="Duties-advisor" name="report" autocomplete="off" data-bs-toggle="tab" data-bs-target="#Duties-advisor-pane" role="tab" aria-controls="Duties-advisor-pane" aria-selected="false">
+                            <label class="nav-link btn btn-outline-primary border-primary nav-button-primary rounded-0 rounded-top" for="Duties-advisor"> مهام المرشد الأكاديمي </label>
+                        </li>
+                    </ul>
+                    <div class="tab-content pt-3" dir="rtl" id="myTabContent">
+                        <div class="tab-pane fade" id="introduction-pane" role="tabpanel" aria-labelledby="introduction" tabindex="0">
                             <p>تُعد الجامعات من أهم مصادر تنمية القوى البشرية القادرة على المساهمة في التنمية الشاملة، فعليها مسؤوليات كبيرة في تربية الطالب الجامعي من جميع جوانب شخصيته: (النفسية، والعقلية، والاجتماعية، والأخلاقية، والأكاديمية، المهنية)، ولها دور قيادي في إعداد القوى البشرية المؤهلة لتلبية احتياجات سوق العمل، وتسعى الجامعة إلى تعزيز نظامها بمجموعة من البرامج الأكاديمية وغير الأكاديمية المساندة لطلابها؛ لتوفير بيئة تعليمية محفزة وجاذبة تضمن للطلبة مقومات النجاح والتوافق في الحياة الجامعية، ومن أهم البرامج الأكاديمية التي تقدمها الجامعة برنامج الإرشاد الأكاديمي، الذي يهدف إلى تنمية شخصية الطالب، ومساعدته في اكتشاف قدراته وميوله، إلى جانب تبصيره بنوعية التخصصات الفعلية المطلوبة لسوق العمل في ضوء احتياجات وخطط وبرامج التنمية المستقبلية، ومؤشرات احتياجات سوق العمل من الخريجين.
 
                                 وإنَ الإرشاد الأكاديمي يمثل ركناً أساسياً ومحورياً، لمواجهة التغيرات والأكاديمية في النظام الجامعي وفلسفته التربوية، وفي ضوء تلك التحديات النفسية، والعلمية، والاجتماعية، والمهنية للطالب الجامعي التي ربما تواجه الطالب، وخلصت الكثير من توصيات الدراسات والأبحاث إلى أنَ هناك ضرورة حتمية للأخذ بنظام الإرشاد الأكاديمي لطلبة الجامعة؛ يتوافق مع حياته الجامعية علمياً ومهنياً.
@@ -110,14 +67,15 @@ include '../../php/navbar.php';
 
                                 ويعرف الإرشاد الأكاديمي بأنه: «العملية المنظمة والمخطط لها لمساعدة الطالب على مواجهة التحديات التي تقابله في حياته الجامعية، والصعوبات التي تقلل من فاعلية العملية التعليمية»: وهي عملية إنسانية إيجابية بين المرشد (عضو هيئة تدريس)، والمسترشد وهي عملية إنسانية تربوية تفاعلية إي (الطالب الجامعي)، تبدأ من قبول الطالب في المرحلة الجامعية حتى استكمال متطلبات تخرجه، بهدف مساعدته على التوافق في الحياة الجامعية.
 
-                                ويتمثل الإرشاد الأكاديمي في جامعة الإسراء في جملة الخدمات الإرشادية والتوجيهية التي تقدم لطالب الجامعة من قبل وحدة الإرشاد الأكاديمي، والمتخصصين في الإرشاد الأكاديمي، بهدف التغلب على كل ما يواجه الطالب من مشكلات وتحديات تعرقل مسيرته الأكاديمية، ومساعدته على اتخاذ قرارات ذات صلة بمسيرته التعليمية</p>
+                                ويتمثل الإرشاد الأكاديمي في جامعة الإسراء في جملة الخدمات الإرشادية والتوجيهية التي تقدم لطالب الجامعة من قبل وحدة الإرشاد الأكاديمي، والمتخصصين في الإرشاد الأكاديمي، بهدف التغلب على كل ما يواجه الطالب من مشكلات وتحديات تعرقل مسيرته الأكاديمية، ومساعدته على اتخاذ قرارات ذات صلة بمسيرته التعليمية
+                            </p>
                         </div>
-                        <div id="principles-content" class="hide">
-                            <h1>مبادئ الإرشاد الأكاديمي</h1>
-                            <p> تستند عملية الإرشاد الأكاديمي الجامعي إلى العديد من المبادئ التي لتفعيل عملية الإرشاد، ومنها: تسهيل وتعزيز عملية التعلم، ومراعاة الفروق الفردية بين الطلبة، بناء وترسيخ علاقة قائمة على الود والاحترام المتبادل، وتوجيه الطالب إلى جهات أخرى عند الحاجة الإرشادية، والأمانة العلمية بنقله، ودعم فلسفة وسياسة الجامعة، والمتابعة المستمرة في تقديم المعلومات، واحترام النصح الأكاديمي، والتواصل والتشاور مع من يخدم العملية الإرشادية بلطف واحترام.</p>
+                        <div class="tab-pane fade" id="principles-academic-pane" role="tabpanel" aria-labelledby="principles-academic" tabindex="0">
+                            <p>
+                                تستند عملية الإرشاد الأكاديمي الجامعي إلى العديد من المبادئ التي لتفعيل عملية الإرشاد، ومنها: تسهيل وتعزيز عملية التعلم، ومراعاة الفروق الفردية بين الطلبة، بناء وترسيخ علاقة قائمة على الود والاحترام المتبادل، وتوجيه الطالب إلى جهات أخرى عند الحاجة الإرشادية، والأمانة العلمية بنقله، ودعم فلسفة وسياسة الجامعة، والمتابعة المستمرة في تقديم المعلومات، واحترام النصح الأكاديمي، والتواصل والتشاور مع من يخدم العملية الإرشادية بلطف واحترام.
+                            </p>
                         </div>
-                        <div id="rights-content" class="hide">
-                            <h1>حقوق الطالب في عملية الإرشاد الأكاديمي</h1>
+                        <div class="tab-pane fade" id="student-rights-pane" role="tabpanel" aria-labelledby="student-rights" tabindex="0">
                             <ul class="list-group">
                                 <li class="list-group-item">احترام الطالب ومعاملته معاملة تربوية تحقق له الأمن والطمأنينة.</li>
                                 <li class="list-group-item">المحافظة على سرية وخصوصية محتويات الملف الإرشادي للطالب.</li>
@@ -131,7 +89,6 @@ include '../../php/navbar.php';
                                 <li class="list-group-item">إشعار الطالب بكل تغيير أو تعديل في البرنامج الأكاديمي أو الخطة الدراسية أو الجدول الدراسي.</li>
                                 <li class="list-group-item">توفير البرامج الإرشادية الأكاديمية الإيمائية والوقائية وال
                                     علاجية.</li>
-
                                 <li class="list-group-item">الرعاية والدعم للطالب حسب حالته الأكاديمية، ومستواه الدراسي، واحتياجاته الشخصية.</li>
                                 <li class="list-group-item">مساعدة الطلبة في اكتشاف قدراته، وميوله، وتوجيها تربويا ومهنياً.</li>
                                 <li class="list-group-item">إشعار الطالب بكل ما يصدر بحقه من إنذارات أكاديمية، أو مخالفات سلوكية، ومناقشة أسبابها وعلاجها والوقاية منها.</li>
@@ -141,8 +98,7 @@ include '../../php/navbar.php';
                                 <li class="list-group-item">الإشراف على العملية الإرشادية ومتابعتها وتقيمها من قبل أصحاب الاختصاص.</li>
                             </ul>
                         </div>
-                        <div id="responsibilities-content" class="hide">
-                            <h1>مسؤولية الطالب في عملية الإرشاد الأكاديمي</h1>
+                        <div class="tab-pane fade" id="student-responsibility-pane" role="tabpanel" aria-labelledby="student-responsibility" tabindex="0">
                             <ul class="list-group">
                                 <li class="list-group-item">التزام حضور اللقاءات، والجلسات الإرشادية التي تعقد بعد إشعاره بذلك.</li>
                                 <li class="list-group-item">متابعة إعلانات الجامعة والكلية التي تعنى ببرامج وخدمات الإرشاد الأكاديمي سواء كانت على موقع الجامعة أو على موقع الكلية أو على لوحات داخلية، أو من خلال رسائل إلكترونية من خلال البريد الإلكتروني أو رسائل على الهاتف أو غيره.</li>
@@ -151,15 +107,12 @@ include '../../php/navbar.php';
                                 <li class="list-group-item">المسؤولية الكاملة عن الاجتماع مع المرشد الأكاديمي لمساعدته في إعداد الجدول الدراسي، واختيار المقررات وفقاً للخطة الدراسية، ومعدله التراكمي.</li>
                                 <li class="list-group-item">استشارة المرشد الأكاديمي، ووضع خطة دراسية بديلة إذا طرأت ظروف، مثل: السحب، الرسوب، تغير التخصص، لضمان إنهاء كافة متطلبات التخرج في المدة النظامية.</li>
                                 <li class="list-group-item">مراجعة المرشد الأكاديمي في جميع المسائل المتعلقة بالمسيرة الأكاديمية، ولا سيما حالات: (التسجيل المبكر، السحب والإضافة، والتأجيل، ويقوم دور المرشد الأكاديمي على التوجيه والإرشاد الأكاديمي).</li>
-
                                 <li class="list-group-item"> إشعار المرشد الأكاديمي بأيِ َ متغيرات تُؤثر في أدائه الأكاديمي أو برنامجه الأكاديمي، أو حياته الجامعية. </li>
                                 <li class="list-group-item"> التعاون مع كل محاور الإرشاد الأكاديمي لتقديم المعلومات، والبيانات المناسبة التي تطلبها الخدمة الإرشادية الأكاديمية. </li>
                                 <li class="list-group-item">التواصل الدائم مع المرشد الأكاديمي، ولا سيما خلال مدة التسجيل، وقبل إنتهاء مدة السحب، ومع إنتهاء الامتحانات الدورية والنهائية. </li>
-
                             </ul>
                         </div>
-                        <div id="tasks-content" class="hide">
-                            <h1>مهام المرشد الأكاديمي</h1>
+                        <div class="tab-pane fade" id="Duties-advisor-pane" role="tabpanel" aria-labelledby="Duties-advisor" tabindex="0">
                             <p>المرشد الأكاديمي: هو أحد أعضاء هيئة التدريس في الكليات، يكلف من قبل عميد الكلية، ليتولى مهام الإرشاد الأكاديمي المحددة مسبقاً نحو مجموعة من الطلبة، يتابع مسيرتهم العلمية منذ دخولهم الكلية، وحتى يتخرجوا منها، ومن أهمها:</p>
                             <div>
                                 <ul class="list-group">
@@ -214,121 +167,74 @@ include '../../php/navbar.php';
                                             </tbody>
                                         </table>
                                     </li>
-
-
+                                </ul>
                             </div>
                         </div>
-
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="sidebar">
-                        <ul>
-                            <li><a href="#intro-content" class="sidebar-link active-link">المقدمة</a></li>
-                            <li><a href="#principles-content" class="sidebar-link">مبادئ الإرشاد الأكاديمي</a></li>
-                            <li><a href="#rights-content" class="sidebar-link">حقوق الطالب في عملية الإرشاد الأكاديمي</a></li>
-                            <li><a href="#responsibilities-content" class="sidebar-link">مسؤولية الطالب في عملية الإرشاد الأكاديمي</a></li>
-                            <li><a href="#tasks-content" class="sidebar-link">مهام المرشد الأكاديمي</a></li>
-                        </ul>
                     </div>
                 </div>
             </div>
-
         </div>
-
-
-        <script>
-            $(function() {
-                // Show the intro section by default
-                $('#intro-content').removeClass('hide');
-
-                // Listen to click events on sidebar links
-                $('.sidebar-link').on('click', function(e) {
-                    e.preventDefault();
-
-                    // Remove active-link class from all other links
-                    $('.sidebar-link').removeClass('active-link');
-
-                    // Add active-link class to the clicked link
-                    $(this).addClass('active-link');
-
-                    // Get the target section's ID from the link's href attribute
-                    var target = $(this).attr('href');
-
-                    // Hide all sections except for the target section
-                    $('.my-text > div').addClass('hide');
-                    $(target).removeClass('hide');
-                });
-            });
-            $(function() {
-                $('.sidebar-link').on('click', function(e) {
-                    e.preventDefault();
-                    $('.sidebar-link').removeClass('active-link');
-                    $(this).addClass('active-link');
-                    var target = $(this).attr('href');
-                    $('.my-text > div').hide();
-                    $(target).show();
-                });
-            });
-        </script>
-    </body>
-    <script>
-        $("#log-out").click(() => {
-            $.ajax({
-                url: "../../php/forms/logout.php",
-                type: "POST",
-                success: function(data) {
-                    if (data === 'success') {
-                        Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: "تم تسجيل الخروج بنجاح",
-                            showConfirmButton: false,
-                            timer: 1500,
-                        });
-                        setTimeout(function() {
-                            window.location.href = "../../index.php";
-                        }, 1500);
-                    } else {
-                        Swal.fire({
-                            position: "center",
-                            icon: "error",
-                            title: "حدث خطأ ما",
-                            showConfirmButton: false,
-                            timer: 1500,
-                        });
-                    }
+    </div>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/all.min.js"></script>
+</body>
+<script>
+    $("#log-out").click(() => {
+        $.ajax({
+            url: "../../php/forms/logout.php",
+            type: "POST",
+            success: function(data) {
+                if (data === 'success') {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "تم تسجيل الخروج بنجاح",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    setTimeout(function() {
+                        window.location.href = "../../index.php";
+                    }, 1500);
+                } else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "حدث خطأ ما",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
                 }
-            });
+            }
         });
-        $("#log-out-res").click(() => {
-            $.ajax({
-                url: "../../php/forms/logout.php",
-                type: "POST",
-                success: function(data) {
-                    if (data === 'success') {
-                        Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: "تم تسجيل الخروج بنجاح",
-                            showConfirmButton: false,
-                            timer: 1500,
-                        });
-                        setTimeout(function() {
-                            window.location.href = "../../index.php";
-                        }, 1500);
-                    } else {
-                        Swal.fire({
-                            position: "center",
-                            icon: "error",
-                            title: "حدث خطأ ما",
-                            showConfirmButton: false,
-                            timer: 1500,
-                        });
-                    }
+    });
+    $("#log-out-res").click(() => {
+        $.ajax({
+            url: "../../php/forms/logout.php",
+            type: "POST",
+            success: function(data) {
+                if (data === 'success') {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "تم تسجيل الخروج بنجاح",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    setTimeout(function() {
+                        window.location.href = "../../index.php";
+                    }, 1500);
+                } else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "حدث خطأ ما",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
                 }
-            });
+            }
         });
-    </script>
+    });
+</script>
 
-    </html>
+</html>

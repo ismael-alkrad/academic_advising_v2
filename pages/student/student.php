@@ -204,6 +204,7 @@ check_activity(); ?>
                             icon: "success",
                             title: "تم تسجيل الخروج بنجاح",
                             showConfirmButton: false,
+                            allowOutsideClick: false,
                             timer: 1500,
                         });
                         setTimeout(function() {
@@ -215,6 +216,7 @@ check_activity(); ?>
                             icon: "error",
                             title: "حدث خطأ ما",
                             showConfirmButton: false,
+                            allowOutsideClick: false,
                             timer: 1500,
                         });
                     }
