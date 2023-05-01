@@ -35,30 +35,26 @@ $colleges = getColleges($conn);
         <div class="container">
             <div class="row shadow-lg p-3 mb-4 bg-body rounded" id="student-info">
                 <div class="col">
-                    <table id="students-add-table" class="table table-striped" dir="rtl">
+                    <table id="students-add-table" class="table table-striped text-center" dir="rtl">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">رقم الطالب</th>
                                 <th scope="col">اسم الطالب</th>
                                 <th scope="col">ايميل الطالب</th>
-
+                                <th scope="col"> حذق </th>
                             </tr>
                         </thead>
                         <tbody>
-
-
                     </table>
                     <button class="btn btn-outline-primary" id="get-table-data-btn" type="button">أضف الطلاب</button>
-
                 </div>
             </div>
             <div class="row shadow-lg p-3 mb-4 bg-body rounded">
                 <div class="row" dir="rtl">
-
                     <div class="col divider ms-2">
                         <label for="inputcollege" class="form-label text-start">الكلية</label>
-                        <select id="inputcollege" name="college" class="form-select">
+                        <select id="inputcollege" name="college" class="form-select box-shadow">
                             <option value="<?php echo $_SESSION['college'] ?? ""; ?>"><?php echo  $_SESSION['college'] ?? "-- اختر الكلية --"; ?></option>
                             <?php foreach ($colleges as $college) { ?>
                                 <option value="<?php echo $college['id'] ?>" id="college_<?php echo $college['id'] ?>"><?php echo $college['name'] ?></option>
@@ -68,14 +64,13 @@ $colleges = getColleges($conn);
                     </div>
                     <div class="col divider">
                         <label for="inputdepartment" class="form-label text-start">القسم</label>
-                        <select id="inputdepartment" name="department" class="form-select">
+                        <select id="inputdepartment" name="department" class="form-select box-shadow">
                             <option value="<?php echo $_SESSION['major'] ?? ""; ?>"><?php echo $_SESSION['major'] ?? "-- اختر القسم --"; ?></option>
-
                         </select>
                         <div id="department-error" class="text-danger"></div>
                     </div>
                     <div class="col divider me-3">
-                        <button id="search-btn" style="margin: top 31px; ;" class="btn btn-outline-primary" type="button">بحث</button>
+                        <button id="search-btn" style="margin-top:31px;" class="btn btn-outline-primary" type="button">بحث</button>
                     </div>
                 </div>
                 <div class="col text-center">
@@ -90,8 +85,6 @@ $colleges = getColleges($conn);
                             </tr>
                         </thead>
                         <tbody>
-
-
                     </table>
                 </div>
             </div>
@@ -176,6 +169,7 @@ $colleges = getColleges($conn);
                                 studentRow.append($("<td>").text(student.u_id));
                                 studentRow.append($("<td>").text(student.name));
                                 studentRow.append($("<td>").text(student.email));
+                                studentRow.append($("<td>").append($("<button>").append($("<img>").attr("src", "../../assets/images/advisor/remove.png"))));
                                 // Add the new row to the table
                                 $("#students-add-table tbody").append(studentRow);
                                 // Remove the row from the original table
