@@ -563,3 +563,14 @@ function getAllStudent($conn, $college, $major = '')
     $stmt->execute();
     return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
 }
+
+
+
+
+function getFnameByUid($pdo, $u_id)
+{
+    $stmt = $pdo->prepare("SELECT fname FROM users WHERE username = :u_id");
+    $stmt->execute(array(':u_id' => $u_id));
+    $result = $stmt->fetch();
+    return $result['fname'];
+}

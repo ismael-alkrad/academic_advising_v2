@@ -48,7 +48,8 @@ check_activity(); ?>
                         الأكاديمي في مساعدة الطالب في تطوير وتنفيذ خطة تعليمية تلبي أهداف الطالب الأكاديمية
                         والمهنية.
                     </p>
-                    <button><i class="fa-solid fa-angles-left ps-2"></i>اقرأ أكثر</button>
+                    <a href="about.php"> <button><i class="fa-solid fa-angles-left ps-2"></i>اقرأ أكثر</button>
+                    </a>
                 </div>
             </div>
             <div class="row">

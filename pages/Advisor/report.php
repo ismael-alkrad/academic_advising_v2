@@ -56,6 +56,7 @@ check_activity();
                                     $student = getStudent($conn);
                                     if ($student != null) {
                                         foreach ($student as $s) {
+
                                             $to = $s['email'];
                                             echo '<h2 class="accordion-header" id="heading' . $s['u_id'] . '" data-u-id="' . $s['u_id'] . '">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -70,143 +71,7 @@ check_activity();
                                                 <div class="row">
                                                     <div class="col">
                                                         <form>
-                                                            <table class="table table-striped" dir="rtl">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th scope="col">الكلية</th>
-                                                                        <td>تكنولوجيا المعلومات</td>
-                                                                        <th scope="col">القسم</th>
-                                                                        <td>هندسة البرمجيات</td>
-                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
-                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <th scope="row">العام الحامعي</th>
-                                                                        <td> 2022/2023 </td>
-                                                                        <th> الفصل الدراسي </th>
-                                                                        <td> الثاني </td>
-                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
-                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row">الرقم الحامعي</th>
-                                                                        <td> AC0109 </td>
-                                                                        <th>  سنة الالتحاق بالجامعة </th>
-                                                                        <td> 2019 </td>
-                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
-                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row">اسم الطالب باللغة العربية</th>
-                                                                        <td colspan="3">اسماعيل عماد الكراد</td>
-                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
-                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row">اسم الطالب باللغة الانجليزية</th>
-                                                                        <td colspan="3"> Ismael Emad Alkrad </td>
-                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
-                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th class="text-center" scope="row" colspan= "6"> عنوان الطالب </th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row"> المدينة </th>
-                                                                        <td> عمان </td>
-                                                                        <th> رقم هاتف (المنزل) </th>
-                                                                        <td> 079-758-8413 </td>
-                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
-                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row"> الدولة </th>
-                                                                        <td> الأردن </td>
-                                                                        <th> رقم هاتف (خلوي) </th>
-                                                                        <td> 079-758-8413 </td>
-                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
-                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row"> البريد الإلكتروني </th>
-                                                                        <td colspan="3"> Esmaelalkrad0@gmail.com </td>
-                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
-                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row"> مكان الولادة </th>
-                                                                        <td> سوريا </td>
-                                                                        <th> تاريخ الولادة </th>
-                                                                        <td> 11/1/2001 </td>
-                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
-                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row"> الحالة الاجتماعية  </th>
-                                                                        <td colspan="3"> اعزب </td>
-                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
-                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row">  الجنس  </th>
-                                                                        <td colspan="3"> ذكر </td>
-                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
-                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th class="text-center" scope="row" colspan= "6">  الخبرات العملية </th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row"> اسم المؤسسة التي يعمل بها حالي  </th>
-                                                                        <td> Sync-Fast </td>
-                                                                        <th>  الوظيفة التي تعمل بها حاليا </th>
-                                                                        <td> Front-End & Systems Analyst </td>
-                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
-                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row" colspan= "6">  خبرات عملية </th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row"> 1 </th>
-                                                                        <td colspan= "3"> System Academic Advisor </td>
-                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
-                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row"> 2 </th>
-                                                                        <td colspan= "3"> System Course File </td>
-                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
-                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row"> 3 </th>
-                                                                        <td colspan= "3"> Data Analyst </td>
-                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
-                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row" colspan= "6">الشهادات التي حصل عليها الطالب (شهادات تدريبية، أكاديمية، جوائز، مشاركات علمية </th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row"> 1 </th>
-                                                                        <td colspan= "3"> لايوجد </td>
-                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
-                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row" colspan= "6"> أي فعاليات أو نشاطات أخرى شارك فيها الطالب </th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row"> 1 </th>
-                                                                        <td colspan= "3"> لايوجد </td>
-                                                                        <td class="ms-1"><button><img src="../../assets/images/advisor/checkmark.png"></button></td>
-                                                                        <td><button><img src="../../assets/images/advisor/warning.png"></button></td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
+                                                            <div class="ahmad"></div>
                                                             <div class="row" dir="rtl">
                                                                 <div class="col-9">
                                                                     <div class="form-floating" dir="rtl">
@@ -299,6 +164,129 @@ check_activity();
             }
         });
     });
+</script>
+<script>
+    $(document).ready(function() {
+        $('.accordion-header').on('click', function() {
+            var u_id = $(this).data('u-id');
+
+            $.ajax({
+                type: "POST",
+                url: "../../php/forms/getData/getstudentinfo.php",
+                data: {
+                    id: u_id
+                },
+                beforeSend: function() {
+                    $('ahmad').html('<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>');
+                },
+                success: function(result) {
+                    console.log(result);
+
+                    try {
+                        var data = JSON.parse(result);
+                        if (data !== null && Object.keys(data).length > 0) {
+                            console.log(
+                                "ajaj"
+                            );
+                            // The data is not empty, so do something with it
+                            $('.ahmad').empty();
+                            var img = $('<img>').attr('src', data.filepath).addClass('mx-auto d-block mt-4 mb-4').addClass('photo rounded-circle');
+                            $('.ahmad').append(img);
+                            var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
+                            var tbody = $('<tbody>').appendTo(table);
+
+                            $('<tr>').append($('<th>').text('الحقل')).append($('<th>').text('القيمة')).appendTo(tbody);
+
+                            $.each(data, function(key, value) {
+                                if (key === 'u_id') {
+                                    $('<tr>').append($('<td>').text('الرقم الجامعي')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'ar_name') {
+                                    $('<tr>').append($('<td>').text('الاسم بالعربي')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'en_name') {
+                                    $('<tr>').append($('<td>').text('الاسم بالإنجليزي')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'college') {
+                                    $('<tr>').append($('<td>').text('الكلية')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'department') {
+                                    $('<tr>').append($('<td>').text('القسم')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'year') {
+                                    $('<tr>').append($('<td>').text('العام الدراسي')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'semester') {
+                                    $('<tr>').append($('<td>').text('الفصل الدراسي')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'u_year') {
+                                    $('<tr>').append($('<td>').text('سنة الالتحاق بالجامعة')).append($('<td>').text(value)).appendTo(tbody);
+                                }
+
+                            });
+
+                            $('.ahmad').append($('<h2>').text('بيانات الطالب')).append(table);
+                            var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
+                            var tbody = $('<tbody>').appendTo(table);
+
+                            $('<tr>').append($('<th>').text('الحقل')).append($('<th>').text('القيمة')).appendTo(tbody);
+
+                            $.each(data, function(key, value) {
+                                if (key === 'city') {
+                                    $('<tr>').append($('<td>').text('المدينة')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'region') {
+                                    $('<tr>').append($('<td>').text('المنطقة')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'phone_house') {
+                                    $('<tr>').append($('<td>').text('رقم الهاتف الأرضي')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'phone_person') {
+                                    $('<tr>').append($('<td>').text('رقم الهاتف الشخصي')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'email') {
+                                    $('<tr>').append($('<td>').text('البريد الإلكتروني')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'place_birth') {
+                                    $('<tr>').append($('<td>').text('مكان الولادة')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'birth_date') {
+                                    $('<tr>').append($('<td>').text('تاريخ الولادة')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'status') {
+                                    $('<tr>').append($('<td>').text('الحالة الاجتماعية')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'gender') {
+                                    $('<tr>').append($('<td>').text('الجنس')).append($('<td>').text(value)).appendTo(tbody);
+                                }
+                            });
+
+                            $('.ahmad').append($('<h2>').text('البيانات الشخصية')).append(table);
+                            var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
+                            var tbody = $('<tbody>').appendTo(table);
+
+                            $('<tr>').append($('<th>').text('الحقل')).append($('<th>').text('القيمة')).appendTo(tbody);
+
+                            $.each(data, function(key, value) {
+                                if (key === 'company_name') {
+                                    $('<tr>').append($('<td>').text('اسم الشركة')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'jop_name') {
+                                    $('<tr>').append($('<td>').text('اسم الوظيفة')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'experience_job') {
+                                    $('<tr>').append($('<td>').text('خبرة الوظيفية')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'certificate') {
+                                    $('<tr>').append($('<td>').text('الشهادات')).append($('<td>').text(value)).appendTo(tbody);
+                                } else if (key === 'activities') {
+                                    $('<tr>').append($('<td>').text('الأنشطة الخارجية')).append($('<td>').text(value)).appendTo(tbody);
+                                }
+                            });
+
+                            $('.ahmad').append($('<h2>').text('خبرات العمل السابقة')).append(table);
+                            // ... the rest of the code to display the table goes here
+                        } else {
+                            // The data is empty, so show a message to the user or do nothing
+                            $('.ahmad').text('No data found');
+                        }
+                        // Code to display the table goes here
+                    } catch (error) {
+                        $('.ahmad').html('<div class="justify-content-center"><h3> لم يقم الطالب بتعبئة بياناته بعد </h3><br><h3>أخطر الطالب برسالة</h3></div>');
+                    }
+
+
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
+
 </script>
 
 </html>

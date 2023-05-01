@@ -28,7 +28,7 @@ check_activity();
     <?php echo generateNavbar($links = array(
 
         array("label" => "الرئيسية", "url" => "#")
-    ), "آدمن"); ?>
+    ), "مدير الموقع"); ?>
     <div class="landing">
         <div class="container text-center">
             <div class="row row-size shadow-lg p-3 mb-4 bg-body rounded">
@@ -123,11 +123,13 @@ check_activity();
 
 <script>
     function printTable() {
-        var printContents = $('.col.border-start').html();
-        var originalContents = $('body').html();
-        $('body').html(printContents);
-        window.print();
-        $('body').html(originalContents);
+        var contentsToPrint = $('.col.border-start').html();
+        var printWindow = window.open('', 'PrintWindow');
+        printWindow.document.write('<html><head><title>Print</title></head><body>' + contentsToPrint + '</body></html>');
+        printWindow.document.close();
+        printWindow.focus();
+        printWindow.print();
+        printWindow.close();
     }
 </script>
 <script>
@@ -192,9 +194,9 @@ check_activity();
 <script>
     $(document).ready(function() {
         $(document).on('click', '.btn-primary', function() {
-            var email = $(this).data('email');
+            var emailEditor = $(this).data('email');
             var formData = $(this).closest('.modal-content').find('.mail-form').serialize();
-            formData += '&recipient=' + email;
+            formData += '&recipient=' + emailEditor;
             var $modalContent = $(this).closest('.modal-content'); // Store the reference to this
             console.log($modalContent.find('.mail-form'));
 

@@ -735,7 +735,7 @@ $student_info = getStudentData($conn, $id) ?? [];
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: "Your work has been saved",
+                        title: "تم حفظ المعلومات بنجاح",
                         showConfirmButton: false,
                         timer: 1500,
                     });
@@ -766,7 +766,7 @@ $student_info = getStudentData($conn, $id) ?? [];
                 Swal.fire({
                     position: "center",
                     icon: "success",
-                    title: "Your work has been saved",
+                    title: "تم حفظ المعلومات بنجاح",
                     showConfirmButton: false,
                     timer: 1500,
                 });
