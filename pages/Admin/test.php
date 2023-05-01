@@ -10,9 +10,3 @@ foreach ($tableData as $rowData) {
     $stmt->bindParam(':u_id', $u_id);
     $stmt->execute();
 }
-
-// Close the database connection
-$conn = null;
-
-// Return a success response
-echo "success";

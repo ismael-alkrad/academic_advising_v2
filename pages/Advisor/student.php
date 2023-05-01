@@ -1,7 +1,8 @@
 <?php
 include_once '../../php/check.php';
 include '../../php/navbar.php';
-
+check();
+check_activity();
 ?>
 
 <!DOCTYPE html>

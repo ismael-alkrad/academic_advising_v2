@@ -30,10 +30,16 @@ $colleges = getColleges($conn);
     <?php echo generateNavbar($links = array(
 
         array("label" => "الرئيسية", "url" => "advisor.php")
-    ), "آدمن"); ?>
+    ), "مدير الموقع"); ?>
     <div class="landing">
         <div class="container">
             <div class="row shadow-lg p-3 mb-4 bg-body rounded" id="student-info">
+                <div>
+                    اضف طلاب للمرشد <?php echo getFnameByUid(
+                                        $conn,
+                                        $_GET['user']
+                                    ); ?>
+                </div>
                 <div class="col">
                     <table id="students-add-table" class="table table-striped text-center" dir="rtl">
                         <thead>
