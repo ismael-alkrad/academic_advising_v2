@@ -297,6 +297,7 @@ include '../../php/navbar.php';
                         icon: "success",
                         title: "تم تسجيل الخروج بنجاح",
                         showConfirmButton: false,
+                        allowOutsideClick: false,
                         timer: 1500,
                     });
                     setTimeout(function() {
@@ -308,6 +309,7 @@ include '../../php/navbar.php';
                         icon: "error",
                         title: "حدث خطأ ما",
                         showConfirmButton: false,
+                        allowOutsideClick: false,
                         timer: 1500,
                     });
                 }
@@ -325,6 +327,7 @@ include '../../php/navbar.php';
                         icon: "success",
                         title: "تم تسجيل الخروج بنجاح",
                         showConfirmButton: false,
+                        allowOutsideClick: false,
                         timer: 1500,
                     });
                     setTimeout(function() {
@@ -336,6 +339,7 @@ include '../../php/navbar.php';
                         icon: "error",
                         title: "حدث خطأ ما",
                         showConfirmButton: false,
+                        allowOutsideClick: false,
                         timer: 1500,
                     });
                 }

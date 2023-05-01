@@ -762,6 +762,7 @@ if (checkifFillInfo($conn) ?? false) {
             icon: "success",
             title: "Your work has been saved",
             showConfirmButton: false,
+            allowOutsideClick: false,
             timer: 1500,
           });
         },
@@ -793,6 +794,7 @@ if (checkifFillInfo($conn) ?? false) {
           icon: "success",
           title: "Your work has been saved",
           showConfirmButton: false,
+          allowOutsideClick: false,
           timer: 1500,
         });
 
@@ -816,6 +818,7 @@ if (checkifFillInfo($conn) ?? false) {
             icon: "success",
             title: "تم تسجيل الخروج بنجاح",
             showConfirmButton: false,
+            allowOutsideClick: false,
             timer: 1500,
           });
           setTimeout(function() {
@@ -827,6 +830,7 @@ if (checkifFillInfo($conn) ?? false) {
             icon: "error",
             title: "حدث خطأ ما",
             showConfirmButton: false,
+            allowOutsideClick: false,
             timer: 1500,
           });
         }
@@ -836,7 +840,6 @@ if (checkifFillInfo($conn) ?? false) {
 </script>
 <!----------------------------------------- End  Log out ------------------------------------>
 
-<!----------------------------------------- start  Log out ------------------------------------>
 <script>
   $(document).ready(function() {
     // bind change event to college dropdown

@@ -214,17 +214,14 @@ $colleges = getColleges($conn);
             data: {
                 tableData: tableData,
                 id: user
-
             },
             success: function(response) {
-
-
                 if (response === "success") {
-
                     Swal.fire({
                         title: 'Success',
                         text: "تم اضافة الطلاب بنجاح ",
                         icon: 'success',
+                        allowOutsideClick: false,
                         confirmButtonText: 'OK'
                     });
                     $("#students-add-table tbody").empty();
@@ -251,6 +248,7 @@ $colleges = getColleges($conn);
                         icon: "success",
                         title: "تم تسجيل الخروج بنجاح",
                         showConfirmButton: false,
+                        allowOutsideClick: false,
                         timer: 1500,
                     });
                     setTimeout(function() {
@@ -262,6 +260,7 @@ $colleges = getColleges($conn);
                         icon: "error",
                         title: "حدث خطأ ما",
                         showConfirmButton: false,
+                        allowOutsideClick: false,
                         timer: 1500,
                     });
                 }
@@ -279,6 +278,7 @@ $colleges = getColleges($conn);
                         icon: "success",
                         title: "تم تسجيل الخروج بنجاح",
                         showConfirmButton: false,
+                        allowOutsideClick: false,
                         timer: 1500,
                     });
                     setTimeout(function() {
@@ -290,6 +290,7 @@ $colleges = getColleges($conn);
                         icon: "error",
                         title: "حدث خطأ ما",
                         showConfirmButton: false,
+                        allowOutsideClick: false,
                         timer: 1500,
                     });
                 }

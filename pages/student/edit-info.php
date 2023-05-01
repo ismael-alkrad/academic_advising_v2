@@ -626,6 +626,7 @@ $student_info = getStudentData($conn, $id) ?? [];
                         icon: "success",
                         title: "Your work has been saved",
                         showConfirmButton: false,
+                        allowOutsideClick: false,
                         timer: 1500,
                     });
                 },
@@ -737,6 +738,7 @@ $student_info = getStudentData($conn, $id) ?? [];
                         icon: "success",
                         title: "Your work has been saved",
                         showConfirmButton: false,
+                        allowOutsideClick: false,
                         timer: 1500,
                     });
                 },
@@ -768,6 +770,7 @@ $student_info = getStudentData($conn, $id) ?? [];
                     icon: "success",
                     title: "Your work has been saved",
                     showConfirmButton: false,
+                    allowOutsideClick: false,
                     timer: 1500,
                 });
             },
@@ -789,6 +792,7 @@ $student_info = getStudentData($conn, $id) ?? [];
                         icon: "success",
                         title: "تم تسجيل الخروج بنجاح",
                         showConfirmButton: false,
+                        allowOutsideClick: false,
                         timer: 1500,
                     });
                     setTimeout(function() {
@@ -800,6 +804,7 @@ $student_info = getStudentData($conn, $id) ?? [];
                         icon: "error",
                         title: "حدث خطأ ما",
                         showConfirmButton: false,
+                        allowOutsideClick: false,
                         timer: 1500,
                     });
                 }

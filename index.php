@@ -85,7 +85,6 @@
       var password = document.getElementById('exampleInputPassword1').value;
       document.cookie = "username=" + username + ";password=" + password + ";expires=" + new Date(Date.now() + 86400000).toUTCString() + ";path=/";
       console.log(document.cookie);
-
     } else {
       // Checkbox is not checked, remove the cookie
       document.cookie = "username=;password=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
@@ -101,15 +100,12 @@
         var username = cookie.substring('username='.length, cookie.length);
         document.getElementById('exampleInputEmail1').value = username;
         console.log(username);
-
       }
       if (cookie.startsWith('password=')) {
         // Password cookie exists, fill in the password field
         var password = cookie.substring('password='.length, cookie.length);
         document.getElementById('exampleInputPassword1').value = password;
         console.log(password);
-
-
       }
     }
   });
@@ -138,6 +134,7 @@
             icon: "success",
             title: "تم تسجيل الدخول بنجاح",
             showConfirmButton: false,
+            allowOutsideClick: false,
             timer: 1500,
           });
           setTimeout(function() {
@@ -148,13 +145,6 @@
           $("#error_login").append(
             "<div class='alert alert-danger d-flex justify-content-end' role='alert'>هنالك خطأ في اسم المستخدم أو كلمة المرور</div>"
           );
-          Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "اسم المستخدم او كلمة المرور غير صحيحة",
-            showConfirmButton: false,
-            timer: 1500,
-          });
         }
       },
     });
@@ -184,6 +174,7 @@
             icon: "success",
             title: "تم تسجيل الدخول بنجاح",
             showConfirmButton: false,
+            allowOutsideClick: false,
             timer: 1500,
           });
           setTimeout(function() {
@@ -194,13 +185,6 @@
           $("#error_login").append(
             "<div class='alert alert-danger d-flex justify-content-end' role='alert'>هنالك خطأ في اسم المستخدم أو كلمة المرور</div>"
           );
-          Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "اسم المستخدم او كلمة المرور غير صحيحة",
-            showConfirmButton: false,
-            timer: 1500,
-          });
         }
       },
     });
@@ -230,6 +214,7 @@
             icon: "success",
             title: "تم تسجيل الدخول بنجاح",
             showConfirmButton: false,
+            allowOutsideClick: false,
             timer: 1500,
           });
           setTimeout(function() {
@@ -240,13 +225,6 @@
           $("#error_login").append(
             "<div class='alert alert-danger d-flex justify-content-end' role='alert'>هنالك خطأ في اسم المستخدم أو كلمة المرور</div>"
           );
-          Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "اسم المستخدم او كلمة المرور غير صحيحة",
-            showConfirmButton: false,
-            timer: 1500,
-          });
         }
       },
     });
@@ -263,23 +241,6 @@
       }
     });
   });
-
-
-
-  //=========================== js ===========================
-  // document.addEventListener('DOMContentLoaded', function() {
-  //   const passwordInput = document.getElementById('exampleInputPassword1');
-
-  //   document.addEventListener('click', function(e) {
-  //     if (e.target.id === 'showPasswordIcon') {
-  //       const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-  //       passwordInput.setAttribute('type', type);
-  //       const showPasswordIcon = document.getElementById('showPasswordIcon');
-  //       showPasswordIcon.classList.toggle('fa-eye');
-  //       showPasswordIcon.classList.toggle('fa-eye-slash');
-  //     }
-  //   });
-  // });
 </script>
 
 </html>
