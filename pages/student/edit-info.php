@@ -169,13 +169,15 @@ $student_info = getStudentData($conn, $id) ?? [];
                             <div class="col">
                                 <label for="inputcity" class="form-label text-start">الدولة</label>
                                 <select id="inputcity" class="form-select" name="city">
-                                    <option value="<?php echo $student_info['city'] ?? ""; ?>"><?php echo $student_info['city'] ?? "الأردن"; ?></option>
-                                    <option>سوريا</option>
-                                    <option>الأردن</option>
-                                    <option>العراق</option>
-                                    <option>فلسطين</option>
-                                    <option>لبنان</option>
-                                    <option></option>
+                                    <?php
+                                    $selected_city = $student_info['city'] ?? "";
+                                    $cities = array("سوريا", "الأردن", "العراق", "فلسطين", "لبنان");
+                                    $cities = array_diff($cities, array($selected_city)); // remove selected city from array
+                                    echo "<option value=\"$selected_city\">$selected_city</option>"; // display selected city
+                                    foreach ($cities as $city) {
+                                        echo "<option value=\"$city\">$city</option>";
+                                    }
+                                    ?>
                                 </select>
                                 <small id="city-error" class="text-danger"></small>
                             </div>
@@ -360,7 +362,50 @@ $student_info = getStudentData($conn, $id) ?? [];
 </body>
 
 <!----------------------------------------- start Format Input Phone House ------------------------------------>
+<script>
+    $(document).ready(function() {
+        $('#finish').click(function() {
+            // Show confirmation dialog
 
+            Swal.fire({
+                title: 'هل أنت متأكد أنك تريد المغادرة؟',
+                text: 'قد لا يتم حفظ تغييراتك.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'نعم، غادر!',
+                cancelButtonText: 'لا، ابقى'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "Post",
+                        url: "../../php/forms/finish.php",
+                        data: {
+                            'finish': 'finish'
+                        },
+                        beforeSend: function() {},
+                        complete: function() {
+                            // stopPreloader();
+                        },
+                        success: function(result) {
+                            console.log(result);
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'تم تسجيل المعلومات بنجاح',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            setTimeout(function() {
+                                window.location.href = 'student.php';
+                            }, 1500);
+                        },
+                    });
+                }
+            });
+        });
+    });
+</script>
 <script>
     document
         .getElementById("inputphone_house")

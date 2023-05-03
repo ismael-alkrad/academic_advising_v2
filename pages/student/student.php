@@ -102,10 +102,7 @@ check_activity(); ?>
                                             <th scope="row">البريد الالكتروني</th>
                                             <td><?php echo $_SESSION['email'] ?></td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">رقم الهاتف</th>
-                                            <td><?php echo $_SESSION['phone'] ?></td>
-                                        </tr>
+
                                         <tr>
                                             <th scope="row"> الكلية </th>
                                             <td><?php echo $_SESSION['college'] ?></td>

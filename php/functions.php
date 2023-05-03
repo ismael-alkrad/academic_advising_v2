@@ -46,7 +46,7 @@ function studentLogin(
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             $_SESSION['username'] = $row['u_id'];
             $_SESSION['name'] = $row['name'];
-            $_SESSION['phone'] = $row['phone'];
+
             $_SESSION['email'] = $row['email'];
             $_SESSION['advisor_id'] = $row['advisor'];
             $_SESSION['major_id'] = $row['major'];
@@ -204,7 +204,7 @@ function insertOrUpdateFormDataPDO($formDataArray, $pdo)
 
         if ($row_count > 0) {
             // If a row exists, update the data
-            $stmt = $pdo->prepare("UPDATE student_information SET college=?, department=?, year=?, semester=?, u_year=?, ar_name=?, en_name=?, its_done=true WHERE u_id=?");
+            $stmt = $pdo->prepare("UPDATE student_information SET college=?, department=?, year=?, semester=?, u_year=?, ar_name=?, en_name=? WHERE u_id=?");
 
             // Bind the parameters for update statement
             $stmt->bindParam(1, $formDataArray['college']);
@@ -415,17 +415,26 @@ function getStudenData($conn, $u_id)
     $data5 = $stmt5->fetch(PDO::FETCH_ASSOC);
 
     // Check if any data is found
-    if (!$data2 && !$data3 && !$data4 && !$data5) {
+    $result = [];
+    if ($data2) {
+        $result = array_merge($result, $data2);
+    }
+    if ($data3) {
+        $result = array_merge($result, $data3);
+    }
+    if ($data4) {
+        $result = array_merge($result, $data4);
+    }
+    if ($data5) {
+        $result = array_merge($result, $data5);
+    }
+    if (empty($result)) {
         return false;
     }
-
-    // Combine the results from all queries into a single array
-    $result = array_merge($data2, $data3, $data4, $data5);
 
     // Return the data as a JSON-encoded string
     return json_encode($result);
 }
-
 
 function checkifFillInfo($conn)
 {

@@ -35,7 +35,7 @@ $colleges = getColleges($conn);
         <div class="container">
             <div class="row shadow-lg p-3 mb-4 bg-body rounded" id="student-info">
                 <div>
-                    <h2> إضافة طلاب للدكتور<?php echo getFnameByUid(
+                    <h2> إضافة طلاب للدكتور <?php echo getFnameByUid(
                                                 $conn,
                                                 $_GET['user']
                                             ); ?>
@@ -49,7 +49,7 @@ $colleges = getColleges($conn);
                                 <th scope="col">رقم الطالب</th>
                                 <th scope="col">اسم الطالب</th>
                                 <th scope="col">ايميل الطالب</th>
-                                <th scope="col"> حذق </th>
+                                <th scope="col"> حذف </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -150,6 +150,7 @@ $colleges = getColleges($conn);
                 },
                 success: function(data) {
                     console.log("Successfully retrieved student data: ", data);
+                    $("#students-table tbody").empty();
                     // Parse the JSON response
                     data = JSON.parse(data);
                     // Empty the table body
@@ -162,6 +163,7 @@ $colleges = getColleges($conn);
                         // Loop through the data and append a row to the table
                         // for each student
                         $.each(data, function(index, student) {
+                            // Create a new row for the student info
                             var row = $("<tr>");
                             row.append($("<th>").attr("scope", "row").text(index + 1));
                             row.append($("<td>").text(student.u_id));
@@ -176,11 +178,21 @@ $colleges = getColleges($conn);
                                 studentRow.append($("<td>").text(student.u_id));
                                 studentRow.append($("<td>").text(student.name));
                                 studentRow.append($("<td>").text(student.email));
-                                studentRow.append($("<td>").append($("<button>").append($("<img>").attr("src", "../../assets/images/advisor/remove.png"))));
+                                // Add a remove button to the new row
+                                var removeButton = $("<button>").html("<img src='../../assets/images/advisor/remove.png'>");
+                                removeButton.on("click", function() {
+                                    // Move the row back to the original table
+                                    row.show();
+                                    // Remove the remove button from the row
+                                    studentRow.find("td:last-child").empty();
+                                    // Remove the row from the new table
+                                    studentRow.remove();
+                                });
+                                studentRow.append($("<td>").append(removeButton));
                                 // Add the new row to the table
                                 $("#students-add-table tbody").append(studentRow);
-                                // Remove the row from the original table
-                                row.remove();
+                                // Hide the row in the original table
+                                row.hide();
                             });
                             row.append($("<td>").html(button));
                             $("#students-table tbody").append(row);
@@ -211,12 +223,13 @@ $colleges = getColleges($conn);
         // Make an HTTP POST request to the test.php file with the table data as the payload
         $.ajax({
             type: "POST",
-            url: "test.php",
+            url: "../../php/forms/assign_student.php",
             data: {
                 tableData: tableData,
                 id: user
             },
             success: function(response) {
+                console.log(response);
                 if (response === "success") {
                     Swal.fire({
                         title: 'Success',
