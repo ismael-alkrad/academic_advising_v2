@@ -333,8 +333,7 @@ if (checkifFillInfo($conn) ?? false) {
       </div>
       <!----------------------------------------- End Student Practical experience ------------------------------------>
     </div>
-    <button id="finish" class=" button-style floating-button">إنهاء</button>
-
+    <button id="finish" class="button-style floating-button">إنهاء</button>
   </div>
   <script src="../../js/bootstrap.bundle.min.js"></script>
   <script src="../../js/all.min.js"></script>
