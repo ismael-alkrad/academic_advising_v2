@@ -75,6 +75,12 @@ body {
 /*End Navbar*/
 
 /*Start Landing*/
+
+.landing .container h2 {
+  text-align: end;
+  color: var(--blue-color);
+}
+
 table button {
   background: none;
   border: none;

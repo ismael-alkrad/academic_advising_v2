@@ -35,10 +35,11 @@ $colleges = getColleges($conn);
         <div class="container">
             <div class="row shadow-lg p-3 mb-4 bg-body rounded" id="student-info">
                 <div>
-                    اضف طلاب للمرشد <?php echo getFnameByUid(
-                                        $conn,
-                                        $_GET['user']
-                                    ); ?>
+                    <h2> إضافة طلاب للدكتور<?php echo getFnameByUid(
+                                                $conn,
+                                                $_GET['user']
+                                            ); ?>
+                    </h2>
                 </div>
                 <div class="col">
                     <table id="students-add-table" class="table table-striped text-center" dir="rtl">
