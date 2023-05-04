@@ -93,4 +93,23 @@ body {
     box-shadow: none;
 }
 
+.landing .button-style {
+    color: white;
+    background-color: var(--blue-color);
+    width: 151px;
+    height: 45px;
+    border-radius: 50px;
+    border: none;
+    transform: translateX(0px) translateY(0px) scale(1);
+    transition-duration: 0.5s;
+}
+
+.landing .button-style:hover {
+    transform: translateX(0px) translateY(-5px) scale(1);
+    box-shadow: 0px 0px 8px 0px rgba(128, 128, 128, 1);
+    text-shadow: 0px 0px 0px rgb(0, 0, 0, 0);
+    background-color: black;
+    color: white;
+}
+
 /*End Landing*/

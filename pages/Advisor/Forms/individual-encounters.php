@@ -32,86 +32,94 @@ check_activity();
     <div class="landing">
         <div class="container shadow-lg p-3 mb-4 bg-body rounded" dir="rtl">
             <h2> نموذج اللقاءات الفردية </h2>
-            <div class="row">
-                <div class="col">
-                    <label> نوع المشكلة : </label>
-                </div>
-                <div class="col">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            نفسية
-                        </label>
+            <form>
+                <div class="row">
+                    <div class="col">
+                        <label> نوع المشكلة : </label>
+                    </div>
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                نفسية
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                أكاديمية
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked>
+                            <label class="form-check-label" for="flexRadioDefault3">
+                                سلوكية
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
+                            <label class="form-check-label" for="flexRadioDefault4">
+                                اجتماعية
+                            </label>
+                        </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                        <label class="form-check-label" for="flexRadioDefault2">
-                            أكاديمية
-                        </label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked>
-                        <label class="form-check-label" for="flexRadioDefault3">
-                            سلوكية
-                        </label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
-                        <label class="form-check-label" for="flexRadioDefault4">
-                            اجتماعية
-                        </label>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row mt-3">
-                <label> الموضوع : </label>
-                <div class="col mt-2">
-                    <input class="form-control" type="text" placeholder="اكتب هنا الموضوع المراد التحدث عنه بإيجاز" aria-label="default input example" maxlength="500">
-                </div>
-            </div>
-
-            <div class="row mt-3">
-                <label> الإجراء الإرشادي : </label>
-                <div class="col mt-2 form-floating">
-                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" maxlength="2000"></textarea>
-                    <label class="ms-3" for="floatingTextarea">الإجراءات</label>
-                </div>
-            </div>
-
-            <div class="row mt-3">
-                <label> التوصيات : </label>
-                <div class="col mt-2">
-                    <label> تحويل الحالة الى مركز الإرشاد النفسي والاجتماعي </label>
-                </div>
-                <div class="d-flex">
-                    <div class="form-check me-3">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault5" checked>
-                        <label class="form-check-label" for="flexRadioDefault5">
-                            نعم
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault6" checked>
-                        <label class="form-check-label" for="flexRadioDefault6">
-                            لا
-                        </label>
+                <div class="row mt-3">
+                    <label> الموضوع : </label>
+                    <div class="col mt-2">
+                        <input class="form-control" type="text" placeholder="اكتب هنا الموضوع المراد التحدث عنه بإيجاز" aria-label="default input example" maxlength="500">
                     </div>
                 </div>
-            </div>
 
-            <div class="row mt-3">
-                <label> ملاحظات : </label>
-                <div class="col mt-2 form-floating">
-                    <textarea class="form-control" placeholder="اكتب هنا الملاحظات" id="floatingTextarea" maxlength="2000"></textarea>
-                    <label class="ms-3" for="floatingTextarea"> اكتب هنا الملاحظات </label>
+                <div class="row mt-3">
+                    <label> الإجراء الإرشادي : </label>
+                    <div class="col mt-2 form-floating">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" maxlength="2000"></textarea>
+                        <label class="ms-3" for="floatingTextarea">الإجراءات</label>
+                    </div>
                 </div>
+
+                <div class="row mt-3">
+                    <label> التوصيات : </label>
+                    <div class="col mt-2">
+                        <label> تحويل الحالة الى مركز الإرشاد النفسي والاجتماعي </label>
+                    </div>
+                    <div class="d-flex">
+                        <div class="form-check me-3">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault5" checked>
+                            <label class="form-check-label" for="flexRadioDefault5">
+                                نعم
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault6" checked>
+                            <label class="form-check-label" for="flexRadioDefault6">
+                                لا
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <label> ملاحظات : </label>
+                    <div class="col mt-2 form-floating">
+                        <textarea class="form-control" placeholder="اكتب هنا الملاحظات" id="floatingTextarea" maxlength="2000"></textarea>
+                        <label class="ms-3" for="floatingTextarea"> اكتب هنا الملاحظات </label>
+                    </div>
+                </div>
+            </form>
+            <div class="save-responsive d-flex justify-content-center">
+                <button id="save-pra" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff;  margin-top: 20px;">
+                    حفظ
+                    <i class="fa-solid fa-floppy-disk ps-1" style="color: #ffffff;"></i>
+                </button>
             </div>
         </div>
     </div>
