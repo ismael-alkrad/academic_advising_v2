@@ -35,7 +35,7 @@
       <div class="col-6 pg-color text-center divider">
         <p>Help Us 24/7</p>
         <p class="fs-1">مرحبًا بعودتك</p>
-        <p>دليلك الارشادي في جامعة الاسراء</p>
+        <p>دليلك الارشادي في جامعتك</p>
         <img src="assets/images/logo.png" />
       </div>
       <div class="col-6 pg-color">
