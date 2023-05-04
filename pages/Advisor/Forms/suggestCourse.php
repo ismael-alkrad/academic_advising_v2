@@ -1,6 +1,6 @@
 <?php
-include_once '../../php/check.php';
-include '../../php/navbar.php';
+include_once '../../../php/check.php';
+include '../../../php/navbar.php';
 check();
 check_activity();
 
@@ -15,10 +15,10 @@ $colleges = getColleges($conn);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suggest Course</title>
-    <link rel="shortcut icon" href="../../assets/images/logo.png">
-    <link rel="stylesheet" href="../../css/bootstrap.rtl.min.css">
-    <link rel="stylesheet" href="../../css/all.min.css">
-    <link rel="stylesheet" href="../../css/Advisor/suggestCourse.css?v=<? echo time(); ?>">
+    <link rel="shortcut icon" href="../../../assets/images/logo.png">
+    <link rel="stylesheet" href="../../../css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="../../../css/all.min.css">
+    <link rel="stylesheet" href="../../../css/Advisor/Forms/suggestCourse.css?v=<? echo time(); ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -160,7 +160,7 @@ $colleges = getColleges($conn);
                             row.append($("<td>").text(student.name));
                             row.append($("<td>").text(student.email));
                             // Add an event listener to the button
-                            var button = $("<button>").html("<img src='../../assets/images/advisor/add.png'>");
+                            var button = $("<button>").html("<img src='../../../assets/images/advisor/add.png'>");
                             button.on("click", function() {
                                 // Create a new row for the student info
                                 var studentRow = $("<tr>");
@@ -168,7 +168,7 @@ $colleges = getColleges($conn);
                                 studentRow.append($("<td>").text(student.u_id));
                                 studentRow.append($("<td>").text(student.name));
                                 studentRow.append($("<td>").text(student.email));
-                                studentRow.append($("<td>").append($("<button>").append($("<img>").attr("src", "../../assets/images/advisor/remove.png"))));
+                                studentRow.append($("<td>").append($("<button>").append($("<img>").attr("src", "../../../assets/images/advisor/remove.png"))));
                                 // Add the new row to the table
                                 $("#students-add-table tbody").append(studentRow);
                                 // Remove the row from the original table
