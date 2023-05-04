@@ -1,5 +1,5 @@
 <?php
-function generateNavbar($link, $text)
+function generateNavbar($link, $text, $logo = "../../assets/images/logo.png")
 {
   $links = $link;
 
@@ -25,7 +25,7 @@ function generateNavbar($link, $text)
     <span class="d-flex flex-column align-items-end ms-2"> الإرشاد الأكاديمي<span>
           <small class="text-secondary">(' . $text . ')</small>
       </span></span>
-    <img class="d-none d-lg-block d-xl-block d-xxl-block" height="70px" src="../../assets/images/logo.png">
+    <img class="d-none d-lg-block d-xl-block d-xxl-block" height="70px" src="' . $logo . '">
   </div>
 
   <!-- ------------------------------------Navbar Responsive-------------------------------------------- -->
@@ -49,11 +49,11 @@ function generateNavbar($link, $text)
   }
 
   $navbar .= '</ul>
-</div>
-</div>
 
+</div>
+</div>
   </div>
-  <img class="position-absolute top-0 end-0 d-sm-block d-md-block d-lg-none mx-4" height="45px" src="../../assets/images/logo.png">
+  <img class="position-absolute top-0 end-0 d-sm-block d-md-block d-lg-none mx-4" height="45px" src="' . $logo . '">
 </div>
 </nav>';
   return $navbar;

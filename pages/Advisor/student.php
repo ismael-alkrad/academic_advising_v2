@@ -68,7 +68,10 @@ check_activity();
                                 </div>
                                 <div class="col">
                                 <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
+                                <a href="forms/suggestCourse.php?student=' . $s['u_id'] . '">
                                 <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button>  اقتراح مواد </button></div>
+
+                                </a>
                                 </div>
                                 </div>
                             </div>

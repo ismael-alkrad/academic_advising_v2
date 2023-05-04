@@ -583,3 +583,48 @@ function getFnameByUid($pdo, $u_id)
     $result = $stmt->fetch();
     return $result['fname'];
 }
+
+
+
+
+function getAllCourses($conn, $college, $major = '')
+{
+    $sql = "SELECT id, name, number, college_id, majors_id, section, time, type FROM courses WHERE college_id = :college";
+    if (!empty($major)) {
+        $sql .= " AND majors_id = :major";
+    }
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindValue(':college', $college);
+    if (!empty($major)) {
+        $stmt->bindValue(':major', $major);
+    }
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if ($data === false) {
+        return json_encode(array('error' => 'Database error: ' . $stmt->errorInfo()[2]));
+    } else {
+        return json_encode($data);
+    }
+}
+
+function addSuggestedCourse($conn, $name, $number, $section, $time, $type, $suggest_for)
+{
+    // Prepare the SQL statement
+    $stmt = $conn->prepare("INSERT INTO suggestCourses (name, number, section, time, type, suggest_for) VALUES (?, ?, ?, ?, ?, ?)");
+
+    // Bind the values to the parameters in the SQL statement
+    $stmt->bindParam(1, $name);
+    $stmt->bindParam(2, $number);
+    $stmt->bindParam(3, $section);
+    $stmt->bindParam(4, $time);
+    $stmt->bindParam(5, $type);
+    $stmt->bindParam(6, $suggest_for);
+
+    // Execute the SQL statement
+    if ($stmt->execute()) {
+        return true;
+    } else {
+        return false;
+    }
+}

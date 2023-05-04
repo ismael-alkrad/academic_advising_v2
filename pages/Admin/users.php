@@ -150,7 +150,7 @@ $colleges = getColleges($conn);
                 },
                 success: function(data) {
                     console.log("Successfully retrieved student data: ", data);
-                    $("#students-table tbody").empty();
+                    $("#students-add-table tbody").empty();
                     // Parse the JSON response
                     data = JSON.parse(data);
                     // Empty the table body
