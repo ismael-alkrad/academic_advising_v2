@@ -94,12 +94,16 @@ check_activity();
                                                         <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> استمارة الطلبة الموهوبين </button></div>
                                                     </div>
                                                     <div class="col">
-                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
-                                                        <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> تحويل حالة الطالب </button></div>
-                                                    </div>
+                                                        <a href="Forms/student-status.php">
+                                                            <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
+                                                            <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> تحويل حالة الطالب </button></div>
+                                                        </a>
+                                                        </div>
                                                     <div class="col">
-                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
-                                                        <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> التقرير السنوي </button></div>
+                                                        <a href="Forms/annual-report.php">
+                                                            <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
+                                                            <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> التقرير السنوي </button></div>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
