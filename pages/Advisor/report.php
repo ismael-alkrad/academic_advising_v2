@@ -72,15 +72,17 @@ check_activity();
                                                         </a>
                                                     </div>
                                                     <div class="col">
-                                                    <a href="Forms/suggestCourse.php">
-                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/plan.png"></span>
-                                                        <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> توصيات تسجيل مواد </button></div>
-                                                    </a>
+                                                        <a href="Forms/suggestCourse.php">
+                                                            <span class="icon-reduis"><img class="icon-1" src="../../assets/images/plan.png"></span>
+                                                            <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> توصيات تسجيل مواد </button></div>
+                                                        </a>
                                                         </div>
                                                     <div class="col">
-                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
-                                                        <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> اللقاءات الفردية </button></div>
-                                                    </div>
+                                                        <a href="Forms/individual-encounters.php">
+                                                            <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
+                                                            <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> اللقاءات الفردية </button></div>
+                                                        </a>
+                                                        </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
