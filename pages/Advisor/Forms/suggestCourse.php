@@ -90,8 +90,8 @@ $colleges = getColleges($conn);
         </div>
         <input type="hidden" id="user" name="" value="<?php echo $_GET['user'] ?>">
     </div>
-    <script src="../../js/bootstrap.bundle.min.js"></script>
-    <script src="../../js/all.min.js"></script>
+    <script src="../../../js/bootstrap.bundle.min.js"></script>
+    <script src="../../../js/all.min.js"></script>
 </body>
 
 <script>
