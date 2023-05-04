@@ -48,8 +48,9 @@ $colleges = getColleges($conn);
                                 <th scope="col">#</th>
                                 <th scope="col">رقم المقرر</th>
                                 <th scope="col">اسم المقرر</th>
-                                <th scope="col"> الوقت </th>
-                                <th scope="col"> اسم المدرس </th>
+                                <th scope="col"> الشعبة </th>
+                                <th scope="col"> وقت المحاضرة </th>
+                                <th scope="col"> نوع المادة </th>
                                 <th scope="col"> حذق </th>
                             </tr>
                         </thead>
@@ -77,8 +78,9 @@ $colleges = getColleges($conn);
                                 <th scope="col">#</th>
                                 <th scope="col">رقم المقرر</th>
                                 <th scope="col">اسم المقرر</th>
-                                <th scope="col"> الوقت </th>
-                                <th scope="col"> اسم المدرس </th>
+                                <th scope="col"> الشعبة </th>
+                                <th scope="col"> وقت المحاضرة </th>
+                                <th scope="col"> نوع المادة </th>
                                 <th scope="col"> حذق </th>
                             </tr>
                         </thead>

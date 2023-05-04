@@ -19,7 +19,7 @@ body {
 .navbar {
   color: var(--blue-color);
   font-size: larger;
-  z-index: 1;
+  z-index: 4;
 }
 
 .navbar .container {
@@ -76,25 +76,50 @@ body {
 
 /*Start Landing*/
 
-.landing .nav-button-success {
-  color: black;
+.landing .icon-reduis {
+  display: inline-flex;
+  justify-content: center;
+  height: 60px;
+  width: 60px;
+  background-color: var(--icon-color);
+  border-radius: 50px;
 }
 
-.landing .nav-button-success:hover,
-.landing .nav-button-success:active {
-  background-color: green;
-  color: white;
+.landing .icon-reduis:hover {
+  cursor: pointer;
+  transform: scale(1.2);
 }
 
-.landing .nav-button-warning {
-  color: black;
+.landing .icon-reduis:active {
+  transform: scale(0.9);
 }
 
-.landing .nav-button-warning:hover,
-.landing .nav-button-warning:active,
-.landing .nav-button-warning:focus {
-  background-color: orange;
-  color: white;
+.landing .icon-1 {
+  margin-top: 15px;
+  height: 35px;
+}
+
+.landing .animation {
+  transform: translateX(0px) translateY(0px) scale(1);
+  transition-duration: 0.5s;
+}
+
+.landing .animation:hover {
+  transform: translateX(0px) translateY(-5px) scale(1);
+}
+
+.landing .animation button {
+  box-shadow: none;
+  border: 0px;
+  background-color: white;
+}
+
+.landing .animation button:hover {
+  color: var(--blue-color);
+}
+
+.landing .color-icon {
+  color: var(--blue-color);
 }
 
 .landing .nav-button-primary {

@@ -39,14 +39,6 @@ check_activity();
                             <input type="radio" class="btn-check" id="report" name="report" autocomplete="off" data-bs-toggle="tab" data-bs-target="#report-pane" role="tab" aria-controls="report-pane" aria-selected="true">
                             <label class="nav-link btn btn-outline-primary border-primary nav-button-primary me-1 rounded-0 rounded-top" for="report">التقارير</label>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <input type="radio" class="btn-check" id="complete-report" name="report" autocomplete="off" data-bs-toggle="tab" data-bs-target="#complete-report-pane" role="tab" aria-controls="complete-report-pane" aria-selected="false">
-                            <label class="nav-link btn btn-outline-success border-success nav-button-success me-1 rounded-0 rounded-top" for="complete-report">مكتمل</label>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <input type="radio" class="btn-check" id="incomplete-report" name="report" autocomplete="off" data-bs-toggle="tab" data-bs-target="#incomplete-report-pane" role="tab" aria-controls="incomplete-report-pane" aria-selected="false">
-                            <label class="nav-link btn btn-outline-warning border-warning nav-button-warning rounded-0 rounded-top" for="incomplete-report">غير مكتمل</label>
-                        </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade" id="report-pane" role="tabpanel" aria-labelledby="report" tabindex="0">
@@ -63,27 +55,47 @@ check_activity();
                                             data-bs-target="#collapse' . $s['u_id'] . '"  aria-expanded="false" aria-controls="collapse' . $s['u_id'] . '" data-u-id="' . $s['u_id'] . '">
                                             ' . $s['name'] . '
                                         </button>
-                                    </h2>
+                                                </h2>
                                     <div id="collapse' . $s['u_id'] . '" class="accordion-collapse collapse" aria-labelledby="heading' . $s['u_id'] . '"
                                         data-bs-parent="#accordionExample">
                                         <div class="accordion-body px-3">
-                                            <div class="container">
+                                            <div class="container text-center"  dir="rtl">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <form>
-                                                            <div class="ahmad"></div>
-                                                            <div class="row" dir="rtl">
-                                                                <div class="col-9">
-                                                                    <div class="form-floating" dir="rtl">
-                                                                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                                                                        <label for="floatingTextarea">تعليق</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col text-center mt-2">
-                                                                    <button type="button" class="btn btn-outline-info">ارسال</button>
-                                                                </div>
-                                                            </div>
-                                                        </form>     
+                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/chat.png"></span>
+                                                        <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> الخطة الدراسية </button></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <a href="Forms/academic-advisor.php">
+                                                            <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
+                                                            <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> الإرشاد الأكاديمي </button></div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col">
+                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/plan.png"></span>
+                                                        <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> توصيات تسجيل مواد </button></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
+                                                        <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> اللقاءات الفردية </button></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
+                                                        <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> التعثر الدراسي </button></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
+                                                        <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> استمارة الطلبة الموهوبين </button></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
+                                                        <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> تحويل حالة الطالب </button></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
+                                                        <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> التقرير السنوي </button></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -97,8 +109,6 @@ check_activity();
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="complete-report-pane" role="tabpanel" aria-labelledby="complete-report" tabindex="0">ddddd</div>
-                        <div class="tab-pane fade" id="incomplete-report-pane" role="tabpanel" aria-labelledby="incomplete-report" tabindex="0">...</div>
                     </div>
                 </div>
             </div>
@@ -168,129 +178,6 @@ check_activity();
             }
         });
     });
-</script>
-<script>
-    $(document).ready(function() {
-        $('.accordion-header').on('click', function() {
-            var u_id = $(this).data('u-id');
-
-            $.ajax({
-                type: "POST",
-                url: "../../php/forms/getData/getstudentinfo.php",
-                data: {
-                    id: u_id
-                },
-                beforeSend: function() {
-                    $('ahmad').html('<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>');
-                },
-                success: function(result) {
-                    console.log(result);
-
-                    try {
-                        var data = JSON.parse(result);
-                        if (data !== null && Object.keys(data).length > 0) {
-                            console.log(
-                                "ajaj"
-                            );
-                            // The data is not empty, so do something with it
-                            $('.ahmad').empty();
-                            var img = $('<img>').attr('src', data.filepath).addClass('mx-auto d-block mt-4 mb-4').addClass('photo rounded-circle');
-                            $('.ahmad').append(img);
-                            var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
-                            var tbody = $('<tbody>').appendTo(table);
-
-                            $('<tr>').append($('<th>').text('الحقل')).append($('<th>').text('القيمة')).appendTo(tbody);
-
-                            $.each(data, function(key, value) {
-                                if (key === 'u_id') {
-                                    $('<tr>').append($('<td>').text('الرقم الجامعي')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'ar_name') {
-                                    $('<tr>').append($('<td>').text('الاسم بالعربي')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'en_name') {
-                                    $('<tr>').append($('<td>').text('الاسم بالإنجليزي')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'college') {
-                                    $('<tr>').append($('<td>').text('الكلية')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'department') {
-                                    $('<tr>').append($('<td>').text('القسم')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'year') {
-                                    $('<tr>').append($('<td>').text('العام الدراسي')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'semester') {
-                                    $('<tr>').append($('<td>').text('الفصل الدراسي')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'u_year') {
-                                    $('<tr>').append($('<td>').text('سنة الالتحاق بالجامعة')).append($('<td>').text(value)).appendTo(tbody);
-                                }
-
-                            });
-
-                            $('.ahmad').append($('<h2>').text('بيانات الطالب')).append(table);
-                            var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
-                            var tbody = $('<tbody>').appendTo(table);
-
-                            $('<tr>').append($('<th>').text('الحقل')).append($('<th>').text('القيمة')).appendTo(tbody);
-
-                            $.each(data, function(key, value) {
-                                if (key === 'city') {
-                                    $('<tr>').append($('<td>').text('المدينة')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'region') {
-                                    $('<tr>').append($('<td>').text('المنطقة')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'phone_house') {
-                                    $('<tr>').append($('<td>').text('رقم الهاتف الأرضي')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'phone_person') {
-                                    $('<tr>').append($('<td>').text('رقم الهاتف الشخصي')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'email') {
-                                    $('<tr>').append($('<td>').text('البريد الإلكتروني')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'place_birth') {
-                                    $('<tr>').append($('<td>').text('مكان الولادة')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'birth_date') {
-                                    $('<tr>').append($('<td>').text('تاريخ الولادة')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'status') {
-                                    $('<tr>').append($('<td>').text('الحالة الاجتماعية')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'gender') {
-                                    $('<tr>').append($('<td>').text('الجنس')).append($('<td>').text(value)).appendTo(tbody);
-                                }
-                            });
-
-                            $('.ahmad').append($('<h2>').text('البيانات الشخصية')).append(table);
-                            var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
-                            var tbody = $('<tbody>').appendTo(table);
-
-                            $('<tr>').append($('<th>').text('الحقل')).append($('<th>').text('القيمة')).appendTo(tbody);
-
-                            $.each(data, function(key, value) {
-                                if (key === 'company_name') {
-                                    $('<tr>').append($('<td>').text('اسم الشركة')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'jop_name') {
-                                    $('<tr>').append($('<td>').text('اسم الوظيفة')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'experience_job') {
-                                    $('<tr>').append($('<td>').text('خبرة الوظيفية')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'certificate') {
-                                    $('<tr>').append($('<td>').text('الشهادات')).append($('<td>').text(value)).appendTo(tbody);
-                                } else if (key === 'activities') {
-                                    $('<tr>').append($('<td>').text('الأنشطة الخارجية')).append($('<td>').text(value)).appendTo(tbody);
-                                }
-                            });
-
-                            $('.ahmad').append($('<h2>').text('خبرات العمل السابقة')).append(table);
-                            // ... the rest of the code to display the table goes here
-                        } else {
-                            // The data is empty, so show a message to the user or do nothing
-                            $('.ahmad').text('No data found');
-                        }
-                        // Code to display the table goes here
-                    } catch (error) {
-                        $('.ahmad').html('<div class="justify-content-center"><h3> لم يقم الطالب بتعبئة بياناته بعد </h3><br><h3>أخطر الطالب برسالة</h3></div>');
-                    }
-
-
-                },
-                error: function(xhr, status, error) {
-                    console.log(xhr.responseText);
-                }
-            });
-        });
-    });
-</script>
-
 </script>
 
 </html>
