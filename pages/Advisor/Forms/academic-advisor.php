@@ -26,6 +26,7 @@ check_activity();
 
 <body>
     <?php echo generateNavbar($links = array(
+        array("label" => "التقارير", "url" => "#"),
         array("label" => "الرئيسية", "url" => "../home.php")
     ), "مرشد", $logo = "../../../assets/images/logo.png"); ?>
     <div class="landing">

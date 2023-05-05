@@ -63,19 +63,19 @@ check_activity();
                                                         <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> الخطة الدراسية </button></div>
                                                     </div>
                                                     <div class="col">
-                                                        <a href="Forms/academic-advisor.php">
+                                                        <a href="Forms/academic-advisor.php?student=' . $s['u_id'] . '">
                                                             <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
                                                             <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> الإرشاد الأكاديمي </button></div>
                                                         </a>
                                                     </div>
                                                     <div class="col">
-                                                        <a href="Forms/suggestCourse.php">
+                                                        <a href="Forms/suggestCourse.php?student=' . $s['u_id'] . '">
                                                             <span class="icon-reduis"><img class="icon-1" src="../../assets/images/plan.png"></span>
                                                             <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> توصيات تسجيل مواد </button></div>
                                                         </a>
                                                         </div>
                                                     <div class="col">
-                                                        <a href="Forms/individual-encounters.php">
+                                                        <a href="Forms/individual-encounters.php?student=' . $s['u_id'] . '">
                                                             <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
                                                             <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> اللقاءات الفردية </button></div>
                                                         </a>
@@ -91,7 +91,7 @@ check_activity();
                                                         <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> استمارة الطلبة الموهوبين </button></div>
                                                     </div>
                                                     <div class="col">
-                                                        <a href="Forms/student-status.php">
+                                                        <a href="Forms/student-status.php?student=' . $s['u_id'] . '">
                                                             <span class="icon-reduis"><img class="icon-1" src="../../assets/images/student-status.png"></span>
                                                             <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> تحويل حالة الطالب </button></div>
                                                         </a>

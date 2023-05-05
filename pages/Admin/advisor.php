@@ -140,58 +140,70 @@ check_activity();
     $(document).ready(function() {
         $('.accordion-header').on('click', function() {
             var username = $(this).data('username');
+            $(document).ready(function() {
+                $('#accordionExample').on('shown.bs.collapse', function(e) {
+                    // code to execute when accordion is opened
+                    console.log('Accordion open for user ' + username);
 
-            $.ajax({
-                type: "POST",
-                url: "../../php/forms/getData/get_student_by_advisor.php",
-                data: {
-                    id: username
-                },
-                beforeSend: function() {
-                    $('.col.border-start').html(
-                        '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>'
-                    );
-                },
-                success: function(result) {
-                    console.log(result);
+                    $.ajax({
+                        type: "POST",
+                        url: "../../php/forms/getData/get_student_by_advisor.php",
+                        data: {
+                            id: username
+                        },
+                        beforeSend: function() {
+                            $('.col.border-start').html(
+                                '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>'
+                            );
+                        },
+                        success: function(result) {
+                            // console.log(result);
 
-                    try {
-                        var data = JSON.parse(result);
-                        if (data !== null && data.length > 0) {
-                            // The data is not empty, so do something with it
-                            $('.col.border-start').empty();
-                            var table = $('<table>').addClass(
-                                'table table-striped table-hover table-bordered').attr(
-                                'dir', 'rtl');
-                            var tbody = $('<tbody>').appendTo(table);
+                            try {
+                                var data = JSON.parse(result);
+                                if (data !== null && data.length > 0) {
+                                    // The data is not empty, so do something with it
+                                    $('.col.border-start').empty();
+                                    var table = $('<table>').addClass(
+                                        'table table-striped table-hover table-bordered').attr(
+                                        'dir', 'rtl');
+                                    var tbody = $('<tbody>').appendTo(table);
 
-                            $('<tr>').append($('<th>').text('الرقم الجامعي')).append($('<th>')
-                                    .text('الاسم')).append($('<th>').text('البريد الإلكتروني'))
-                                .appendTo(tbody);
+                                    $('<tr>').append($('<th>').text('الرقم الجامعي')).append($('<th>')
+                                            .text('الاسم')).append($('<th>').text('البريد الإلكتروني'))
+                                        .appendTo(tbody);
 
-                            $.each(data, function(index, value) {
-                                $('<tr>').append($('<td>').text(value.u_id)).append($(
-                                    '<td>').text(value.name)).append($('<td>').text(
-                                    value.email)).appendTo(tbody);
-                            });
+                                    $.each(data, function(index, value) {
+                                        $('<tr>').append($('<td>').text(value.u_id)).append($(
+                                            '<td>').text(value.name)).append($('<td>').text(
+                                            value.email)).appendTo(tbody);
+                                    });
 
-                            $('.col.border-start').append($('<h2>').text('بيانات الطلاب'))
-                                .append(table);
-                        } else {
-                            // The data is empty, so show a message to the user or do nothing
-                            $('.col.border-start').text('No data found');
+                                    $('.col.border-start').append($('<h2>').text('بيانات الطلاب'))
+                                        .append(table);
+                                } else {
+                                    // The data is empty, so show a message to the user or do nothing
+                                    $('.col.border-start').text('No data found');
+                                }
+                            } catch (error) {
+                                $('.col.border-start').html(
+                                    '<div class="justify-content-center"><h3> لم يقم الطالب بتعبئة بياناته بعد </h3><br><h3>أخطر الطالب برسالة</h3></div>'
+                                );
+                            }
+
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(xhr.responseText);
                         }
-                    } catch (error) {
-                        $('.col.border-start').html(
-                            '<div class="justify-content-center"><h3> لم يقم الطالب بتعبئة بياناته بعد </h3><br><h3>أخطر الطالب برسالة</h3></div>'
-                        );
-                    }
+                    });
+                }).on('hidden.bs.collapse', function(e) {
+                    // code to execute when accordion is closed
 
-                },
-                error: function(xhr, status, error) {
-                    console.log(xhr.responseText);
-                }
+                    $('.col.border-start').empty();
+
+                });
             });
+
         });
     });
 </script>
