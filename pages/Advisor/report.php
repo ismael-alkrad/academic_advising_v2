@@ -25,7 +25,9 @@ check_activity();
 </head>
 
 <body>
-    <?php echo generateNavbar($links = array(
+    <?php
+    $student = getStudent($conn);
+    echo generateNavbar($links = array(
         array("label" => "التقارير", "url" => "#"),
         array("label" => "الطلاب", "url" => "student.php"),
         array("label" => "الرئيسية", "url" => "home.php")
@@ -34,23 +36,18 @@ check_activity();
         <div class="container">
             <div class="row shadow-lg p-3 mb-4 bg-body rounded">
                 <div class="col">
-                    <ul class="nav nav-tabs" dir="rtl" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <input type="radio" class="btn-check" id="report" name="report" autocomplete="off" data-bs-toggle="tab" data-bs-target="#report-pane" role="tab" aria-controls="report-pane" aria-selected="true">
-                            <label class="nav-link btn btn-outline-primary border-primary nav-button-primary me-1 rounded-0 rounded-top" for="report">التقارير</label>
-                        </li>
-                    </ul>
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade" id="report-pane" role="tabpanel" aria-labelledby="report" tabindex="0">
-                            <div class="accordion mt-2" id="accordionExample">
-                                <div class="accordion-item">
-                                    <?php
-                                    $student = getStudent($conn);
-                                    if ($student != null) {
-                                        foreach ($student as $s) {
+                    <div>
+                        التقارير
+                    </div>
+                    <div class="accordion mt-2" id="accordionExample">
+                        <div class="accordion-item">
+                            <?php
 
-                                            $to = $s['email'];
-                                            echo '<h2 class="accordion-header" id="heading' . $s['u_id'] . '" data-u-id="' . $s['u_id'] . '">
+                            if ($student != null) {
+                                foreach ($student as $s) {
+
+                                    $to = $s['email'];
+                                    echo '<h2 class="accordion-header" id="heading' . $s['u_id'] . '" data-u-id="' . $s['u_id'] . '">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapse' . $s['u_id'] . '"  aria-expanded="false" aria-controls="collapse' . $s['u_id'] . '" data-u-id="' . $s['u_id'] . '">
                                             ' . $s['name'] . '
@@ -66,19 +63,19 @@ check_activity();
                                                         <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> الخطة الدراسية </button></div>
                                                     </div>
                                                     <div class="col">
-                                                        <a href="Forms/academic-advisor.php">
+                                                        <a href="Forms/academic-advisor.php?student=' . $s['u_id'] . '">
                                                             <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
                                                             <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> الإرشاد الأكاديمي </button></div>
                                                         </a>
                                                     </div>
                                                     <div class="col">
-                                                        <a href="Forms/suggestCourse.php">
+                                                        <a href="forms/suggestCourse.php?student=' . $s['u_id'] . '">
                                                             <span class="icon-reduis"><img class="icon-1" src="../../assets/images/plan.png"></span>
                                                             <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> توصيات تسجيل مواد </button></div>
                                                         </a>
                                                         </div>
                                                     <div class="col">
-                                                        <a href="Forms/individual-encounters.php">
+                                                        <a href="Forms/individual-encounters.php?student=' . $s['u_id'] . '"">
                                                             <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
                                                             <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> اللقاءات الفردية </button></div>
                                                         </a>
@@ -106,12 +103,10 @@ check_activity();
                                         </div>
                                     </div>
                                     ';
-                                        }
-                                    } else {
-                                    }
-                                    ?>
-                                </div>
-                            </div>
+                                }
+                            } else {
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

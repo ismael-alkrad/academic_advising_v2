@@ -1,10 +1,10 @@
 <?php
 include_once 'functions.php';
 
-function check()
+function check($text = "Location: ../../index.php")
 {
     if (!isset($_SESSION['username'])) {
-        header("Location: ../../index.php");
+        header($text);
     }
 }
 function check_activity()

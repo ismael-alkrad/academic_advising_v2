@@ -1,7 +1,7 @@
 <?php
 include_once '../../../php/check.php';
 include '../../../php/navbar.php';
-check();
+check(text: "Location: ../../../index.php");
 check_activity();
 ?>
 
@@ -26,9 +26,8 @@ check_activity();
 
 <body>
     <?php echo generateNavbar($links = array(
-        array("label" => "التقارير", "url" => "#"),
-        array("label" => "الرئيسية", "url" => "home.php")
-    ), "مرشد"); ?>
+        array("label" => "الرئيسية", "url" => "../home.php")
+    ), "مرشد", $logo = "../../../assets/images/logo.png"); ?>
     <div class="landing">
         <div class="container text-center">
             <div class="row shadow-lg p-3 mb-4 bg-body rounded">
@@ -40,6 +39,7 @@ check_activity();
             </div>
         </div>
     </div>
+    <input type="hidden" id="student" name="" value="<?php echo $_GET['student'] ?>">
 
     <script src="../../../js/bootstrap.bundle.min.js"></script>
     <script src="../../../js/all.min.js"></script>
@@ -48,7 +48,7 @@ check_activity();
 <script>
     $("#log-out").click(() => {
         $.ajax({
-            url: "../../php/forms/logout.php",
+            url: "../../../php/forms/logout.php",
             type: "POST",
             success: function(data) {
                 if (data === 'success') {
@@ -61,7 +61,7 @@ check_activity();
                         timer: 1500,
                     });
                     setTimeout(function() {
-                        window.location.href = "../../index.php";
+                        window.location.href = "../../../index.php";
                     }, 1500);
                 } else {
                     Swal.fire({
@@ -78,7 +78,7 @@ check_activity();
     });
     $("#log-out-res").click(() => {
         $.ajax({
-            url: "../../php/forms/logout.php",
+            url: "../../../php/forms/logout.php",
             type: "POST",
             success: function(data) {
                 if (data === 'success') {
@@ -91,7 +91,7 @@ check_activity();
                         timer: 1500,
                     });
                     setTimeout(function() {
-                        window.location.href = "../../index.php";
+                        window.location.href = "../../../index.php";
                     }, 1500);
                 } else {
                     Swal.fire({
@@ -109,8 +109,8 @@ check_activity();
 </script>
 <script>
     $(document).ready(function() {
-        var u_id = $(this).data('u-id');
-
+        var u_id = $("#student").val();
+        console.log(u_id);
         $.ajax({
             type: "POST",
             url: "../../../php/forms/getData/getstudentinfo.php",
@@ -118,7 +118,7 @@ check_activity();
                 id: u_id
             },
             beforeSend: function() {
-                $('ahmad').html('<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>');
+                $('.ahmad').html('<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>');
             },
             success: function(result) {
                 console.log(result);
@@ -131,7 +131,7 @@ check_activity();
                         );
                         // The data is not empty, so do something with it
                         $('.ahmad').empty();
-                        var img = $('<img>').attr('src', data.filepath).addClass('mx-auto d-block mt-4 mb-4').addClass('photo rounded-circle');
+                        var img = $('<img>').attr('src', "../" + data.filepath).addClass('mx-auto d-block mt-4 mb-4').addClass('photo rounded-circle');
                         $('.ahmad').append(img);
                         var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
                         var tbody = $('<tbody>').appendTo(table);

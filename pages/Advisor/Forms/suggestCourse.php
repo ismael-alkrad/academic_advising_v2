@@ -1,7 +1,7 @@
 <?php
 include_once '../../../php/check.php';
 include '../../../php/navbar.php';
-check();
+check(text: "Location: ../../../index.php");
 check_activity();
 
 $colleges = getColleges($conn);
@@ -29,7 +29,7 @@ $colleges = getColleges($conn);
 <body>
     <?php echo generateNavbar($links = array(
 
-        array("label" => "الرئيسية", "url" => "advisor.php")
+        array("label" => "الرئيسية", "url" => "../home.php")
     ), "مدير الموقع", $logo = "../../../assets/images/logo.png"); ?>
     <div class="landing">
         <div class="container">
@@ -289,7 +289,7 @@ $colleges = getColleges($conn);
                         timer: 1500,
                     });
                     setTimeout(function() {
-                        window.location.href = "../../index.php";
+                        window.location.href = "../../../index.php";
                     }, 1500);
                 } else {
                     Swal.fire({
@@ -319,7 +319,7 @@ $colleges = getColleges($conn);
                         timer: 1500,
                     });
                     setTimeout(function() {
-                        window.location.href = "../../index.php";
+                        window.location.href = "../../../index.php";
                     }, 1500);
                 } else {
                     Swal.fire({

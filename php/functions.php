@@ -628,3 +628,35 @@ function addSuggestedCourse($conn, $name, $number, $section, $time, $type, $sugg
         return false;
     }
 }
+
+
+function addCounselingRow(
+    $conn,
+    $u_id,
+    $problem_type,
+    $topic,
+    $guidance_procedure,
+    $recommendations,
+    $notes,
+    $a_username
+) {
+    // Prepare the SQL statement
+    $stmt = $conn->prepare("INSERT INTO counseling (u_id, problem_type, topic, guidance_procedure, recommendations, notes,a_username) VALUES (?, ?, ?, ?, ?, ?,?)");
+
+    // Bind the values to the parameters in the SQL statement
+    $stmt->bindParam(1, $u_id);
+    $stmt->bindParam(2, $problem_type);
+    $stmt->bindParam(3, $topic);
+    $stmt->bindParam(4, $guidance_procedure);
+    $stmt->bindParam(5, $recommendations);
+    $stmt->bindParam(6, $notes);
+
+    $stmt->bindParam(7, $a_username);
+
+    // Execute the SQL statement
+    if ($stmt->execute()) {
+        return true;
+    } else {
+        return false;
+    }
+}
