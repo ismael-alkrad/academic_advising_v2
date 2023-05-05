@@ -30,19 +30,19 @@ $colleges = getColleges($conn);
     <?php echo generateNavbar($links = array(
 
         array("label" => "الرئيسية", "url" => "advisor.php")
-    ), "مدير الموقع"); ?>
+    ), "مدير الموقع", $logo = "../../../assets/images/logo.png"); ?>
     <div class="landing">
         <div class="container">
             <div class="row shadow-lg p-3 mb-4 bg-body rounded" id="student-info">
                 <div>
-                    <h2> اقتراح مواد للطالب<?php echo getFnameByUid(
+                    <h2> اقتراح مواد للطالب <?php echo getFnameByUid(
                                                 $conn,
                                                 $_GET['student']
                                             ); ?>
                     </h2>
                 </div>
                 <div class="col">
-                    <table id="students-add-table" class="table table-striped text-center" dir="rtl">
+                    <table id="courses-add-table" class="table table-striped text-center" dir="rtl">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -51,28 +51,39 @@ $colleges = getColleges($conn);
                                 <th scope="col"> الشعبة </th>
                                 <th scope="col"> وقت المحاضرة </th>
                                 <th scope="col"> نوع المادة </th>
-                                <th scope="col"> حذق </th>
+                                <th scope="col"> حذف </th>
                             </tr>
                         </thead>
+                        <tbody></tbody>
                     </table>
                     <button class="btn btn-outline-primary" id="get-table-data-btn" type="button">أضف الطلاب</button>
                 </div>
             </div>
             <div class="row shadow-lg p-3 mb-4 bg-body rounded">
                 <div class="row" dir="rtl">
-                    <div class="col-4 divider">
+                    <div class="col divider ms-2">
+                        <label for="inputcollege" class="form-label text-start">الكلية</label>
+                        <select id="inputcollege" name="college" class="form-select box-shadow">
+                            <option value="<?php echo $_SESSION['college'] ?? ""; ?>"><?php echo  $_SESSION['college'] ?? "-- اختر الكلية --"; ?></option>
+                            <?php foreach ($colleges as $college) { ?>
+                                <option value="<?php echo $college['id'] ?>" id="college_<?php echo $college['id'] ?>"><?php echo $college['name'] ?></option>
+                            <?php } ?>
+                        </select>
+                        <div id="college-error" class="text-danger"></div>
+                    </div>
+                    <div class="col divider">
                         <label for="inputdepartment" class="form-label text-start">القسم</label>
                         <select id="inputdepartment" name="department" class="form-select box-shadow">
                             <option value="<?php echo $_SESSION['major'] ?? ""; ?>"><?php echo $_SESSION['major'] ?? "-- اختر القسم --"; ?></option>
                         </select>
                         <div id="department-error" class="text-danger"></div>
                     </div>
-                    <div class="col divider">
-                        <button id="search-btn" style="margin-top:32px;" class="btn btn-outline-primary" type="button">بحث</button>
+                    <div class="col divider me-3">
+                        <button id="search-btn" style="margin-top:31px;" class="btn btn-outline-primary" type="button">بحث</button>
                     </div>
                 </div>
                 <div class="col text-center">
-                    <table id="students-table" class="table table-striped" dir="rtl">
+                    <table id="courses-table" class="table table-striped" dir="rtl">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -81,14 +92,15 @@ $colleges = getColleges($conn);
                                 <th scope="col"> الشعبة </th>
                                 <th scope="col"> وقت المحاضرة </th>
                                 <th scope="col"> نوع المادة </th>
-                                <th scope="col"> حذق </th>
+                                <th scope="col">إقتراح</th>
                             </tr>
                         </thead>
+                        <tbody></tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <input type="hidden" id="user" name="" value="<?php echo $_GET['user'] ?>">
+        <input type="hidden" id="student" name="" value="<?php echo $_GET['student'] ?>">
     </div>
     <script src="../../../js/bootstrap.bundle.min.js"></script>
     <script src="../../../js/all.min.js"></script>
@@ -103,7 +115,7 @@ $colleges = getColleges($conn);
 
             // send AJAX request to get departments for selected college
             $.ajax({
-                url: '../../php/get_department.php',
+                url: '../../../php/get_department.php',
                 method: 'POST',
 
                 data: {
@@ -122,6 +134,7 @@ $colleges = getColleges($conn);
                 },
             });
         });
+
     });
     $(document).ready(function() {
         // bind click event to search button
@@ -132,9 +145,9 @@ $colleges = getColleges($conn);
 
             // make AJAX request to get student data with college and department as data
             $.ajax({
-                url: "../../php/forms/getData/get_all_student.php",
+                url: "../../../php/forms/getData/get_all_courses.php",
                 type: "POST",
-                dataType: "json",
+
 
                 data: {
                     college: college,
@@ -142,43 +155,66 @@ $colleges = getColleges($conn);
                 },
                 success: function(data) {
                     console.log("Successfully retrieved student data: ", data);
+
                     // Parse the JSON response
-                    data = JSON.parse(data);
-                    // Empty the table body
-                    $("#students-add-table tbody").empty();
-                    // Check if the data array is empty
-                    if (data.length === 0) {
-                        // If it's empty, display a message
-                        $("#students-add-table tbody").append("<tr><td colspan='5'>No data available</td></tr>");
-                    } else {
-                        // Loop through the data and append a row to the table
-                        // for each student
-                        $.each(data, function(index, student) {
-                            var row = $("<tr>");
-                            row.append($("<th>").attr("scope", "row").text(index + 1));
-                            row.append($("<td>").text(student.u_id));
-                            row.append($("<td>").text(student.name));
-                            row.append($("<td>").text(student.email));
-                            // Add an event listener to the button
-                            var button = $("<button>").html("<img src='../../../assets/images/advisor/add.png'>");
-                            button.on("click", function() {
-                                // Create a new row for the student info
-                                var studentRow = $("<tr>");
-                                studentRow.append($("<th>").attr("scope", "row").text(index + 1));
-                                studentRow.append($("<td>").text(student.u_id));
-                                studentRow.append($("<td>").text(student.name));
-                                studentRow.append($("<td>").text(student.email));
-                                studentRow.append($("<td>").append($("<button>").append($("<img>").attr("src", "../../../assets/images/advisor/remove.png"))));
-                                // Add the new row to the table
-                                $("#students-add-table tbody").append(studentRow);
-                                // Remove the row from the original table
-                                row.remove();
+                    try {
+                        data = JSON.parse(data);
+                        console.log("Successfully retrieved student data: ", data);
+                        // Empty the table body
+                        $("#courses-table tbody").empty();
+                        // Check if the data array is empty
+                        if (data.length === 0) {
+                            // If it's empty, display a message
+                            $("#courses-table tbody").empty();
+                            $("#courses-table tbody").append("<tr><td colspan='5'>No data available</td></tr>");
+                        } else {
+                            // Loop through the data and append a row to the table
+                            // for each student
+                            $.each(data, function(index, course) {
+                                var row = $("<tr>");
+                                row.append($("<th>").attr("scope", "row").text(course.id));
+                                row.append($("<td>").text(course.number));
+                                row.append($("<td>").text(course.name));
+                                row.append($("<td>").text(course.section));
+                                row.append($("<td>").text(course.time));
+                                row.append($("<td>").text(course.type));
+                                // Add an event listener to the button
+                                var button = $("<button>").html("<img src='../../../assets/images/advisor/add.png'>");
+                                button.on("click", function() {
+                                    // Create a new row for the course info
+                                    var courseRow = $("<tr>");
+                                    courseRow.append($("<th>").attr("scope", "row").text(course.id));
+                                    courseRow.append($("<td>").text(course.number));
+                                    courseRow.append($("<td>").text(course.name));
+                                    courseRow.append($("<td>").text(course.section));
+                                    courseRow.append($("<td>").text(course.time));
+                                    courseRow.append($("<td>").text(course.type));
+                                    var removeButton = $("<button>").html("<img src='../../../assets/images/advisor/remove.png'>");
+                                    removeButton.on("click", function() {
+                                        // Move the row back to the original table
+                                        row.show();
+                                        // Remove the remove button from the row
+                                        courseRow.find("td:last-child").empty();
+                                        // Remove the row from the new table
+                                        courseRow.remove();
+                                    });
+                                    courseRow.append($("<td>").append(removeButton));
+                                    // Add the new row to the table
+                                    $("#courses-add-table tbody").append(courseRow);
+
+                                    // Remove the row from the original table
+                                    row.remove();
+
+                                });
+                                row.append($("<td>").html(button));
+                                $("#courses-table tbody").append(row);
                             });
-                            row.append($("<td>").html(button));
-                            $("#students-table tbody").append(row);
-                        });
+                        }
+                    } catch (e) {
+                        console.log("Error retrieving student data:", e);
                     }
                 },
+
 
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log("Error retrieving student data: " + textStatus + ", " + errorThrown);
@@ -190,34 +226,42 @@ $colleges = getColleges($conn);
     });
     $("#get-table-data-btn").on("click", function() {
         var tableData = [];
-        $("#students-add-table tbody tr").each(function() {
+        $("#courses-add-table tbody tr").each(function() {
             var rowData = [];
             $(this).find("td").each(function() {
-                rowData.push($(this).text());
+                // Check if the table cell has a value
+                var cellValue = $(this).text().trim();
+                if (cellValue) {
+                    rowData.push(cellValue);
+                }
             });
-            tableData.push(rowData);
+            // Only add the row data if it has at least one non-empty value
+            if (rowData.length > 0) {
+                tableData.push(rowData);
+            }
         });
-        console.log(tableData);
-        var user = $('#user').val();
 
+        var user = $('#student').val();
+        console.log(user);
         // Make an HTTP POST request to the test.php file with the table data as the payload
         $.ajax({
             type: "POST",
-            url: "test.php",
+            url: "../../../php/forms/assing_suggest_courses.php",
             data: {
                 tableData: tableData,
                 id: user
             },
             success: function(response) {
+                console.log(response);
                 if (response === "success") {
                     Swal.fire({
-                        title: 'Success',
-                        text: "تم اضافة الطلاب بنجاح ",
+                        title: 'تمت العملية',
+                        text: "تم إقتراح المواد بنجاح ",
                         icon: 'success',
                         allowOutsideClick: false,
                         confirmButtonText: 'OK'
                     });
-                    $("#students-add-table tbody").empty();
+                    $("#courses-add-table tbody").empty();
                     // Display a success message to the user
                 } else {
                     console.log('An error occurred while updating the table data');
@@ -232,7 +276,7 @@ $colleges = getColleges($conn);
 <script>
     $("#log-out").click(() => {
         $.ajax({
-            url: "../../php/forms/logout.php",
+            url: "../../../php/forms/logout.php",
             type: "POST",
             success: function(data) {
                 if (data === 'success') {
@@ -262,7 +306,7 @@ $colleges = getColleges($conn);
     });
     $("#log-out-res").click(() => {
         $.ajax({
-            url: "../../php/forms/logout.php",
+            url: "../../../php/forms/logout.php",
             type: "POST",
             success: function(data) {
                 if (data === 'success') {
