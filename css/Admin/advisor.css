@@ -19,7 +19,7 @@ body {
 .navbar {
   color: var(--blue-color);
   font-size: larger;
-  z-index: 1;
+  z-index: 4;
 }
 
 .navbar .container {
@@ -103,7 +103,8 @@ a {
 
 .landing .icon-reduis-message,
 .landing .icon-reduis-printer,
-.landing .icon-reduis-add {
+.landing .icon-reduis-add,
+.landing .icon-reduis-delete {
   display: inline-flex;
   justify-content: center;
   height: 60px;
@@ -114,7 +115,8 @@ a {
 
 .landing .icon-reduis-message button,
 .landing .icon-reduis-printer button,
-.landing .icon-reduis-add button {
+.landing .icon-reduis-add button,
+.landing .icon-reduis-delete button {
   background: none;
   border: none;
   padding-bottom: 10px;
@@ -151,6 +153,17 @@ a {
 .landing .icon-reduis-add:active {
   transform: scale(0.9);
   background-color: green;
+}
+
+.landing .icon-reduis-delete:hover {
+  transform: scale(1.2);
+  background-color: orange;
+  cursor: pointer;
+}
+
+.landing .icon-reduis-delete:active {
+  transform: scale(0.9);
+  background-color: red;
 }
 
 .landing .icon-1 {

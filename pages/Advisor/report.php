@@ -59,23 +59,23 @@ check_activity();
                                             <div class="container text-center"  dir="rtl">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/chat.png"></span>
+                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/plan.png"></span>
                                                         <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> الخطة الدراسية </button></div>
                                                     </div>
                                                     <div class="col">
-                                                        <a href="Forms/academic-advisor.php?student=' . $s['u_id'] . '">
+                                                        <a href="Forms/academic-advisor.php">
                                                             <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
                                                             <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> الإرشاد الأكاديمي </button></div>
                                                         </a>
                                                     </div>
                                                     <div class="col">
-                                                        <a href="forms/suggestCourse.php?student=' . $s['u_id'] . '">
+                                                        <a href="Forms/suggestCourse.php">
                                                             <span class="icon-reduis"><img class="icon-1" src="../../assets/images/plan.png"></span>
                                                             <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> توصيات تسجيل مواد </button></div>
                                                         </a>
                                                         </div>
                                                     <div class="col">
-                                                        <a href="Forms/individual-encounters.php?student=' . $s['u_id'] . '"">
+                                                        <a href="Forms/individual-encounters.php">
                                                             <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
                                                             <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> اللقاءات الفردية </button></div>
                                                         </a>
@@ -91,12 +91,16 @@ check_activity();
                                                         <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> استمارة الطلبة الموهوبين </button></div>
                                                     </div>
                                                     <div class="col">
-                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
-                                                        <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> تحويل حالة الطالب </button></div>
-                                                    </div>
+                                                        <a href="Forms/student-status.php">
+                                                            <span class="icon-reduis"><img class="icon-1" src="../../assets/images/student-status.png"></span>
+                                                            <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> تحويل حالة الطالب </button></div>
+                                                        </a>
+                                                        </div>
                                                     <div class="col">
-                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
-                                                        <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> التقرير السنوي </button></div>
+                                                        <a href="Forms/annual-report.php">
+                                                            <span class="icon-reduis"><img class="icon-1" src="../../assets/images/annual-report.png"></span>
+                                                            <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> التقرير السنوي </button></div>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
