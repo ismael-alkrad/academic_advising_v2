@@ -101,6 +101,12 @@ body {
     box-shadow: none;
 }
 
+.landing textarea:hover,
+.landing textarea:focus,
+.landing textarea:active {
+    box-shadow: none;
+}
+
 .landing .button-style {
     color: white;
     background-color: var(--blue-color);

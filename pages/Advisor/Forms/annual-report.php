@@ -80,8 +80,37 @@ check_activity();
             </form>
             <div class="row">
                 <label> إجراءات الخطة العلاجية للطلبة المتعثرين : </label>
+                <div class="col mt-2 form-floating">
+                    <textarea class="form-control" placeholder="اكتب هنا الاجراءات" id="floatingTextarea" maxlength="2000"></textarea>
+                    <label class="ms-3" for="floatingTextarea"> اكتب هنا الإجراءات </label>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col">
-
+                    <table class="table table-striped text-center mt-3">
+                        <thead>
+                            <tr>
+                                <th scope="col">الطلبة المراجعين من خارج طلبة الإرشاد الأكاديمي</th>
+                                <th scope="col">الموضوع</th>
+                                <th scope="col">الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <tr id="row-1">
+                                <th scope="row"><input class="form-control" type="text" placeholder="اسم الطالب" aria-label="default input example">
+                                </th>
+                                <td><input class="form-control" type="text" placeholder=" الموضوع " aria-label="default input example">
+                                </td>
+                                <td><input class="form-control" type="text" placeholder=" الإجراءات " aria-label="default input example">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <button type="button" id="addInputBtn_activities" class="button-style">
+                            إضافة حقل إدخال
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="save-responsive d-flex justify-content-center">
@@ -96,3 +125,55 @@ check_activity();
     <script src="../../../js/bootstrap.bundle.min.js"></script>
     <script src="../../../js/all.min.js"></script>
 </body>
+
+<script>
+    // Get the table body and the add button
+    const tableBody = document.getElementById("tableBody");
+    const addButton = document.getElementById("addInputBtn_activities");
+
+    // Counter to track the number of rows
+    let rowCount = 1;
+
+    // Add click event listener to the add button
+    addButton.addEventListener("click", function() {
+        // Increment the row count
+        rowCount++;
+        // Create a new row
+        const newRow = document.createElement("tr");
+        newRow.id = "row-" + rowCount;
+
+        // Create the cells for the new row
+        const cell1 = document.createElement("th");
+        cell1.setAttribute("scope", "row");
+        const input1 = document.createElement("input");
+        input1.className = "form-control";
+        input1.type = "text";
+        input1.placeholder = " اسم الطالب ";
+        input1.setAttribute("aria-label", "default input example");
+        cell1.appendChild(input1);
+
+        const cell2 = document.createElement("td");
+        const input2 = document.createElement("input");
+        input2.className = "form-control";
+        input2.type = "text";
+        input2.placeholder = " الموضوع ";
+        input2.setAttribute("aria-label", "default input example");
+        cell2.appendChild(input2);
+
+        const cell3 = document.createElement("td");
+        const input3 = document.createElement("input");
+        input3.className = "form-control";
+        input3.type = "text";
+        input3.placeholder = " الإجراءات ";
+        input3.setAttribute("aria-label", "default input example");
+        cell3.appendChild(input3);
+
+        // Add the cells to the new row
+        newRow.appendChild(cell1);
+        newRow.appendChild(cell2);
+        newRow.appendChild(cell3);
+
+        // Add the new row to the table body
+        tableBody.appendChild(newRow);
+    });
+</script>
