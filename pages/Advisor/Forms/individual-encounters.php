@@ -26,12 +26,15 @@ check_activity();
 
 <body>
     <?php echo generateNavbar($links = array(
-        array("label" => "التقارير الطلابية", "url" => "#"),  
+        array("label" => "التقارير الطلابية", "url" => "#"),
         array("label" => "الرئيسية", "url" => "../home.php")
     ), "مرشد", $logo = "../../../assets/images/logo.png"); ?>
     <div class="landing">
         <div class="container shadow-lg p-3 mb-4 bg-body rounded" dir="rtl">
-            <h2> نموذج اللقاءات الفردية </h2>
+            <h2> نموذج اللقاءات الفردية (الطالب : <?php echo getFnameByUid(
+                                                        $conn,
+                                                        $_GET['student']
+                                                    ); ?>)</h2>
             <form id="myForm">
                 <input type="hidden" id="student" name="student" value="<?php echo $_GET['student'] ?>">
 
@@ -179,5 +182,66 @@ check_activity();
             });
         });
     </script>
-
+    <script>
+        $("#log-out").click(() => {
+            $.ajax({
+                url: "../../../php/forms/logout.php",
+                type: "POST",
+                success: function(data) {
+                    if (data === 'success') {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "تم تسجيل الخروج بنجاح",
+                            showConfirmButton: false,
+                            allowOutsideClick: false,
+                            timer: 1500,
+                        });
+                        setTimeout(function() {
+                            window.location.href = "../../../index.php";
+                        }, 1500);
+                    } else {
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: "حدث خطأ ما",
+                            showConfirmButton: false,
+                            allowOutsideClick: false,
+                            timer: 1500,
+                        });
+                    }
+                }
+            });
+        });
+        $("#log-out-res").click(() => {
+            $.ajax({
+                url: "../../../php/forms/logout.php",
+                type: "POST",
+                success: function(data) {
+                    if (data === 'success') {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "تم تسجيل الخروج بنجاح",
+                            showConfirmButton: false,
+                            allowOutsideClick: false,
+                            timer: 1500,
+                        });
+                        setTimeout(function() {
+                            window.location.href = "../../../index.php";
+                        }, 1500);
+                    } else {
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: "حدث خطأ ما",
+                            showConfirmButton: false,
+                            allowOutsideClick: false,
+                            timer: 1500,
+                        });
+                    }
+                }
+            });
+        });
+    </script>
 </body>
