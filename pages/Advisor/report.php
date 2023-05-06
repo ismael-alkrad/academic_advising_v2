@@ -36,9 +36,9 @@ check_activity();
         <div class="container">
             <div class="row shadow-lg p-3 mb-4 bg-body rounded">
                 <div class="col">
-                    <div>
+                    <h1>
                         التقارير
-                    </div>
+                    </h1>
                     <div class="accordion mt-2" id="accordionExample">
                         <div class="accordion-item">
                             <?php
@@ -73,22 +73,14 @@ check_activity();
                                                             <span class="icon-reduis"><img class="icon-1" src="../../assets/images/plan.png"></span>
                                                             <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> توصيات تسجيل مواد </button></div>
                                                         </a>
-                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
                                                     <div class="col">
                                                         <a href="Forms/individual-encounters.php?student=' . $s['u_id'] . '">
                                                             <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
                                                             <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> اللقاءات الفردية </button></div>
                                                         </a>
-                                                        </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
-                                                        <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> التعثر الدراسي </button></div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
-                                                        <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> استمارة الطلبة الموهوبين </button></div>
                                                     </div>
                                                     <div class="col">
                                                         <a href="Forms/student-status.php?student=' . $s['u_id'] . '">

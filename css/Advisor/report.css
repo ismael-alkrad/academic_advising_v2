@@ -76,6 +76,11 @@ body {
 
 /*Start Landing*/
 
+.landing .container h1 {
+  text-align: end;
+  color: var(--blue-color);
+}
+
 .landing .icon-reduis {
   display: inline-flex;
   justify-content: center;
