@@ -25,7 +25,7 @@ check_activity(); ?>
 
 <body>
     <?php echo generateNavbar($links = array(
-        array("label" => "التقارير الطلابية", "url" => "report.php"),
+        array("label" => "النماذج", "url" => "report.php"),
         array("label" => "الطلاب", "url" => "student.php"),
         array("label" => "الرئيسية", "url" => "#")
     ), "مرشد"); ?>
@@ -39,7 +39,7 @@ check_activity(); ?>
                         ملء استمارات الإرشاد الأكاديمي التي تحتوي على معلومات الطالب ، ونسخة من الخطة الدراسية ،
                         والجدول
                         الزمني للمواد المسجلة للفصل الدراسي الحالي.</p>
-                    <button>عرض النماذج</button>
+                    <a href="report.php"><button>عرض النماذج</button></a>
                 </div>
                 <div class="col-4 pg-grid-4 text-start position-absolute top-50 translate-middle-x d-none d-lg-block">
                     <h1 class="p-3">مقدمة في الإرشاد الأكاديمي</h1>
@@ -56,7 +56,7 @@ check_activity(); ?>
                 <div class="col-4  pg-grid-2 shadow-lg mb-5 bg-body rounded"><span class="icon-reduis"><img class="icon-1" src="../../assets/images/report.png"></span>
                     <h2 class="p-3">التقارير</h2>
                     <p class="mb-5">عرض التقرير التفصيلي عن عملية الإرشاد الأكاديمي خلال الفصل الدراسي.</p>
-                    <button>عرض التقارير</button>
+                    <a href="annual-report.php"><button>عرض التقارير</button></a>
                 </div>
                 <div class="col-4 pg-grid-3 shadow-lg mb-5 bg-body rounded"><span class="icon-reduis"><img class="icon-1" src="../../assets/images/Schedule.png"></span>
                     <h2 class="p-3">جدول</h2>

@@ -28,7 +28,7 @@ check_activity();
     <?php
     $student = getStudent($conn);
     echo generateNavbar($links = array(
-        array("label" => "التقارير الطلابية", "url" => "#"),
+        array("label" => "النماذج", "url" => "#"),
         array("label" => "الطلاب", "url" => "student.php"),
         array("label" => "الرئيسية", "url" => "home.php")
     ), "مرشد"); ?>
@@ -87,13 +87,8 @@ check_activity();
                                                             <span class="icon-reduis"><img class="icon-1" src="../../assets/images/student-status.png"></span>
                                                             <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> تحويل حالة الطالب </button></div>
                                                         </a>
-                                                        </div>
-                                                    <div class="col">
-                                                        <a href="Forms/annual-report.php">
-                                                            <span class="icon-reduis"><img class="icon-1" src="../../assets/images/annual-report.png"></span>
-                                                            <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> التقرير السنوي </button></div>
-                                                        </a>
                                                     </div>
+                                                    <div class="col"></div>
                                                 </div>
                                             </div>
                                         </div>

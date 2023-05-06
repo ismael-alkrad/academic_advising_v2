@@ -51,7 +51,7 @@ check_activity();
                     </div>
                     <div class="col">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" id="flexRadioDefault2" checked>
+                            <input class="form-check-input" type="radio" name="type" id="flexRadioDefault2">
                             <label class="form-check-label" for="flexRadioDefault2">
                                 أكاديمية
                             </label>
@@ -59,7 +59,7 @@ check_activity();
                     </div>
                     <div class="col">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" id="flexRadioDefault3" checked>
+                            <input class="form-check-input" type="radio" name="type" id="flexRadioDefault3">
                             <label class="form-check-label" for="flexRadioDefault3">
                                 سلوكية
                             </label>
@@ -67,7 +67,7 @@ check_activity();
                     </div>
                     <div class="col">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" id="flexRadioDefault4" checked>
+                            <input class="form-check-input" type="radio" name="type" id="flexRadioDefault4">
                             <label class="form-check-label" for="flexRadioDefault4">
                                 اجتماعية
                             </label>
