@@ -660,3 +660,19 @@ function addCounselingRow(
         return false;
     }
 }
+function insertStudentState($pdo, $problem_type, $subject, $guidance_procedures, $notes, $u_id, $a_username)
+{
+    $stmt = $pdo->prepare("INSERT INTO student_status (problem_type, subject, guidance_procedures, notes, u_id, a_username) VALUES (:problem_type, :subject, :guidance_procedures, :notes, :u_id, :a_username)");
+    $stmt->bindParam(':problem_type', $problem_type);
+    $stmt->bindParam(':subject', $subject);
+    $stmt->bindParam(':guidance_procedures', $guidance_procedures);
+    $stmt->bindParam(':notes', $notes);
+    $stmt->bindParam(':u_id', $u_id);
+    $stmt->bindParam(':a_username', $a_username);
+
+    if ($stmt->execute()) {
+        return true;
+    } else {
+        return false;
+    }
+}

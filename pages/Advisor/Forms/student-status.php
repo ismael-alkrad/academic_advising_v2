@@ -1,7 +1,7 @@
 <?php
 include_once '../../../php/check.php';
 include '../../../php/navbar.php';
-check();
+check(text: "Location: ../../../index.php");
 check_activity();
 ?>
 
@@ -12,7 +12,7 @@ check_activity();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Individual Encounters </title>
+    <title>Student Status</title>
     <link rel="shortcut icon" href="../../../assets/images/logo.png">
     <link rel="stylesheet" href="../../../css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="../../../css/all.min.css">
@@ -26,20 +26,21 @@ check_activity();
 
 <body>
     <?php echo generateNavbar($links = array(
-        array("label" => "التقارير", "url" => "#"),
-        array("label" => "الرئيسية", "url" => "home.php")
-    ), "مرشد"); ?>
+        array("label" => "التقارير الطلابية", "url" => "#"),
+        array("label" => "الرئيسية", "url" => "../home.php")
+    ), "مرشد", $logo = "../../../assets/images/logo.png"); ?>
     <div class="landing">
         <div class="container shadow-lg p-3 mb-4 bg-body rounded" dir="rtl">
             <h2> نموذج تحويل حالة الطالب </h2>
             <form>
+                <input type="hidden" id="student" name="student" value="<?php echo $_GET['student'] ?>">
                 <div class="row">
                     <div class="col">
                         <label> نوع المشكلة : </label>
                     </div>
                     <div class="col">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <input class="form-check-input" type="radio" name="type" id="flexRadioDefault1">
                             <label class="form-check-label" for="flexRadioDefault1">
                                 نفسية
                             </label>
@@ -47,7 +48,7 @@ check_activity();
                     </div>
                     <div class="col">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                            <input class="form-check-input" type="radio" name="type" id="flexRadioDefault2" checked>
                             <label class="form-check-label" for="flexRadioDefault2">
                                 أكاديمية
                             </label>
@@ -55,7 +56,7 @@ check_activity();
                     </div>
                     <div class="col">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked>
+                            <input class="form-check-input" type="radio" name="type" id="flexRadioDefault3" checked>
                             <label class="form-check-label" for="flexRadioDefault3">
                                 سلوكية
                             </label>
@@ -63,7 +64,7 @@ check_activity();
                     </div>
                     <div class="col">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
+                            <input class="form-check-input" type="radio" name="type" id="flexRadioDefault4" checked>
                             <label class="form-check-label" for="flexRadioDefault4">
                                 اجتماعية
                             </label>
@@ -74,14 +75,14 @@ check_activity();
                 <div class="row mt-3">
                     <label> الموضوع : </label>
                     <div class="col mt-2">
-                        <input class="form-control" type="text" placeholder="اكتب هنا الموضوع المراد التحدث عنه بإيجاز" aria-label="default input example" maxlength="500">
+                        <input class="form-control" type="text" name="subject" placeholder="اكتب هنا الموضوع المراد التحدث عنه بإيجاز" aria-label="default input example" maxlength="500">
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <label> الإجراءات الإرشادية التي اتخذتها الكلية : </label>
                     <div class="col mt-2 form-floating">
-                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" maxlength="2000"></textarea>
+                        <textarea class="form-control" name="actions" placeholder="Leave a comment here" id="floatingTextarea" maxlength="2000"></textarea>
                         <label class="ms-3" for="floatingTextarea">الإجراءات</label>
                     </div>
                 </div>
@@ -89,13 +90,13 @@ check_activity();
                 <div class="row mt-3">
                     <label> ملاحظات : </label>
                     <div class="col mt-2 form-floating">
-                        <textarea class="form-control" placeholder="اكتب هنا الملاحظات" id="floatingTextarea" maxlength="2000"></textarea>
+                        <textarea class="form-control" name="notes" placeholder="اكتب هنا الملاحظات" id="floatingTextarea" maxlength="2000"></textarea>
                         <label class="ms-3" for="floatingTextarea"> اكتب هنا الملاحظات </label>
                     </div>
                 </div>
             </form>
             <div class="save-responsive d-flex justify-content-center">
-                <button id="save-pra" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff;  margin-top: 20px;">
+                <button id="save" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff;  margin-top: 20px;">
                     حفظ
                     <i class="fa-solid fa-floppy-disk ps-1" style="color: #ffffff;"></i>
                 </button>
@@ -105,4 +106,59 @@ check_activity();
 
     <script src="../../../js/bootstrap.bundle.min.js"></script>
     <script src="../../../js/all.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#save").click(function() {
+                // Get the form data
+                var student = $("#student").val();
+                var type = $("input[name='type']:checked").val();
+                var subject = $("input[name='subject']").val();
+                var actions = $("textarea[name='actions']").val();
+                var notes = $("textarea[name='notes']").val();
+
+                // Send the form data using AJAX
+                $.ajax({
+                    type: "POST",
+                    url: "../../../php/forms/insert_student_state.php",
+                    data: {
+                        student: student,
+                        type: type,
+                        subject: subject,
+                        actions: actions,
+                        notes: notes
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        if (response === 'success') {
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "تم حفظ اللقاء بنجاح",
+                                showConfirmButton: false,
+                                allowOutsideClick: false,
+                                timer: 1500,
+                            });
+                            setTimeout(function() {
+                                window.location.href = "../report.php";
+
+
+                            }, 500);
+
+
+
+                        } else {
+                            Swal.fire({
+                                position: "center",
+                                icon: "error",
+                                title: "حدث خطأ ما",
+                                showConfirmButton: false,
+                                allowOutsideClick: false,
+                                timer: 1500,
+                            });
+                        }
+                    },
+                });
+            });
+        });
+    </script>
 </body>

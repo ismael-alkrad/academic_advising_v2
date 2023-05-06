@@ -28,7 +28,7 @@ check_activity();
     <?php
     $student = getStudent($conn);
     echo generateNavbar($links = array(
-        array("label" => "التقارير", "url" => "#"),
+        array("label" => "التقارير الطلابية", "url" => "#"),
         array("label" => "الطلاب", "url" => "student.php"),
         array("label" => "الرئيسية", "url" => "home.php")
     ), "مرشد"); ?>

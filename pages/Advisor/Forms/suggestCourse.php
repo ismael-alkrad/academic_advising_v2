@@ -28,7 +28,7 @@ $colleges = getColleges($conn);
 
 <body>
     <?php echo generateNavbar($links = array(
-
+        array("label" => "التقارير الطلابية", "url" => "#"),
         array("label" => "الرئيسية", "url" => "../home.php")
     ), "مدير الموقع", $logo = "../../../assets/images/logo.png"); ?>
     <div class="landing">
