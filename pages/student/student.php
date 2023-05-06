@@ -144,7 +144,7 @@ check_activity(); ?>
                             </div>
                             <div class="col">
                                 <button class="button-style">
-                                    <a href="suggeting-ccourse.php">
+                                    <a href="Forms/suggesting-course.php">
                                         <div class="p-3 rounded bg-secondary"><i class="fa-solid fa-file-signature" style="color: #ffffff;"></i>
                                             <div class="text-white">
                                                 المواد المقترحة
