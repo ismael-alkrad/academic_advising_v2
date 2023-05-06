@@ -75,6 +75,13 @@ button:hover {
 /*End Navbar*/
 
 /*Start Landing*/
+.landing td {
+    text-align: center;
+}
+
+.landing td input {
+    cursor: pointer;
+}
 
 .landing .container .form-select:focus,
 .landing .container .form-select:active,
