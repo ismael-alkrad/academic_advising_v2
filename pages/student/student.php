@@ -51,7 +51,7 @@ check_activity(); ?>
                                         <div class="modal-body">
                                             <div class="upload-container my-3">
                                                 <label for="file-upload">إختر صورة</label>
-                                                <input type="file" name="photo" id="file-upload" accept="image/*">
+                                                <input type="file" name="photo" id="file-upload" accept="image/png, image/jpeg">
                                             </div>
                                             <div id="photo-cropper"></div>
                                             <hr>
@@ -148,6 +148,28 @@ check_activity(); ?>
                                         <div class="p-3 rounded bg-secondary"><i class="fa-solid fa-file-signature" style="color: #ffffff;"></i>
                                             <div class="text-white">
                                                 المواد المقترحة
+                                            </div>
+                                        </div>
+                                    </a>
+                                </button>
+                            </div>
+                            <div class="col">
+                                <button class="button-style">
+                                    <a href="Forms/Gifted-students.php">
+                                        <div class="p-3 rounded bg-secondary"><i class="fa-solid fa-file-signature" style="color: #ffffff;"></i>
+                                            <div class="text-white">
+                                                نموذج استمارة الطلبةالموهوبين
+                                            </div>
+                                        </div>
+                                    </a>
+                                </button>
+                            </div>
+                            <div class="col">
+                                <button class="button-style">
+                                    <a href="#">
+                                        <div class="p-3 rounded bg-secondary"><i class="fa-solid fa-file-signature" style="color: #ffffff;"></i>
+                                            <div class="text-white">
+                                                نموذج أسباب التعثر الدراسي
                                             </div>
                                         </div>
                                     </a>

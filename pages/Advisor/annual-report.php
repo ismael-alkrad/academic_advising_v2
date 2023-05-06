@@ -1,6 +1,6 @@
 <?php
-include_once '../../../php/check.php';
-include '../../../php/navbar.php';
+include_once '../../php/check.php';
+include '../../php/navbar.php';
 check();
 check_activity();
 ?>
@@ -13,10 +13,10 @@ check_activity();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Individual Encounters </title>
-    <link rel="shortcut icon" href="../../../assets/images/logo.png">
-    <link rel="stylesheet" href="../../../css/bootstrap.rtl.min.css">
-    <link rel="stylesheet" href="../../../css/all.min.css">
-    <link rel="stylesheet" href="../../../css/Advisor/Forms/annual-report.css?v=<?php echo time(); ?>">
+    <link rel="shortcut icon" href="../../assets/images/logo.png">
+    <link rel="stylesheet" href="../../css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="../../css/all.min.css">
+    <link rel="stylesheet" href="../../css/Advisor/annual-report.css?v=<?php echo time(); ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@ check_activity();
     <?php echo generateNavbar($links = array(
         array("label" => "التقارير", "url" => "#"),
         array("label" => "الرئيسية", "url" => "home.php")
-    ), "مرشد"); ?>
+    ), "مرشد", $logo = "../../assets/images/logo.png"); ?>
     <div class="landing">
         <div class="container shadow-lg p-3 mb-4 bg-body rounded" dir="rtl">
             <h2 class="text-center"> نموذج التقرير السنوي </h2>
@@ -210,8 +210,8 @@ check_activity();
         </div>
     </div>
 
-    <script src="../../../js/bootstrap.bundle.min.js"></script>
-    <script src="../../../js/all.min.js"></script>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/all.min.js"></script>
 </body>
 
 <script>

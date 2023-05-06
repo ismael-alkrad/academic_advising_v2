@@ -49,7 +49,7 @@ check_activity();
                     </div>
                     <div class="col">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" value="أكاديمية" id="flexRadioDefault2" checked>
+                            <input class="form-check-input" type="radio" name="type" value="أكاديمية" id="flexRadioDefault2">
                             <label class="form-check-label" for="flexRadioDefault2">
                                 أكاديمية
                             </label>
@@ -57,7 +57,7 @@ check_activity();
                     </div>
                     <div class="col">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" value="سلوكية" id="flexRadioDefault3" checked>
+                            <input class="form-check-input" type="radio" name="type" value="سلوكية" id="flexRadioDefault3">
                             <label class="form-check-label" for="flexRadioDefault3">
                                 سلوكية
                             </label>
@@ -65,7 +65,7 @@ check_activity();
                     </div>
                     <div class="col">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" value="اجتماعية" id="flexRadioDefault4" checked>
+                            <input class="form-check-input" type="radio" name="type" value="اجتماعية" id="flexRadioDefault4">
                             <label class="form-check-label" for="flexRadioDefault4">
                                 اجتماعية
                             </label>
@@ -95,13 +95,13 @@ check_activity();
                     </div>
                     <div class="d-flex">
                         <div class="form-check me-3">
-                            <input class="form-check-input" type="radio" name="referral" value="نعم" id="flexRadioDefault5" checked>
+                            <input class="form-check-input" type="radio" name="referral" value="نعم" id="flexRadioDefault5">
                             <label class="form-check-label" for="flexRadioDefault5">
                                 نعم
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="referral" value="لا" مid="flexRadioDefault6" checked>
+                            <input class="form-check-input" type="radio" name="referral" value="لا" مid="flexRadioDefault6">
                             <label class="form-check-label" for="flexRadioDefault6">
                                 لا
                             </label>

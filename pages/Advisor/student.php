@@ -27,7 +27,7 @@ check_activity();
 <body>
     <?php echo generateNavbar($links = array(
 
-        array("label" => "التقارير", "url" => "report.php"),
+        array("label" => "النماذج", "url" => "report.php"),
         array("label" => "الطلاب", "url" => "#"),
         array("label" => "الرئيسية", "url" => "home.php")
     ), "مرشد"); ?>
