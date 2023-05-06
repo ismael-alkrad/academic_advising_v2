@@ -113,6 +113,80 @@ check_activity();
                     </div>
                 </div>
             </div>
+            <table class="table table-bordered mt-3">
+                <tbody>
+                    <tr>
+                        <th class="text-center pt-5" scope="row" rowspan="8">سياسة الإرشاد الأكاديمي</th>
+                        <th scope="row"> رقم السياسة : </th>
+                        <td>AP-16</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">تاريخ الإصدار :</th>
+                        <td>9/10/2019</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> تاريخ المراجعة والتعديل : </th>
+                        <td>Larry the Bird</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> رقم المراجعة والتعديل : </th>
+                        <td>Larry the Bird</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> عدد الصفحات : </th>
+                        <td> 1 </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> تاريخ اعتماد السياسة : </th>
+                        <td>Larry the Bird</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">قرار مجلس النوعية وضبط الجودة رقم :</th>
+                        <td>2/2 - 2020/2019</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> قرار مجلس العمداء رقم : </th>
+                        <td>Larry the Bird</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="text-center"> السياسة </th>
+                        <th colspan="2"> متابعة الشؤون الأكاديمية للطلبة، وتقديم خدمة الإرشاد الأكاديمي لهم. </th>
+                    </tr>
+                    <tr>
+                        <th scope="row" rowspan="6" class="text-center"> الأهداف </th>
+                        <th colspan="2"> 1. تقديم خدمة الإرشاد الأكاديمي للطلبة أثناء عملية التسجيل. </th>
+                    </tr>
+                    <tr>
+                        <th colspan="2" scope="row">2. إرشاد الطلبة فيما يتعلق بتسجيل المواد ضمن خططهم الدراسية </th>
+                    </tr>
+                    <tr>
+                        <th colspan="2" scope="row">3. متابعة شؤون الطلبة الأكاديمية أثناء الدراسة. </th>
+                    </tr>
+                    <tr>
+                        <th colspan="2" scope="row">4. متابعة شؤون الطلبة المتعثرين </th>
+                    </tr>
+                    <tr>
+                        <th colspan="2" scope="row">5. تقديم الاقتراحات والحلول للطلبة </th>
+                    </tr>
+                    <tr>
+                        <th colspan="2" scope="row">6. توعية الطلبة بالالتزام بالخطط الدراسية. </th>
+                    </tr>
+                    <tr>
+                        <th rowspan="3" scope="row" class="text-center"> مسؤولية التطبيق </th>
+                        <th colspan="2">- عمداء الكليات.</th>
+                    </tr>
+                    <tr>
+                        <th colspan="2">- رؤساء الأقسام الأكاديمية. </th>
+                    </tr>
+                    <tr>
+                        <th colspan="2">- المرشدون الأكاديميون في الكليات</th>
+                    </tr>
+                    <tr>
+                        <th scope="row" rowspa></th>
+                        <th colspan="2">- المرشدون الأكاديميون في الكليات</th>
+                    </tr>
+                </tbody>
+            </table>
             <div class="save-responsive d-flex justify-content-center">
                 <button id="save-pra" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff;  margin-top: 20px;">
                     حفظ
