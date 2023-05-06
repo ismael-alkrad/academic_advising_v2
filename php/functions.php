@@ -611,7 +611,7 @@ function getAllCourses($conn, $college, $major = '')
 function addSuggestedCourse($conn, $name, $number, $section, $time, $type, $suggest_for)
 {
     // Prepare the SQL statement
-    $stmt = $conn->prepare("INSERT INTO suggestCourses (name, number, section, time, type, suggest_for) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO suggestCourses (name, number, section, time, type, suggest_for,a_username) VALUES (?, ?, ?, ?, ?, ?,?)");
 
     // Bind the values to the parameters in the SQL statement
     $stmt->bindParam(1, $name);
@@ -620,6 +620,7 @@ function addSuggestedCourse($conn, $name, $number, $section, $time, $type, $sugg
     $stmt->bindParam(4, $time);
     $stmt->bindParam(5, $type);
     $stmt->bindParam(6, $suggest_for);
+    $stmt->bindParam(7, $_SESSION['username']);
 
     // Execute the SQL statement
     if ($stmt->execute()) {
@@ -675,4 +676,27 @@ function insertStudentState($pdo, $problem_type, $subject, $guidance_procedures,
     } else {
         return false;
     }
+}
+
+
+function getSuggestedCourses($pdo, $suggestFor,)
+{
+    // Prepare the SQL query
+    $sql = "SELECT `name`, `number`, `section`, `time`, `type`, `suggest_for`, `a_username` FROM `suggestcourses` WHERE `suggest_for` = ?";
+
+    // Prepare the statement
+    $stmt = $pdo->prepare($sql);
+
+    // Bind the parameters to the statement
+    $stmt->bindParam(1, $suggestFor, PDO::PARAM_STR);
+
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Fetch the result set as an array of associative arrays
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Return the data array
+    return $data;
 }
