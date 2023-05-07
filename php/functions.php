@@ -700,3 +700,32 @@ function getSuggestedCourses($pdo, $suggestFor,)
     // Return the data array
     return $data;
 }
+function addAcademicFailure($conn, $difficulty, $attendance, $teaching_methods, $exam_anxiety, $family_problems, $university_environment, $high_course_load, $disinterest_in_major, $working_while_studying, $financial_issues, $long_commute, $choosing_bad_friends, $lack_of_time_for_studying, $other_reasons, $proposed_solutions, $u_id, $a_username)
+{
+    $stmt = $conn->prepare("INSERT INTO academic_failuer (difficulty, attendance, teaching_methods, exam_anxiety, family_problems, university_environment, high_course_load, disinterest_in_major, working_while_studying, financial_issues, long_commute, choosing_bad_friends, lack_of_time_for_studying, other_reasons, proposed_solutions, u_id, a_username) VALUES (:difficulty, :attendance, :teaching_methods, :exam_anxiety, :family_problems, :university_environment, :high_course_load, :disinterest_in_major, :working_while_studying, :financial_issues, :long_commute, :choosing_bad_friends, :lack_of_time_for_studying, :other_reasons, :proposed_solutions, :u_id, :a_username)");
+    $stmt->bindParam(':difficulty', $difficulty);
+    $stmt->bindParam(':attendance', $attendance);
+    $stmt->bindParam(':teaching_methods', $teaching_methods);
+    $stmt->bindParam(':exam_anxiety', $exam_anxiety);
+    $stmt->bindParam(':family_problems', $family_problems);
+    $stmt->bindParam(':university_environment', $university_environment);
+    $stmt->bindParam(':high_course_load', $high_course_load);
+    $stmt->bindParam(':disinterest_in_major', $disinterest_in_major);
+    $stmt->bindParam(':working_while_studying', $working_while_studying);
+    $stmt->bindParam(':financial_issues', $financial_issues);
+    $stmt->bindParam(':long_commute', $long_commute);
+    $stmt->bindParam(':choosing_bad_friends', $choosing_bad_friends);
+    $stmt->bindParam(':lack_of_time_for_studying', $lack_of_time_for_studying);
+    $stmt->bindParam(':other_reasons', $other_reasons);
+    $stmt->bindParam(':proposed_solutions', $proposed_solutions);
+    $stmt->bindParam(':u_id', $u_id);
+    $stmt->bindParam(':a_username', $a_username);
+    $stmt->execute();
+    if (
+        $stmt->execute()
+    ) {
+        return true;
+    } else {
+        return false;
+    }
+}

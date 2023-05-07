@@ -1,9 +1,9 @@
 <?php
 include_once '../../../php/check.php';
 include '../../../php/navbar.php';
-
-check();
 check_activity();
+
+check(text: "Location: ../../../index.php");
 
 // Get the data and the a_username value
 $result = getSuggestedCourses($conn, $_SESSION['username']);
@@ -35,8 +35,8 @@ $data = $result;
 <body>
     <?php echo generateNavbar($links = array(
 
-        array("label" => "الرئيسية", "url" => "#")
-    ), "طالب"); ?>
+        array("label" => "الرئيسية", "url" => "../")
+    ), "طالب", $logo = "../../../assets/images/logo.png"); ?>
     <div class="landing" dir="rtl">
         <div class="container shadow-lg p-3 mb-5 bg-body rounded text-center">
             <h2 class="text-center text-primary my-4">جدول المقترحات</h2>

@@ -1,8 +1,9 @@
 <?php
 include_once '../../php/check.php';
 include '../../php/navbar.php';
+check_activity();
 check();
-check_activity(); ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +29,10 @@ check_activity(); ?>
         array("label" => "النماذج", "url" => "report.php"),
         array("label" => "الطلاب", "url" => "student.php"),
         array("label" => "الرئيسية", "url" => "#")
-    ), "مرشد"); ?>
+    ), getFnameByUid(
+        $conn,
+      $_SESSION['username']
+    )); ?>
     <div class="landing">
         <div class="container text-center">
             <div class="row">

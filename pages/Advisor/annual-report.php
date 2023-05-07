@@ -1,8 +1,8 @@
 <?php
 include_once '../../php/check.php';
 include '../../php/navbar.php';
-check();
 check_activity();
+check();
 ?>
 
 <!DOCTYPE html>
@@ -12,19 +12,11 @@ check_activity();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD:pages/Advisor/Forms/annual-report.php
-    <title>Annual Report</title>
-    <link rel="shortcut icon" href="../../../assets/images/logo.png">
-    <link rel="stylesheet" href="../../../css/bootstrap.rtl.min.css">
-    <link rel="stylesheet" href="../../../css/all.min.css">
-    <link rel="stylesheet" href="../../../css/Advisor/Forms/annual-report.css?v=<?php echo time(); ?>">
-=======
     <title>Individual Encounters </title>
     <link rel="shortcut icon" href="../../assets/images/logo.png">
     <link rel="stylesheet" href="../../css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="../../css/all.min.css">
     <link rel="stylesheet" href="../../css/Advisor/annual-report.css?v=<?php echo time(); ?>">
->>>>>>> 3aec1588e31ae8ebad35ecc00d5bca67b71e1df4:pages/Advisor/annual-report.php
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -36,57 +28,62 @@ check_activity();
     <?php echo generateNavbar($links = array(
         array("label" => "التقارير", "url" => "#"),
         array("label" => "الرئيسية", "url" => "home.php")
-    ), "مرشد", $logo = "../../assets/images/logo.png"); ?>
+    ), getFnameByUid(
+        $conn,
+        $_SESSION['username']
+    ), $logo = "../../assets/images/logo.png"); ?>
     <div class="landing">
         <div class="container shadow-lg p-3 mb-4 bg-body rounded" dir="rtl">
             <h2 class="text-center"> نموذج التقرير السنوي </h2>
             <form>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">عدد طلبة الإرشاد الأكاديمي</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
+                    <input type="number" class="form-control" name="academic_advising_students" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">عدد الطلبة المراجعين من خارج طلبة الإرشاد الأكاديمي</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="3">
+                    <input type="text" class="form-control" name="external_students" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="3">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">عدد الطلبة المراجعين</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="3">
+                    <input type="text" class="form-control" name="advised_students" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="3">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default"> المجموع الكلي للطلبة </span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="3">
+                    <input type="text" class="form-control" name="total_students" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="3">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default"> نسبة المراجعين من المجموع الكلي للطلبة </span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
+                    <input type="text" class="form-control" name="advised_students_ratio" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default"> عدد اللقاءات الشهرية </span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
+                    <input type="text" class="form-control" name="monthly_meetings" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">عدد اللقاءات الفردية</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
+                    <input type="text" class="form-control" name="individual_meetings" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">عدد المتعثرين دراسيا</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
+                    <input type="text" class="form-control" name="struggling_students" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">عدد المتعثرين دراسيا المراجعين</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
+                    <input type="text" class="form-control" name="struggling_advised_students" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
+
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default"> نسبة المتعثرين دراسيا المراجعين </span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
+                    <input type="text" class="form-control" name="struggling_advised_ratio" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default"> عدد الجالات المحولة </span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
+                    <input type="text" class="form-control" name="transferred_groups" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
                 </div>
+                <button type="submit" class="btn btn-primary">حفظ البيانات</button>
             </form>
-            <div class="row">
+            <div class=" row">
                 <label> إجراءات الخطة العلاجية للطلبة المتعثرين : </label>
                 <div class="col mt-2 form-floating">
                     <textarea class="form-control" placeholder="اكتب هنا الاجراءات" id="floatingTextarea" maxlength="2000"></textarea>
@@ -273,3 +270,118 @@ check_activity();
         tableBody.appendChild(newRow);
     });
 </script>
+<script>
+    $(document).ready(function() {
+        $('form').submit(function(event) {
+            // Prevent the form from submitting normally
+            event.preventDefault();
+
+            // Get the form data
+            var formData = $(this).serialize();
+
+            // Send the data to the server using AJAX
+            $.ajax({
+                type: 'POST',
+                url: '../../php/forms/inserts/inserAnnualReport.php', // Replace with the URL that processes the form data
+                data: formData,
+                success: function(response) {
+                    // Handle the successful response from the server
+                    if (response === "success") {
+                        Swal.fire({
+                            title: 'تمت العملية',
+                            text: "تم الحفظ بنجاح ",
+                            icon: 'success',
+                            allowOutsideClick: false,
+                            confirmButtonText: 'OK'
+                        });
+                        setTimeout(function() {
+                            window.location.href = "../";
+
+
+                        }, 500);
+
+                    } else {
+
+                        Swal.fire({
+                            title: 'فشلت العملية',
+                            text: "حدث خطأ أثناء الحفظ ",
+
+                            icon: 'error',
+                            allowOutsideClick: false,
+                            confirmButtonText: 'OK'
+                        });
+
+                    }
+
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    // Handle any errors that occur during the AJAX request
+                    alert('Error submitting form data: ' + textStatus + ' - ' + errorThrown);
+                }
+            });
+        });
+    });
+
+    $("#log-out").click(() => {
+        $.ajax({
+            url: "../../php/forms/logout.php",
+            type: "POST",
+            success: function(data) {
+                if (data === 'success') {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "تم تسجيل الخروج بنجاح",
+                        showConfirmButton: false,
+                        allowOutsideClick: false,
+                        timer: 1500,
+                    });
+                    setTimeout(function() {
+                        window.location.href = "../../index.php";
+                    }, 1500);
+                } else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "حدث خطأ ما",
+                        showConfirmButton: false,
+                        allowOutsideClick: false,
+                        timer: 1500,
+                    });
+                }
+            }
+        });
+    });
+    $("#log-out-res").click(() => {
+        $.ajax({
+            url: "../../php/forms/logout.php",
+            type: "POST",
+            success: function(data) {
+                if (data === 'success') {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "تم تسجيل الخروج بنجاح",
+                        showConfirmButton: false,
+                        allowOutsideClick: false,
+                        timer: 1500,
+                    });
+                    setTimeout(function() {
+                        window.location.href = "../../index.php";
+                    }, 1500);
+                } else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "حدث خطأ ما",
+                        showConfirmButton: false,
+                        allowOutsideClick: false,
+                        timer: 1500,
+                    });
+                }
+            }
+        });
+    });
+</script>
+
+</html>

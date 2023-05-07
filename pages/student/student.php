@@ -1,9 +1,9 @@
 <?php
 include_once '../../php/check.php';
 include '../../php/navbar.php';
-
+check_activity();
 check();
-check_activity(); ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 

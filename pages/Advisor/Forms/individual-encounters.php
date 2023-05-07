@@ -1,8 +1,8 @@
 <?php
 include_once '../../../php/check.php';
 include '../../../php/navbar.php';
-check(text: "Location: ../../../index.php");
 check_activity();
+check(text: "Location: ../../../index.php");
 ?>
 
 <!DOCTYPE html>
@@ -26,9 +26,12 @@ check_activity();
 
 <body>
     <?php echo generateNavbar($links = array(
-        array("label" => "التقارير الطلابية", "url" => "#"),
+        array("label" => "التقارير الطلابية", "url" => "../report.php"),
         array("label" => "الرئيسية", "url" => "../home.php")
-    ), "مرشد", $logo = "../../../assets/images/logo.png"); ?>
+    ), getFnameByUid(
+        $conn,
+        $_SESSION['username']
+    ), $logo = "../../../assets/images/logo.png"); ?>
     <div class="landing">
         <div class="container shadow-lg p-3 mb-4 bg-body rounded" dir="rtl">
             <h2> نموذج اللقاءات الفردية (الطالب : <?php echo getFnameByUid(

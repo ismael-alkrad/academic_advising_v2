@@ -1,8 +1,8 @@
 <?php
 include_once '../../../php/check.php';
 include '../../../php/navbar.php';
-check(text: "Location: ../../../index.php");
 check_activity();
+check(text: "Location: ../../../index.php");
 ?>
 
 <!DOCTYPE html>
@@ -24,11 +24,15 @@ check_activity();
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
+
 <body>
     <?php echo generateNavbar($links = array(
-        array("label" => "التقارير الطلابية", "url" => "#"),  
-              array("label" => "الرئيسية", "url" => "../home.php")
-    ), "مرشد", $logo = "../../../assets/images/logo.png"); ?>
+        array("label" => "التقارير الطلابية", "url" => "../report.php"),
+        array("label" => "الرئيسية", "url" => "../home.php")
+    ), getFnameByUid(
+        $conn,
+        $_SESSION['username']
+    ), $logo = "../../../assets/images/logo.png"); ?>
     <div class="landing">
         <div class="container text-center">
             <div class="row shadow-lg p-3 mb-4 bg-body rounded">

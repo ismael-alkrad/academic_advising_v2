@@ -1,9 +1,10 @@
 <?php
 include_once '../../php/check.php';
 include '../../php/navbar.php';
+check_activity();
 check();
 
-check_activity();
+
 $id = $_SESSION['username'];
 $data = getStudentById($conn, $id);
 $colleges = getColleges($conn);
