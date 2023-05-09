@@ -7,7 +7,7 @@ function generateNavbar($link, $text, $logo = "../../assets/images/logo.png")
   <div class="container position-relative">';
 
   if (isset($_SESSION['username'])) {
-    $navbar .= '<button id="log-out" class="navbar fs-6 d-flex justify-content-center text-center d-none d-lg-block d-xl-block d-xxl-block" style="color: #ffffff;">تسجيل خروج <i class="fa-solid fa-arrow-right-from-bracket px-1" style="color: #ffffff;"></i></button>';
+    $navbar .= '<button id="log-out" class="navbar style fs-6 d-flex justify-content-center text-center d-none d-lg-block d-xl-block d-xxl-block" style="color: #ffffff;">تسجيل خروج <i class="fa-solid fa-arrow-right-from-bracket px-1" style="color: #ffffff;"></i></button>';
   }
 
   $navbar .= '<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +44,7 @@ function generateNavbar($link, $text, $logo = "../../assets/images/logo.png")
 
   if (isset($_SESSION['username'])) {
     $navbar .= '<li class="nav-item" id="log-out-res">
-<a class="nav-link" ><span> تسجيل الخروج </span></a>
+<a class="nav-link" style="cursor: pointer;" ><span> تسجيل الخروج </span></a>
 </li>';
   }
 
@@ -53,7 +53,7 @@ function generateNavbar($link, $text, $logo = "../../assets/images/logo.png")
 </div>
 </div>
   </div>
-  <img class="position-absolute top-0 end-0 d-sm-block d-md-block d-lg-none mx-4" height="45px" src="' . $logo . '">
+  <img class="position-absolute top-0 end-0 d-sm-block d-md-block d-lg-none mx-4" height="43px" src="' . $logo . '">
 </div>
 </nav>';
   return $navbar;

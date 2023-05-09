@@ -38,7 +38,7 @@ check();
         <div class="container text-center">
             <div class="row row-size shadow-lg p-3 mb-4 bg-body rounded">
 
-                <div class="col responsive-sm border-start mt-5 pt-2">
+                <div class="col responsive-sm border-start info mt-5 pt-2">
 
                 </div>
                 <div class="col">
@@ -62,7 +62,7 @@ check();
                                 <div class="container text-center">
                                 <div class="row">
                                 <div class="col">
-                                    <span class="icon-reduis"><img class="icon-1" src="../../assets/images/chat.png"></span>
+                                <span class="icon-reduis"><button data-bs-toggle="modal" data-bs-target="#exampleModal' . $s['u_id'] . '"><img class="icon-1" src="../../assets/images/chat.png"></button></span>
                                     <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button data-bs-toggle="modal" data-bs-target="#exampleModal' . $s['u_id'] . '"> ارسال رسالة </button></div>
                                 </div>
                                 <div class="col">
@@ -70,7 +70,7 @@ check();
                                 <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button>تفريغ خطة الطالب</button></div>
                                 </div>
                                 <div class="col">
-                                <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
+                                <span class="icon-reduis"><a href="forms/suggestCourse.php?student=' . $s['u_id'] . '"><img class="icon-1" src="../../assets/images/help.png"></a></span>
                                 <a href="forms/suggestCourse.php?student=' . $s['u_id'] . '">
                                 <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button>  اقتراح مواد </button></div>
 
@@ -118,6 +118,9 @@ check();
                         </div>
                     </div>
                 </div>
+                <div class="row row-responsive">
+                    <div class="col border-top info mt-5 pt-2"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -143,7 +146,7 @@ check();
                             id: u_id
                         },
                         beforeSend: function() {
-                            $('.col.border-start').html('<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>');
+                            $('.col.info').html('<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>');
                         },
                         success: function(result) {
                             console.log(result);
@@ -152,9 +155,9 @@ check();
                                 var data = JSON.parse(result);
                                 if (data !== null && Object.keys(data).length > 0) {
                                     // The data is not empty, so do something with it
-                                    $('.col.border-start').empty();
+                                    $('.col.info').empty();
                                     var img = $('<img>').attr('src', data.filepath).addClass('mx-auto d-block mt-4 mb-4').addClass('photo rounded-circle');
-                                    $('.col.border-start').append(img);
+                                    $('.col.info').append(img);
                                     var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
                                     var tbody = $('<tbody>').appendTo(table);
 
@@ -180,7 +183,7 @@ check();
                                         }
                                     });
 
-                                    $('.col.border-start').append($('<h2>').text('بيانات الطالب')).append(table);
+                                    $('.col.info').append($('<h2>').text('بيانات الطالب')).append(table);
                                     var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
                                     var tbody = $('<tbody>').appendTo(table);
 
@@ -208,7 +211,7 @@ check();
                                         }
                                     });
 
-                                    $('.col.border-start').append($('<h2>').text('البيانات الشخصية')).append(table);
+                                    $('.col.info').append($('<h2>').text('البيانات الشخصية')).append(table);
                                     var table = $('<table>').addClass('table table-striped table-hover table-bordered').attr('dir', 'rtl');
                                     var tbody = $('<tbody>').appendTo(table);
 
@@ -228,15 +231,15 @@ check();
                                         }
                                     });
 
-                                    $('.col.border-start').append($('<h2>').text('خبرات العمل السابقة')).append(table);
+                                    $('.col.info').append($('<h2>').text('خبرات العمل السابقة')).append(table);
                                     // ... the rest of the code to display the table goes here
                                 } else {
                                     // The data is empty, so show a message to the user or do nothing
-                                    $('.col.border-start').text('No data found');
+                                    $('.col.info').text('No data found');
                                 }
                                 // Code to display the table goes here
                             } catch (error) {
-                                $('.col.border-start').html('<div class="justify-content-center"><h3> لم يقم الطالب بتعبئة بياناته بعد </h3><br><h3>أخطر الطالب برسالة</h3></div>');
+                                $('.col.info').html('<div class="justify-content-center"><h3> لم يقم الطالب بتعبئة بياناته بعد </h3><br><h3>أخطر الطالب برسالة</h3></div>');
                             }
 
 
@@ -249,7 +252,7 @@ check();
                 }).on('hidden.bs.collapse', function(e) {
                     // code to execute when accordion is closed
 
-                    $('.col.border-start').empty();
+                    $('.col.info').empty();
 
                 });
             });

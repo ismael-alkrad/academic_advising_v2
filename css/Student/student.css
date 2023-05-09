@@ -27,7 +27,7 @@ body {
     justify-content: flex-end;
 }
 
-.navbar button {
+.navbar .style {
     color: white;
     background-color: var(--blue-color);
     width: 151px;
@@ -38,12 +38,18 @@ body {
     transition-duration: 0.5s;
 }
 
-.navbar button:hover {
+.navbar .style:hover {
     transform: translateX(0px) translateY(-5px) scale(1);
     box-shadow: 0px 0px 8px 0px rgba(128, 128, 128, 1);
     text-shadow: 0px 0px 0px rgb(0, 0, 0, 0);
     background-color: black;
     color: white;
+}
+
+.navbar .navbar-toggler:active,
+.navbar .navbar-toggler:focus,
+.navbar .navbar-toggler:hover {
+    box-shadow: none;
 }
 
 .navbar ul {
@@ -131,6 +137,8 @@ body {
 
 /*Start Responsive*/
 @media (max-width: 400px) {
+
+
     .row-responsive {
         width: 330px;
         margin-left: 5px;
@@ -160,6 +168,7 @@ body {
 }
 
 @media (min-width: 400px) and (max-width:991px) {
+
     .row-responsive {
         width: 360px;
         margin-left: 5px;

@@ -40,7 +40,7 @@ $student_info = getStudentData($conn, $id) ?? [];
 <body style="margin-top: -15px;">
     <?php echo generateNavbar($links = array(
 
-        array("label" => "الرئيسية", "url" => "#")
+        array("label" => "الرئيسية", "url" => "student.php")
     ), "طالب"); ?>
     <div class="landing">
         <div class="container">

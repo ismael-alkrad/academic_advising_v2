@@ -32,7 +32,7 @@ check();
     <div class="landing">
         <div class="container text-center">
             <div class="row row-size shadow-lg p-3 mb-4 bg-body rounded">
-                <div class="col responsive-sm border-start mt-5 pt-2">
+                <div class="col responsive-sm border-start info mt-5 pt-2">
                 </div>
                 <div class="col">
                     <h1>قائمة المرشدين</h1>
@@ -62,15 +62,15 @@ check();
                                                 <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button data-bs-toggle="modal" data-bs-target="#exampleModal' . $s['username'] . '"> ارسال رسالة </button></div>
                                             </div>
                                             <div class="col">
-                                                <span class="icon-reduis-printer"><button onclick="printTable()"><img class="icon-1" src="../../assets/images/printer.png"></button></span>
-                                                <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button onclick="printTable()"> طباعة </button></div>
+                                                <span class="icon-reduis-printer"><button onclick="printTable();"><img class="icon-1" src="../../assets/images/printer.png"></button></span>
+                                                <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button onclick="printTable();"> طباعة </button></div>
                                             </div>
                                             <div class="col">
-                                                <span class="icon-reduis-add"><a href="users.php?user=' . $s['username'] . '"><button><img class="icon-1" src="../../assets/images/add-user.png"></button></span>
+                                                <span class="icon-reduis-add"><a href="add-users.php?user=' . $s['username'] . '"><button><img class="icon-1" src="../../assets/images/add-user.png"></button></span>
                                                 <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i></a><a href="users.php?user=' . $s['username'] . '"> اضافة </a></div>
                                             </div> 
                                             <div class="col">
-                                                <span class="icon-reduis-delete"><a href="users.php?user=' . $s['username'] . '"><button><img class="icon-1" src="../../assets/images/add-user.png"></button></span>
+                                                <span class="icon-reduis-delete"><a href="dell-users.php?user=' . $s['username'] . '"><button><img class="icon-1" src="../../assets/images/dell-user.png"></button></span>
                                                 <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i></a><a href="users.php?user=' . $s['username'] . '"> حذف </a></div>
                                             </div> 
                                         </div>
@@ -118,6 +118,10 @@ check();
                         </div>
                     </div>
                 </div>
+                <div class="row row-responsive">
+                    <div class="col border-top info mt-5 pt-2">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -127,7 +131,7 @@ check();
 
 <script>
     function printTable() {
-        var contentsToPrint = $('.col.border-start').html();
+        var contentsToPrint = $('.col.info').html();
         var printWindow = window.open('', 'PrintWindow');
         printWindow.document.write('<html><head><title>Print</title></head><body>' + contentsToPrint + '</body></html>');
         printWindow.document.close();
@@ -152,7 +156,7 @@ check();
                             id: username
                         },
                         beforeSend: function() {
-                            $('.col.border-start').html(
+                            $('.col.info').html(
                                 '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>'
                             );
                         },
@@ -163,9 +167,9 @@ check();
                                 var data = JSON.parse(result);
                                 if (data !== null && data.length > 0) {
                                     // The data is not empty, so do something with it
-                                    $('.col.border-start').empty();
+                                    $('.col.info').empty();
                                     var table = $('<table>').addClass(
-                                        'table table-striped table-hover table-bordered').attr(
+                                        'table table-striped table-hover table-bordered justify').attr(
                                         'dir', 'rtl');
                                     var tbody = $('<tbody>').appendTo(table);
 
@@ -179,14 +183,14 @@ check();
                                             value.email)).appendTo(tbody);
                                     });
 
-                                    $('.col.border-start').append($('<h2>').text('بيانات الطلاب'))
+                                    $('.col.info').append($('<h2>').text('بيانات الطلاب'))
                                         .append(table);
                                 } else {
                                     // The data is empty, so show a message to the user or do nothing
-                                    $('.col.border-start').text('No data found');
+                                    $('.col.info').text('No data found');
                                 }
                             } catch (error) {
-                                $('.col.border-start').html(
+                                $('.col.info').html(
                                     '<div class="justify-content-center"><h3> لم يقم الطالب بتعبئة بياناته بعد </h3><br><h3>أخطر الطالب برسالة</h3></div>'
                                 );
                             }
@@ -199,7 +203,7 @@ check();
                 }).on('hidden.bs.collapse', function(e) {
                     // code to execute when accordion is closed
 
-                    $('.col.border-start').empty();
+                    $('.col.info').empty();
 
                 });
             });

@@ -169,7 +169,7 @@ $colleges = getColleges($conn);
                         if (data.length === 0) {
                             // If it's empty, display a message
                             $("#courses-table tbody").empty();
-                            $("#courses-table tbody").append("<tr><td colspan='5'>No data available</td></tr>");
+                            $("#courses-table tbody").append("<tr><td colspan='7'>No data available</td></tr>");
                         } else {
                             // Loop through the data and append a row to the table
                             // for each student

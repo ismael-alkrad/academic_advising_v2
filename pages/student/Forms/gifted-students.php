@@ -62,7 +62,7 @@ echo "</pre>";
                     <div class="row">
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="الخرائط" name="maps">
+                                <input class="form-check-input" type="checkbox" value="الخرائط" name="maps" id="maps">
                                 <label class="form-check-label" for="maps">
                                     الخرائط
                                 </label>
@@ -70,7 +70,7 @@ echo "</pre>";
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="الباليه" name="ballet">
+                                <input class="form-check-input" type="checkbox" value="الباليه" name="ballet" id="ballet">
                                 <label class="form-check-label" for="ballet">
                                     الباليه
                                 </label>
@@ -78,7 +78,7 @@ echo "</pre>";
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="الخداع البصري" name="optical-illusion">
+                                <input class="form-check-input" type="checkbox" value="الخداع البصري" name="optical-illusion" id="optical-illusion">
                                 <label class="form-check-label" for="optical-illusion">
                                     الخداع البصري
                                 </label>
@@ -88,7 +88,7 @@ echo "</pre>";
                     <div class="row">
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="الشعر" name="Poetry">
+                                <input class="form-check-input" type="checkbox" value="الشعر" name="Poetry" id="Poetry">
                                 <label class="form-check-label" for="Poetry">
                                     الشعر
                                 </label>
@@ -96,7 +96,7 @@ echo "</pre>";
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="الخزف" name="porcelain">
+                                <input class="form-check-input" type="checkbox" value="الخزف" name="porcelain" id="porcelain">
                                 <label class="form-check-label" for="porcelain">
                                     الخزف
                                 </label>
@@ -104,7 +104,7 @@ echo "</pre>";
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="تقليد شخصيات" name="tradition">
+                                <input class="form-check-input" type="checkbox" value="تقليد شخصيات" name="tradition" id="tradition">
                                 <label class="form-check-label" for="tradition">
                                     تقليد شخصيات
                                 </label>
@@ -114,7 +114,7 @@ echo "</pre>";
                     <div class="row">
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="النحت" name="sculpture">
+                                <input class="form-check-input" type="checkbox" value="النحت" name="sculpture" id="sculpture">
                                 <label class="form-check-label" for="sculpture">
                                     النحت
                                 </label>
@@ -122,7 +122,7 @@ echo "</pre>";
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="التمثيل" name="impersonation">
+                                <input class="form-check-input" type="checkbox" value="التمثيل" name="impersonation" id="impersonation">
                                 <label class="form-check-label" for="impersonation">
                                     التمثيل
                                 </label>
@@ -130,7 +130,7 @@ echo "</pre>";
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="الرسم على الرمال" name="Drawing-sand">
+                                <input class="form-check-input" type="checkbox" value="الرسم على الرمال" name="Drawing-sand" id="Drawing-sand">
                                 <label class="form-check-label" for="Drawing-sand">
                                     الرسم على الرمال
                                 </label>
@@ -140,7 +140,7 @@ echo "</pre>";
                     <div class="row">
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="الرسم" name="Drawing">
+                                <input class="form-check-input" type="checkbox" value="الرسم" name="Drawing" id="Drawing">
                                 <label class="form-check-label" for="Drawing">
                                     الرسم
                                 </label>
@@ -148,7 +148,7 @@ echo "</pre>";
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="التأليف" name="authorship">
+                                <input class="form-check-input" type="checkbox" value="التأليف" name="authorship" id="authorship">
                                 <label class="form-check-label" for="authorship">
                                     التأليف
                                 </label>
@@ -156,7 +156,7 @@ echo "</pre>";
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="الأفلام التعليمية" name="Educational-films">
+                                <input class="form-check-input" type="checkbox" value="الأفلام التعليمية" name="Educational-films" id="Educational-films">
                                 <label class="form-check-label" for="Educational-films">
                                     الأفلام التعليمية
                                 </label>
@@ -166,7 +166,7 @@ echo "</pre>";
                     <div class="row">
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="العزف" name="fiddle">
+                                <input class="form-check-input" type="checkbox" value="العزف" name="fiddle" id="fiddle">
                                 <label class="form-check-label" for="fiddle">
                                     العزف
                                 </label>
@@ -174,7 +174,7 @@ echo "</pre>";
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="الخطابة" name="oratory">
+                                <input class="form-check-input" type="checkbox" value="الخطابة" name="oratory" id="oratory">
                                 <label class="form-check-label" for="oratory">
                                     الخطابة
                                 </label>
@@ -182,7 +182,7 @@ echo "</pre>";
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="التصوير الفوتوغرافي" name="photographer">
+                                <input class="form-check-input" type="checkbox" value="التصوير الفوتوغرافي" name="photographer" id="photographer">
                                 <label class="form-check-label" for="photographer">
                                     التصوير الفوتوغرافي
                                 </label>
@@ -192,7 +192,7 @@ echo "</pre>";
                     <div class="row">
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="الغناء" name="singing">
+                                <input class="form-check-input" type="checkbox" value="الغناء" name="singing" id="singing">
                                 <label class="form-check-label" for="singing">
                                     الغناء
                                 </label>
@@ -200,7 +200,7 @@ echo "</pre>";
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="كرة اليد" name="handball">
+                                <input class="form-check-input" type="checkbox" value="كرة اليد" name="handball" id="handball">
                                 <label class="form-check-label" for="handball">
                                     كرة اليد
                                 </label>
@@ -208,7 +208,7 @@ echo "</pre>";
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="التصميم الجرافيكي" name="graphic-design">
+                                <input class="form-check-input" type="checkbox" value="التصميم الجرافيكي" name="graphic-design" id="graphic-design">
                                 <label class="form-check-label" for="graphic-design">
                                     التصميم الجرافيكي
                                 </label>
@@ -218,7 +218,7 @@ echo "</pre>";
                     <div class="row">
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="المسرح" name="theater">
+                                <input class="form-check-input" type="checkbox" value="المسرح" name="theater" id="theater">
                                 <label class="form-check-label" for="theater">
                                     المسرح
                                 </label>
@@ -226,7 +226,7 @@ echo "</pre>";
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="كرة السلة" name="basketball">
+                                <input class="form-check-input" type="checkbox" value="كرة السلة" name="basketball" id="basketball">
                                 <label class="form-check-label" for="basketball">
                                     كرة السلة
                                 </label>
@@ -234,7 +234,7 @@ echo "</pre>";
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="تصميم العاب الفيديو" name="Video-game-design">
+                                <input class="form-check-input" type="checkbox" value="تصميم العاب الفيديو" name="Video-game-design" id="Video-game-design">
                                 <label class="form-check-label" for="Video-game-design">
                                     تصميم العاب الفيديو
                                 </label>
@@ -244,7 +244,7 @@ echo "</pre>";
                     <div class="row">
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="التطريز" name="embroidery">
+                                <input class="form-check-input" type="checkbox" value="التطريز" name="embroidery" id="embroidery">
                                 <label class="form-check-label" for="embroidery">
                                     التطريز
                                 </label>
@@ -252,7 +252,7 @@ echo "</pre>";
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="كرة القدم" name="football">
+                                <input class="form-check-input" type="checkbox" value="كرة القدم" name="football" id="football">
                                 <label class="form-check-label" for="football">
                                     كرة القدم
                                 </label>
@@ -260,7 +260,7 @@ echo "</pre>";
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="تصميم الوسائل التعليمية" name="Teaching-aids-design">
+                                <input class="form-check-input" type="checkbox" value="تصميم الوسائل التعليمية" name="Teaching-aids-design" id="Teaching-aids-design">
                                 <label class="form-check-label" for="Teaching-aids-design">
                                     تصميم الوسائل التعليمية
                                 </label>
@@ -270,7 +270,7 @@ echo "</pre>";
                     <div class="row">
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="الصحافة" name="Journalism">
+                                <input class="form-check-input" type="checkbox" value="الصحافة" name="Journalism" id="Journalism">
                                 <label class="form-check-label" for="Journalism">
                                     الصحافة
                                 </label>
@@ -278,7 +278,7 @@ echo "</pre>";
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="عمل المجلات" name="Making-magazines">
+                                <input class="form-check-input" type="checkbox" value="عمل المجلات" name="Making-magazines" id="Making-magazines">
                                 <label class="form-check-label" for="Making-magazines">
                                     عمل المجلات
                                 </label>
@@ -286,7 +286,7 @@ echo "</pre>";
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="الأفلام السينمائية القصيرة" name="Short-films">
+                                <input class="form-check-input" type="checkbox" value="الأفلام السينمائية القصيرة" name="Short-films" id="Short-films">
                                 <label class="form-check-label" for="Short-films">
                                     الأفلام السينمائية القصيرة
                                 </label>
@@ -296,7 +296,7 @@ echo "</pre>";
                     <div class="row">
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="الشطرنج" name="chess">
+                                <input class="form-check-input" type="checkbox" value="الشطرنج" name="chess" id="chess">
                                 <label class="form-check-label" for="chess">
                                     الشطرنج
                                 </label>
@@ -304,7 +304,7 @@ echo "</pre>";
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="عمل المطويات" name="Making-leaflets">
+                                <input class="form-check-input" type="checkbox" value="عمل المطويات" name="Making-leaflets" id="Making-leaflets">
                                 <label class="form-check-label" for="Making-leaflets">
                                     عمل المطويات
                                 </label>
@@ -312,7 +312,7 @@ echo "</pre>";
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="فنون القتال والدفاع عن النفس" name="self-defense">
+                                <input class="form-check-input" type="checkbox" value="فنون القتال والدفاع عن النفس" name="self-defense" id="self-defense">
                                 <label class="form-check-label" for="self-defense">
                                     فنون القتال والدفاع عن النفس
                                 </label>

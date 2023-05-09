@@ -75,6 +75,7 @@ body {
     }
 
     .landing .pg-color {
+        height: auto;
         padding-top: 2rem;
     }
 
