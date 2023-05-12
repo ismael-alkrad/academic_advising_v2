@@ -67,11 +67,11 @@ check();
                                             </div>
                                             <div class="col">
                                                 <span class="icon-reduis-add"><a href="add-users.php?user=' . $s['username'] . '"><button><img class="icon-1" src="../../assets/images/add-user.png"></button></span>
-                                                <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i></a><a href="users.php?user=' . $s['username'] . '"> اضافة </a></div>
+                                                <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i></a><a href="add-users.php?user=' . $s['username'] . '"> اضافة </a></div>
                                             </div> 
                                             <div class="col">
                                                 <span class="icon-reduis-delete"><a href="dell-users.php?user=' . $s['username'] . '"><button><img class="icon-1" src="../../assets/images/dell-user.png"></button></span>
-                                                <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i></a><a href="users.php?user=' . $s['username'] . '"> حذف </a></div>
+                                                <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i></a><a href="dell-users.php?user=' . $s['username'] . '"> حذف </a></div>
                                             </div> 
                                         </div>
                                     </div>
