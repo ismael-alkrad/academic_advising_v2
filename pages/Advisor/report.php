@@ -93,7 +93,12 @@ check();
                                                             <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> تحويل حالة الطالب </button></div>
                                                         </a>
                                                     </div>
-                                                    <div class="col"></div>
+                                                    <div class="col">
+                                                        <a href="Forms/view-report.php?student=' . $s['u_id'] . '">
+                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/student-status.png"></span>
+                                                        <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> تحويل حالة الطالب </button></div>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

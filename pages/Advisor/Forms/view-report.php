@@ -16,7 +16,7 @@ check(text: "Location: ../../../index.php");
     <link rel="shortcut icon" href="../../../assets/images/logo.png">
     <link rel="stylesheet" href="../../../css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="../../../css/all.min.css">
-    <link rel="stylesheet" href="../../../css/Advisor/Forms/study-plan.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../../../css/Advisor/Forms/view-report.css?v=<?php echo time(); ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -38,30 +38,28 @@ check(text: "Location: ../../../index.php");
         <div class="container shadow-lg p-3 mb-4 bg-body rounded" dir="rtl">
             <div class="row">
                 <div>
-                    <h2> خطة مواد الطالب <?php echo getFnameByUid(
-                                                $conn,
-                                                $_GET['student']
-                                            ); ?>
+                    <h2> تقارير الطالب <?php echo getFnameByUid(
+                                            $conn,
+                                            $_GET['student']
+                                        ); ?>
                     </h2>
                 </div>
                 <div class="col mt-3">
                     <table id="courses-add-table" class="table table-striped text-center" dir="rtl">
                         <thead>
                             <tr>
-                                <th scope="col">الحالة</th>
-                                <th scope="col">رقم المقرر</th>
-                                <th scope="col">اسم المقرر</th>
-                                <th scope="col"> عدد الساعات المعتمدة </th>
-                                <th scope="col"> المتطلبات السابقة </th>
+                                <th scope="col"> التقرير </th>
+                                <th scope="col"> عرض التقرير </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>مسجلة</td>
-                                <td> 0161101 </td>
-                                <td> مهارات اتصال عربي </td>
-                                <td> 3 </td>
-                                <td> (0161100) </td>
+                                <td class="pt-3"> تقرير الطلبة الموهوبين </td>
+                                <td> <button type="button" class="btn btn-primary">عرض</button> </td>
+                            </tr>
+                            <tr>
+                                <td class="pt-3"> تقرير اسباب التعثر الدراسي </td>
+                                <td> <button type="button" class="btn btn-primary">عرض</button> </td>
                             </tr>
                         </tbody>
                     </table>
