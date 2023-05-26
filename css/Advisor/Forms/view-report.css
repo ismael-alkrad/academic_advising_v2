@@ -85,4 +85,8 @@ body {
     color: var(--blue-color);
 }
 
+.landing .position td {
+    text-align: center;
+}
+
 /*End Landing*/
