@@ -4,7 +4,6 @@
     --icon-color: #e9f2fa;
 }
 
-
 ::after,
 ::before {
     box-sizing: content-box;
@@ -19,7 +18,7 @@ body {
 .navbar {
     color: var(--blue-color);
     font-size: larger;
-    z-index: 1;
+    z-index: 4;
 }
 
 .navbar .container {
@@ -83,39 +82,11 @@ body {
 /*Start Landing*/
 
 .landing .container h2 {
-    text-align: end;
     color: var(--blue-color);
 }
 
-table button {
-    background: none;
+.landing ul {
     border: none;
 }
 
-table button:hover {
-    transform: scale(1.2);
-}
-
-table button:active {
-    transform: scale(0.9);
-}
-
-.landing .divider {
-    border-bottom: 1px solid var(--grey-color);
-    padding-bottom: 5px;
-}
-
-.landing .box-shadow:hover,
-.landing .box-shadow:active,
-.landing .box-shadow:focus {
-    box-shadow: none;
-}
-
 /*End Landing*/
-
-/*Start Responsive*/
-@media (max-width: 400px) {}
-
-@media (min-width: 400px) and (max-width:600px) {}
-
-/*End Responsive*/

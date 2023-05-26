@@ -62,8 +62,10 @@ check();
                                             <div class="container text-center"  dir="rtl">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/plan.png"></span>
-                                                        <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> الخطة الدراسية </button></div>
+                                                        <a href="Forms/study-plan.php?student=' . $s['u_id'] . '">
+                                                            <span class="icon-reduis"><img class="icon-1" src="../../assets/images/plan.png"></span>
+                                                            <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> الخطة الدراسية </button></div>
+                                                        </a>
                                                     </div>
                                                     <div class="col">
                                                         <a href="Forms/academic-advisor.php?student=' . $s['u_id'] . '">

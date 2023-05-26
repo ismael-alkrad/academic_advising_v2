@@ -155,10 +155,10 @@ check();
                             </div>
                             <div class="col">
                                 <button class="button-style">
-                                    <a href="Forms/Gifted-students.php">
+                                    <a href="Forms/gifted-students.php">
                                         <div class="p-3 rounded bg-secondary"><i class="fa-solid fa-file-signature" style="color: #ffffff;"></i>
                                             <div class="text-white">
-                                                نموذج استمارة الطلبةالموهوبين
+                                                نموذج استمارة الطلبة الموهوبين
                                             </div>
                                         </div>
                                     </a>

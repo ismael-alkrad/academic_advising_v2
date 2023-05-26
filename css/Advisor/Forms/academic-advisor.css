@@ -4,7 +4,6 @@
     --icon-color: #e9f2fa;
 }
 
-div,
 ::after,
 ::before {
     box-sizing: content-box;

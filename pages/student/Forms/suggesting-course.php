@@ -22,7 +22,7 @@ $data = $result;
     <link rel="shortcut icon" href="../../../assets/images/logo.png">
     <link rel="stylesheet" href="../../../css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="../../../css/all.min.css">
-    <link rel="stylesheet" href="../../../css/Student/Forms/suggesting-Course.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../../../css/Student/Forms/suggesting-course.css?v=<?php echo time(); ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -35,7 +35,7 @@ $data = $result;
 <body>
     <?php echo generateNavbar($links = array(
 
-        array("label" => "الرئيسية", "url" => "../")
+        array("label" => "الرئيسية", "url" => "../student.php")
     ), "طالب", $logo = "../../../assets/images/logo.png"); ?>
     <div class="landing" dir="rtl">
         <div class="container shadow-lg p-3 mb-5 bg-body rounded text-center">
