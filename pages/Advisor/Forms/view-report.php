@@ -102,6 +102,12 @@ check(text: "Location: ../../../index.php");
                                         </tbody>
                                     </table>
                                 </div>
+                                <div class="save-responsive d-flex justify-content-center mt-4">
+                                    <button id="save" type="submit" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff;  margin-bottom: 20px;">
+                                        طباعة
+                                        <i class="ui-button-icon-left ui-icon ui-c fa fa-print white ps-1" style="color: #ffffff;"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -150,8 +156,11 @@ check(text: "Location: ../../../index.php");
                                     <label class="form-label text-start">
                                         الحلول المقترحة
                                     </label>
-                                    <div class="mb-3">
-
+                                    <div class="save-responsive d-flex justify-content-center mt-4">
+                                        <button id="save" type="submit" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff;  margin-bottom: 20px;">
+                                            طباعة
+                                            <i class="ui-button-icon-left ui-icon ui-c fa fa-print white ps-1" style="color: #ffffff;"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
