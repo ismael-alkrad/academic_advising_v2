@@ -67,7 +67,7 @@ check();
                                 </div>
                                 <div class="col">
                                 <span class="icon-reduis"><img class="icon-1" src="../../assets/images/plan.png"></span>
-                                <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button>تفريغ خطة الطالب</button></div>
+                                 <a href="forms/study-plan.php?student=' . $s['u_id'] . '"> <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button>تفريغ خطة الطالب</button></div></a>
                                 </div>
                                 <div class="col">
                                 <span class="icon-reduis"><a href="forms/suggestCourse.php?student=' . $s['u_id'] . '"><img class="icon-1" src="../../assets/images/help.png"></a></span>

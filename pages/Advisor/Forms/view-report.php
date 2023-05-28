@@ -1,8 +1,23 @@
 <?php
 include_once '../../../php/check.php';
 include '../../../php/navbar.php';
+include
+    '../../../php/connect.php';
 check_activity();
 check(text: "Location: ../../../index.php");
+
+
+$studentInfo = getStudentInfo($_GET['student'], $conn) ?? array();
+$name = $studentInfo['ar_name'] ?? "No name found";
+$phone = $studentInfo['phone_house'] ?? "    ";
+$email = $studentInfo['email'] ?? " ";
+$semester = $studentInfo['semester'] ?? " ";
+$u_year = $studentInfo['u_year'] ?? " ";
+
+
+
+$talents = getTalents($_GET['student'], $conn) ?? array();
+
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +37,8 @@ check(text: "Location: ../../../index.php");
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/print-js/1.6.0/print.min.js"></script>
+
 </head>
 
 
@@ -61,18 +78,16 @@ check(text: "Location: ../../../index.php");
                                 <tbody>
                                     <tr>
                                         <th scope="row">الاسم الرباعي</th>
-                                        <td><?php echo getFnameByUid(
-                                                $conn,
-                                                $_GET['student']
-                                            ); ?></td>
+                                        <td><?php echo $name; ?></td>
                                     </tr>
                                     <tr>
+
                                         <th scope="row">رقم الهاتف </th>
-                                        <td>0791570296</td>
+                                        <td><?php echo $phone; ?></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">البريد الالكتروني</th>
-                                        <td><?php echo $_GET['email'] ?></td>
+                                        <td><?php echo $email; ?></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -87,18 +102,31 @@ check(text: "Location: ../../../index.php");
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>السباحة</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>ركوب الخيل</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td> كرةالقدم </td>
-                                            </tr>
+                                            <?php
+
+                                            $count = 1;
+                                            if (!empty($talents)) {
+                                                foreach ($talents as $talent) {
+
+                                                    if ($talent != 'none') {
+                                                        echo '  <tr>
+                                                <th scope="row">' . $count . '</th>
+                                                <td>' . $talent . '</td>
+                                            </tr>';
+                                                        $count++;
+                                                    }
+                                                }
+                                            } else {
+                                                echo "لا يوجد تقارير بعد للطالب : ";
+                                                echo getFnameByUid(
+                                                    $conn,
+                                                    $_GET['student']
+                                                );
+                                            }
+
+                                            ?>
+
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -111,44 +139,95 @@ check(text: "Location: ../../../index.php");
                             </div>
                         </div>
                     </div>
-                    <div class="tab-content pt-3" dir="rtl" id="myTabContent">
+                    <div class="tab-content pt-3" dir="rtl" id="myTabContent2">
                         <div class="tab-pane fade" id="academic-failure-pane" role="tabpanel" aria-labelledby="academic-failure" tabindex="0">
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <th scope="row">الاسم</th>
-                                        <td><?php echo $data['name']; ?></td>
+                                        <th scope="row">الاسم الرباعي</th>
+                                        <td><?php echo $name; ?></td>
                                     </tr>
+
                                     <tr>
                                         <th scope="row">الرقم الجامعي</th>
-                                        <td><?php echo $data['u_id']; ?></td>
+                                        <td><?php echo $_GET['student'] ?></td>
                                     </tr>
                                     <tr>
                                         <th scope="row"> الفصل الدراسي / العام الجامعي للطالب </th>
-                                        <td>الأول</td>
+                                        <td><?php echo $semester . '/' . $u_year ?></td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row"> المعدل التراكمي </th>
-                                        <td>90.8</td>
-                                    </tr>
+
                                 </tbody>
                             </table>
                             <table class="table table-bordered position">
                                 <thead>
                                     <tr>
                                         <th scope="col">العبارات</th>
-                                        <th scope="col" class="text-center">موافق</th>
-                                        <th scope="col" class="text-center">غير موافق</th>
-                                        <th scope="col" class="text-center">لا أعرف</th>
+                                        <th scope="col" class="text-center">الخيار</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">صعوبة المواد الدراسية</th>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                    <?php $u_id = $_GET['student'];
+
+
+
+                                    try {
+                                        // Create a new PDO instance
+
+                                        // Retrieve the u_id from the parameter
+
+                                        // Prepare and execute the SQL query
+                                        $sql = "SELECT * FROM academic_failures WHERE u_id = :u_id";
+                                        $stmt = $conn->prepare($sql);
+                                        $stmt->bindParam(':u_id', $u_id);
+                                        $stmt->execute();
+
+                                        // Fetch the data from the query result
+                                        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+                                        // Display the retrieved data
+                                        foreach ($result as $row) {
+                                            foreach ($row as $column => $value) {
+                                                if ($column != 'u_id' && $column != 'a_username' && $column != 'id') {
+                                                    $arabicColumn = getArabicColumnName($column); // Function to get Arabic column name
+                                                    echo '<tr>
+                                                        <th scope="row">' . $arabicColumn . '</th>
+                                                        <td class="text-center">' . $row[$column] . '</td>
+                                                
+                                                    </tr>';
+                                                }
+                                            }
+                                            echo "<br>";
+                                        }
+                                    } catch (PDOException $e) {
+                                        echo "Connection failed: " . $e->getMessage();
+                                    }
+
+                                    // Function to map English column names to Arabic
+                                    function getArabicColumnName($column)
+                                    {
+                                        $arabicColumns = array(
+                                            'difficulty' => 'صعوبة المواد الدراسية',
+                                            'attendance' => 'الغياب المتكرر عن المحاضرات',
+                                            'teaching_methods' => 'عدم مناسبة أساليب التدريس',
+                                            'exam_anxiety' => 'التوتر والخوف من الامتحانات',
+                                            'family_problems' => 'مشاكل أسرية',
+                                            'university_environment' => 'عدم التأقلم مع البيئة الجامعية',
+                                            'high_course_load' => 'عدد الساعات المسجلة في الفصل الدراسي عال',
+                                            'disinterest_in_major' => 'عدم رغبتي في التخصص',
+                                            'working_while_studying' => 'أعمل أثناء التحاقي بالجامعة',
+                                            'financial_issues' => 'عدم القدرة على تأمين تكاليف الدراسة',
+                                            'long_commute' => 'المسافة التي أقطعها للوصول للجامعة طويلة',
+                                            'choosing_bad_friends' => 'عدم اختيار الأصدقاء الجيدين',
+                                            'lack_of_time_for_studying' => 'لا أجد الوقت للدراسة',
+                                            'other_reasons' => 'أسباب أخرى'
+                                        );
+
+                                        return isset($arabicColumns[$column]) ? $arabicColumns[$column] : $column;
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
                             <div>
@@ -157,7 +236,7 @@ check(text: "Location: ../../../index.php");
                                         الحلول المقترحة
                                     </label>
                                     <div class="save-responsive d-flex justify-content-center mt-4">
-                                        <button id="save" type="submit" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff;  margin-bottom: 20px;">
+                                        <button id="save2" type="submit" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff;  margin-bottom: 20px;">
                                             طباعة
                                             <i class="ui-button-icon-left ui-icon ui-c fa fa-print white ps-1" style="color: #ffffff;"></i>
                                         </button>
@@ -165,6 +244,7 @@ check(text: "Location: ../../../index.php");
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -173,4 +253,15 @@ check(text: "Location: ../../../index.php");
 
     <script src="../../../js/bootstrap.bundle.min.js"></script>
     <script src="../../../js/all.min.js"></script>
+
+    <script>
+        document.getElementById('save').addEventListener('click', function() {
+            window.print();
+        });
+        document.getElementById('save2').addEventListener('click', function() {
+            window.print();
+        });
+    </script>
 </body>
+
+</html>
