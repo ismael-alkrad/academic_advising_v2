@@ -137,7 +137,6 @@ function getAdvisors(
 function getStudentByAdvisor(
     $pdo,
     $advisor
-
 ) {
     try {
 
@@ -741,5 +740,39 @@ function addAcademicFailure($conn, $difficulty, $attendance, $teaching_methods, 
         return true;
     } else {
         return false;
+    }
+}
+
+
+function getStudentInfo($u_id, $pdo)
+{
+    $query = "SELECT si.ar_name, pd.phone_house, pd.email,semester,u_year
+              FROM student_information si
+              JOIN personal_data pd ON si.u_id = pd.u_id
+              WHERE si.u_id = :u_id";
+
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':u_id', $u_id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $result;
+}
+function getTalents($u_id, $pdo)
+{
+    $query = "SELECT talent
+              FROM talents
+              WHERE u_id = :u_id";
+
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':u_id', $u_id, PDO::PARAM_STR);
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($result) {
+        $talents = explode(',', $result['talent']);
+        return $talents;
     }
 }

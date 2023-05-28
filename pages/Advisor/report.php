@@ -95,8 +95,13 @@ check();
                                                     </div>
                                                     <div class="col">
                                                         <a href="Forms/view-report.php?student=' . $s['u_id'] . '">
+<<<<<<< HEAD
                                                         <span class="icon-reduis"><img class="icon-1" src="../../assets/images/student-report.png"></span>
                                                         <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> تحويل حالة الطالب </button></div>
+=======
+                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/student-status.png"></span>
+                                                        <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button>عرض التقارير </button></div>
+>>>>>>> c323548b6fc5894c70c337539349ee26030da46b
                                                         </a>
                                                     </div>
                                                 </div>
