@@ -59,25 +59,25 @@ check();
                             <div id="collapse' . $s['u_id'] . '" class="accordion-collapse collapse" aria-labelledby="heading' . $s['u_id'] . '"
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body px-3">
-                                <div class="container text-center">
-                                <div class="row">
-                                <div class="col">
-                                <span class="icon-reduis"><button data-bs-toggle="modal" data-bs-target="#exampleModal' . $s['u_id'] . '"><img class="icon-1" src="../../assets/images/chat.png"></button></span>
-                                    <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button data-bs-toggle="modal" data-bs-target="#exampleModal' . $s['u_id'] . '"> ارسال رسالة </button></div>
-                                </div>
-                                <div class="col">
-                                <span class="icon-reduis"><img class="icon-1" src="../../assets/images/plan.png"></span>
-                                <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button>تفريغ خطة الطالب</button></div>
-                                </div>
-                                <div class="col">
-                                <span class="icon-reduis"><a href="forms/suggestCourse.php?student=' . $s['u_id'] . '"><img class="icon-1" src="../../assets/images/help.png"></a></span>
-                                <a href="forms/suggestCourse.php?student=' . $s['u_id'] . '">
-                                <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button>  اقتراح مواد </button></div>
-
-                                </a>
-                                </div>
-                                </div>
-                            </div>
+                                    <div class="container text-center">
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="icon-reduis"><button data-bs-toggle="modal" data-bs-target="#exampleModal' . $s['u_id'] . '"><img class="icon-1" src="../../assets/images/chat.png"></button></span>
+                                                <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button data-bs-toggle="modal" data-bs-target="#exampleModal' . $s['u_id'] . '"> ارسال رسالة </button></div>
+                                            </div>
+                                            '/*<div class="col">
+                                                <span class="icon-reduis"><img class="icon-1" src="../../assets/images/plan.png"></span>
+                                                <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button>تفريغ خطة الطالب</button></div>
+                                            </div>
+                                            <div class="col">
+                                                <span class="icon-reduis"><a href="forms/suggestCourse.php?student=' . $s['u_id'] . '"><img class="icon-1" src="../../assets/images/help.png"></a></span>
+                                                <a href="forms/suggestCourse.php?student=' . $s['u_id'] . '">
+                                                <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button>  اقتراح مواد </button></div>
+                                                </a>
+                                            </div>
+                                            */ . '
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal fade" id="exampleModal' . $s['u_id'] . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

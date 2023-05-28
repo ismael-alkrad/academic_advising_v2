@@ -75,7 +75,7 @@ check();
                                                     </div>
                                                     <div class="col">
                                                         <a href="Forms/suggestCourse.php?student=' . $s['u_id'] . '">
-                                                            <span class="icon-reduis"><img class="icon-1" src="../../assets/images/plan.png"></span>
+                                                            <span class="icon-reduis"><img class="icon-1" src="../../assets/images/suggestCourse.png"></span>
                                                             <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> توصيات تسجيل مواد </button></div>
                                                         </a>
                                                     </div>
@@ -83,7 +83,7 @@ check();
                                                 <div class="row">
                                                     <div class="col">
                                                         <a href="Forms/individual-encounters.php?student=' . $s['u_id'] . '">
-                                                            <span class="icon-reduis"><img class="icon-1" src="../../assets/images/help.png"></span>
+                                                            <span class="icon-reduis"><img class="icon-1" src="../../assets/images/individual-encounters.png"></span>
                                                             <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> اللقاءات الفردية </button></div>
                                                         </a>
                                                     </div>
@@ -95,7 +95,7 @@ check();
                                                     </div>
                                                     <div class="col">
                                                         <a href="Forms/view-report.php?student=' . $s['u_id'] . '">
-                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/student-status.png"></span>
+                                                        <span class="icon-reduis"><img class="icon-1" src="../../assets/images/student-report.png"></span>
                                                         <div class="my-3 animation"><i class="fa-solid fa-angles-left color-icon"></i><button> تحويل حالة الطالب </button></div>
                                                         </a>
                                                     </div>

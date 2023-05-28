@@ -31,7 +31,7 @@ check();
         array("label" => "الرئيسية", "url" => "#")
     ), getFnameByUid(
         $conn,
-      $_SESSION['username']
+        $_SESSION['username']
     )); ?>
     <div class="landing">
         <div class="container text-center">
@@ -58,9 +58,9 @@ check();
             </div>
             <div class="row">
                 <div class="col-4  pg-grid-2 shadow-lg mb-5 bg-body rounded"><span class="icon-reduis"><img class="icon-1" src="../../assets/images/report.png"></span>
-                    <h2 class="p-3">التقارير</h2>
-                    <p class="mb-5">عرض التقرير التفصيلي عن عملية الإرشاد الأكاديمي خلال الفصل الدراسي.</p>
-                    <a href="annual-report.php"><button>عرض التقارير</button></a>
+                    <h2 class="p-3"> التقرير السنوي </h2>
+                    <p class="mb-5">ملء استمارة التقرير السنوي عن عملية الإرشاد الأكاديمي خلال السنة الدراسية. </p>
+                    <a href="annual-report.php"><button>عرض التقرير</button></a>
                 </div>
                 <div class="col-4 pg-grid-3 shadow-lg mb-5 bg-body rounded"><span class="icon-reduis"><img class="icon-1" src="../../assets/images/Schedule.png"></span>
                     <h2 class="p-3">جدول</h2>
