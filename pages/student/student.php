@@ -122,7 +122,8 @@ check();
                         <div class="row row-cols-2 row-cols-lg-1 g-3 g-lg-4 justify-content-center">
                             <div class="col">
                                 <button class="button-style">
-                                    <a>
+                                    <a href="forms/study-plan.php?student=<?php echo $_SESSION['username']; ?>">
+
                                         <div class="p-3 rounded bg-secondary"><i class="fa-solid fa-file" style="color: #ffffff;"></i>
                                             <div class="text-white">
                                                 تفريغ خطة الطالب

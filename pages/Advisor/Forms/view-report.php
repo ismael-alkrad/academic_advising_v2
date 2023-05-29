@@ -8,7 +8,10 @@ check(text: "Location: ../../../index.php");
 
 
 $studentInfo = getStudentInfo($_GET['student'], $conn) ?? array();
-$name = $studentInfo['ar_name'] ?? "No name found";
+$name = $studentInfo['ar_name'] ?? getFnameByUid(
+    $conn,
+    $_GET['student']
+);
 $phone = $studentInfo['phone_house'] ?? "    ";
 $email = $studentInfo['email'] ?? " ";
 $semester = $studentInfo['semester'] ?? " ";
@@ -55,7 +58,7 @@ $talents = getTalents($_GET['student'], $conn) ?? array();
         <div class="container shadow-lg p-3 mb-4 bg-body rounded" dir="rtl">
             <div class="row">
                 <div>
-                    <h2> تقارير الطالب <?php echo getFnameByUid(
+                    <h2> تقارير الطالب <?php echo getStudentnameByUid(
                                             $conn,
                                             $_GET['student']
                                         ); ?>
@@ -256,10 +259,77 @@ $talents = getTalents($_GET['student'], $conn) ?? array();
 
     <script>
         document.getElementById('save').addEventListener('click', function() {
+            this.style.visibility = 'hidden';
             window.print();
+
         });
         document.getElementById('save2').addEventListener('click', function() {
+            this.style.visibility = 'hidden';
+
             window.print();
+        });
+    </script>
+
+    <script>
+        $("#log-out").click(() => {
+            $.ajax({
+                url: "../../../php/forms/logout.php",
+                type: "POST",
+                success: function(data) {
+                    if (data === 'success') {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "تم تسجيل الخروج بنجاح",
+                            showConfirmButton: false,
+                            allowOutsideClick: false,
+                            timer: 1500,
+                        });
+                        setTimeout(function() {
+                            window.location.href = "../../../index.php";
+                        }, 1500);
+                    } else {
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: "حدث خطأ ما",
+                            showConfirmButton: false,
+                            allowOutsideClick: false,
+                            timer: 1500,
+                        });
+                    }
+                }
+            });
+        });
+        $("#log-out-res").click(() => {
+            $.ajax({
+                url: "../../../php/forms/logout.php",
+                type: "POST",
+                success: function(data) {
+                    if (data === 'success') {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "تم تسجيل الخروج بنجاح",
+                            showConfirmButton: false,
+                            allowOutsideClick: false,
+                            timer: 1500,
+                        });
+                        setTimeout(function() {
+                            window.location.href = "../../../index.php";
+                        }, 1500);
+                    } else {
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: "حدث خطأ ما",
+                            showConfirmButton: false,
+                            allowOutsideClick: false,
+                            timer: 1500,
+                        });
+                    }
+                }
+            });
         });
     </script>
 </body>

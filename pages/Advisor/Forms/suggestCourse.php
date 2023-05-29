@@ -38,7 +38,7 @@ $colleges = getColleges($conn);
         <div class="container">
             <div class="row shadow-lg p-3 mb-4 bg-body rounded" id="student-info">
                 <div>
-                    <h2> اقتراح مواد للطالب <?php echo getFnameByUid(
+                    <h2> اقتراح مواد للطالب <?php echo getStudentnameByUid(
                                                 $conn,
                                                 $_GET['student']
                                             ); ?>

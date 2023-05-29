@@ -596,6 +596,13 @@ function getFnameByUid($pdo, $u_id)
     $result = $stmt->fetch();
     return $result['fname'];
 }
+function getStudentnameByUid($pdo, $u_id)
+{
+    $stmt = $pdo->prepare("SELECT name FROM student_info WHERE u_id = :u_id");
+    $stmt->execute(array(':u_id' => $u_id));
+    $result = $stmt->fetch();
+    return $result['name'];
+}
 
 
 
@@ -774,5 +781,56 @@ function getTalents($u_id, $pdo)
     if ($result) {
         $talents = explode(',', $result['talent']);
         return $talents;
+    }
+}
+
+
+
+function getCourseData($connection, $uId)
+{
+    // Prepare the SQL query with a parameter for u_id
+    $query = "SELECT course_id, remaining_courses, registered_courses, traversed_courses
+              FROM studentplan
+              WHERE u_id = :uId";
+
+    // Prepare the statement
+    $statement = $connection->prepare($query);
+
+    // Bind the parameter value
+    $statement->bindParam(':uId', $uId);
+
+    // Execute the query
+    $statement->execute();
+
+    // Fetch the data
+    $courseData = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    // Check if the query executed successfully
+    if ($courseData) {
+        $result = array();
+        // Iterate through each row in the result
+        foreach ($courseData as $row) {
+            // Access the course_id for each row
+            $courseId = $row['course_id'];
+
+            // Query the second table based on the course_id
+            $secondTableQuery = "SELECT name, number,hours FROM courses WHERE id = :courseId";
+            $secondTableStatement = $connection->prepare($secondTableQuery);
+            $secondTableStatement->bindParam(':courseId', $courseId);
+            $secondTableStatement->execute();
+            $secondTableData = $secondTableStatement->fetch(PDO::FETCH_ASSOC);
+
+            // Combine the data from both tables
+            $combinedData = array_merge($row, $secondTableData);
+
+            // Add the combined data to the result array
+            $result[] = $combinedData;
+        }
+
+        // Return the result array
+        return $result;
+    } else {
+        // Query execution failed or no data found
+        return null;
     }
 }

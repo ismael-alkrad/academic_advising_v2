@@ -1,0 +1,99 @@
+-- INSERT INTO `studentplan` (
+--         `id`,
+--         `u_id`,
+--         `course_id`,
+--         `registered_courses`,
+--         `traversed_courses`,
+--         `remaining_courses`
+--     )
+-- VALUES (NULL, 'AC0510', '488', '0', '1', '0');
+-- INSERT INTO `studentplan` (
+--         `id`,
+--         `u_id`,
+--         `course_id`,
+--         `registered_courses`,
+--         `traversed_courses`,
+--         `remaining_courses`
+--     )
+-- VALUES (NULL, 'AC0510', '479', '0', '1', '0');
+-- INSERT INTO `studentplan` (
+--         `id`,
+--         `u_id`,
+--         `course_id`,
+--         `registered_courses`,
+--         `traversed_courses`,
+--         `remaining_courses`
+--     )
+-- VALUES (NULL, 'AC0510', '473', '0', '1', '0');
+-- INSERT INTO `studentplan` (
+--         `id`,
+--         `u_id`,
+--         `course_id`,
+--         `registered_courses`,
+--         `traversed_courses`,
+--         `remaining_courses`
+--     )
+-- VALUES (NULL, 'AC0510', '477', '0', '1', '0');
+-- INSERT INTO `studentplan` (
+--         `id`,
+--         `u_id`,
+--         `course_id`,
+--         `registered_courses`,
+--         `traversed_courses`,
+--         `remaining_courses`
+--     )
+-- VALUES (NULL, 'AC0510', '481', '0', '1', '0');
+-- INSERT INTO `studentplan` (
+--         `id`,
+--         `u_id`,
+--         `course_id`,
+--         `registered_courses`,
+--         `traversed_courses`,
+--         `remaining_courses`
+--     )
+-- VALUES (NULL, 'AC0510', '494', '0', '1', '0');
+-- INSERT INTO `studentplan` (
+--         `id`,
+--         `u_id`,
+--         `course_id`,
+--         `registered_courses`,
+--         `traversed_courses`,
+--         `remaining_courses`
+--     )
+-- VALUES (NULL, 'AC0510', '10', '0', '1', '0');
+-- INSERT INTO `studentplan` (
+--         `id`,
+--         `u_id`,
+--         `course_id`,
+--         `registered_courses`,
+--         `traversed_courses`,
+--         `remaining_courses`
+--     )
+-- VALUES (NULL, 'AC0510', '16', '0', '1', '0');
+-- INSERT INTO `studentplan` (
+--         `id`,
+--         `u_id`,
+--         `course_id`,
+--         `registered_courses`,
+--         `traversed_courses`,
+--         `remaining_courses`
+--     )
+-- VALUES (NULL, 'AC0510', '12', '0', '1', '0');
+-- INSERT INTO `studentplan` (
+--         `id`,
+--         `u_id`,
+--         `course_id`,
+--         `registered_courses`,
+--         `traversed_courses`,
+--         `remaining_courses`
+--     )
+-- VALUES (NULL, 'AC0510', '491', '0', '1', '0');
+-- INSERT INTO `studentplan` (
+--         `id`,
+--         `u_id`,
+--         `course_id`,
+--         `registered_courses`,
+--         `traversed_courses`,
+--         `remaining_courses`
+--     )
+-- VALUES (NULL, 'AC0510', '492', '1', '0', '0');

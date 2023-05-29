@@ -34,7 +34,7 @@ check(text: "Location: ../../../index.php");
     ), $logo = "../../../assets/images/logo.png"); ?>
     <div class="landing">
         <div class="container shadow-lg p-3 mb-4 bg-body rounded" dir="rtl">
-            <h2> نموذج تحويل حالة الطالب (الطالب : <?php echo getFnameByUid(
+            <h2> نموذج تحويل حالة الطالب (الطالب :<?php echo getStudentnameByUid(
                                                         $conn,
                                                         $_GET['student']
                                                     ); ?>)</h2>
