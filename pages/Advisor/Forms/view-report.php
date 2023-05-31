@@ -74,6 +74,14 @@ $talents = getTalents($_GET['student'], $conn) ?? array();
                             <input type="radio" class="btn-check" id="academic-failure" name="report" autocomplete="off" data-bs-toggle="tab" data-bs-target="#academic-failure-pane" role="tab" aria-controls="academic-failure-pane" aria-selected="false">
                             <label class="nav-link btn btn-outline-primary border-primary nav-button-primary me-1 rounded-0 rounded-top" for="academic-failure"> تقرير التعثر الدراسي </label>
                         </li>
+                        <li class="nav-item" role="presentation">
+                            <input type="radio" class="btn-check" id="individual-encounters" name="report" autocomplete="off" data-bs-toggle="tab" data-bs-target="#individual-encounters-pane" role="tab" aria-controls="individual-encounters-pane" aria-selected="false">
+                            <label class="nav-link btn btn-outline-primary border-primary nav-button-primary me-1 rounded-0 rounded-top" for="individual-encounters"> تقرير اللقاءات الفردية </label>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <input type="radio" class="btn-check" id="student-status" name="report" autocomplete="off" data-bs-toggle="tab" data-bs-target="#student-status-pane" role="tab" aria-controls="student-status-pane" aria-selected="false">
+                            <label class="nav-link btn btn-outline-primary border-primary nav-button-primary me-1 rounded-0 rounded-top" for="student-status"> تقرير تحويل حالة الطالب </label>
+                        </li>
                     </ul>
                     <div class="tab-content pt-3" dir="rtl" id="myTabContent">
                         <div class="tab-pane fade" id="gifted-students-pane" role="tabpanel" aria-labelledby="gifted-students" tabindex="0">
@@ -133,12 +141,17 @@ $talents = getTalents($_GET['student'], $conn) ?? array();
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="save-responsive d-flex justify-content-center mt-4">
-                                    <button id="save" type="submit" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff;  margin-bottom: 20px;">
-                                        طباعة
-                                        <i class="ui-button-icon-left ui-icon ui-c fa fa-print white ps-1" style="color: #ffffff;"></i>
-                                    </button>
+                                <div class="row pt-3">
+                                    <div class="col">
+                                        <div class="save-responsive d-flex justify-content-center mt-4">
+                                            <button id="save" type="submit" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff;  margin-bottom: 20px;">
+                                                طباعة
+                                                <i class="ui-button-icon-left ui-icon ui-c fa fa-print white ps-1" style="color: #ffffff;"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -233,7 +246,7 @@ $talents = getTalents($_GET['student'], $conn) ?? array();
                                     ?>
                                 </tbody>
                             </table>
-                            <div>
+                            <div class="row pt-3">
                                 <div class="col mt-3" id="">
                                     <label class="form-label text-start">
                                         الحلول المقترحة
@@ -248,6 +261,88 @@ $talents = getTalents($_GET['student'], $conn) ?? array();
                             </div>
                         </div>
 
+                    </div>
+                    <div class="tab-content pt-3" dir="rtl" id="myTabContent3">
+                        <div class="tab-pane fade" id="individual-encounters-pane" role="tabpanel" aria-labelledby="individual-encounters" tabindex="0">
+                            <div class="row pb-3">
+                                <div class="col">
+                                    <label> نوع المشكلة : </label>
+                                    <span>اجتماعية</span>
+                                </div>
+                            </div>
+                            <div class="row py-3">
+                                <div class="col">
+                                    <label> الموضوع : </label>
+                                    <div>هنا يكتب الموضوع</div>
+                                </div>
+                            </div>
+                            <div class="row py-3">
+                                <div class="col">
+                                    <label> الإجراء الإرشادي : </label>
+                                    <div>هنا يكتب الإجراء الإرشادي </div>
+                                </div>
+                            </div>
+                            <div class="row py-3">
+                                <div class="col">
+                                    <label> التوصيات : </label>
+                                    <div> تحويل الحالة الى مركز الإرشاد النفسي والاجتماعي : <label>هنا يكتب الجواب نعم ام لا</label> </div>
+                                </div>
+                            </div>
+                            <div class="row py-3">
+                                <div class="col">
+                                    <label> ملاحظات : </label>
+                                    <div>هنا تكتب ملاحظات </div>
+                                </div>
+                            </div>
+                            <div class="row pt-3">
+                                <div class="col" id="">
+                                    <div class="save-responsive d-flex justify-content-center mt-4">
+                                        <button id="save2" type="submit" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff;  margin-bottom: 20px;">
+                                            طباعة
+                                            <i class="ui-button-icon-left ui-icon ui-c fa fa-print white ps-1" style="color: #ffffff;"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content pt-3" dir="rtl" id="myTabContent4">
+                        <div class="tab-pane fade" id="student-status-pane" role="tabpanel" aria-labelledby="student-status" tabindex="0">
+                            <div class="row pb-3">
+                                <div class="col">
+                                    <label> نوع المشكلة : </label>
+                                    <span>اكاديمية</span>
+                                </div>
+                            </div>
+                            <div class="row py-3">
+                                <div class="col">
+                                    <label> الموضوع : </label>
+                                    <div>هنا يكتب الموضوع</div>
+                                </div>
+                            </div>
+                            <div class="row py-3">
+                                <div class="col">
+                                    <label> الإجراءات الإرشادية التي اتخذتها الكلية : </label>
+                                    <div>هنا يكتب الإجراء الإرشادي </div>
+                                </div>
+                            </div>
+                            <div class="row py-3">
+                                <div class="col">
+                                    <label> ملاحظات : </label>
+                                    <div>هنا تكتب ملاحظات </div>
+                                </div>
+                            </div>
+                            <div class="row pt-3">
+                                <div class="col" id="">
+                                    <div class="save-responsive d-flex justify-content-center mt-4">
+                                        <button id="save2" type="submit" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff;  margin-bottom: 20px;">
+                                            طباعة
+                                            <i class="ui-button-icon-left ui-icon ui-c fa fa-print white ps-1" style="color: #ffffff;"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

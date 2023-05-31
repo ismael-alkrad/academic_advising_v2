@@ -108,4 +108,8 @@ body {
     color: white;
 }
 
+.landing label {
+    color: var(--blue-color);
+}
+
 /*End Landing*/
