@@ -1,6 +1,7 @@
 <?php
 include_once '../../php/check.php';
 include '../../php/navbar.php';
+include_once '../../php/functions.php';
 check_activity();
 check();
 ?>
@@ -38,7 +39,7 @@ check();
             <form>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">عدد طلبة الإرشاد الأكاديمي</span>
-                    <input type="number" class="form-control" name="academic_advising_students" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
+                    <input type="text" class="form-control" value="<?php echo countRows($conn, 'student_info', $_SESSION['username']); ?>" name="academic_advising_students" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">عدد الطلبة المراجعين من خارج طلبة الإرشاد الأكاديمي</span>
@@ -52,166 +53,122 @@ check();
                     <span class="input-group-text" id="inputGroup-sizing-default"> المجموع الكلي للطلبة </span>
                     <input type="text" class="form-control" name="total_students" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="3">
                 </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default"> نسبة المراجعين من المجموع الكلي للطلبة </span>
-                    <input type="text" class="form-control" name="advised_students_ratio" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default"> عدد اللقاءات الشهرية </span>
-                    <input type="text" class="form-control" name="monthly_meetings" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
-                </div>
+
+
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">عدد اللقاءات الفردية</span>
-                    <input type="text" class="form-control" name="individual_meetings" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
+                    <input type="text" class="form-control" name="individual_meetings" value="<?php echo countRow2($conn, 'counseling', $_SESSION['username']); ?>" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">عدد المتعثرين دراسيا</span>
-                    <input type="text" class="form-control" name="struggling_students" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
+                    <input type="text" class="form-control" name="struggling_students" value="<?php echo countRow2($conn, 'academic_failures', $_SESSION['username']); ?>" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">عدد المتعثرين دراسيا المراجعين</span>
-                    <input type="text" class="form-control" name="struggling_advised_students" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
+                    <input type="text" class="form-control" name="struggling_advised_students" value="<?php echo countRow2($conn, 'academic_failures', $_SESSION['username']); ?>" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
 
                 </div>
+
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default"> نسبة المتعثرين دراسيا المراجعين </span>
-                    <input type="text" class="form-control" name="struggling_advised_ratio" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default"> عدد الجالات المحولة </span>
-                    <input type="text" class="form-control" name="transferred_groups" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
+                    <span class="input-group-text" id="inputGroup-sizing-default"> عدد الحالات المحولة </span>
+                    <input type="text" class="form-control" name="transferred_groups" value="<?php echo countRow2($conn, 'student_status', $_SESSION['username']); ?>" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="2">
                 </div>
                 <button type="submit" class="btn btn-primary">حفظ البيانات</button>
-            </form>
-            <div class=" row">
-                <label> إجراءات الخطة العلاجية للطلبة المتعثرين : </label>
-                <div class="col mt-2 form-floating">
-                    <textarea class="form-control" placeholder="اكتب هنا الاجراءات" id="floatingTextarea" maxlength="2000"></textarea>
-                    <label class="ms-3" for="floatingTextarea"> اكتب هنا الإجراءات </label>
+
+                <table class="table table-bordered mt-3">
+                    <tbody>
+                        <tr>
+                            <th class="text-center pt-5" scope="row" rowspan="8">سياسة الإرشاد الأكاديمي</th>
+                            <th scope="row"> رقم السياسة : </th>
+                            <td>AP-16</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">تاريخ الإصدار :</th>
+                            <td>9/10/2019</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"> تاريخ المراجعة والتعديل : </th>
+                            <td>Larry the Bird</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"> رقم المراجعة والتعديل : </th>
+                            <td>Larry the Bird</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"> عدد الصفحات : </th>
+                            <td> 1 </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"> تاريخ اعتماد السياسة : </th>
+                            <td>Larry the Bird</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">قرار مجلس النوعية وضبط الجودة رقم :</th>
+                            <td>2/2 - 2020/2019</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"> قرار مجلس العمداء رقم : </th>
+                            <td>Larry the Bird</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-center"> السياسة </th>
+                            <th colspan="2"> متابعة الشؤون الأكاديمية للطلبة، وتقديم خدمة الإرشاد الأكاديمي لهم. </th>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-center"> الأهداف </th>
+                            <th colspan="2">
+                                <div> 1. تقديم خدمة الإرشاد الأكاديمي للطلبة أثناء عملية التسجيل. </div>
+                                <div> 2. إرشاد الطلبة فيما يتعلق بتسجيل المواد ضمن خططهم الدراسية </div>
+                                <div> 3. متابعة شؤون الطلبة الأكاديمية أثناء الدراسة. </div>
+                                <div> 4. متابعة شؤون الطلبة المتعثرين </div>
+                                <div> 5. تقديم الاقتراحات والحلول للطلبة </div>
+                                <div> 6. توعية الطلبة بالالتزام بالخطط الدراسية. </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-center"> مسؤولية التطبيق </th>
+                            <th colspan="2">
+                                <div> عمداء الكليات.</div>
+                                <div> رؤساء الأقسام الأكاديمية. </div>
+                                <div> المرشدون الأكاديميون في الكليات </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-center"> العمليات/التشريعات </th>
+                            <th colspan="2">
+                                <div> نظام منح الدرجات العلمية </div>
+                                <div> تعليمات منح الدرجات العلمية </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-center"> الإجراءات </th>
+                            <th colspan="2">
+                                <div>16-001-AP متابعة الطلبة خلال الدراسة الجامعية.</div>
+                                <div>16-002-AP حفظ قوائم الطلبة عند كل مرشد أكاديمي عضو هيئة تدريس</div>
+                                <div>16-003-AP تعريف الطالب بخطته الدراسية</div>
+                                <div>16-004-AP توضيح إجراءات تسجيل المواد من داخل الخطة الدراسية للمادة</div>
+                                <div>16-005-AP تعريف الطالب بالأنظمة وبتعليمات منح الدرجات العلمية.</div>
+                                <div>16-006-AP اقتراح حلول للطلبة المتعثرين</div>
+                                <div>16-007-AP حفظ ملف لكل طالب عند المرشد الأكاديمي.</div>
+                                <div>16-008-AP متابعة الطلبة المتعثرين.</div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-center"> النماذج المتعلقة </th>
+                            <th colspan="2">
+                                <div> AP-16-001-F001 نموذج الإرشاد الأكاديمي. </div>
+                                <div> AP-16-002-F001 نموذج سجل زيارات الطالب الإرشادية </div>
+                                <div> AP-16-003-F001 نموذج متابعة الطلبة المتعثرين </div>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="save-responsive d-flex justify-content-center">
+                    <button id="save-pra" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff;  margin-top: 20px;">
+                        حفظ
+                        <i class="fa-solid fa-floppy-disk ps-1" style="color: #ffffff;"></i>
+                    </button>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <table class="table table-striped text-center mt-3">
-                        <thead>
-                            <tr>
-                                <th scope="col">الطلبة المراجعين من خارج طلبة الإرشاد الأكاديمي</th>
-                                <th scope="col">الموضوع</th>
-                                <th scope="col">الإجراءات</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableBody">
-                            <tr id="row-1">
-                                <th scope="row"><input class="form-control" type="text" placeholder="اسم الطالب" aria-label="default input example">
-                                </th>
-                                <td><input class="form-control" type="text" placeholder=" الموضوع " aria-label="default input example">
-                                </td>
-                                <td><input class="form-control" type="text" placeholder=" الإجراءات " aria-label="default input example">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div>
-                        <button type="button" id="addInputBtn_activities" class="button-style">
-                            إضافة حقل إدخال
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <table class="table table-bordered mt-3">
-                <tbody>
-                    <tr>
-                        <th class="text-center pt-5" scope="row" rowspan="8">سياسة الإرشاد الأكاديمي</th>
-                        <th scope="row"> رقم السياسة : </th>
-                        <td>AP-16</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">تاريخ الإصدار :</th>
-                        <td>9/10/2019</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"> تاريخ المراجعة والتعديل : </th>
-                        <td>Larry the Bird</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"> رقم المراجعة والتعديل : </th>
-                        <td>Larry the Bird</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"> عدد الصفحات : </th>
-                        <td> 1 </td>
-                    </tr>
-                    <tr>
-                        <th scope="row"> تاريخ اعتماد السياسة : </th>
-                        <td>Larry the Bird</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">قرار مجلس النوعية وضبط الجودة رقم :</th>
-                        <td>2/2 - 2020/2019</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"> قرار مجلس العمداء رقم : </th>
-                        <td>Larry the Bird</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="text-center"> السياسة </th>
-                        <th colspan="2"> متابعة الشؤون الأكاديمية للطلبة، وتقديم خدمة الإرشاد الأكاديمي لهم. </th>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="text-center"> الأهداف </th>
-                        <th colspan="2">
-                            <div> 1. تقديم خدمة الإرشاد الأكاديمي للطلبة أثناء عملية التسجيل. </div>
-                            <div> 2. إرشاد الطلبة فيما يتعلق بتسجيل المواد ضمن خططهم الدراسية </div>
-                            <div> 3. متابعة شؤون الطلبة الأكاديمية أثناء الدراسة. </div>
-                            <div> 4. متابعة شؤون الطلبة المتعثرين </div>
-                            <div> 5. تقديم الاقتراحات والحلول للطلبة </div>
-                            <div> 6. توعية الطلبة بالالتزام بالخطط الدراسية. </div>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="text-center"> مسؤولية التطبيق </th>
-                        <th colspan="2">
-                            <div> عمداء الكليات.</div>
-                            <div> رؤساء الأقسام الأكاديمية. </div>
-                            <div> المرشدون الأكاديميون في الكليات </div>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="text-center"> العمليات/التشريعات </th>
-                        <th colspan="2">
-                            <div> نظام منح الدرجات العلمية </div>
-                            <div> تعليمات منح الدرجات العلمية </div>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="text-center"> الإجراءات </th>
-                        <th colspan="2">
-                            <div>16-001-AP متابعة الطلبة خلال الدراسة الجامعية.</div>
-                            <div>16-002-AP حفظ قوائم الطلبة عند كل مرشد أكاديمي عضو هيئة تدريس</div>
-                            <div>16-003-AP تعريف الطالب بخطته الدراسية</div>
-                            <div>16-004-AP توضيح إجراءات تسجيل المواد من داخل الخطة الدراسية للمادة</div>
-                            <div>16-005-AP تعريف الطالب بالأنظمة وبتعليمات منح الدرجات العلمية.</div>
-                            <div>16-006-AP اقتراح حلول للطلبة المتعثرين</div>
-                            <div>16-007-AP حفظ ملف لكل طالب عند المرشد الأكاديمي.</div>
-                            <div>16-008-AP متابعة الطلبة المتعثرين.</div>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="text-center"> النماذج المتعلقة </th>
-                        <th colspan="2">
-                            <div> AP-16-001-F001 نموذج الإرشاد الأكاديمي. </div>
-                            <div> AP-16-002-F001 نموذج سجل زيارات الطالب الإرشادية </div>
-                            <div> AP-16-003-F001 نموذج متابعة الطلبة المتعثرين </div>
-                        </th>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="save-responsive d-flex justify-content-center">
-                <button id="save-pra" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff;  margin-top: 20px;">
-                    حفظ
-                    <i class="fa-solid fa-floppy-disk ps-1" style="color: #ffffff;"></i>
-                </button>
-            </div>
         </div>
     </div>
 
@@ -285,6 +242,7 @@ check();
                 url: '../../php/forms/inserts/inserAnnualReport.php', // Replace with the URL that processes the form data
                 data: formData,
                 success: function(response) {
+                    console.log(response);
                     // Handle the successful response from the server
                     if (response === "success") {
                         Swal.fire({
@@ -295,7 +253,7 @@ check();
                             confirmButtonText: 'OK'
                         });
                         setTimeout(function() {
-                            window.location.href = "../";
+                            window.location.href = "home.php";
 
 
                         }, 500);

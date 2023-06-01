@@ -46,7 +46,7 @@ check(text: "Location: ../../../index.php");
                     </div>
                     <div class="col">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" id="flexRadioDefault1">
+                            <input class="form-check-input" type="radio" name="type" value="نفسية" id="flexRadioDefault1">
                             <label class="form-check-label" for="flexRadioDefault1">
                                 نفسية
                             </label>
@@ -54,7 +54,7 @@ check(text: "Location: ../../../index.php");
                     </div>
                     <div class="col">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" id="flexRadioDefault2">
+                            <input class="form-check-input" type="radio" name="type" value="أكاديمية" id="flexRadioDefault2">
                             <label class="form-check-label" for="flexRadioDefault2">
                                 أكاديمية
                             </label>
@@ -62,7 +62,7 @@ check(text: "Location: ../../../index.php");
                     </div>
                     <div class="col">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" id="flexRadioDefault3">
+                            <input class="form-check-input" type="radio" name="type" value="سلوكية" id="flexRadioDefault3">
                             <label class="form-check-label" for="flexRadioDefault3">
                                 سلوكية
                             </label>
@@ -70,7 +70,7 @@ check(text: "Location: ../../../index.php");
                     </div>
                     <div class="col">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" id="flexRadioDefault4">
+                            <input class="form-check-input" type="radio" name="type" value="اجتماعية" id="flexRadioDefault4">
                             <label class="form-check-label" for="flexRadioDefault4">
                                 اجتماعية
                             </label>

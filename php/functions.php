@@ -834,3 +834,41 @@ function getCourseData($connection, $uId)
         return null;
     }
 }
+function getLastInsertedRowFromCounseling($conn, $u_id)
+{
+    $stmt = $conn->prepare("SELECT * FROM counseling WHERE u_id = ?");
+    $stmt->execute([$u_id]);
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $rows;
+}
+function displayStudentStatusRows($conn, $u_id)
+{
+    $stmt = $conn->prepare("SELECT * FROM student_status WHERE u_id = ?");
+    $stmt->execute([$u_id]);
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $rows;
+}
+
+
+
+function countRows($conn, $tableName, $condition)
+{
+    $stmt = $conn->prepare("SELECT COUNT(*) as count FROM $tableName WHERE advisor = :username");
+    $stmt->bindParam(':username', $condition);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $result['count'];
+}
+
+function countRow2($conn, $tableName, $condition)
+{
+    $stmt = $conn->prepare("SELECT COUNT(*) as count FROM $tableName WHERE a_username = :username");
+    $stmt->bindParam(':username', $condition);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $result['count'];
+}

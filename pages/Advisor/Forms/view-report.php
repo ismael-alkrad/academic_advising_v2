@@ -238,7 +238,8 @@ $talents = getTalents($_GET['student'], $conn) ?? array();
                                             'long_commute' => 'المسافة التي أقطعها للوصول للجامعة طويلة',
                                             'choosing_bad_friends' => 'عدم اختيار الأصدقاء الجيدين',
                                             'lack_of_time_for_studying' => 'لا أجد الوقت للدراسة',
-                                            'other_reasons' => 'أسباب أخرى'
+                                            'other_reasons' => 'أسباب أخرى',
+                                            'proposed_solutions' => 'حلول مقترحة'
                                         );
 
                                         return isset($arabicColumns[$column]) ? $arabicColumns[$column] : $column;
@@ -264,40 +265,63 @@ $talents = getTalents($_GET['student'], $conn) ?? array();
                     </div>
                     <div class="tab-content pt-3" dir="rtl" id="myTabContent3">
                         <div class="tab-pane fade" id="individual-encounters-pane" role="tabpanel" aria-labelledby="individual-encounters" tabindex="0">
-                            <div class="row pb-3">
-                                <div class="col">
-                                    <label> نوع المشكلة : </label>
-                                    <span>اجتماعية</span>
-                                </div>
-                            </div>
-                            <div class="row py-3">
-                                <div class="col">
-                                    <label> الموضوع : </label>
-                                    <div>هنا يكتب الموضوع</div>
-                                </div>
-                            </div>
-                            <div class="row py-3">
-                                <div class="col">
-                                    <label> الإجراء الإرشادي : </label>
-                                    <div>هنا يكتب الإجراء الإرشادي </div>
-                                </div>
-                            </div>
-                            <div class="row py-3">
-                                <div class="col">
-                                    <label> التوصيات : </label>
-                                    <div> تحويل الحالة الى مركز الإرشاد النفسي والاجتماعي : <label>هنا يكتب الجواب نعم ام لا</label> </div>
-                                </div>
-                            </div>
-                            <div class="row py-3">
-                                <div class="col">
-                                    <label> ملاحظات : </label>
-                                    <div>هنا تكتب ملاحظات </div>
-                                </div>
-                            </div>
+                            <?php
+
+                            $rows = getLastInsertedRowFromCounseling(
+                                $conn,
+                                $_GET['student']
+                            );
+
+                            foreach ($rows as $row) {
+                                $problem_type = $row['problem_type'];
+                                $topic = $row['topic'];
+                                $guidance_procedure = $row['guidance_procedure'];
+                                $recommendations = $row['recommendations'];
+                                $notes = $row['notes'];
+
+                                echo '<div class="row pb-3">';
+                                echo '<div class="col">';
+                                echo '<label> نوع المشكلة : </label>';
+                                echo '<span>' . $problem_type . '</span>';
+                                echo '</div>';
+                                echo '</div>';
+
+                                echo '<div class="row py-3">';
+                                echo '<div class="col">';
+                                echo '<label> الموضوع : </label>';
+                                echo '<div>' . $topic . '</div>';
+                                echo '</div>';
+                                echo '</div>';
+
+                                echo '<div class="row py-3">';
+                                echo '<div class="col">';
+                                echo '<label> الإجراء الإرشادي : </label>';
+                                echo '<div>' . $guidance_procedure . '</div>';
+                                echo '</div>';
+                                echo '</div>';
+
+                                echo '<div class="row py-3">';
+                                echo '<div class="col">';
+                                echo '<label> التوصيات : </label>';
+                                echo '<div> تحويل الحالة الى مركز الإرشاد النفسي والاجتماعي : <label>' . $recommendations . '</label> </div>';
+                                echo '</div>';
+                                echo '</div>';
+
+                                echo '<div class="row py-3">';
+                                echo '<div class="col">';
+                                echo '<label> ملاحظات : </label>';
+                                echo '<div>' . $notes . '</div>';
+                                echo '</div>';
+                                echo '</div>';
+                                echo "<hr>";
+                            }
+
+
+                            ?>
                             <div class="row pt-3">
                                 <div class="col" id="">
                                     <div class="save-responsive d-flex justify-content-center mt-4">
-                                        <button id="save2" type="submit" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff;  margin-bottom: 20px;">
+                                        <button id="save3" type="submit" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff;  margin-bottom: 20px;">
                                             طباعة
                                             <i class="ui-button-icon-left ui-icon ui-c fa fa-print white ps-1" style="color: #ffffff;"></i>
                                         </button>
@@ -308,34 +332,55 @@ $talents = getTalents($_GET['student'], $conn) ?? array();
                     </div>
                     <div class="tab-content pt-3" dir="rtl" id="myTabContent4">
                         <div class="tab-pane fade" id="student-status-pane" role="tabpanel" aria-labelledby="student-status" tabindex="0">
-                            <div class="row pb-3">
-                                <div class="col">
-                                    <label> نوع المشكلة : </label>
-                                    <span>اكاديمية</span>
-                                </div>
-                            </div>
-                            <div class="row py-3">
-                                <div class="col">
-                                    <label> الموضوع : </label>
-                                    <div>هنا يكتب الموضوع</div>
-                                </div>
-                            </div>
-                            <div class="row py-3">
-                                <div class="col">
-                                    <label> الإجراءات الإرشادية التي اتخذتها الكلية : </label>
-                                    <div>هنا يكتب الإجراء الإرشادي </div>
-                                </div>
-                            </div>
-                            <div class="row py-3">
-                                <div class="col">
-                                    <label> ملاحظات : </label>
-                                    <div>هنا تكتب ملاحظات </div>
-                                </div>
-                            </div>
+
+                            <?php
+                            $rows = displayStudentStatusRows(
+                                $conn,
+                                $_GET['student']
+                            );
+                            foreach ($rows as $row) {
+                                $problem_type = $row['problem_type'];
+                                $subject = $row['subject'];
+                                $guidance_procedures = $row['guidance_procedures'];
+                                $notes = $row['notes'];
+                                $u_id = $row['u_id'];
+                                $a_username = $row['a_username'];
+
+                                echo '<div class="row pb-3">';
+                                echo '<div class="col">';
+                                echo '<label> نوع المشكلة : </label>';
+                                echo '<span>' . $problem_type . '</span>';
+                                echo '</div>';
+                                echo '</div>';
+
+                                echo '<div class="row py-3">';
+                                echo '<div class="col">';
+                                echo '<label> الموضوع : </label>';
+                                echo '<div>' . $subject . '</div>';
+                                echo '</div>';
+                                echo '</div>';
+
+                                echo '<div class="row py-3">';
+                                echo '<div class="col">';
+                                echo '<label> الإجراء الإرشادي : </label>';
+                                echo '<div>' . $guidance_procedures . '</div>';
+                                echo '</div>';
+                                echo '</div>';
+
+                                echo '<div class="row py-3">';
+                                echo '<div class="col">';
+                                echo '<label> ملاحظات : </label>';
+                                echo '<div>' . $notes . '</div>';
+                                echo '</div>';
+                                echo '</div>';
+                                echo "<hr>";
+                            }
+                            ?>
+
                             <div class="row pt-3">
                                 <div class="col" id="">
                                     <div class="save-responsive d-flex justify-content-center mt-4">
-                                        <button id="save2" type="submit" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff;  margin-bottom: 20px;">
+                                        <button id="save4" type="submit" class="button-style fs-6 d-flex justify-content-center align-items-center text-center" style="color: #ffffff;  margin-bottom: 20px;">
                                             طباعة
                                             <i class="ui-button-icon-left ui-icon ui-c fa fa-print white ps-1" style="color: #ffffff;"></i>
                                         </button>
@@ -359,6 +404,16 @@ $talents = getTalents($_GET['student'], $conn) ?? array();
 
         });
         document.getElementById('save2').addEventListener('click', function() {
+            this.style.visibility = 'hidden';
+
+            window.print();
+        });
+        document.getElementById('save3').addEventListener('click', function() {
+            this.style.visibility = 'hidden';
+
+            window.print();
+        });
+        document.getElementById('save4').addEventListener('click', function() {
             this.style.visibility = 'hidden';
 
             window.print();

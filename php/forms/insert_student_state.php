@@ -11,7 +11,7 @@ $notes = $_POST['notes'];
 
 
 
-if (insertStudentState($conn, $type, $subject, $actions, $notes, $student, 'admin')) {
+if (insertStudentState($conn, $type, $subject, $actions, $notes, $student, $_SESSION['username'])) {
     echo "success";
 } else {
     echo "There was an error inserting the data.";
