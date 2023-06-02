@@ -398,25 +398,37 @@ $talents = getTalents($_GET['student'], $conn) ?? array();
     <script src="../../../js/all.min.js"></script>
 
     <script>
-        document.getElementById('save').addEventListener('click', function() {
-            this.style.visibility = 'hidden';
+        function printDiv(divId) {
+            var printContents = document.getElementById(divId).innerHTML;
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
             window.print();
 
+            document.body.innerHTML = originalContents;
+        }
+
+
+        document.getElementById('save').addEventListener('click', function() {
+
+            this.style.visibility = 'hidden';
+            printDiv("myTabContent");
+            this.style.visibility = 'show';
         });
         document.getElementById('save2').addEventListener('click', function() {
             this.style.visibility = 'hidden';
-
-            window.print();
+            printDiv("myTabContent2");
+            this.style.visibility = 'show';
         });
         document.getElementById('save3').addEventListener('click', function() {
             this.style.visibility = 'hidden';
-
-            window.print();
+            printDiv("myTabContent3");
+            this.style.visibility = 'show';
         });
-        document.getElementById('save4').addEventListener('click', function() {
+        document.getElementById('save3').addEventListener('click', function() {
             this.style.visibility = 'hidden';
-
-            window.print();
+            printDiv("myTabContent4");
+            this.style.visibility = 'show';
         });
     </script>
 

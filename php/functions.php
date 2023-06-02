@@ -270,7 +270,7 @@ function insertOrUpdatePersonalData($formData, $conn)
         $stmt->execute([$u_id]);
         $row_count = $stmt->fetchColumn();
 
-        $sql = ($row_count > 0) ? "UPDATE personal_data SET  region=:region, phone_house=:phone_house, city=:city, phone_person=:phone_person, email=:email, place_birth=:place_birth, birth_date=:birth, status=:status, gender=:gender WHERE u_id=:u_id" : "INSERT INTO personal_data (u_id, region, phone_house, city, phone_person, email, place_birth, birth_date, status, gender) VALUES (:u_id, :region, :phone_house, :city, :phone_person, :email, :place_birth, :birth, :status, :gender,true)";
+        $sql = ($row_count > 0) ? "UPDATE personal_data SET  region=:region, phone_house=:phone_house, city=:city, phone_person=:phone_person, email=:email, place_birth=:place_birth, birth_date=:birth, status=:status, gender=:gender WHERE u_id=:u_id" : "INSERT INTO personal_data (u_id, region, phone_house, city, phone_person, email, place_birth, birth_date, status, gender) VALUES (:u_id, :region, :phone_house, :city, :phone_person, :email, :place_birth, :birth, :status, :gender)";
 
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':u_id', $u_id);

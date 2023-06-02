@@ -59,7 +59,7 @@ check(text: "Location: ../../../index.php");
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $courseData = getCourseData($conn, "Ac1006");
+                            <?php $courseData = getCourseData($conn, $_GET['student']);
                             if ($courseData) {
                                 // Iterate through each course data
                                 foreach ($courseData as $course) {

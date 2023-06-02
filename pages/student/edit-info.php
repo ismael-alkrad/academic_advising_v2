@@ -670,7 +670,7 @@ $student_info = getStudentData($conn, $id) ?? [];
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: "Your work has been saved",
+                        title: "تم حفظ المعلومات بنجاح",
                         showConfirmButton: false,
                         allowOutsideClick: false,
                         timer: 1500,
@@ -828,6 +828,36 @@ $student_info = getStudentData($conn, $id) ?? [];
 <!----------------------------------------- start  Log out ------------------------------------>
 <script>
     $("#log-out").click(() => {
+        $.ajax({
+            url: "../../php/forms/logout.php",
+            type: "POST",
+            success: function(data) {
+                if (data === 'success') {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "تم تسجيل الخروج بنجاح",
+                        showConfirmButton: false,
+                        allowOutsideClick: false,
+                        timer: 1500,
+                    });
+                    setTimeout(function() {
+                        window.location.href = "../../index.php";
+                    }, 1500);
+                } else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "حدث خطأ ما",
+                        showConfirmButton: false,
+                        allowOutsideClick: false,
+                        timer: 1500,
+                    });
+                }
+            }
+        });
+    });
+    $("#log-out-res").click(() => {
         $.ajax({
             url: "../../php/forms/logout.php",
             type: "POST",
