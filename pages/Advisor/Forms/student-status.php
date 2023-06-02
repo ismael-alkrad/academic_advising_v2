@@ -125,7 +125,7 @@ check(text: "Location: ../../../index.php");
                 // Send the form data using AJAX
                 $.ajax({
                     type: "POST",
-                    url: "../../../php/forms/insert_student_state.php",
+                    url: "../../../php/forms/inserts/insert_student_state.php",
                     data: {
                         student: student,
                         type: type,

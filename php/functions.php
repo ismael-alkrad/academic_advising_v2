@@ -587,7 +587,98 @@ function getAllStudentWithoutAdvisor($conn, $college, $major = '')
     return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
 }
 
+function uploadPhoto($conn)
+{
+    if (isset($_POST['photo'])) {
+        // Get the file data
+        $file_data = $_POST['photo'];
 
+        // Get the filepath of the old photo, if it exists
+        $old_filepath = getPhotoPathByUser($conn);
+
+        // If the old photo exists, delete it from the directory
+        if ($old_filepath && file_exists($old_filepath)) {
+            unlink($old_filepath);
+        }
+
+        // Decode the base64-encoded data URI
+        $img_data = str_replace('data:image/png;base64,', '', $file_data);
+        $img_data = str_replace(' ', '+', $img_data);
+        $img_data = base64_decode($img_data);
+
+        // Generate a unique filename for the uploaded photo
+        $filename = uniqid() . '.png';
+
+        // Set the file path where the photo will be stored
+        $filepath = '../../assets/images/personal-photo/' . $filename;
+
+        // Save the cropped image to the directory
+        if (file_put_contents($filepath, $img_data)) {
+            // Prepare and execute the SQL query to insert/update the photo record
+            $stmt = $conn->prepare("INSERT INTO photos (u_id, name, type, size, filepath) VALUES (?, ?, ?, ?, ?) 
+                                    ON DUPLICATE KEY UPDATE name = VALUES(name), type = VALUES(type), size = VALUES(size), filepath = VALUES(filepath)");
+            $stmt->bindParam(1, $_SESSION['username']);
+            $stmt->bindParam(2, $filename);
+            $stmt->bindValue(3, 'image/png');
+            $stmt->bindValue(4, filesize($filepath));
+            $stmt->bindParam(5, $filepath);
+            $stmt->execute();
+
+            // Return a success message
+            echo "Photo uploaded successfully!";
+        } else {
+            // Return an error message
+            echo "Error uploading photo. Please try again.";
+        }
+    }
+}
+
+function deletePhoto($conn)
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Get the filename from the database
+        $stmt = $conn->prepare("SELECT filepath FROM photos WHERE u_id = ?");
+        $stmt->bindParam(1, $_SESSION['username']);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $filename = $row['filepath'];
+
+        // Delete the file from the folder
+        if (file_exists($filename)) {
+            unlink($filename);
+        }
+
+        // Delete the record from the database
+        $stmt = $conn->prepare("DELETE FROM photos WHERE u_id = ?");
+        $stmt->bindParam(1, $_SESSION['username']);
+        $stmt->execute();
+
+        // Return success response
+        echo json_encode(array('status' => 'success'));
+        exit;
+    }
+}
+function updateTableData($tableData, $new_value, $conn)
+{
+
+    if (isset($tableData)) {
+        try {
+            foreach ($tableData as $rowData) {
+                $u_id = $rowData[0];
+
+                $stmt = $conn->prepare("UPDATE student_info SET advisor = :new_value WHERE u_id = :u_id");
+                $stmt->bindParam(':new_value', $new_value);
+                $stmt->bindParam(':u_id', $u_id);
+                $stmt->execute();
+            }
+            return 'success';
+        } catch (PDOException $e) {
+            return "Error: " . $e->getMessage();
+        }
+    } else {
+        return "Error: table data is not set";
+    }
+}
 
 function getFnameByUid($pdo, $u_id)
 {
@@ -850,8 +941,113 @@ function displayStudentStatusRows($conn, $u_id)
 
     return $rows;
 }
+function updateStudentInfo($conn)
+{
+    if (isset($_POST['tableData'])) {
+        try {
+            foreach ($_POST['tableData'] as $rowData) {
+                $u_id = $rowData[0];
+                $new_value = $rowData[1];
 
+                $stmt = $conn->prepare("UPDATE student_info SET advisor = 'none' WHERE u_id = :u_id");
+                $stmt->bindParam(':u_id', $u_id);
+                $stmt->execute();
+            }
+            echo 'success';
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    } else {
+        echo "Error: table data is not set";
+    }
+}
+function insertAcademicFailure($difficulty, $attendance, $teaching_methods, $exam_anxiety, $family_problems, $university_environment, $high_course_load, $disinterest_in_major, $working_while_studying, $financial_issues, $long_commute, $choosing_bad_friends, $lack_of_time_for_studying, $other_reasons, $proposed_solutions, $u_id, $a_username)
+{
+    require_once '../../functions.php';
 
+    $sql = "INSERT INTO academic_failures 
+            (difficulty, attendance, teaching_methods, exam_anxiety, family_problems, university_environment, high_course_load, disinterest_in_major, working_while_studying, financial_issues, long_commute, choosing_bad_friends, lack_of_time_for_studying, other_reasons, proposed_solutions, u_id, a_username) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(1, $difficulty);
+    $stmt->bindParam(2, $attendance);
+    $stmt->bindParam(3, $teaching_methods);
+    $stmt->bindParam(4, $exam_anxiety);
+    $stmt->bindParam(5, $family_problems);
+    $stmt->bindParam(6, $university_environment);
+    $stmt->bindParam(7, $high_course_load);
+    $stmt->bindParam(8, $disinterest_in_major);
+    $stmt->bindParam(9, $working_while_studying);
+    $stmt->bindParam(10, $financial_issues);
+    $stmt->bindParam(11, $long_commute);
+    $stmt->bindParam(12, $choosing_bad_friends);
+    $stmt->bindParam(13, $lack_of_time_for_studying);
+    $stmt->bindParam(14, $other_reasons);
+    $stmt->bindParam(15, $proposed_solutions);
+    $stmt->bindParam(16, $u_id);
+    $stmt->bindParam(17, $a_username);
+
+    if ($stmt->execute()) {
+        return "success";
+    } else {
+        return "Error: " . $stmt->errorInfo()[2];
+    }
+}
+function insertTalents($talents, $conn, $advisor)
+{
+    foreach ($talents as &$talent) {
+        $talent = filter_var($talent, FILTER_SANITIZE_STRING);
+    }
+
+    // combine talents into a comma-separated string
+    $talent_string = implode(',', $talents);
+
+    // insert talent data into database
+    $sql = "INSERT INTO talents (talent, u_id, a_username) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(1, $talent_string);
+    $stmt->bindParam(2, $_SESSION['username']);
+    $stmt->bindParam(3, $advisor);
+
+    if ($stmt->execute()) {
+        echo "success";
+    } else {
+        echo "Error: " . $stmt->errorInfo()[2];
+    }
+}
+function insertAdvisingStatistics($conn)
+{
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $academic_advising_students = $_POST['academic_advising_students'];
+        $external_students = $_POST['external_students'];
+        $advised_students = $_POST['advised_students'];
+        $total_students = $_POST['total_students'];
+
+        $individual_meetings = $_POST['individual_meetings'];
+        $struggling_students = $_POST['struggling_students'];
+        $struggling_advised_students = $_POST['struggling_advised_students'];
+        $transferred_groups = $_POST['transferred_groups'];
+
+        $sql = "INSERT INTO advising_statistics (academic_advising_students, external_students, advised_students, total_students,individual_meetings, struggling_students, struggling_advised_students, transferred_groups,a_username) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(1, $academic_advising_students);
+        $stmt->bindParam(2, $external_students);
+        $stmt->bindParam(3, $advised_students);
+        $stmt->bindParam(4, $total_students);
+        $stmt->bindParam(5, $individual_meetings);
+        $stmt->bindParam(6, $struggling_students);
+        $stmt->bindParam(7, $struggling_advised_students);
+        $stmt->bindParam(8, $transferred_groups);
+        $stmt->bindParam(9, $_SESSION['username']);
+
+        if ($stmt->execute()) {
+            echo "success";
+        } else {
+            echo "خطأ: " . $stmt->errorInfo()[2];
+        }
+    }
+}
 
 function countRows($conn, $tableName, $condition)
 {
