@@ -99,7 +99,7 @@ check();
             }
 
             // Call the function to fetch and display the statistics
-            $statistics = getAdvisingStatisticsByYear($conn);
+            $statistics = createAnnualReport($conn);
             displayAdvisingStatistics($statistics);
             ?> <table class="table table-bordered mt-3">
                 <tbody>

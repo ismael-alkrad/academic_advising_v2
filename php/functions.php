@@ -1080,7 +1080,7 @@ function prepareAnnualReport($conn)
 }
 
 
-function getAdvisingStatisticsByYear($conn)
+function createAnnualReport($conn)
 {
     $current_year = date('Y');
 
