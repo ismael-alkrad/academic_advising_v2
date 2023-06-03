@@ -25,7 +25,7 @@
       <div>
         <span class="navbar me-auto">
           <span class="d-flex flex-column align-items-end ms-2 d-none d-lg-block"> الإرشاد الأكاديمي</span>
-          <img height="70px" src="assets/images/logo.png" />
+          <img height="70px" src="assets/images/logo.png" alt="" />
         </span>
       </div>
     </div>
@@ -36,7 +36,7 @@
         <p>Help Us 24/7</p>
         <p class="fs-1">مرحبًا بعودتك</p>
         <p>دليلك الارشادي في جامعتك</p>
-        <img src="assets/images/logo.png" />
+        <img src="assets/images/logo.png" alt="" />
       </div>
       <div class="col-6 pg-color">
         <form id="login-form-user">

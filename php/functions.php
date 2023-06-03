@@ -155,13 +155,8 @@ function getStudentByAdvisor(
     }
 }
 
-function sendMail(
-    $pdo,
-    $to,
-    $subject,
-    $message,
-    $from
-) {
+function sendMail($pdo, $to, $subject, $message, $from)
+{
     // set sender address
 
 
@@ -658,7 +653,7 @@ function deletePhoto($conn)
         exit;
     }
 }
-function updateTableData($tableData, $new_value, $conn)
+function addStudentToAdvisor($tableData, $new_value, $conn)
 {
 
     if (isset($tableData)) {
@@ -941,7 +936,7 @@ function displayStudentStatusRows($conn, $u_id)
 
     return $rows;
 }
-function updateStudentInfo($conn)
+function deleteStudentFromAdvisor($conn)
 {
     if (isset($_POST['tableData'])) {
         try {

@@ -64,8 +64,8 @@ check();
                 </div>
                 <div class="col-4 pg-grid-3 shadow-lg mb-5 bg-body rounded"><span class="icon-reduis"><img class="icon-1" src="../../assets/images/Schedule.png"></span>
                     <h2 class="p-3">جدول</h2>
-                    <p class="mb-5">الوصول إلى الخطة الدراسية للطالب والجدول الزمني للمواد المقدمة.</p>
-                    <button>عرض الجدول الزمني</button>
+                    <p class="mb-5">الوصول إلى التقارير السنوية والجدول الزمني لها .</p>
+                    <a href="Forms/view-annual-report.php"><button>عرض الجدول الزمني</button></a>
                 </div>
             </div>
         </div>
