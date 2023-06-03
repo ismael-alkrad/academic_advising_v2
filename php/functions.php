@@ -1011,7 +1011,7 @@ function insertTalents($talents, $conn, $advisor)
         echo "Error: " . $stmt->errorInfo()[2];
     }
 }
-function insertAdvisingStatistics($conn)
+function prepareAnnualReport($conn)
 {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $academic_advising_students = $_POST['academic_advising_students'];
@@ -1024,26 +1024,74 @@ function insertAdvisingStatistics($conn)
         $struggling_advised_students = $_POST['struggling_advised_students'];
         $transferred_groups = $_POST['transferred_groups'];
 
-        $sql = "INSERT INTO advising_statistics (academic_advising_students, external_students, advised_students, total_students,individual_meetings, struggling_students, struggling_advised_students, transferred_groups,a_username) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(1, $academic_advising_students);
-        $stmt->bindParam(2, $external_students);
-        $stmt->bindParam(3, $advised_students);
-        $stmt->bindParam(4, $total_students);
-        $stmt->bindParam(5, $individual_meetings);
-        $stmt->bindParam(6, $struggling_students);
-        $stmt->bindParam(7, $struggling_advised_students);
-        $stmt->bindParam(8, $transferred_groups);
-        $stmt->bindParam(9, $_SESSION['username']);
+        // Get the current year
+        $current_year = date('Y');
 
-        if ($stmt->execute()) {
-            echo "success";
+        // Check if statistics for the current year exist in the database
+        $sql = "SELECT * FROM advising_statistics WHERE year = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(1, $current_year);
+        $stmt->execute();
+
+        $existing_statistics = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($existing_statistics) {
+            // Statistics for the current year already exist, update the information
+            $sql = "UPDATE advising_statistics SET academic_advising_students = ?, external_students = ?, advised_students = ?, total_students = ?, individual_meetings = ?, struggling_students = ?, struggling_advised_students = ?, transferred_groups = ?, a_username = ? WHERE year = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(1, $academic_advising_students);
+            $stmt->bindParam(2, $external_students);
+            $stmt->bindParam(3, $advised_students);
+            $stmt->bindParam(4, $total_students);
+            $stmt->bindParam(5, $individual_meetings);
+            $stmt->bindParam(6, $struggling_students);
+            $stmt->bindParam(7, $struggling_advised_students);
+            $stmt->bindParam(8, $transferred_groups);
+            $stmt->bindParam(9, $_SESSION['username']);
+            $stmt->bindParam(10, $current_year);
+
+            if ($stmt->execute()) {
+                echo "success";
+            } else {
+                echo "خطأ في تحديث الإحصائيات: " . $stmt->errorInfo()[2];
+            }
         } else {
-            echo "خطأ: " . $stmt->errorInfo()[2];
+            // Statistics for the current year don't exist, insert a new row
+            $sql = "INSERT INTO advising_statistics (academic_advising_students, external_students, advised_students, total_students, individual_meetings, struggling_students, struggling_advised_students, transferred_groups, a_username, year) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(1, $academic_advising_students);
+            $stmt->bindParam(2, $external_students);
+            $stmt->bindParam(3, $advised_students);
+            $stmt->bindParam(4, $total_students);
+            $stmt->bindParam(5, $individual_meetings);
+            $stmt->bindParam(6, $struggling_students);
+            $stmt->bindParam(7, $struggling_advised_students);
+            $stmt->bindParam(8, $transferred_groups);
+            $stmt->bindParam(9, $_SESSION['username']);
+            $stmt->bindParam(10, $current_year);
+
+            if ($stmt->execute()) {
+                echo "success";
+            } else {
+                echo "خطأ في إدراج الإحصائيات: " . $stmt->errorInfo()[2];
+            }
         }
     }
 }
 
+
+function getAdvisingStatisticsByYear($conn)
+{
+    $current_year = date('Y');
+
+    $sql = "SELECT * FROM advising_statistics WHERE year = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(1, $current_year);
+    $stmt->execute();
+
+    $statistics = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $statistics;
+}
 function countRows($conn, $tableName, $condition)
 {
     $stmt = $conn->prepare("SELECT COUNT(*) as count FROM $tableName WHERE advisor = :username");

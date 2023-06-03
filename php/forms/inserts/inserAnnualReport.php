@@ -2,4 +2,4 @@
 
 include_once '../../functions.php';
 
-insertAdvisingStatistics($conn);
+prepareAnnualReport($conn);
