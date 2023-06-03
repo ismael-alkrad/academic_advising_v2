@@ -13,7 +13,7 @@ $notes = $_POST['notes'];
 $u_id = $_POST['student'];
 
 
-if (addCounselingRow($conn, $u_id, $problem_type, $topic, $guidance_procedure, $recommendations, $notes, $a_username)) {
+if (createIndividualMeetings($conn, $u_id, $problem_type, $topic, $guidance_procedure, $recommendations, $notes, $a_username)) {
     echo "success";
 } else {
     echo "error";

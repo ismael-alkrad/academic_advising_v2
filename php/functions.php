@@ -737,7 +737,7 @@ function addSuggestedCourse($conn, $name, $number, $section, $time, $type, $sugg
 }
 
 
-function addCounselingRow(
+function createIndividualMeetings(
     $conn,
     $u_id,
     $problem_type,
