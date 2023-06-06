@@ -757,9 +757,7 @@ function createIndividualMeetings(
     $stmt->bindParam(4, $guidance_procedure);
     $stmt->bindParam(5, $recommendations);
     $stmt->bindParam(6, $notes);
-
     $stmt->bindParam(7, $a_username);
-
     // Execute the SQL statement
     if ($stmt->execute()) {
         return true;
@@ -956,9 +954,9 @@ function deleteStudentFromAdvisor($conn)
         echo "Error: table data is not set";
     }
 }
-function insertAcademicFailure($difficulty, $attendance, $teaching_methods, $exam_anxiety, $family_problems, $university_environment, $high_course_load, $disinterest_in_major, $working_while_studying, $financial_issues, $long_commute, $choosing_bad_friends, $lack_of_time_for_studying, $other_reasons, $proposed_solutions, $u_id, $a_username)
+function insertAcademicFailure($conn, $difficulty, $attendance, $teaching_methods, $exam_anxiety, $family_problems, $university_environment, $high_course_load, $disinterest_in_major, $working_while_studying, $financial_issues, $long_commute, $choosing_bad_friends, $lack_of_time_for_studying, $other_reasons, $proposed_solutions, $u_id, $a_username)
 {
-    require_once '../../functions.php';
+
 
     $sql = "INSERT INTO academic_failures 
             (difficulty, attendance, teaching_methods, exam_anxiety, family_problems, university_environment, high_course_load, disinterest_in_major, working_while_studying, financial_issues, long_commute, choosing_bad_friends, lack_of_time_for_studying, other_reasons, proposed_solutions, u_id, a_username) 

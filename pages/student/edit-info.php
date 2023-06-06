@@ -53,9 +53,7 @@ $student_info = getStudentData($conn, $id) ?? [];
                                 <label for="inputcollege" class="form-label text-start">الكلية</label>
                                 <select id="inputcollege" name="college" class="form-select">
                                     <option value="<?php echo $student_info['college'] ?? ""; ?>"><?php echo $student_info['college'] ?? "-- اختر الكلية --"; ?></option>
-                                    <?php foreach ($colleges as $college) { ?>
-                                        <option value="<?php echo $college['name'] ?>" id="college_<?php echo $college['id'] ?>"><?php echo $college['name'] ?></option>
-                                    <?php } ?>
+
                                 </select>
                                 <div id="college-error" class="text-danger"></div>
                             </div>
@@ -912,7 +910,7 @@ $student_info = getStudentData($conn, $id) ?? [];
                     $('#inputdepartment').empty();
                     // add new options based on result from server
                     $.each(data, function(key, value) {
-                        $('#inputdepartment').append('<option value="' + value.id + '">' + value.name + '</option>');
+                        $('#inputdepartment').append('<option value="' + value.name + '">' + value.name + '</option>');
                     });
                 },
                 error: function(xhr, status, error) {

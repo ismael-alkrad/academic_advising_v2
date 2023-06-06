@@ -19,5 +19,5 @@ $proposed_solutions = $_POST['proposed_solutions'];
 $u_id = $_POST['student'];
 $a_username = $_POST['advisor'];
 
-$result = insertAcademicFailure($difficulty, $attendance, $teaching_methods, $exam_anxiety, $family_problems, $university_environment, $high_course_load, $disinterest_in_major, $working_while_studying, $financial_issues, $long_commute, $choosing_bad_friends, $lack_of_time_for_studying, $other_reasons, $proposed_solutions, $u_id, $a_username);
+$result = insertAcademicFailure($conn,$difficulty, $attendance, $teaching_methods, $exam_anxiety, $family_problems, $university_environment, $high_course_load, $disinterest_in_major, $working_while_studying, $financial_issues, $long_commute, $choosing_bad_friends, $lack_of_time_for_studying, $other_reasons, $proposed_solutions, $u_id, $a_username);
 echo $result;

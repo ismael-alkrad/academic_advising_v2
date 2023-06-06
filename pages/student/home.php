@@ -891,7 +891,7 @@ if (checkifFillInfo($conn) ?? false) {
           $('#inputdepartment').empty();
           // add new options based on result from server
           $.each(data, function(key, value) {
-            $('#inputdepartment').append('<option value="' + value.id + '">' + value.name + '</option>');
+            $('#inputdepartment').append('<option value="' + value.name + '">' + value.name + '</option>');
           });
         },
         error: function(xhr, status, error) {

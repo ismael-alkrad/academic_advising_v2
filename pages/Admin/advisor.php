@@ -133,11 +133,24 @@ check();
     function printTable() {
         var contentsToPrint = $('.col.info').html();
         var printWindow = window.open('', 'PrintWindow');
+
         printWindow.document.write('<html><head><title>Print</title></head><body>' + contentsToPrint + '</body></html>');
         printWindow.document.close();
-        printWindow.focus();
+
+        printWindow.onload = function() {
+            if (window.matchMedia) {
+                var mediaQueryList = window.matchMedia('print');
+                mediaQueryList.addListener(function(mql) {
+                    if (!mql.matches) {
+                        printWindow.close();
+                    }
+                });
+            }
+
+            printWindow.print();
+        };
         printWindow.print();
-        printWindow.close();
+        printWindow.focus();
     }
 </script>
 <script>

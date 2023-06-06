@@ -9,6 +9,6 @@ if (isset($_POST)) {
         echo 'error';
     }
 }
-// print_r(
-//     $_POST
-// );
+print_r(
+    $_POST
+);
